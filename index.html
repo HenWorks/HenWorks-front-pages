@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HenWorks — We Build What Matters.</title>
+  <meta name="description" content="HenWorks - 以極致的工藝打造卓越的數位產品與解決方案。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #000000;
+      --bg-card: #0A0A0A;
+      --bg-elevated: #111111;
+      --text-primary: #FFFFFF;
+      --text-secondary: #888888;
+      --text-tertiary: #666666;
+      --text-light: #444444;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.15);
+      --accent: #C4212A;
+      --accent-hover: #E8333D;
+      --overlay: rgba(255, 255, 255, 0.04);
+      --overlay-strong: rgba(255, 255, 255, 0.08);
+      --font-en: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font: 'Inter', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-size: 13px;
+    }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .nav-logo {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-primary);
+      flex-shrink: 0;
+      font-family: var(--font-en);
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-center > li { position: relative; }
+
+    .nav-center > li > a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0;
+    }
+
+    .nav-center > li > a:hover { color: var(--text-primary); }
+
+    .nav-center > li > a .chevron {
+      width: 10px;
+      height: 10px;
+      transition: transform 0.3s;
+    }
+
+    /* ── Dropdown ── */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 240px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem;
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 12px;
+      height: 12px;
+      background: var(--bg-elevated);
+      border-left: 1px solid var(--border);
+      border-top: 1px solid var(--border);
+    }
+
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .has-dropdown:hover > a .chevron { transform: rotate(180deg); }
+
+    .dropdown-menu li a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .dropdown-menu li a:hover {
+      background: var(--overlay);
+      color: var(--text-primary);
+    }
+
+    .dropdown-menu li a .dd-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--overlay);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .dropdown-menu li a .dd-icon svg { width: 16px; height: 16px; color: var(--text-secondary); }
+
+    .dropdown-menu li a .dd-text small {
+      display: block;
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    /* ── Language Switcher ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--text-secondary);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, border-color 0.2s;
+      font-family: var(--font);
+      letter-spacing: 0.02em;
+    }
+
+    .lang-btn:hover { background: var(--overlay); border-color: var(--text-tertiary); }
+
+    .lang-btn .chevron {
+      width: 9px;
+      height: 9px;
+      transition: transform 0.3s;
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      min-width: 140px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem;
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .lang-switcher.open .lang-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .lang-switcher.open .lang-btn .chevron { transform: rotate(180deg); }
+
+    .lang-dropdown li button {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      padding: 0.5rem 0.75rem;
+      font-size: 12px;
+      font-weight: 400;
+      cursor: pointer;
+      border-radius: 6px;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+      font-family: var(--font);
+    }
+
+    .lang-dropdown li button:hover { background: var(--overlay); color: var(--text-primary); }
+    .lang-dropdown li button.active { background: var(--overlay-strong); color: var(--text-primary); font-weight: 500; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-primary);
+      margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 3rem 6rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 420px;
+      line-height: 1.9;
+      margin-bottom: 3rem;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--text-primary);
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+      font-family: var(--font-en);
+    }
+
+    .hero-cta:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta svg { width: 14px; height: 14px; transition: transform 0.3s; }
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── Section Common ── */
+    .section {
+      padding: 8rem 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 420px;
+      line-height: 1.9;
+      font-weight: 400;
+    }
+
+    /* ── Products ── */
+    .product-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .product-info { max-width: 420px; }
+
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      padding: 0.35rem 0.9rem;
+      border-radius: 0;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .product-badge .dot {
+      width: 5px;
+      height: 5px;
+      background: var(--text-primary);
+      border-radius: 50%;
+    }
+
+    .product-name {
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .product-tagline {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .product-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.4rem 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .product-features li svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--text-primary);
+    }
+
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      padding: 0.75rem 1.8rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease, color 0.4s ease;
+      font-family: var(--font-en);
+    }
+
+    .product-cta:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .product-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-mockup {
+      width: 260px;
+      height: 520px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 36px;
+      padding: 10px;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #111, #1A1A1A);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      overflow: hidden;
+      position: relative;
+      color: #FFFFFF;
+    }
+
+    .phone-screen .app-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-screen .app-icon svg { width: 28px; height: 28px; color: #FFFFFF; }
+
+    .phone-screen .app-name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+    }
+
+    .phone-screen .app-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 16px 16px;
+    }
+
+    /* ── Services ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      margin-top: 4rem;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: none;
+      border-radius: 0;
+      padding: 2.5rem 2rem;
+      transition: background 0.4s ease;
+    }
+
+    .service-card:hover {
+      background: var(--bg-elevated);
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-icon svg { width: 16px; height: 16px; color: var(--text-secondary); }
+    .service-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.01em; color: var(--text-primary); }
+    .service-card p { color: var(--text-secondary); font-size: 13px; line-height: 1.8; font-weight: 400; }
+
+    /* ── Values ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .value-item .value-number { font-size: 36px; font-weight: 600; color: var(--text-light); margin-bottom: 0.75rem; letter-spacing: -0.03em; }
+    .value-item h3 { font-size: 14px; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .value-item p { color: var(--text-secondary); font-size: 13px; line-height: 1.8; font-weight: 400; }
+
+    /* ── Contact ── */
+    .contact-section { text-align: center; }
+    .contact-section .section-desc { margin: 0 auto 3rem; text-align: center; }
+
+    .contact-email {
+      display: inline-block;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-left { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.02em; }
+
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: var(--text-tertiary); text-decoration: none; font-size: 11px; transition: color 0.3s; letter-spacing: 0.02em; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.5rem; }
+
+      .nav-center {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1rem 1.5rem 1.5rem;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-center.open { display: flex; }
+
+      .nav-center > li > a { padding: 0.75rem 0; }
+
+      .has-dropdown .dropdown-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        background: var(--overlay);
+        border: none;
+        border-radius: 6px;
+        margin: 0.25rem 0 0.5rem;
+        box-shadow: none;
+        display: none;
+      }
+
+      .has-dropdown .dropdown-menu::before { display: none; }
+      .has-dropdown.open .dropdown-menu { display: block; }
+
+      .nav-toggle { display: block; }
+
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 5rem 1.5rem; }
+      .section-divider { padding: 0 1.5rem; }
+
+      .product-showcase { grid-template-columns: 1fr; gap: 3rem; }
+      .product-visual { order: -1; }
+      .phone-mockup { width: 200px; height: 400px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+      .footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Stagger delays for children */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+
+    /* Hero entrance animation */
+    .hero-anim {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroEnter 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    .hero-anim-1 { animation-delay: 0.3s; }
+    .hero-anim-2 { animation-delay: 0.6s; }
+    .hero-anim-3 { animation-delay: 0.9s; }
+    .hero-anim-4 { animation-delay: 1.2s; }
+
+    @keyframes heroEnter {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Nav hide/show on scroll */
+    .nav {
+      transform: translateY(0);
+      transition: background 0.4s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    }
+    .nav.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    /* Parallax container */
+    [data-parallax] {
+      will-change: transform;
+    }
+
+    /* ── Loading Screen ── */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader.done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-inner { text-align: center; }
+    .loader-text {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      animation: loaderPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .loader-bar {
+      width: 100px;
+      height: 1px;
+      background: var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .loader-progress {
+      height: 100%;
+      width: 0%;
+      background: var(--text-primary);
+      border-radius: 0;
+      animation: loaderFill 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes loaderFill {
+      to { width: 100%; }
+    }
+
+    /* ── Custom Cursor ── */
+    .cursor {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor.hover {
+      width: 56px;
+      height: 56px;
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .cursor-dot {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--text-primary);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    @media (max-width: 768px) {
+      .cursor, .cursor-dot { display: none; }
+    }
+
+    /* ── Scroll Progress Bar ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--text-primary);
+      z-index: 101;
+      transition: none;
+    }
+
+    /* ── Nav Link Hover Underline Animation (clip-path style) ── */
+    .nav-center > li > a {
+      position: relative;
+      overflow: hidden;
+    }
+    .nav-center > li > a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--text-primary);
+      clip-path: inset(0% 100% 0% 0%);
+      transition: clip-path 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .nav-center > li > a:hover::after {
+      clip-path: inset(0%);
+    }
+
+    /* Footer link hover underline */
+    .footer-links a {
+      position: relative;
+    }
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--text-primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .footer-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Contact email hover */
+    .contact-email {
+      position: relative;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--text-primary);
+      transform: scaleX(0.3);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .contact-email:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ── Marquee ── */
+    .marquee-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .marquee {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+      animation: marqueeScroll 25s linear infinite;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .marquee-dot {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      background: var(--text-light);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Section Dividers ── */
+    .section-divider {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      position: relative;
+    }
+    .section-divider::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CTA hover fill sweep ── */
+    .hero-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--text-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: -1;
+    }
+    .hero-cta:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    .product-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--text-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: -1;
+    }
+    .product-cta:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* ── Split text animation for hero h1 (entrance) ── */
+    .split-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: splitReveal 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    @keyframes splitReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Scramble Text Hover Effect (Train Station Split-Flap) ── */
+    /* Text scrambles through random characters on hover, then resolves back */
+    [data-scramble] {
+      display: inline-block;
+      font-family: var(--font-en);
+      white-space: nowrap;
+    }
+
+    /* ── Clip-path line hover for links (ykproduce style) ── */
+    .line-hover {
+      position: relative;
+      display: inline-block;
+    }
+    .line-hover::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      clip-path: inset(0% 100% 0% 0%);
+      transition: clip-path 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .line-hover:hover::after {
+      clip-path: inset(0%);
+    }
+
+    /* Scroll-triggered text reveal (split words slide up from below) */
+    .reveal-text {
+      overflow: hidden;
+    }
+    .reveal-text .reveal-inner {
+      display: block;
+      transform: translateY(100%);
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal-text.visible .reveal-inner {
+      transform: translateY(0);
+    }
+
+    /* English text styling */
+    .u-en {
+      font-family: var(--font-en);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Section tag as monospace number style */
+    .section-tag {
+      font-family: 'Roboto Mono', 'SF Mono', monospace;
+    }
+
+    /* Accent dot (blinking like ykproduce) */
+    .blink-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blinkDot 2s linear infinite;
+    }
+    @keyframes blinkDot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Body hide overflow during load */
+    body.loading {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <span class="loader-text">HenWorks</span>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">HenWorks</a>
+    <ul class="nav-center" id="navCenter">
+      <li class="has-dropdown">
+        <a href="#products" data-i18n="nav.products">
+          Products
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#opclaw">
+              <span class="dd-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+              </span>
+              <span class="dd-text">
+                Opclaw-Android
+                <small data-i18n="nav.opclaw_desc">OpenClaw 非官方 Android 版</small>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn">
+          <span id="langLabel">繁中</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <ul class="lang-dropdown" id="langDropdown">
+          <li><button data-lang="zh" class="active">繁體中文</button></li>
+          <li><button data-lang="en">English</button></li>
+          <li><button data-lang="ja">日本語</button></li>
+          <li><button data-lang="ko">한국어</button></li>
+          <li><button data-lang="th">ภาษาไทย</button></li>
+        </ul>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <p class="hero-tag hero-anim hero-anim-1" data-i18n="hero.tag">Digital Craftsmanship</p>
+    <h1 class="hero-anim hero-anim-2" data-i18n="hero.title">We Build<br>What Matters.</h1>
+    <p class="hero-desc hero-anim hero-anim-3" data-i18n="hero.desc">以極致工藝打造卓越數位產品。從策略到落地，我們協助企業將願景轉化為影響力。</p>
+    <a href="#contact" class="hero-cta hero-anim hero-anim-4">
+      <span data-i18n="hero.cta">開始合作</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+      </svg>
+    </a>
+    <div class="scroll-indicator hero-anim hero-anim-4">
+      <span>SCROLL</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>DIGITAL CRAFTSMANSHIP</span>
+      <span class="marquee-dot"></span>
+      <span>PRODUCT DESIGN</span>
+      <span class="marquee-dot"></span>
+      <span>SOFTWARE ENGINEERING</span>
+      <span class="marquee-dot"></span>
+      <span>DIGITAL CRAFTSMANSHIP</span>
+      <span class="marquee-dot"></span>
+      <span>PRODUCT DESIGN</span>
+      <span class="marquee-dot"></span>
+      <span>SOFTWARE ENGINEERING</span>
+      <span class="marquee-dot"></span>
+    </div>
+  </div>
+
+  <!-- Products: Opclaw-Android -->
+  <section class="section" id="products">
+    <div class="fade-in">
+      <p class="section-tag" data-i18n="products.tag">Our Products</p>
+      <h2 class="section-title" data-i18n="products.title">打造改變<br>工作方式的工具。</h2>
+      <p class="section-desc" data-i18n="products.desc">我們的產品專注於解決真實世界的問題，讓技術真正服務於人。</p>
+    </div>
+
+    <div class="product-showcase" id="opclaw">
+      <div class="product-info fade-in-left">
+        <div class="product-badge">
+          <span class="dot"></span>
+          <span data-i18n="opclaw.badge">Now Available</span>
+        </div>
+        <h3 class="product-name">Opclaw-Android</h3>
+        <p class="product-tagline" data-i18n="opclaw.tagline">OpenClaw 的非官方 Android 移植版。在手機上體驗經典 Captain Claw 的冒險樂趣。</p>
+        <ul class="product-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span data-i18n="opclaw.f1">經典重現 — 完整移植 Captain Claw 遊戲體驗</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span data-i18n="opclaw.f2">觸控優化 — 為行動裝置量身打造的操控介面</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span data-i18n="opclaw.f3">輕量高效 — 極低資源佔用，流暢運行</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span data-i18n="opclaw.f4">開源精神 — 基於 OpenClaw 引擎，社群驅動</span>
+          </li>
+        </ul>
+        <a href="#contact" class="product-cta">
+          <span data-i18n="opclaw.cta">了解更多</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+      <div class="product-visual fade-in-right" data-parallax="0.05">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875S10.5 3.089 10.5 4.125c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.421 48.421 0 01-4.185-.408c-.009-.77.006-1.313.034-1.584a.798.798 0 00-.378-.697 48.772 48.772 0 00-1.564-.782 .798.798 0 00-.916.17 10.187 10.187 0 00-2.008 3.244c-.16.428.053.902.472 1.082a48.04 48.04 0 001.588.686c.357.147.61.487.578.872a48.87 48.87 0 00.006 4.07c.033.386-.22.727-.578.874a48.3 48.3 0 00-1.588.686.798.798 0 00-.472 1.082 10.187 10.187 0 002.008 3.244c.252.268.636.34.916.17a48.77 48.77 0 001.564-.782.798.798 0 00.378-.697c-.028-.271-.043-.813-.034-1.584a48.394 48.394 0 014.185-.408.64.64 0 00.657.643v0c0 .355-.186.676-.401.959a1.647 1.647 0 00-.349 1.003c0 1.035 1.007 1.875 2.25 1.875s2.25-.84 2.25-1.875c0-.369-.128-.713-.349-1.003-.215-.283-.401-.604-.401-.959v0a.64.64 0 01.657-.643 48.421 48.421 0 014.185.408c.009.77-.006 1.313-.034 1.584a.798.798 0 00.378.697 48.77 48.77 0 001.564.782c.28.17.664.098.916-.17a10.187 10.187 0 002.008-3.244.798.798 0 00-.472-1.082 48.04 48.04 0 00-1.588-.686c-.357-.147-.61-.487-.578-.872a48.87 48.87 0 00-.006-4.07c-.033-.386.22-.727.578-.874a48.3 48.3 0 001.588-.686.798.798 0 00.472-1.082 10.187 10.187 0 00-2.008-3.244.798.798 0 00-.916-.17 48.772 48.772 0 00-1.564.782.798.798 0 00-.378.697c.028.271.043.813.034 1.584a48.394 48.394 0 01-4.185.408.64.64 0 00-.657-.643v0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <span class="app-name">Opclaw</span>
+            <span class="app-sub">Captain Claw on Android</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="fade-in">
+      <p class="section-tag" data-i18n="services.tag">What We Do</p>
+      <h2 class="section-title" data-i18n="services.title">以技術驅動<br>商業成長。</h2>
+      <p class="section-desc" data-i18n="services.desc">我們提供全方位的數位解決方案，從概念設計到產品落地，每一步都追求卓越。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in stagger-1">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.dev_title">軟體開發</h3>
+        <p data-i18n="services.dev_desc">從 Web 應用到雲端架構，運用現代技術棧打造高效能、可擴展的軟體系統。</p>
+      </div>
+      <div class="service-card fade-in stagger-2">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.design_title">產品設計</h3>
+        <p data-i18n="services.design_desc">以使用者為中心的設計流程，打造直覺、美觀且具轉換力的數位體驗。</p>
+      </div>
+      <div class="service-card fade-in stagger-3">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <h3 data-i18n="services.transform_title">數位轉型</h3>
+        <p data-i18n="services.transform_desc">協助企業擁抱數位化，優化流程、提升效率，在競爭中保持領先。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="fade-in">
+      <p class="section-tag" data-i18n="about.tag">Who We Are</p>
+      <h2 class="section-title" data-i18n="about.title">小團隊，<br>大影響力。</h2>
+      <p class="section-desc" data-i18n="about.desc">HenWorks 是一支精實的技術團隊。我們相信最好的產品來自對細節的執著和對品質的堅持。</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-item fade-in stagger-1">
+        <p class="value-number">01</p>
+        <h3 data-i18n="about.v1_title">品質至上</h3>
+        <p data-i18n="about.v1_desc">不妥協的程式品質與設計標準，每一行程式碼都經過深思熟慮。</p>
+      </div>
+      <div class="value-item fade-in stagger-2">
+        <p class="value-number">02</p>
+        <h3 data-i18n="about.v2_title">敏捷迭代</h3>
+        <p data-i18n="about.v2_desc">快速驗證、持續優化，以最小成本創造最大價值。</p>
+      </div>
+      <div class="value-item fade-in stagger-3">
+        <p class="value-number">03</p>
+        <h3 data-i18n="about.v3_title">技術深耕</h3>
+        <p data-i18n="about.v3_desc">持續追蹤最新技術趨勢，將前沿技術轉化為實際商業價值。</p>
+      </div>
+      <div class="value-item fade-in stagger-4">
+        <p class="value-number">04</p>
+        <h3 data-i18n="about.v4_title">夥伴關係</h3>
+        <p data-i18n="about.v4_desc">不只是外包廠商，更是您的技術夥伴，共同成長。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Contact -->
+  <section class="section contact-section" id="contact">
+    <div class="scale-in">
+      <p class="section-tag" data-i18n="contact.tag">Get In Touch</p>
+      <h2 class="section-title" data-i18n="contact.title">有想法？<br>讓我們聊聊。</h2>
+      <p class="section-desc" data-i18n="contact.desc">無論是全新的專案構想，還是現有產品的優化需求，我們都樂意傾聽。</p>
+      <a href="mailto:hello@henworks.com" class="contact-email">hello@henworks.com</a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-left" data-i18n="footer.copy">&copy; 2026 HenWorks. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/henworks" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/company/henworks" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+  <script>
+  /* ══════════════════════════════════════
+     i18n Translations
+     ══════════════════════════════════════ */
+  const i18n = {
+    zh: {
+      _label: "繁中",
+      _htmlLang: "zh-Hant",
+      "nav.products": "Products",
+      "nav.opclaw_desc": "OpenClaw 非官方 Android 版",
+      "nav.services": "Services",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.tag": "Digital Craftsmanship",
+      "hero.title": "We Build<br>What Matters.",
+      "hero.desc": "以極致工藝打造卓越數位產品。從策略到落地，我們協助企業將願景轉化為影響力。",
+      "hero.cta": "開始合作",
+      "products.tag": "Our Products",
+      "products.title": "打造改變<br>工作方式的工具。",
+      "products.desc": "我們的產品專注於解決真實世界的問題，讓技術真正服務於人。",
+      "opclaw.badge": "現已推出",
+      "opclaw.tagline": "OpenClaw 的非官方 Android 移植版。在手機上體驗經典 Captain Claw 的冒險樂趣。",
+      "opclaw.f1": "經典重現 — 完整移植 Captain Claw 遊戲體驗",
+      "opclaw.f2": "觸控優化 — 為行動裝置量身打造的操控介面",
+      "opclaw.f3": "輕量高效 — 極低資源佔用，流暢運行",
+      "opclaw.f4": "開源精神 — 基於 OpenClaw 引擎，社群驅動",
+      "opclaw.cta": "了解更多",
+      "services.tag": "What We Do",
+      "services.title": "以技術驅動<br>商業成長。",
+      "services.desc": "我們提供全方位的數位解決方案，從概念設計到產品落地，每一步都追求卓越。",
+      "services.dev_title": "軟體開發",
+      "services.dev_desc": "從 Web 應用到雲端架構，運用現代技術棧打造高效能、可擴展的軟體系統。",
+      "services.design_title": "產品設計",
+      "services.design_desc": "以使用者為中心的設計流程，打造直覺、美觀且具轉換力的數位體驗。",
+      "services.transform_title": "數位轉型",
+      "services.transform_desc": "協助企業擁抱數位化，優化流程、提升效率，在競爭中保持領先。",
+      "about.tag": "Who We Are",
+      "about.title": "小團隊，<br>大影響力。",
+      "about.desc": "HenWorks 是一支精實的技術團隊。我們相信最好的產品來自對細節的執著和對品質的堅持。",
+      "about.v1_title": "品質至上",
+      "about.v1_desc": "不妥協的程式品質與設計標準，每一行程式碼都經過深思熟慮。",
+      "about.v2_title": "敏捷迭代",
+      "about.v2_desc": "快速驗證、持續優化，以最小成本創造最大價值。",
+      "about.v3_title": "技術深耕",
+      "about.v3_desc": "持續追蹤最新技術趨勢，將前沿技術轉化為實際商業價值。",
+      "about.v4_title": "夥伴關係",
+      "about.v4_desc": "不只是外包廠商，更是您的技術夥伴，共同成長。",
+      "contact.tag": "Get In Touch",
+      "contact.title": "有想法？<br>讓我們聊聊。",
+      "contact.desc": "無論是全新的專案構想，還是現有產品的優化需求，我們都樂意傾聽。",
+      "footer.copy": "&copy; 2026 HenWorks. All rights reserved."
+    },
+    en: {
+      _label: "EN",
+      _htmlLang: "en",
+      "nav.products": "Products",
+      "nav.opclaw_desc": "Unofficial Android Port of OpenClaw",
+      "nav.services": "Services",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.tag": "Digital Craftsmanship",
+      "hero.title": "We Build<br>What Matters.",
+      "hero.desc": "Crafting exceptional digital products with precision. From strategy to execution, we help businesses turn vision into impact.",
+      "hero.cta": "Get Started",
+      "products.tag": "Our Products",
+      "products.title": "Tools That Change<br>How You Work.",
+      "products.desc": "Our products focus on solving real-world problems, making technology truly serve people.",
+      "opclaw.badge": "Now Available",
+      "opclaw.tagline": "An unofficial Android port of OpenClaw. Experience the classic Captain Claw adventure on your phone.",
+      "opclaw.f1": "Classic Revived — Fully ported Captain Claw gameplay",
+      "opclaw.f2": "Touch Optimized — Controls designed for mobile devices",
+      "opclaw.f3": "Lightweight & Fast — Minimal resource usage, smooth performance",
+      "opclaw.f4": "Open Source Spirit — Built on the OpenClaw engine, community-driven",
+      "opclaw.cta": "Learn More",
+      "services.tag": "What We Do",
+      "services.title": "Technology-Driven<br>Business Growth.",
+      "services.desc": "We provide comprehensive digital solutions, pursuing excellence from concept design to product delivery.",
+      "services.dev_title": "Software Development",
+      "services.dev_desc": "From web applications to cloud architecture, building high-performance, scalable software systems with modern tech stacks.",
+      "services.design_title": "Product Design",
+      "services.design_desc": "User-centered design process, creating intuitive, beautiful, and conversion-driven digital experiences.",
+      "services.transform_title": "Digital Transformation",
+      "services.transform_desc": "Helping businesses embrace digitalization, optimize processes, improve efficiency, and stay ahead of the competition.",
+      "about.tag": "Who We Are",
+      "about.title": "Small Team,<br>Big Impact.",
+      "about.desc": "HenWorks is a lean technology team. We believe the best products come from an obsession with detail and a commitment to quality.",
+      "about.v1_title": "Quality First",
+      "about.v1_desc": "Uncompromising code quality and design standards — every line of code is carefully considered.",
+      "about.v2_title": "Agile Iteration",
+      "about.v2_desc": "Rapid validation, continuous optimization — creating maximum value at minimum cost.",
+      "about.v3_title": "Deep Tech",
+      "about.v3_desc": "Continuously tracking the latest tech trends, turning cutting-edge technology into real business value.",
+      "about.v4_title": "Partnership",
+      "about.v4_desc": "Not just a vendor, but your technology partner — growing together.",
+      "contact.tag": "Get In Touch",
+      "contact.title": "Got an Idea?<br>Let's Talk.",
+      "contact.desc": "Whether it's a brand new project or an optimization for an existing product, we'd love to hear from you.",
+      "footer.copy": "&copy; 2026 HenWorks. All rights reserved."
+    },
+    ja: {
+      _label: "日本語",
+      _htmlLang: "ja",
+      "nav.products": "Products",
+      "nav.opclaw_desc": "OpenClaw非公式Android版",
+      "nav.services": "Services",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.tag": "Digital Craftsmanship",
+      "hero.title": "We Build<br>What Matters.",
+      "hero.desc": "卓越したデジタルプロダクトを精密に構築。戦略から実行まで、ビジョンをインパクトに変えるお手伝いをします。",
+      "hero.cta": "お問い合わせ",
+      "products.tag": "Our Products",
+      "products.title": "働き方を変える<br>ツールを創る。",
+      "products.desc": "私たちの製品は、現実の問題を解決し、テクノロジーを人々のために役立てることに焦点を当てています。",
+      "opclaw.badge": "リリース中",
+      "opclaw.tagline": "OpenClawの非公式Android移植版。スマホでクラシックなCaptain Clawの冒険を体験しよう。",
+      "opclaw.f1": "クラシック復活 — Captain Clawのゲーム体験を完全移植",
+      "opclaw.f2": "タッチ最適化 — モバイル向けに設計された操作性",
+      "opclaw.f3": "軽量・高速 — 最小リソースでスムーズに動作",
+      "opclaw.f4": "オープンソース精神 — OpenClawエンジンベース、コミュニティ駆動",
+      "opclaw.cta": "詳細を見る",
+      "services.tag": "What We Do",
+      "services.title": "テクノロジーで<br>ビジネスを成長させる。",
+      "services.desc": "コンセプト設計から製品納品まで、卓越を追求する包括的なデジタルソリューションを提供します。",
+      "services.dev_title": "ソフトウェア開発",
+      "services.dev_desc": "Webアプリからクラウドアーキテクチャまで、最新技術で高性能・拡張性の高いシステムを構築。",
+      "services.design_title": "プロダクトデザイン",
+      "services.design_desc": "ユーザー中心の設計プロセスで、直感的で美しく、コンバージョンを促すデジタル体験を創造。",
+      "services.transform_title": "デジタルトランスフォーメーション",
+      "services.transform_desc": "企業のデジタル化を支援し、プロセスの最適化、効率向上、競争力の維持をサポート。",
+      "about.tag": "Who We Are",
+      "about.title": "小さなチーム、<br>大きなインパクト。",
+      "about.desc": "HenWorksは精鋭の技術チームです。最高の製品は、細部へのこだわりと品質への妥協のない姿勢から生まれると信じています。",
+      "about.v1_title": "品質第一",
+      "about.v1_desc": "妥協のないコード品質と設計基準 — すべてのコードが熟考されています。",
+      "about.v2_title": "アジャイル",
+      "about.v2_desc": "迅速な検証、継続的な最適化 — 最小コストで最大の価値を創造。",
+      "about.v3_title": "技術深耕",
+      "about.v3_desc": "最新の技術トレンドを追跡し、先端技術を実際のビジネス価値に変換。",
+      "about.v4_title": "パートナーシップ",
+      "about.v4_desc": "単なる外注先ではなく、共に成長する技術パートナーとして。",
+      "contact.tag": "Get In Touch",
+      "contact.title": "アイデアが<br>ありますか？",
+      "contact.desc": "新しいプロジェクトでも、既存製品の最適化でも、お気軽にご相談ください。",
+      "footer.copy": "&copy; 2026 HenWorks. All rights reserved."
+    },
+    ko: {
+      _label: "한국어",
+      _htmlLang: "ko",
+      "nav.products": "Products",
+      "nav.opclaw_desc": "OpenClaw 비공식 Android 버전",
+      "nav.services": "Services",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.tag": "Digital Craftsmanship",
+      "hero.title": "We Build<br>What Matters.",
+      "hero.desc": "정밀한 장인 정신으로 탁월한 디지털 제품을 만듭니다. 전략부터 실행까지, 비전을 임팩트로 전환합니다.",
+      "hero.cta": "시작하기",
+      "products.tag": "Our Products",
+      "products.title": "일하는 방식을<br>바꾸는 도구.",
+      "products.desc": "우리의 제품은 실제 문제를 해결하는 데 집중하며, 기술이 진정으로 사람을 위해 봉사하도록 합니다.",
+      "opclaw.badge": "출시됨",
+      "opclaw.tagline": "OpenClaw의 비공식 Android 포팅 버전. 스마트폰에서 클래식 Captain Claw 모험을 즐기세요.",
+      "opclaw.f1": "클래식 부활 — Captain Claw 게임플레이를 완벽하게 포팅",
+      "opclaw.f2": "터치 최적화 — 모바일 장치에 맞게 설계된 컨트롤",
+      "opclaw.f3": "가볍고 빠름 — 최소 리소스 사용, 원활한 성능",
+      "opclaw.f4": "오픈 소스 정신 — OpenClaw 엔진 기반, 커뮤니티 주도",
+      "opclaw.cta": "자세히 알아보기",
+      "services.tag": "What We Do",
+      "services.title": "기술로 이끄는<br>비즈니스 성장.",
+      "services.desc": "컨셉 디자인부터 제품 출시까지, 모든 단계에서 탁월함을 추구하는 종합 디지털 솔루션을 제공합니다.",
+      "services.dev_title": "소프트웨어 개발",
+      "services.dev_desc": "웹 애플리케이션부터 클라우드 아키텍처까지, 최신 기술 스택으로 고성능·확장 가능한 소프트웨어 시스템을 구축합니다.",
+      "services.design_title": "제품 디자인",
+      "services.design_desc": "사용자 중심의 디자인 프로세스로, 직관적이고 아름답고 전환을 촉진하는 디지털 경험을 만듭니다.",
+      "services.transform_title": "디지털 전환",
+      "services.transform_desc": "기업의 디지털화를 지원하고, 프로세스를 최적화하며, 효율성을 높이고, 경쟁에서 앞서 나가도록 돕습니다.",
+      "about.tag": "Who We Are",
+      "about.title": "작은 팀,<br>큰 영향력.",
+      "about.desc": "HenWorks는 정예 기술 팀입니다. 최고의 제품은 디테일에 대한 집착과 품질에 대한 타협 없는 헌신에서 나온다고 믿습니다.",
+      "about.v1_title": "품질 우선",
+      "about.v1_desc": "타협 없는 코드 품질과 디자인 기준 — 모든 코드 한 줄이 신중하게 고려됩니다.",
+      "about.v2_title": "애자일 반복",
+      "about.v2_desc": "빠른 검증, 지속적 최적화 — 최소 비용으로 최대 가치 창출.",
+      "about.v3_title": "기술 심화",
+      "about.v3_desc": "최신 기술 트렌드를 지속적으로 추적하고, 최첨단 기술을 실제 비즈니스 가치로 전환.",
+      "about.v4_title": "파트너십",
+      "about.v4_desc": "단순한 외주업체가 아니라, 함께 성장하는 기술 파트너.",
+      "contact.tag": "Get In Touch",
+      "contact.title": "아이디어가<br>있으신가요?",
+      "contact.desc": "새로운 프로젝트든 기존 제품 최적화든, 편하게 연락해 주세요.",
+      "footer.copy": "&copy; 2026 HenWorks. All rights reserved."
+    },
+    th: {
+      _label: "ไทย",
+      _htmlLang: "th",
+      "nav.products": "Products",
+      "nav.opclaw_desc": "OpenClaw เวอร์ชัน Android อย่างไม่เป็นทางการ",
+      "nav.services": "Services",
+      "nav.about": "About",
+      "nav.contact": "Contact",
+      "hero.tag": "Digital Craftsmanship",
+      "hero.title": "We Build<br>What Matters.",
+      "hero.desc": "สร้างสรรค์ผลิตภัณฑ์ดิจิทัลชั้นเลิศด้วยความแม่นยำ ตั้งแต่กลยุทธ์จนถึงการดำเนินงาน เราช่วยให้ธุรกิจเปลี่ยนวิสัยทัศน์เป็นผลกระทบ",
+      "hero.cta": "เริ่มต้น",
+      "products.tag": "Our Products",
+      "products.title": "เครื่องมือที่เปลี่ยน<br>วิธีการทำงาน",
+      "products.desc": "ผลิตภัณฑ์ของเรามุ่งเน้นการแก้ปัญหาในโลกจริง ทำให้เทคโนโลยีรับใช้ผู้คนอย่างแท้จริง",
+      "opclaw.badge": "พร้อมใช้งาน",
+      "opclaw.tagline": "เวอร์ชัน Android อย่างไม่เป็นทางการของ OpenClaw สัมผัสการผจญภัย Captain Claw คลาสสิกบนโทรศัพท์ของคุณ",
+      "opclaw.f1": "คลาสสิกกลับมา — พอร์ตเกมเพลย์ Captain Claw อย่างสมบูรณ์",
+      "opclaw.f2": "ปรับแต่งสำหรับระบบสัมผัส — การควบคุมที่ออกแบบมาสำหรับมือถือ",
+      "opclaw.f3": "เบาและรวดเร็ว — ใช้ทรัพยากรน้อยที่สุด ทำงานลื่นไหล",
+      "opclaw.f4": "จิตวิญญาณโอเพนซอร์ส — สร้างบนเอนจิน OpenClaw ขับเคลื่อนโดยชุมชน",
+      "opclaw.cta": "เรียนรู้เพิ่มเติม",
+      "services.tag": "What We Do",
+      "services.title": "เทคโนโลยีขับเคลื่อน<br>การเติบโตของธุรกิจ",
+      "services.desc": "เราให้บริการโซลูชันดิจิทัลครบวงจร มุ่งมั่นสู่ความเป็นเลิศตั้งแต่การออกแบบแนวคิดจนถึงการส่งมอบผลิตภัณฑ์",
+      "services.dev_title": "พัฒนาซอฟต์แวร์",
+      "services.dev_desc": "ตั้งแต่เว็บแอปพลิเคชันถึงสถาปัตยกรรมคลาวด์ สร้างระบบซอฟต์แวร์ประสิทธิภาพสูงและปรับขนาดได้ด้วยเทคโนโลยีล่าสุด",
+      "services.design_title": "ออกแบบผลิตภัณฑ์",
+      "services.design_desc": "กระบวนการออกแบบที่เน้นผู้ใช้เป็นศูนย์กลาง สร้างประสบการณ์ดิจิทัลที่ใช้งานง่าย สวยงาม และกระตุ้นการแปลง",
+      "services.transform_title": "การเปลี่ยนแปลงดิจิทัล",
+      "services.transform_desc": "ช่วยให้ธุรกิจก้าวสู่ดิจิทัล เพิ่มประสิทธิภาพกระบวนการ ปรับปรุงประสิทธิผล และนำหน้าคู่แข่ง",
+      "about.tag": "Who We Are",
+      "about.title": "ทีมเล็ก<br>ผลกระทบใหญ่",
+      "about.desc": "HenWorks เป็นทีมเทคโนโลยีที่คล่องตัว เราเชื่อว่าผลิตภัณฑ์ที่ดีที่สุดมาจากความหมกมุ่นในรายละเอียดและความมุ่งมั่นต่อคุณภาพ",
+      "about.v1_title": "คุณภาพมาก่อน",
+      "about.v1_desc": "มาตรฐานคุณภาพโค้ดและการออกแบบที่ไม่ยอมประนีประนอม ทุกบรรทัดโค้ดผ่านการคิดอย่างรอบคอบ",
+      "about.v2_title": "พัฒนาแบบ Agile",
+      "about.v2_desc": "ตรวจสอบอย่างรวดเร็ว ปรับปรุงอย่างต่อเนื่อง สร้างมูลค่าสูงสุดด้วยต้นทุนต่ำสุด",
+      "about.v3_title": "เทคโนโลยีเชิงลึก",
+      "about.v3_desc": "ติดตามเทรนด์เทคโนโลยีล่าสุดอย่างต่อเนื่อง เปลี่ยนเทคโนโลยีล้ำสมัยเป็นมูลค่าทางธุรกิจจริง",
+      "about.v4_title": "ความเป็นหุ้นส่วน",
+      "about.v4_desc": "ไม่ใช่แค่ผู้รับเหมา แต่เป็นพาร์ทเนอร์ด้านเทคโนโลยีที่เติบโตไปด้วยกัน",
+      "contact.tag": "Get In Touch",
+      "contact.title": "มีไอเดีย?<br>มาคุยกัน",
+      "contact.desc": "ไม่ว่าจะเป็นโปรเจกต์ใหม่หรือการปรับปรุงผลิตภัณฑ์ที่มีอยู่ เรายินดีรับฟัง",
+      "footer.copy": "&copy; 2026 HenWorks. All rights reserved."
+    }
+  };
+
+  /* ══════════════════════════════════════
+     i18n Engine
+     ══════════════════════════════════════ */
+  let currentLang = localStorage.getItem('hw_lang') || 'zh';
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('hw_lang', lang);
+    const t = i18n[lang];
+    if (!t) return;
+
+    document.documentElement.lang = t._htmlLang;
+    document.getElementById('langLabel').textContent = t._label;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) {
+        // If this is a [data-scramble] span, update text and reset _originalText
+        if (el.hasAttribute('data-scramble')) {
+          el.textContent = t[key];
+          el._originalText = t[key];
+        } else {
+          el.innerHTML = t[key];
+        }
+        // Reset split flag so hero text can be re-split
+        if (el.dataset.split) delete el.dataset.split;
+      }
+    });
+
+    // Re-split hero text if loader is already done
+    if (document.getElementById('loader').classList.contains('done')) {
+      splitHeroText();
+    }
+
+    // Update active state in lang dropdown
+    document.querySelectorAll('#langDropdown button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    // Close lang dropdown
+    document.getElementById('langSwitcher').classList.remove('open');
+
+    // Re-init scramble text (nav links were overwritten by innerHTML)
+    if (typeof initScrambleText === 'function') initScrambleText();
+  }
+
+  /* ══════════════════════════════════════
+     Loading Screen
+     ══════════════════════════════════════ */
+  document.body.classList.add('loading');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('done');
+      document.body.classList.remove('loading');
+      // Trigger hero split text after loader
+      splitHeroText();
+    }, 2000);
+  });
+
+  /* ══════════════════════════════════════
+     Custom Cursor
+     ══════════════════════════════════════ */
+  const cursor = document.getElementById('cursor');
+  const cursorDot = document.getElementById('cursorDot');
+  let cursorX = 0, cursorY = 0, dotX = 0, dotY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    cursorDot.style.left = cursorX + 'px';
+    cursorDot.style.top = cursorY + 'px';
+  });
+
+  function animateCursor() {
+    dotX += (cursorX - dotX) * 0.15;
+    dotY += (cursorY - dotY) * 0.15;
+    cursor.style.left = dotX + 'px';
+    cursor.style.top = dotY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Cursor hover effect on interactive elements
+  document.querySelectorAll('a, button, .service-card, .hero-cta, .product-cta, .lang-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+
+  /* ══════════════════════════════════════
+     Split Hero Text Animation
+     ══════════════════════════════════════ */
+  function splitHeroText() {
+    const h1 = document.querySelector('.hero h1');
+    if (!h1 || h1.dataset.split === 'done') return;
+
+    // Get the raw text from i18n translation or current content
+    const rawHTML = h1.innerHTML;
+
+    // Strip all HTML tags except <br>, then split by <br>
+    const cleaned = rawHTML.replace(/<(?!br\s*\/?\s*>)[^>]+>/gi, '');
+    const parts = cleaned.split(/<br\s*\/?>/i);
+
+    let result = '';
+    let charIndex = 0;
+    parts.forEach((part, pi) => {
+      // Decode HTML entities
+      const decoded = part.replace(/&[^;]+;/g, (m) => {
+        const t = document.createElement('textarea');
+        t.innerHTML = m;
+        return t.value;
+      });
+      for (let i = 0; i < decoded.length; i++) {
+        const ch = decoded[i];
+        if (ch === ' ') {
+          result += ' ';
+        } else {
+          const delay = 0.5 + charIndex * 0.04;
+          result += '<span class="split-char" style="animation-delay:' + delay + 's">' + ch + '</span>';
+          charIndex++;
+        }
+      }
+      if (pi < parts.length - 1) {
+        result += '<br>';
+      }
+    });
+    h1.innerHTML = result;
+    h1.style.perspective = '600px';
+    h1.dataset.split = 'done';
+  }
+
+  /* ══════════════════════════════════════
+     Navigation — hide/show on scroll
+     ══════════════════════════════════════ */
+  const nav = document.getElementById('nav');
+  let lastScrollY = 0;
+  let ticking = false;
+
+  function updateNav() {
+    const currentScrollY = window.scrollY;
+    nav.classList.toggle('scrolled', currentScrollY > 50);
+    if (currentScrollY > 300) {
+      if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 5) {
+        nav.classList.add('nav-hidden');
+      } else if (lastScrollY > currentScrollY && lastScrollY - currentScrollY > 5) {
+        nav.classList.remove('nav-hidden');
+      }
+    } else {
+      nav.classList.remove('nav-hidden');
+    }
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  /* ══════════════════════════════════════
+     Scroll Progress Bar
+     ══════════════════════════════════════ */
+  const scrollProgressBar = document.getElementById('scrollProgress');
+
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollProgressBar.style.width = percent + '%';
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateNav();
+        updateScrollProgress();
+        updateParallax();
+      });
+      ticking = true;
+    }
+  });
+
+  // Mobile menu
+  const navToggle = document.getElementById('navToggle');
+  const navCenter = document.getElementById('navCenter');
+  navToggle.addEventListener('click', () => {
+    navCenter.classList.toggle('open');
+  });
+
+  // Mobile dropdown toggle
+  document.querySelectorAll('.has-dropdown > a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        link.parentElement.classList.toggle('open');
+      }
+    });
+  });
+
+  // Close mobile menu on regular link click
+  navCenter.querySelectorAll('a:not(.has-dropdown > a)').forEach(link => {
+    link.addEventListener('click', () => navCenter.classList.remove('open'));
+  });
+  document.querySelectorAll('.dropdown-menu a').forEach(link => {
+    link.addEventListener('click', () => navCenter.classList.remove('open'));
+  });
+
+  // Language switcher
+  const langSwitcher = document.getElementById('langSwitcher');
+  const langBtn = document.getElementById('langBtn');
+  langBtn.addEventListener('click', () => langSwitcher.classList.toggle('open'));
+
+  document.querySelectorAll('#langDropdown button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove('open');
+  });
+
+  /* ══════════════════════════════════════
+     Scroll Animations — IntersectionObserver
+     ══════════════════════════════════════ */
+  const animObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in, .section-divider, .divider').forEach(el => {
+    animObserver.observe(el);
+  });
+
+  /* ══════════════════════════════════════
+     Magnetic Button Effect
+     ══════════════════════════════════════ */
+  document.querySelectorAll('.hero-cta, .product-cta').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  /* ══════════════════════════════════════
+     Parallax on scroll
+     ══════════════════════════════════════ */
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    parallaxElements.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.05;
+      const rect = el.getBoundingClientRect();
+      const offset = (rect.top + scrollY - window.innerHeight / 2) * speed;
+      el.style.transform = `translateY(${offset}px)`;
+    });
+  }
+
+  /* ══════════════════════════════════════
+     Scramble Text Effect (Train Station Split-Flap Display)
+     Hover over text → characters randomize then resolve
+     ══════════════════════════════════════ */
+  const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const SCRAMBLE_DURATION = 800; // ms total (slower for visible flip effect)
+  const SCRAMBLE_SPEED = 3; // more random chars before each letter resolves
+
+  function scrambleText(el) {
+    if (el._scrambling) return;
+    el._scrambling = true;
+
+    const originalText = el._originalText || el.textContent;
+    el._originalText = originalText;
+
+    const len = originalText.length;
+    const totalSteps = len * SCRAMBLE_SPEED + 6;
+    const stepTime = SCRAMBLE_DURATION / totalSteps;
+    let step = 0;
+
+    function randomChar() {
+      return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+    }
+
+    function tick() {
+      step++;
+      // Characters resolve from left to right over time
+      const resolvedCount = Math.floor((step / totalSteps) * len);
+      let display = '';
+
+      for (let i = 0; i < len; i++) {
+        const ch = originalText[i];
+        // Only scramble ASCII letters; leave CJK, spaces, symbols as-is
+        const isAsciiLetter = /[A-Za-z]/.test(ch);
+        if (!isAsciiLetter) {
+          display += ch;
+        } else if (i < resolvedCount) {
+          display += ch; // already resolved
+        } else {
+          display += randomChar(); // still scrambling
+        }
+      }
+
+      el.textContent = display;
+
+      if (step < totalSteps) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = originalText;
+        el._scrambling = false;
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function wrapScramble(container, selector) {
+    container.querySelectorAll(selector).forEach(link => {
+      if (link.querySelector('[data-scramble]')) return; // already wrapped
+      const text = link.textContent.trim();
+      if (!text) return;
+      const i18nKey = link.getAttribute('data-i18n');
+      link.innerHTML = '';
+      const span = document.createElement('span');
+      span.setAttribute('data-scramble', '');
+      span.textContent = text;
+      if (i18nKey) {
+        span.setAttribute('data-i18n', i18nKey);
+        link.removeAttribute('data-i18n'); // move i18n to span so setLang targets span
+      }
+      link.appendChild(span);
+
+      if (!link._scrambleInit) {
+        link._scrambleInit = true;
+        link.addEventListener('mouseenter', () => {
+          const target = link.querySelector('[data-scramble]');
+          if (target) scrambleText(target);
+        });
+      }
+    });
+  }
+
+  function initScrambleText() {
+    // 1. Nav links — wrap text in [data-scramble] span
+    document.querySelectorAll('.nav-center > li > a').forEach(link => {
+      if (link.querySelector('[data-scramble]')) return;
+
+      if (link.closest('.has-dropdown')) {
+        // For dropdown triggers, only scramble the text node, not chevron SVG
+        const textNode = Array.from(link.childNodes).find(n => n.nodeType === 3 && n.textContent.trim());
+        if (textNode) {
+          const span = document.createElement('span');
+          span.setAttribute('data-scramble', '');
+          span.textContent = textNode.textContent.trim();
+          const i18nKey = link.getAttribute('data-i18n');
+          if (i18nKey) {
+            span.setAttribute('data-i18n', i18nKey);
+            link.removeAttribute('data-i18n');
+          }
+          textNode.replaceWith(span);
+        }
+      } else {
+        const text = link.textContent.trim();
+        if (!text) return;
+        const i18nKey = link.getAttribute('data-i18n');
+        link.innerHTML = '';
+        const span = document.createElement('span');
+        span.setAttribute('data-scramble', '');
+        span.textContent = text;
+        if (i18nKey) {
+          span.setAttribute('data-i18n', i18nKey);
+          link.removeAttribute('data-i18n');
+        }
+        link.appendChild(span);
+      }
+
+      // Attach hover listener on the <li> parent (once)
+      const li = link.closest('li');
+      if (li && !li._scrambleInit) {
+        li._scrambleInit = true;
+        li.addEventListener('mouseenter', () => {
+          const target = li.querySelector('[data-scramble]');
+          if (target) scrambleText(target);
+        });
+      }
+    });
+
+    // 2. Footer links
+    wrapScramble(document, '.footer-links a');
+
+    // 3. Footer bottom links
+    document.querySelectorAll('.footer-bottom a').forEach(link => {
+      if (link.querySelector('[data-scramble]')) return;
+      const text = link.textContent.trim();
+      if (!text) return;
+      link.innerHTML = '';
+      const span = document.createElement('span');
+      span.setAttribute('data-scramble', '');
+      span.textContent = text;
+      link.appendChild(span);
+
+      if (!link._scrambleInit) {
+        link._scrambleInit = true;
+        link.addEventListener('mouseenter', () => {
+          const target = link.querySelector('[data-scramble]');
+          if (target) scrambleText(target);
+        });
+      }
+    });
+
+    // 4. Section tags (e.g., "01 — Products")
+    document.querySelectorAll('.section-tag').forEach(el => {
+      if (!el._scrambleInit) {
+        el._scrambleInit = true;
+        el.addEventListener('mouseenter', () => {
+          if (!el._originalText) el._originalText = el.textContent;
+          scrambleText(el);
+        });
+      }
+    });
+
+    // 5. Contact email
+    document.querySelectorAll('.contact-email').forEach(el => {
+      if (el.querySelector('[data-scramble]')) return;
+      const text = el.textContent.trim();
+      if (!text) return;
+      el.innerHTML = '';
+      const span = document.createElement('span');
+      span.setAttribute('data-scramble', '');
+      span.textContent = text;
+      el.appendChild(span);
+
+      if (!el._scrambleInit) {
+        el._scrambleInit = true;
+        el.addEventListener('mouseenter', () => {
+          scrambleText(span);
+        });
+      }
+    });
+
+    // 6. Also add line-hover underline to footer links
+    document.querySelectorAll('.footer-links a, .contact-email').forEach(el => {
+      el.classList.add('line-hover');
+    });
+  }
+
+  // Initialize language first, then scramble (setLang overwrites innerHTML)
+  setLang(currentLang);
+  initScrambleText();
+  </script>
+
+</body>
+</html>
