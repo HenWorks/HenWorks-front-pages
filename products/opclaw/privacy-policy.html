@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Opclaw | HenWorks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-card: #0A0A0A;
+            --bg-elevated: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #888888;
+            --text-tertiary: #666666;
+            --border: rgba(255,255,255,0.08);
+            --border-strong: rgba(255,255,255,0.15);
+            --accent: #C4212A;
+            --accent-hover: #E8333D;
+            --overlay: rgba(255,255,255,0.04);
+            --font: 'Inter','Noto Sans TC','Noto Sans JP',sans-serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Nav */
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index:100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; height: 60px;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary); text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-links { display:flex; gap:24px; list-style:none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration:none;
+            font-size: 14px; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        /* Content */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 100px 24px 80px;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 12px; font-weight: 600;
+            color: var(--accent);
+            background: rgba(196,33,42,0.1);
+            border: 1px solid rgba(196,33,42,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        h1 {
+            font-size: 36px; font-weight: 700;
+            letter-spacing: -1px; line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .updated {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 20px; font-weight: 600;
+            color: var(--text-primary);
+            margin: 40px 0 16px;
+            letter-spacing: -0.3px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        p { margin-bottom: 12px; }
+        ul { padding-left: 20px; margin-bottom: 16px; }
+        li { margin-bottom: 8px; }
+        li strong { color: var(--text-primary); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); text-decoration: underline; }
+        /* Disclaimer box */
+        .disclaimer {
+            background: rgba(196,33,42,0.06);
+            border: 1px solid rgba(196,33,42,0.15);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 32px;
+        }
+        .disclaimer p {
+            color: var(--text-primary);
+            font-size: 14px; font-weight: 500;
+            margin: 0;
+        }
+        /* Table */
+        table {
+            width: 100%; border-collapse: collapse;
+            margin: 16px 0 24px;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-elevated);
+        }
+        td { color: var(--text-secondary); }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; color: var(--text-tertiary);
+        }
+        footer a { color: var(--text-tertiary); margin-left: 16px; }
+        footer a:hover { color: var(--text-primary); text-decoration: none; }
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .container { padding: 80px 16px 60px; }
+            h1 { font-size: 28px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://henworks.com" class="nav-logo">HenWorks</a>
+        <ul class="nav-links">
+            <li><a href="https://henworks.com#products">Products</a></li>
+            <li><a href="https://henworks.com#services">Services</a></li>
+            <li><a href="https://henworks.com#about">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <span class="badge">Opclaw</span>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: March 2026</p>
+
+        <h2>Overview</h2>
+        <p>Opclaw ("the App") is an independent, unofficial client for the OpenClaw AI agent platform. It provides a terminal emulator and AI gateway environment on Android. This privacy policy describes how the App collects, uses, and shares information.</p>
+
+        <div class="disclaimer">
+            <p>IMPORTANT: Opclaw is NOT developed, endorsed, or affiliated with the official OpenClaw project.</p>
+        </div>
+
+        <h2>Information You Provide</h2>
+        <ul>
+            <li><strong>Account Information</strong> — If you sign in with Google or email/password, your authentication is handled by Firebase Authentication. We store your user ID, email, display name, and account tier in Google Cloud Firestore. You may skip sign-in entirely.</li>
+            <li><strong>API Keys</strong> — When you configure an AI provider (e.g., Anthropic, OpenAI), your API key is stored locally on your device. API keys are never transmitted to our servers.</li>
+            <li><strong>Provider Configuration</strong> — Your selected AI provider, model preferences, and gateway settings are stored locally.</li>
+        </ul>
+
+        <h2>Information Collected Automatically</h2>
+        <ul>
+            <li><strong>Advertising Data</strong> — The App uses Google AdMob to display ads in the free version. AdMob may collect device identifiers (Advertising ID), IP address, and usage data for ad personalization. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</li>
+            <li><strong>Billing Data</strong> — Google Play Billing processes in-app purchases. Purchase data is handled by Google. See <a href="https://play.google.com/about/play-terms/">Google Play Terms</a>.</li>
+            <li><strong>Firebase Analytics</strong> — Basic app usage analytics (app opens, crashes) may be collected by Firebase. See <a href="https://firebase.google.com/support/privacy">Firebase Privacy</a>.</li>
+            <li><strong>Crash Reports</strong> — If enabled by the device, standard Android crash reports may be sent to Google Play Console.</li>
+        </ul>
+
+        <h2>Information We Do NOT Collect</h2>
+        <ul>
+            <li>We do not collect chat contents, terminal commands, or AI conversation data.</li>
+            <li>We do not operate AI inference servers. All AI processing is between your device and the AI provider you configured.</li>
+            <li>API keys and conversation data remain on your device and are sent only to the AI provider you configured.</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <table>
+            <tr><th>Service</th><th>Purpose</th><th>Data Shared</th></tr>
+            <tr><td>Firebase Authentication</td><td>User sign-in (optional)</td><td>Email, display name, Google account ID</td></tr>
+            <tr><td>Cloud Firestore</td><td>User profile storage</td><td>User ID, email, account tier</td></tr>
+            <tr><td>Google AdMob</td><td>Advertising (free version)</td><td>Advertising ID, IP, device info</td></tr>
+            <tr><td>Google Play Billing</td><td>In-app purchases</td><td>Purchase tokens</td></tr>
+            <tr><td>AI Providers (user-configured)</td><td>AI features</td><td>API key, prompts (direct to provider)</td></tr>
+        </table>
+
+        <h2>Data Storage</h2>
+        <p>App data (API keys, settings, terminal data) is stored locally on your device in the app's private storage directory. Account data (user profile, tier) is stored in Cloud Firestore. Uninstalling the app removes all local data. To delete your cloud account data, please contact us.</p>
+
+        <h2>Data Deletion</h2>
+        <p>You can request deletion of your account and associated data by contacting us through our <a href="https://github.com/wangjazz/openclaw-android/issues">GitHub Issues</a> page. Local data can be deleted by uninstalling the app or clearing app data in Android Settings.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>The App is not directed at children under 13. We do not knowingly collect information from children.</p>
+
+        <h2>Ad Personalization</h2>
+        <p>Free users see ads provided by Google AdMob. You can opt out of personalized ads through your device's Google settings: Settings &rarr; Google &rarr; Ads &rarr; Opt out of Ads Personalization.</p>
+        <p>Pro users do not see any ads.</p>
+
+        <h2>Foreground Service</h2>
+        <p>The App uses a foreground service to keep the terminal emulator and background processes (such as AI gateway server) alive while the app is in use. This service does not collect or transmit any data.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Changes will be posted in this document and reflected in the "Last updated" date.</p>
+
+        <h2>Contact</h2>
+        <p>For questions about this privacy policy or data deletion requests, please open an issue on our <a href="https://github.com/wangjazz/openclaw-android/issues">GitHub repository</a>.</p>
+
+        <h2>Open Source</h2>
+        <p>Opclaw is open source. You can review the complete source code at <a href="https://github.com/wangjazz/openclaw-android">GitHub</a>.</p>
+        <p>Based on the OpenClaw project (MIT License). Not affiliated with the official OpenClaw team.</p>
+    </div>
+
+    <footer>
+        <div>&copy; 2026 HenWorks. All rights reserved.</div>
+        <div>
+            <a href="https://github.com/henworks">GitHub</a>
+            <a href="https://henworks.com">Home</a>
+        </div>
+    </footer>
+</body>
+</html>

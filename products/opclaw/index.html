@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opclaw — OpenClaw on Android | HenWorks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-card: #0A0A0A;
+            --bg-elevated: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #888888;
+            --text-tertiary: #666666;
+            --text-light: #444444;
+            --border: rgba(255,255,255,0.08);
+            --border-strong: rgba(255,255,255,0.15);
+            --accent: #C4212A;
+            --accent-hover: #E8333D;
+            --overlay: rgba(255,255,255,0.04);
+            --overlay-strong: rgba(255,255,255,0.08);
+            --green: #2DA44E;
+            --font: 'Inter','Noto Sans TC','Noto Sans JP',sans-serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Nav */
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index:100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; height: 60px;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary); text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-links { display:flex; gap:24px; list-style:none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration:none;
+            font-size: 14px; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        /* Hero */
+        .hero {
+            padding: 120px 24px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 600;
+            color: var(--green);
+            background: rgba(45,164,78,0.08);
+            border: 1px solid rgba(45,164,78,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+        .hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); }
+        .hero h1 {
+            font-size: 48px; font-weight: 800;
+            letter-spacing: -2px; line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+        .hero-links {
+            display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary {
+            background: var(--overlay-strong);
+            color: var(--text-primary);
+            border: 1px solid var(--border-strong);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+        /* Disclaimer */
+        .disclaimer-bar {
+            max-width: 700px;
+            margin: 0 auto 48px;
+            background: rgba(196,33,42,0.06);
+            border: 1px solid rgba(196,33,42,0.15);
+            border-radius: 8px;
+            padding: 14px 20px;
+            text-align: center;
+        }
+        .disclaimer-bar p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin: 0;
+        }
+        .disclaimer-bar strong { color: var(--text-primary); }
+        /* Features */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 64px;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: border-color 0.2s;
+        }
+        .feature-card:hover { border-color: var(--border-strong); }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        .feature-card h3 {
+            font-size: 16px; font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        /* Requirements */
+        .req-section {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 64px;
+        }
+        .req-list {
+            list-style: none;
+            padding: 0;
+        }
+        .req-list li {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        .req-list li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 600;
+        }
+        /* How it works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            counter-reset: step;
+        }
+        .step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            counter-increment: step;
+        }
+        .step::before {
+            content: counter(step);
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            font-size: 13px; font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .step h4 {
+            font-size: 15px; font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .step p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        /* Language toggle */
+        .lang-toggle {
+            display: flex; justify-content: center; gap: 8px;
+            margin-bottom: 48px;
+        }
+        .lang-btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .lang-btn:hover:not(.active) {
+            background: var(--overlay-strong);
+            color: var(--text-primary);
+        }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        /* Legal links */
+        .legal-links {
+            display: flex; gap: 24px; justify-content: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+        }
+        .legal-links a {
+            color: var(--text-tertiary);
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .legal-links a:hover { color: var(--text-primary); }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; color: var(--text-tertiary);
+        }
+        footer a { color: var(--text-tertiary); margin-left: 16px; text-decoration: none; }
+        footer a:hover { color: var(--text-primary); }
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .hero { padding: 100px 16px 40px; }
+            .hero h1 { font-size: 32px; letter-spacing: -1px; }
+            .hero p { font-size: 16px; }
+            .section, .req-section { padding: 0 16px 48px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://henworks.com" class="nav-logo">HenWorks</a>
+        <ul class="nav-links">
+            <li><a href="https://henworks.com#products">Products</a></li>
+            <li><a href="https://henworks.com#services">Services</a></li>
+            <li><a href="https://henworks.com#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">Now Available</div>
+        <h1>Opclaw<br><span>OpenClaw on Android</span></h1>
+        <p>AI agent terminal for your Android device — phone, tablet, or TV. Run AI agents locally, no cloud dependency.</p>
+        <div class="hero-links">
+            <a href="https://play.google.com/store/apps/details?id=com.opclaw.android" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Google Play
+            </a>
+            <a href="https://github.com/wangjazz/openclaw-android" class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                Source Code
+            </a>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-bar">
+        <p><strong>IMPORTANT:</strong> Opclaw is an independent, unofficial client. It is NOT developed, endorsed, or affiliated with the official OpenClaw project.</p>
+    </div>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" onclick="switchLang('zh')">繁體中文</button>
+    </div>
+
+    <!-- English Content -->
+    <div id="lang-en" class="lang-content active">
+        <!-- Features -->
+        <div class="section">
+            <div class="section-title">Key Features</div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F916;</div>
+                    <h3>AI Agent Terminal</h3>
+                    <p>Run AI agents powered by your preferred LLM provider directly from your device. Support for Anthropic, OpenAI, and custom API endpoints including local models.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F310;</div>
+                    <h3>Local Gateway</h3>
+                    <p>Built-in gateway server lets you interact with AI agents through a modern web interface. Configure once, access anytime via your browser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F6E0;&#xFE0F;</div>
+                    <h3>Developer Tools</h3>
+                    <p>Install powerful command-line tools: jq (JSON processor), ripgrep (ultra-fast search), gh (GitHub CLI), tmux (terminal multiplexer), and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F4F1;</div>
+                    <h3>Multi-Device Support</h3>
+                    <p>Optimized for phones, tablets, and Android TV. The same AI terminal experience across all your Android devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x26A1;</div>
+                    <h3>Easy Setup</h3>
+                    <p>One-tap setup with guided onboarding. Choose your AI provider, configure your API key, and start working in minutes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F504;</div>
+                    <h3>In-App Updates</h3>
+                    <p>Check for and apply OpenClaw platform updates directly from Settings — no manual terminal commands needed.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="section">
+            <div class="section-title">How It Works</div>
+            <div class="steps">
+                <div class="step">
+                    <h4>Install</h4>
+                    <p>Install Opclaw and complete the quick setup wizard</p>
+                </div>
+                <div class="step">
+                    <h4>Connect</h4>
+                    <p>Connect your preferred AI provider (API key required)</p>
+                </div>
+                <div class="step">
+                    <h4>Launch</h4>
+                    <p>Start the gateway and open the web interface</p>
+                </div>
+                <div class="step">
+                    <h4>Work</h4>
+                    <p>Run AI agents, manage conversations, and use developer tools</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements -->
+        <div class="req-section">
+            <div class="section-title">Requirements</div>
+            <ul class="req-list">
+                <li>Internet connection for AI API calls</li>
+                <li>API key from your AI provider (Anthropic, OpenAI, or compatible)</li>
+                <li>Android 10 or higher</li>
+            </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="req-section">
+            <div class="section-title">Pro Upgrade</div>
+            <p style="text-align:center;color:var(--text-secondary);font-size:15px;">Upgrade to Opclaw Pro for an ad-free experience and support continued development.</p>
+        </div>
+    </div>
+
+    <!-- 繁體中文 Content -->
+    <div id="lang-zh" class="lang-content">
+        <div class="section">
+            <div class="section-title">主要功能</div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F916;</div>
+                    <h3>AI 代理終端</h3>
+                    <p>直接在裝置上運行由你偏好的 LLM 提供者驅動的 AI 代理。支援 Anthropic、OpenAI 及自訂 API 端點，包括本地模型。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F310;</div>
+                    <h3>本地網關</h3>
+                    <p>內建網關伺服器，讓你透過現代化的網頁介面與 AI 代理互動。一次設定，隨時透過瀏覽器存取。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F6E0;&#xFE0F;</div>
+                    <h3>開發者工具</h3>
+                    <p>在裝置上直接安裝強大的命令列工具：jq（JSON 處理器）、ripgrep（超快速搜尋）、gh（GitHub CLI）、tmux（終端多工器）等。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F4F1;</div>
+                    <h3>多裝置支援</h3>
+                    <p>針對手機、平板和 Android TV 最佳化。在所有 Android 裝置上享有一致的 AI 終端體驗。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x26A1;</div>
+                    <h3>簡易設定</h3>
+                    <p>一鍵設定搭配引導式流程。選擇 AI 提供者、設定 API 金鑰，幾分鐘內即可開始使用。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#x1F504;</div>
+                    <h3>應用內更新</h3>
+                    <p>直接從設定中檢查並套用 OpenClaw 平台更新，無需手動輸入終端指令。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">使用方式</div>
+            <div class="steps">
+                <div class="step">
+                    <h4>安裝</h4>
+                    <p>安裝 Opclaw 並完成快速設定精靈</p>
+                </div>
+                <div class="step">
+                    <h4>連接</h4>
+                    <p>連接你偏好的 AI 提供者（需要 API 金鑰）</p>
+                </div>
+                <div class="step">
+                    <h4>啟動</h4>
+                    <p>啟動網關並開啟網頁介面</p>
+                </div>
+                <div class="step">
+                    <h4>開始</h4>
+                    <p>運行 AI 代理、管理對話、使用開發工具</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="req-section">
+            <div class="section-title">系統需求</div>
+            <ul class="req-list">
+                <li>需要網路連線以呼叫 AI API</li>
+                <li>需要 AI 提供者的 API 金鑰（Anthropic、OpenAI 或相容服務）</li>
+                <li>Android 10 或更高版本</li>
+            </ul>
+        </div>
+
+        <div class="req-section">
+            <div class="section-title">Pro 升級</div>
+            <p style="text-align:center;color:var(--text-secondary);font-size:15px;">升級至 Opclaw Pro，享受無廣告體驗並支持持續開發。</p>
+        </div>
+    </div>
+
+    <!-- Legal Links -->
+    <div class="legal-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="https://github.com/wangjazz/openclaw-android">Source Code</a>
+        <a href="https://github.com/wangjazz/openclaw-android/issues">Support</a>
+    </div>
+
+    <footer>
+        <div>&copy; 2026 HenWorks. All rights reserved.</div>
+        <div>
+            <a href="https://github.com/henworks">GitHub</a>
+            <a href="https://henworks.com">Home</a>
+        </div>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('lang-' + lang).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

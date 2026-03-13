@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Opclaw | HenWorks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-card: #0A0A0A;
+            --bg-elevated: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #888888;
+            --text-tertiary: #666666;
+            --border: rgba(255,255,255,0.08);
+            --border-strong: rgba(255,255,255,0.15);
+            --accent: #C4212A;
+            --accent-hover: #E8333D;
+            --overlay: rgba(255,255,255,0.04);
+            --font: 'Inter','Noto Sans TC','Noto Sans JP',sans-serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index:100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; height: 60px;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-size: 18px; font-weight: 700;
+            color: var(--text-primary); text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-links { display:flex; gap:24px; list-style:none; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration:none;
+            font-size: 14px; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 100px 24px 80px;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 12px; font-weight: 600;
+            color: var(--accent);
+            background: rgba(196,33,42,0.1);
+            border: 1px solid rgba(196,33,42,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        h1 {
+            font-size: 36px; font-weight: 700;
+            letter-spacing: -1px; line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .updated {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 20px; font-weight: 600;
+            color: var(--text-primary);
+            margin: 40px 0 16px;
+            letter-spacing: -0.3px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        p { margin-bottom: 12px; }
+        ul { padding-left: 20px; margin-bottom: 16px; }
+        li { margin-bottom: 8px; }
+        li strong { color: var(--text-primary); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); text-decoration: underline; }
+        .disclaimer {
+            background: rgba(196,33,42,0.06);
+            border: 1px solid rgba(196,33,42,0.15);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 32px;
+        }
+        .disclaimer p {
+            color: var(--text-primary);
+            font-size: 14px; font-weight: 500;
+            margin: 0;
+        }
+        .legal {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; color: var(--text-tertiary);
+        }
+        footer a { color: var(--text-tertiary); margin-left: 16px; }
+        footer a:hover { color: var(--text-primary); text-decoration: none; }
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .container { padding: 80px 16px 60px; }
+            h1 { font-size: 28px; }
+            footer { flex-direction: column; gap: 8px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://henworks.com" class="nav-logo">HenWorks</a>
+        <ul class="nav-links">
+            <li><a href="https://henworks.com#products">Products</a></li>
+            <li><a href="https://henworks.com#services">Services</a></li>
+            <li><a href="https://henworks.com#about">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <span class="badge">Opclaw</span>
+        <h1>Terms of Service</h1>
+        <p class="updated">Last updated: March 2026</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By downloading, installing, or using Opclaw ("the App"), you agree to be bound by these Terms of Service. If you do not agree, do not use the App.</p>
+
+        <h2>2. Disclaimer — Independent Project</h2>
+        <div class="disclaimer">
+            <p>Opclaw is an independent, unofficial client for the OpenClaw AI agent platform. It is NOT developed, endorsed, sponsored, or affiliated with the official OpenClaw project or its creators.</p>
+        </div>
+        <p>The OpenClaw name and any related trademarks belong to their respective owners. Opclaw is a third-party application that interfaces with the open-source OpenClaw platform under the MIT License.</p>
+
+        <h2>3. Description of Service</h2>
+        <p>Opclaw provides:</p>
+        <ul>
+            <li>A terminal emulator environment on Android devices</li>
+            <li>Tools to install and run the OpenClaw AI agent platform locally</li>
+            <li>A gateway interface for AI agent interactions via web browser</li>
+            <li>Developer tools (jq, ripgrep, gh, tmux, etc.)</li>
+        </ul>
+
+        <h2>4. API Keys and Third-Party Services</h2>
+        <p>The App requires API keys from third-party AI providers (e.g., Anthropic, OpenAI) to function. You are responsible for:</p>
+        <ul>
+            <li>Obtaining and maintaining valid API keys</li>
+            <li>Complying with the terms of service of your chosen AI provider</li>
+            <li>All charges incurred through your API key usage</li>
+            <li>Keeping your API keys secure</li>
+        </ul>
+        <p>Opclaw and HenWorks are not responsible for any costs, data loss, or service disruptions related to third-party AI providers.</p>
+
+        <h2>5. No Warranty</h2>
+        <p class="legal">THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DO NOT GUARANTEE THAT:</p>
+        <ul>
+            <li>The App will be uninterrupted, error-free, or secure</li>
+            <li>AI agent outputs will be accurate, complete, or reliable</li>
+            <li>The App will be compatible with all devices or Android versions</li>
+            <li>The OpenClaw platform will continue to be available or compatible</li>
+        </ul>
+
+        <h2>6. Limitation of Liability</h2>
+        <p class="legal">TO THE MAXIMUM EXTENT PERMITTED BY LAW, HENWORKS AND ITS DEVELOPERS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE APP, INCLUDING BUT NOT LIMITED TO:</p>
+        <ul>
+            <li>Data loss or corruption</li>
+            <li>Unauthorized access to your API keys or data</li>
+            <li>Costs from AI API usage</li>
+            <li>Actions taken based on AI-generated content</li>
+            <li>Device performance issues</li>
+        </ul>
+
+        <h2>7. User Responsibilities</h2>
+        <p>You agree to:</p>
+        <ul>
+            <li>Use the App in compliance with all applicable laws</li>
+            <li>Not use the App for illegal, harmful, or abusive purposes</li>
+            <li>Not attempt to reverse-engineer, modify, or distribute the App beyond the terms of its open-source license</li>
+            <li>Accept responsibility for all content generated through AI agents</li>
+        </ul>
+
+        <h2>8. In-App Purchases</h2>
+        <p>Opclaw Pro is a one-time purchase that removes ads and unlocks additional features. Purchases are processed by Google Play and subject to Google Play's refund policies. We do not process payments directly.</p>
+
+        <h2>9. Foreground Service</h2>
+        <p>The App uses a foreground service to maintain terminal sessions and gateway processes while the app is in use. This is necessary for the core functionality of running AI agents and development tools. You can stop this service at any time by closing the App.</p>
+
+        <h2>10. Open Source</h2>
+        <p>Opclaw is based on open-source software. The source code is available at <a href="https://github.com/wangjazz/openclaw-android">GitHub</a> under the MIT License. Third-party components are subject to their respective licenses.</p>
+
+        <h2>11. Changes to Terms</h2>
+        <p>We may update these terms from time to time. Continued use of the App after changes constitutes acceptance of the updated terms.</p>
+
+        <h2>12. Contact</h2>
+        <p>For questions about these terms, please open an issue on our <a href="https://github.com/wangjazz/openclaw-android/issues">GitHub repository</a>.</p>
+
+        <h2>13. Governing Law</h2>
+        <p>These terms shall be governed by and construed in accordance with applicable laws. Any disputes shall be resolved through good-faith negotiation.</p>
+    </div>
+
+    <footer>
+        <div>&copy; 2026 HenWorks. All rights reserved.</div>
+        <div>
+            <a href="https://github.com/henworks">GitHub</a>
+            <a href="https://henworks.com">Home</a>
+        </div>
+    </footer>
+</body>
+</html>
