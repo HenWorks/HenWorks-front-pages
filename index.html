@@ -531,31 +531,6 @@
       color: #FFFFFF;
     }
 
-    .phone-screen .app-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .phone-screen .app-icon svg { width: 28px; height: 28px; color: #FFFFFF; }
-
-    .phone-screen .app-name {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: #FFFFFF;
-    }
-
-    .phone-screen .app-sub {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
-    }
-
     .phone-notch {
       position: absolute;
       top: 0;
@@ -565,6 +540,89 @@
       height: 24px;
       background: #000;
       border-radius: 0 0 16px 16px;
+      z-index: 3;
+    }
+
+    /* ── Phone Carousel ── */
+    .phone-carousel {
+      padding: 0;
+      gap: 0;
+    }
+
+    .carousel-slides {
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+    }
+
+    .carousel-label {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px 6px 6px;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .carousel-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+    }
+
+    .carousel-name {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      font-family: var(--font-en);
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: #FFFFFF;
+      transform: scale(1.3);
     }
 
     /* ── Services ── */
@@ -1215,24 +1273,24 @@
           <span class="dot"></span>
           <span data-i18n="opclaw.badge">Now Available</span>
         </div>
-        <h3 class="product-name">Opclaw-Android</h3>
-        <p class="product-tagline" data-i18n="opclaw.tagline">OpenClaw 的非官方 Android 移植版。在手機上體驗經典 Captain Claw 的冒險樂趣。</p>
+        <h3 class="product-name">Opclaw</h3>
+        <p class="product-tagline" data-i18n="opclaw.tagline">在 Android 上運行 AI 編程代理。無需安裝 Linux，一行命令即可開始。</p>
         <ul class="product-features">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            <span data-i18n="opclaw.f1">經典重現 — 完整移植 Captain Claw 遊戲體驗</span>
+            <span data-i18n="opclaw.f1">無需 Linux — 跳過 proot-distro，僅需 ~200MB</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            <span data-i18n="opclaw.f2">觸控優化 — 為行動裝置量身打造的操控介面</span>
+            <span data-i18n="opclaw.f2">AI 工具整合 — 支援 Claude、GPT、Gemini 等 10+ 提供者</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            <span data-i18n="opclaw.f3">輕量高效 — 極低資源佔用，流暢運行</span>
+            <span data-i18n="opclaw.f3">快速設置 — 一行命令，3-10 分鐘完成安裝</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-            <span data-i18n="opclaw.f4">開源精神 — 基於 OpenClaw 引擎，社群驅動</span>
+            <span data-i18n="opclaw.f4">開源免費 — MIT 授權，社群驅動開發</span>
           </li>
         </ul>
         <a href="#contact" class="product-cta">
@@ -1242,16 +1300,24 @@
       </div>
       <div class="product-visual fade-in-right" data-parallax="0.05">
         <div class="phone-mockup">
-          <div class="phone-screen">
+          <div class="phone-screen phone-carousel">
             <div class="phone-notch"></div>
-            <div class="app-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875S10.5 3.089 10.5 4.125c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.421 48.421 0 01-4.185-.408c-.009-.77.006-1.313.034-1.584a.798.798 0 00-.378-.697 48.772 48.772 0 00-1.564-.782 .798.798 0 00-.916.17 10.187 10.187 0 00-2.008 3.244c-.16.428.053.902.472 1.082a48.04 48.04 0 001.588.686c.357.147.61.487.578.872a48.87 48.87 0 00.006 4.07c.033.386-.22.727-.578.874a48.3 48.3 0 00-1.588.686.798.798 0 00-.472 1.082 10.187 10.187 0 002.008 3.244c.252.268.636.34.916.17a48.77 48.77 0 001.564-.782.798.798 0 00.378-.697c-.028-.271-.043-.813-.034-1.584a48.394 48.394 0 014.185-.408.64.64 0 00.657.643v0c0 .355-.186.676-.401.959a1.647 1.647 0 00-.349 1.003c0 1.035 1.007 1.875 2.25 1.875s2.25-.84 2.25-1.875c0-.369-.128-.713-.349-1.003-.215-.283-.401-.604-.401-.959v0a.64.64 0 01.657-.643 48.421 48.421 0 014.185.408c.009.77-.006 1.313-.034 1.584a.798.798 0 00.378.697 48.77 48.77 0 001.564.782c.28.17.664.098.916-.17a10.187 10.187 0 002.008-3.244.798.798 0 00-.472-1.082 48.04 48.04 0 00-1.588-.686c-.357-.147-.61-.487-.578-.872a48.87 48.87 0 00-.006-4.07c-.033-.386.22-.727.578-.874a48.3 48.3 0 001.588-.686.798.798 0 00.472-1.082 10.187 10.187 0 00-2.008-3.244.798.798 0 00-.916-.17 48.772 48.772 0 00-1.564.782.798.798 0 00-.378.697c.028.271.043.813.034 1.584a48.394 48.394 0 01-4.185.408.64.64 0 00-.657-.643v0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
+            <div class="carousel-slides">
+              <img class="carousel-slide active" src="images/opclaw-dashboard.jpg" alt="Dashboard">
+              <img class="carousel-slide" src="images/opclaw-ai-provider.jpg" alt="AI Providers">
+              <img class="carousel-slide" src="images/opclaw-tools.jpg" alt="Dev Tools">
+              <img class="carousel-slide" src="images/opclaw-webui.jpg" alt="Web Chat">
             </div>
-            <span class="app-name">Opclaw</span>
-            <span class="app-sub">Captain Claw on Android</span>
+            <div class="carousel-label">
+              <img src="images/opclaw-icon.png" alt="Opclaw" class="carousel-icon">
+              <span class="carousel-name">Dashboard</span>
+            </div>
+            <div class="carousel-dots">
+              <span class="carousel-dot active"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -1375,11 +1441,11 @@
       "products.title": "打造改變<br>工作方式的工具。",
       "products.desc": "我們的產品專注於解決真實世界的問題，讓技術真正服務於人。",
       "opclaw.badge": "現已推出",
-      "opclaw.tagline": "OpenClaw 的非官方 Android 移植版。在手機上體驗經典 Captain Claw 的冒險樂趣。",
-      "opclaw.f1": "經典重現 — 完整移植 Captain Claw 遊戲體驗",
-      "opclaw.f2": "觸控優化 — 為行動裝置量身打造的操控介面",
-      "opclaw.f3": "輕量高效 — 極低資源佔用，流暢運行",
-      "opclaw.f4": "開源精神 — 基於 OpenClaw 引擎，社群驅動",
+      "opclaw.tagline": "在 Android 上運行 AI 編程代理。無需安裝 Linux，一行命令即可開始。",
+      "opclaw.f1": "無需 Linux — 跳過 proot-distro，僅需 ~200MB",
+      "opclaw.f2": "AI 工具整合 — 支援 Claude、GPT、Gemini 等 10+ 提供者",
+      "opclaw.f3": "快速設置 — 一行命令，3-10 分鐘完成安裝",
+      "opclaw.f4": "開源免費 — MIT 授權，社群驅動開發",
       "opclaw.cta": "了解更多",
       "services.tag": "What We Do",
       "services.title": "以技術驅動<br>商業成長。",
@@ -1422,11 +1488,11 @@
       "products.title": "Tools That Change<br>How You Work.",
       "products.desc": "Our products focus on solving real-world problems, making technology truly serve people.",
       "opclaw.badge": "Now Available",
-      "opclaw.tagline": "An unofficial Android port of OpenClaw. Experience the classic Captain Claw adventure on your phone.",
-      "opclaw.f1": "Classic Revived — Fully ported Captain Claw gameplay",
-      "opclaw.f2": "Touch Optimized — Controls designed for mobile devices",
-      "opclaw.f3": "Lightweight & Fast — Minimal resource usage, smooth performance",
-      "opclaw.f4": "Open Source Spirit — Built on the OpenClaw engine, community-driven",
+      "opclaw.tagline": "Run AI coding agents on Android. No Linux install required — one command to get started.",
+      "opclaw.f1": "No Linux Required — Skip proot-distro, only ~200MB needed",
+      "opclaw.f2": "AI Integration — Supports Claude, GPT, Gemini & 10+ providers",
+      "opclaw.f3": "Quick Setup — One command, 3-10 minutes to install",
+      "opclaw.f4": "Open Source — MIT licensed, community-driven development",
       "opclaw.cta": "Learn More",
       "services.tag": "What We Do",
       "services.title": "Technology-Driven<br>Business Growth.",
@@ -1469,11 +1535,11 @@
       "products.title": "働き方を変える<br>ツールを創る。",
       "products.desc": "私たちの製品は、現実の問題を解決し、テクノロジーを人々のために役立てることに焦点を当てています。",
       "opclaw.badge": "リリース中",
-      "opclaw.tagline": "OpenClawの非公式Android移植版。スマホでクラシックなCaptain Clawの冒険を体験しよう。",
-      "opclaw.f1": "クラシック復活 — Captain Clawのゲーム体験を完全移植",
-      "opclaw.f2": "タッチ最適化 — モバイル向けに設計された操作性",
-      "opclaw.f3": "軽量・高速 — 最小リソースでスムーズに動作",
-      "opclaw.f4": "オープンソース精神 — OpenClawエンジンベース、コミュニティ駆動",
+      "opclaw.tagline": "AndroidでAIコーディングエージェントを実行。Linuxのインストール不要、ワンコマンドで開始。",
+      "opclaw.f1": "Linux不要 — proot-distroをスキップ、約200MBのみ",
+      "opclaw.f2": "AI統合 — Claude、GPT、Gemini等10以上のプロバイダー対応",
+      "opclaw.f3": "クイックセットアップ — ワンコマンド、3-10分でインストール",
+      "opclaw.f4": "オープンソース — MITライセンス、コミュニティ駆動開発",
       "opclaw.cta": "詳細を見る",
       "services.tag": "What We Do",
       "services.title": "テクノロジーで<br>ビジネスを成長させる。",
@@ -1516,11 +1582,11 @@
       "products.title": "일하는 방식을<br>바꾸는 도구.",
       "products.desc": "우리의 제품은 실제 문제를 해결하는 데 집중하며, 기술이 진정으로 사람을 위해 봉사하도록 합니다.",
       "opclaw.badge": "출시됨",
-      "opclaw.tagline": "OpenClaw의 비공식 Android 포팅 버전. 스마트폰에서 클래식 Captain Claw 모험을 즐기세요.",
-      "opclaw.f1": "클래식 부활 — Captain Claw 게임플레이를 완벽하게 포팅",
-      "opclaw.f2": "터치 최적화 — 모바일 장치에 맞게 설계된 컨트롤",
-      "opclaw.f3": "가볍고 빠름 — 최소 리소스 사용, 원활한 성능",
-      "opclaw.f4": "오픈 소스 정신 — OpenClaw 엔진 기반, 커뮤니티 주도",
+      "opclaw.tagline": "Android에서 AI 코딩 에이전트를 실행하세요. Linux 설치 불필요 — 한 줄 명령으로 시작.",
+      "opclaw.f1": "Linux 불필요 — proot-distro 생략, ~200MB만 필요",
+      "opclaw.f2": "AI 통합 — Claude, GPT, Gemini 등 10+ 제공자 지원",
+      "opclaw.f3": "빠른 설정 — 한 줄 명령, 3-10분 설치 완료",
+      "opclaw.f4": "오픈 소스 — MIT 라이선스, 커뮤니티 주도 개발",
       "opclaw.cta": "자세히 알아보기",
       "services.tag": "What We Do",
       "services.title": "기술로 이끄는<br>비즈니스 성장.",
@@ -1563,11 +1629,11 @@
       "products.title": "เครื่องมือที่เปลี่ยน<br>วิธีการทำงาน",
       "products.desc": "ผลิตภัณฑ์ของเรามุ่งเน้นการแก้ปัญหาในโลกจริง ทำให้เทคโนโลยีรับใช้ผู้คนอย่างแท้จริง",
       "opclaw.badge": "พร้อมใช้งาน",
-      "opclaw.tagline": "เวอร์ชัน Android อย่างไม่เป็นทางการของ OpenClaw สัมผัสการผจญภัย Captain Claw คลาสสิกบนโทรศัพท์ของคุณ",
-      "opclaw.f1": "คลาสสิกกลับมา — พอร์ตเกมเพลย์ Captain Claw อย่างสมบูรณ์",
-      "opclaw.f2": "ปรับแต่งสำหรับระบบสัมผัส — การควบคุมที่ออกแบบมาสำหรับมือถือ",
-      "opclaw.f3": "เบาและรวดเร็ว — ใช้ทรัพยากรน้อยที่สุด ทำงานลื่นไหล",
-      "opclaw.f4": "จิตวิญญาณโอเพนซอร์ส — สร้างบนเอนจิน OpenClaw ขับเคลื่อนโดยชุมชน",
+      "opclaw.tagline": "รัน AI coding agent บน Android ไม่ต้องติดตั้ง Linux — คำสั่งเดียวเริ่มได้เลย",
+      "opclaw.f1": "ไม่ต้องใช้ Linux — ข้าม proot-distro ใช้แค่ ~200MB",
+      "opclaw.f2": "รวม AI — รองรับ Claude, GPT, Gemini และ 10+ ผู้ให้บริการ",
+      "opclaw.f3": "ตั้งค่าเร็ว — คำสั่งเดียว ติดตั้ง 3-10 นาที",
+      "opclaw.f4": "โอเพนซอร์ส — สัญญาอนุญาต MIT พัฒนาโดยชุมชน",
       "opclaw.cta": "เรียนรู้เพิ่มเติม",
       "services.tag": "What We Do",
       "services.title": "เทคโนโลยีขับเคลื่อน<br>การเติบโตของธุรกิจ",
@@ -2044,6 +2110,56 @@
   // Initialize language first, then scramble (setLang overwrites innerHTML)
   setLang(currentLang);
   initScrambleText();
+
+  /* ══════════════════════════════════════
+     Phone Screenshot Carousel
+     ══════════════════════════════════════ */
+  (function initCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const label = document.querySelector('.carousel-name');
+    if (!slides.length) return;
+
+    const labels = ['Dashboard', 'AI Providers', 'Dev Tools', 'Web Chat'];
+    let current = 0;
+    let interval;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = idx % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      if (label) label.textContent = labels[current];
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startAuto() {
+      interval = setInterval(next, 3000);
+    }
+
+    // Click dots to navigate
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(interval);
+        goTo(i);
+        startAuto();
+      });
+    });
+
+    // Click slide to advance
+    const container = document.querySelector('.carousel-slides');
+    if (container) {
+      container.addEventListener('click', () => {
+        clearInterval(interval);
+        next();
+        startAuto();
+      });
+    }
+
+    startAuto();
+  })();
   </script>
 
 </body>
