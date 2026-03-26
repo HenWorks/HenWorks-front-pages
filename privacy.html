@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — HenWorks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000000;
+      --bg-card: #0A0A0A;
+      --bg-elevated: #111111;
+      --text-primary: #FFFFFF;
+      --text-secondary: #888888;
+      --text-tertiary: #666666;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.15);
+      --accent: #C4212A;
+      --accent-hover: #E8333D;
+      --font: 'Inter','Noto Sans TC',sans-serif;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 60px;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-primary); text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-primary); }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .page-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 48px;
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      color: var(--text-secondary);
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    li { margin-bottom: 6px; font-size: 14px; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--accent-hover); }
+
+    /* ── Product cards ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 560px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+    .product-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .product-card-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .product-card-type {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .product-card p { font-size: 13px; margin-bottom: 0; }
+
+    /* ── Highlight box ── */
+    .highlight-box {
+      background: rgba(196,33,42,0.08);
+      border: 1px solid rgba(196,33,42,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+    .highlight-box p { color: var(--text-secondary); font-size: 13px; margin: 0; }
+    .highlight-box strong { color: var(--text-primary); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer p { font-size: 12px; color: var(--text-tertiary); margin: 0; }
+    footer a { color: var(--text-tertiary); font-size: 12px; }
+    footer a:hover { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">HenWorks</a>
+    <a class="nav-back" href="/">← Back to Home</a>
+  </nav>
+
+  <main class="page">
+
+    <div class="page-header">
+      <p class="page-eyebrow">Legal</p>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: March 2026</p>
+    </div>
+
+    <!-- 1. Overview -->
+    <div class="section">
+      <h2 class="section-title">1. Overview</h2>
+      <p>HenWorks ("we", "us", or "our") is an independent software developer based in Taiwan. We build digital tools and applications with a focus on user privacy. This Privacy Policy explains how we handle information across our website (<strong>henworks.com</strong>) and our products.</p>
+      <p>We believe privacy is a right, not a feature. We collect the minimum data necessary to provide our services, and we never sell your personal information to third parties.</p>
+    </div>
+
+    <!-- 2. Products Covered -->
+    <div class="section">
+      <h2 class="section-title">2. Products Covered by This Policy</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <p class="product-card-name">TextLen</p>
+          <p class="product-card-type">Mac App · OCR</p>
+          <p>Local AI-powered OCR. All processing happens on your device. No data leaves your Mac.</p>
+        </div>
+        <div class="product-card">
+          <p class="product-card-name">Opclaw</p>
+          <p class="product-card-type">Android TV · Productivity</p>
+          <p>Uses account-based cloud sync. Requires sign-in. Firebase services are used for authentication and data storage.</p>
+        </div>
+      </div>
+      <p>Each product may also have its own dedicated Privacy Policy page with more detail.</p>
+    </div>
+
+    <!-- 3. Website -->
+    <div class="section">
+      <h2 class="section-title">3. This Website (henworks.com)</h2>
+      <p>Our website does not use Google Analytics or any third-party analytics platform. We do not track individual visitors or use fingerprinting technologies.</p>
+      <p>Standard server access logs (IP address, browser type, pages visited, timestamp) may be retained by our hosting provider (Cloudflare) for security and performance purposes. These logs are not used to identify individual users and are subject to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</p>
+
+      <h3 style="font-size:13px;font-weight:600;color:var(--text-primary);margin:20px 0 8px;">Cookies</h3>
+      <p>henworks.com uses only essential functional cookies (e.g., language preference). No advertising or tracking cookies are set on this website.</p>
+    </div>
+
+    <!-- 4. TextLen -->
+    <div class="section">
+      <h2 class="section-title">4. TextLen (Mac App)</h2>
+      <div class="highlight-box">
+        <p><strong>TextLen does not collect, transmit, or store any personal data.</strong> All OCR processing is performed entirely on your device using on-device AI models. Images, documents, and recognized text never leave your Mac.</p>
+      </div>
+      <p>TextLen does not include crash reporting, analytics SDKs, or telemetry of any kind. No network requests are made unless you explicitly use an online feature (such as downloading an AI model update).</p>
+      <p>Model downloads are served over HTTPS from our CDN. Only basic download metadata (file name, file size) is transmitted during this process.</p>
+
+      <h3 style="font-size:13px;font-weight:600;color:var(--text-primary);margin:20px 0 8px;">In-App Advertising</h3>
+      <p>TextLen may display non-personalized advertisements via an in-app WebView. These ads are served from <strong>henworks.com</strong> and may include Google AdSense units. When AdSense is active, Google may use cookies to serve relevant ads. You can opt out of personalized advertising at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">google.com/settings/ads</a>.</p>
+      <p>For more details, see the <a href="/products/textlen/privacy.html">TextLen Privacy Policy</a>.</p>
+    </div>
+
+    <!-- 5. Opclaw -->
+    <div class="section">
+      <h2 class="section-title">5. Opclaw (Android TV App)</h2>
+      <p>Opclaw requires user account registration to provide cloud sync features. We collect:</p>
+      <ul>
+        <li><strong>Account information:</strong> Email address, used for authentication via Firebase Auth.</li>
+        <li><strong>App usage data:</strong> Feature usage statistics collected via Firebase Analytics to improve the app.</li>
+        <li><strong>User-generated content:</strong> Data you create or save within Opclaw, stored in Firebase Firestore and associated with your account.</li>
+      </ul>
+      <p>Firebase services are operated by Google LLC. Data may be stored on servers in the United States and other countries. For details, see <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy and Security</a>.</p>
+      <p>You may delete your account and all associated data at any time by contacting us at <a href="mailto:hello@henworks.com">hello@henworks.com</a>.</p>
+      <p>For more details, see the <a href="/products/opclaw/privacy-policy.html">Opclaw Privacy Policy</a>.</p>
+    </div>
+
+    <!-- 6. Google AdSense -->
+    <div class="section">
+      <h2 class="section-title">6. Google AdSense & Third-Party Advertising</h2>
+      <p>We use Google AdSense to display advertisements on our website and within our apps. Google AdSense uses cookies and similar tracking technologies to serve ads based on your prior visits to our website or other websites on the internet.</p>
+      <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the internet. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Ads Settings</a>.</p>
+      <p>For more information on how Google uses data when you use our partners' sites or apps, visit: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>.</p>
+      <p>We may also display self-hosted advertisements and affiliate marketing links for third-party products and services. These are clearly labeled as "Recommended" or "Sponsored." We may receive a commission if you make a purchase through these links.</p>
+    </div>
+
+    <!-- 7. Data Sharing -->
+    <div class="section">
+      <h2 class="section-title">7. Data Sharing</h2>
+      <p>We do not sell, trade, or rent your personal information to third parties. We may share data in limited circumstances:</p>
+      <ul>
+        <li><strong>Service providers:</strong> Cloudflare (hosting/CDN), Google Firebase (for Opclaw), Google AdSense (advertising).</li>
+        <li><strong>Legal requirements:</strong> If required by law, court order, or governmental authority.</li>
+        <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction.</li>
+      </ul>
+    </div>
+
+    <!-- 8. Your Rights -->
+    <div class="section">
+      <h2 class="section-title">8. Your Rights</h2>
+      <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+        <li><strong>Deletion:</strong> Request deletion of your personal data.</li>
+        <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
+        <li><strong>Opt-out:</strong> Opt out of personalized advertising at any time.</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:hello@henworks.com">hello@henworks.com</a>. We will respond within 30 days.</p>
+    </div>
+
+    <!-- 9. Children's Privacy -->
+    <div class="section">
+      <h2 class="section-title">9. Children's Privacy</h2>
+      <p>Our services are not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us immediately at <a href="mailto:hello@henworks.com">hello@henworks.com</a>.</p>
+    </div>
+
+    <!-- 10. Changes -->
+    <div class="section">
+      <h2 class="section-title">10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. For material changes, we will make reasonable efforts to notify users. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <!-- 11. Contact -->
+    <div class="section">
+      <h2 class="section-title">11. Contact Us</h2>
+      <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:hello@henworks.com">hello@henworks.com</a></li>
+        <li><strong>Website:</strong> <a href="https://www.henworks.com">www.henworks.com</a></li>
+        <li><strong>Company:</strong> HenWorks, Taiwan</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 HenWorks. All rights reserved.</p>
+      <div style="display:flex;gap:24px;">
+        <a href="/">Home</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="mailto:hello@henworks.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
