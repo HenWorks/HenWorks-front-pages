@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextLen - AI-Powered OCR Studio for macOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B21A8;
+            --primary-light: #8B5CF6;
+            --primary-lighter: #A78BFA;
+            --primary-dark: #581C87;
+            --accent: #EC4899;
+            --success: #10B981;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            color: var(--gray-900);
+            background-color: #FFFFFF;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-900);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .language-toggle {
+            background: var(--gray-100);
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--gray-900);
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle:hover {
+            background: var(--gray-200);
+        }
+
+        .language-toggle.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .hero-text h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.3rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-text .description {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(107, 33, 168, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(107, 33, 168, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-900);
+            border: 2px solid transparent;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .feature-badge {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            color: var(--gray-600);
+        }
+
+        .feature-badge strong {
+            color: var(--gray-900);
+        }
+
+        .hero-image {
+            position: relative;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-image-placeholder {
+            text-align: center;
+            color: var(--gray-600);
+        }
+
+        .hero-image-placeholder p {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(107, 33, 168, 0.15);
+            border-color: rgba(107, 33, 168, 0.2);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-900);
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Showcases Section */
+        .showcases {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--gray-50) 0%, #FFFFFF 100%);
+        }
+
+        .showcases-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .showcase:nth-child(even) {
+            direction: rtl;
+        }
+
+        .showcase:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .showcase-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .showcase-content p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .showcase-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-image-placeholder {
+            text-align: center;
+            color: var(--gray-600);
+            width: 100%;
+        }
+
+        .showcase-image-placeholder p {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Privacy Section */
+        .privacy {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+        }
+
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .privacy-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--gray-900);
+        }
+
+        .privacy-box {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.1);
+        }
+
+        .privacy-box h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .privacy-box p {
+            font-size: 1.05rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        .privacy-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .privacy-feature {
+            padding: 1.5rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .privacy-feature strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-feature span {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(107, 33, 168, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(107, 33, 168, 0.2);
+        }
+
+        .pricing-card:hover:not(.featured) {
+            border-color: var(--primary-light);
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.1);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+
+        .pricing-price small {
+            font-size: 1rem;
+            color: var(--gray-600);
+            display: block;
+            font-weight: 400;
+        }
+
+        .pricing-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            min-height: 50px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .pricing-features li {
+            padding: 0.6rem 0;
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.75rem;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .download h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .download-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .download-badge img {
+            height: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+
+            .showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase:nth-child(even) {
+                direction: ltr;
+            }
+
+            .showcase-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .privacy-container h2 {
+                font-size: 1.8rem;
+            }
+
+            .download h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="nav-logo">TextLen</div>
+            <div class="nav-links">
+                <a href="#features" data-i18n="nav.features">Features</a>
+                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+                <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+                <button class="language-toggle active" onclick="toggleLanguage('en')" data-lang="en">English</button>
+                <button class="language-toggle" onclick="toggleLanguage('zh')" data-lang="zh">繁中</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span data-i18n="hero.title">Text Recognition,</span>
+                    <span class="gradient-text" data-i18n="hero.titleHighlight">Reimagined</span>
+                </h1>
+                <p class="tagline" data-i18n="hero.tagline">AI-Powered OCR Studio</p>
+                <p class="description" data-i18n="hero.description">
+                    Extract text from images with cutting-edge AI. All processing happens locally on your Mac – your data never leaves your device.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" data-i18n="hero.cta" onclick="document.getElementById('download').scrollIntoView({behavior: 'smooth'})">Download Now</button>
+                    <button class="btn btn-secondary" data-i18n="hero.learn" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <span>⚡</span>
+                        <span><strong data-i18n="hero.fast">Ultra-fast</strong></span>
+                    </div>
+                    <div class="feature-badge">
+                        <span>🔒</span>
+                        <span><strong data-i18n="hero.private">100% Private</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="../Screenshots/asc_ready/Standard_OCR1.png" alt="TextLen Interface">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2 data-i18n="features.title">Powerful Features</h2>
+            <p data-i18n="features.subtitle">Everything you need for professional text recognition</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3 data-i18n="features.f1.title">Dual OCR Models</h3>
+                <p data-i18n="features.f1.desc">Standard & Layout mode for precise text extraction</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3 data-i18n="features.f2.title">100% Local Processing</h3>
+                <p data-i18n="features.f2.desc">All AI runs on your Mac. No cloud uploads, ever</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 data-i18n="features.f3.title">Batch Processing</h3>
+                <p data-i18n="features.f3.desc">Process multiple images at lightning speed</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗑️</div>
+                <h3 data-i18n="features.f4.title">AI Text Eraser</h3>
+                <p data-i18n="features.f4.desc">DeepEraser removes unwanted text intelligently</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 data-i18n="features.f5.title">Table Extraction</h3>
+                <p data-i18n="features.f5.desc">Automatically detect and extract table data</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 data-i18n="features.f6.title">32 Languages</h3>
+                <p data-i18n="features.f6.desc">Recognize text in multiple languages instantly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📐</div>
+                <h3 data-i18n="features.f7.title">LaTeX Conversion</h3>
+                <p data-i18n="features.f7.desc">Convert equations to LaTeX automatically</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📑</div>
+                <h3 data-i18n="features.f8.title">PDF Export (3 Modes)</h3>
+                <p data-i18n="features.f8.desc">Text layer, searchable, or image-based PDFs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcases Section -->
+    <section class="showcases" id="showcases">
+        <div class="showcases-container">
+            <div class="showcase">
+                <div class="showcase-content">
+                    <h3 data-i18n="showcase.standard.title">Standard OCR</h3>
+                    <p data-i18n="showcase.standard.desc">
+                        Fast and accurate text recognition for documents, signs, and screenshots. Perfect for quick text extraction with excellent accuracy.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="../Screenshots/asc_ready/Standard_OCR2.png" alt="Standard OCR Mode">
+                </div>
+            </div>
+
+            <div class="showcase">
+                <div class="showcase-content">
+                    <h3 data-i18n="showcase.layout.title">Layout OCR</h3>
+                    <p data-i18n="showcase.layout.desc">
+                        Preserves document structure and formatting. Ideal for complex documents with multiple columns, headers, and varied layouts.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="../Screenshots/asc_ready/Pro_layout_OCR1.png" alt="Layout OCR Mode">
+                </div>
+            </div>
+
+            <div class="showcase">
+                <div class="showcase-content">
+                    <h3 data-i18n="showcase.batch.title">Batch Processing</h3>
+                    <p data-i18n="showcase.batch.desc">
+                        Process hundreds of images automatically. Save time with intelligent batch processing for large document collections.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="../Screenshots/asc_ready/Batch_OCR.png" alt="Batch OCR Processing">
+                </div>
+            </div>
+
+            <div class="showcase">
+                <div class="showcase-content">
+                    <h3 data-i18n="showcase.table.title">Table Extraction</h3>
+                    <p data-i18n="showcase.table.desc">
+                        Automatically detect and extract tables from documents. Convert tables to structured data formats with a single click.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="../Screenshots/asc_ready/Support_Table_OCR.png" alt="Table Extraction">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy" id="privacy">
+        <div class="privacy-container">
+            <h2 data-i18n="privacy.title">Your Privacy, Our Priority</h2>
+            <div class="privacy-box">
+                <h3 data-i18n="privacy.promise">100% On-Device Processing</h3>
+                <p data-i18n="privacy.promiseDesc">
+                    All AI models run locally on your Mac. Images and text are never sent to cloud servers. Your data is completely yours.
+                </p>
+            </div>
+            <div class="privacy-features">
+                <div class="privacy-feature">
+                    <strong data-i18n="privacy.f1.title">No Cloud Upload</strong>
+                    <span data-i18n="privacy.f1.desc">Zero network requests for processing</span>
+                </div>
+                <div class="privacy-feature">
+                    <strong data-i18n="privacy.f2.title">No Data Tracking</strong>
+                    <span data-i18n="privacy.f2.desc">We don't collect usage analytics</span>
+                </div>
+                <div class="privacy-feature">
+                    <strong data-i18n="privacy.f3.title">No Accounts Required</strong>
+                    <span data-i18n="privacy.f3.desc">Works without sign-up or login</span>
+                </div>
+                <div class="privacy-feature">
+                    <strong data-i18n="privacy.f4.title">Local Models</strong>
+                    <span data-i18n="privacy.f4.desc">All AI models stored on your device</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2 data-i18n="pricing.title">Simple Pricing</h2>
+            <p data-i18n="pricing.subtitle">Flexible plans for everyone</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 data-i18n="pricing.free.name">Free</h3>
+                <div class="pricing-price">
+                    <span data-i18n="pricing.free.price">NT$0</span>
+                    <small data-i18n="pricing.free.period">15 uses/month</small>
+                </div>
+                <p class="pricing-description" data-i18n="pricing.free.desc">Perfect for trying TextLen</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.free.f1">15 free uses per month</li>
+                    <li data-i18n="pricing.free.f2">Standard OCR mode</li>
+                    <li data-i18n="pricing.free.f3">Basic PDF export</li>
+                </ul>
+                <button class="btn btn-secondary" data-i18n="pricing.cta">Get Started</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge" data-i18n="pricing.popular">Most Popular</div>
+                <h3 data-i18n="pricing.lifetime.name">Lifetime</h3>
+                <div class="pricing-price">
+                    <span data-i18n="pricing.lifetime.price">NT$330</span>
+                    <small data-i18n="pricing.lifetime.period">One-time payment</small>
+                </div>
+                <p class="pricing-description" data-i18n="pricing.lifetime.desc">Best value for unlimited use</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.lifetime.f1">Unlimited uses</li>
+                    <li data-i18n="pricing.lifetime.f2">Both OCR modes</li>
+                    <li data-i18n="pricing.lifetime.f3">All export formats</li>
+                    <li data-i18n="pricing.lifetime.f4">Table extraction</li>
+                    <li data-i18n="pricing.lifetime.f5">Future updates</li>
+                </ul>
+                <button class="btn btn-primary" data-i18n="pricing.cta">Buy Now</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3 data-i18n="pricing.pro.name">Pro Monthly</h3>
+                <div class="pricing-price">
+                    <span data-i18n="pricing.pro.price">NT$210</span>
+                    <small data-i18n="pricing.pro.period">/month</small>
+                </div>
+                <p class="pricing-description" data-i18n="pricing.pro.desc">For power users</p>
+                <ul class="pricing-features">
+                    <li data-i18n="pricing.pro.f1">Unlimited uses</li>
+                    <li data-i18n="pricing.pro.f2">All features</li>
+                    <li data-i18n="pricing.pro.f3">Priority support</li>
+                </ul>
+                <button class="btn btn-secondary" data-i18n="pricing.cta">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <h2 data-i18n="download.title">Ready to Get Started?</h2>
+        <p data-i18n="download.subtitle">Download TextLen today and experience the future of OCR</p>
+        <div class="download-badge">
+            <svg width="180" height="54" viewBox="0 0 180 54" style="display: block;">
+                <rect width="180" height="54" rx="8" fill="rgba(0,0,0,0.1)"/>
+                <text x="90" y="27" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="600">
+                    Download on Mac App Store
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-i18n="footer.product">Product</h4>
+                <ul>
+                    <li><a href="#features" data-i18n="footer.features">Features</a></li>
+                    <li><a href="#pricing" data-i18n="footer.pricing">Pricing</a></li>
+                    <li><a href="#privacy" data-i18n="footer.privacy">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer.company">Company</h4>
+                <ul>
+                    <li><a href="https://henworks.com" data-i18n="footer.about" target="_blank">About Hen Works</a></li>
+                    <li><a href="#" data-i18n="footer.contact">Contact</a></li>
+                    <li><a href="#" data-i18n="footer.blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer.legal">Legal</h4>
+                <ul>
+                    <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="footer.terms">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">© 2026 Hen Works. All rights reserved.</p>
+            <p data-i18n="footer.madeWith">Made with care in Taiwan 🇹🇼</p>
+        </div>
+    </footer>
+
+    <script>
+        // Internationalization
+        const translations = {
+            en: {
+                'nav.features': 'Features',
+                'nav.pricing': 'Pricing',
+                'nav.privacy': 'Privacy',
+                'hero.title': 'Text Recognition,',
+                'hero.titleHighlight': 'Reimagined',
+                'hero.tagline': 'AI-Powered OCR Studio',
+                'hero.description': 'Extract text from images with cutting-edge AI. All processing happens locally on your Mac – your data never leaves your device.',
+                'hero.cta': 'Download Now',
+                'hero.learn': 'Learn More',
+                'hero.fast': 'Ultra-fast',
+                'hero.private': '100% Private',
+                'features.title': 'Powerful Features',
+                'features.subtitle': 'Everything you need for professional text recognition',
+                'features.f1.title': 'Dual OCR Models',
+                'features.f1.desc': 'Standard & Layout mode for precise text extraction',
+                'features.f2.title': '100% Local Processing',
+                'features.f2.desc': 'All AI runs on your Mac. No cloud uploads, ever',
+                'features.f3.title': 'Batch Processing',
+                'features.f3.desc': 'Process multiple images at lightning speed',
+                'features.f4.title': 'AI Text Eraser',
+                'features.f4.desc': 'DeepEraser removes unwanted text intelligently',
+                'features.f5.title': 'Table Extraction',
+                'features.f5.desc': 'Automatically detect and extract table data',
+                'features.f6.title': '32 Languages',
+                'features.f6.desc': 'Recognize text in multiple languages instantly',
+                'features.f7.title': 'LaTeX Conversion',
+                'features.f7.desc': 'Convert equations to LaTeX automatically',
+                'features.f8.title': 'PDF Export (3 Modes)',
+                'features.f8.desc': 'Text layer, searchable, or image-based PDFs',
+                'showcase.standard.title': 'Standard OCR',
+                'showcase.standard.desc': 'Fast and accurate text recognition for documents, signs, and screenshots. Perfect for quick text extraction with excellent accuracy.',
+                'showcase.layout.title': 'Layout OCR',
+                'showcase.layout.desc': 'Preserves document structure and formatting. Ideal for complex documents with multiple columns, headers, and varied layouts.',
+                'showcase.batch.title': 'Batch Processing',
+                'showcase.batch.desc': 'Process hundreds of images automatically. Save time with intelligent batch processing for large document collections.',
+                'showcase.table.title': 'Table Extraction',
+                'showcase.table.desc': 'Automatically detect and extract tables from documents. Convert tables to structured data formats with a single click.',
+                'privacy.title': 'Your Privacy, Our Priority',
+                'privacy.promise': '100% On-Device Processing',
+                'privacy.promiseDesc': 'All AI models run locally on your Mac. Images and text are never sent to cloud servers. Your data is completely yours.',
+                'privacy.f1.title': 'No Cloud Upload',
+                'privacy.f1.desc': 'Zero network requests for processing',
+                'privacy.f2.title': 'No Data Tracking',
+                'privacy.f2.desc': 'We don\'t collect usage analytics',
+                'privacy.f3.title': 'No Accounts Required',
+                'privacy.f3.desc': 'Works without sign-up or login',
+                'privacy.f4.title': 'Local Models',
+                'privacy.f4.desc': 'All AI models stored on your device',
+                'pricing.title': 'Simple Pricing',
+                'pricing.subtitle': 'Flexible plans for everyone',
+                'pricing.popular': 'Most Popular',
+                'pricing.free.name': 'Free',
+                'pricing.free.price': 'NT$0',
+                'pricing.free.period': '15 uses/month',
+                'pricing.free.desc': 'Perfect for trying TextLen',
+                'pricing.free.f1': '15 free uses per month',
+                'pricing.free.f2': 'Standard OCR mode',
+                'pricing.free.f3': 'Basic PDF export',
+                'pricing.lifetime.name': 'Lifetime',
+                'pricing.lifetime.price': 'NT$330',
+                'pricing.lifetime.period': 'One-time payment',
+                'pricing.lifetime.desc': 'Best value for unlimited use',
+                'pricing.lifetime.f1': 'Unlimited uses',
+                'pricing.lifetime.f2': 'Both OCR modes',
+                'pricing.lifetime.f3': 'All export formats',
+                'pricing.lifetime.f4': 'Table extraction',
+                'pricing.lifetime.f5': 'Future updates',
+                'pricing.pro.name': 'Pro Monthly',
+                'pricing.pro.price': 'NT$210',
+                'pricing.pro.period': '/month',
+                'pricing.pro.desc': 'For power users',
+                'pricing.pro.f1': 'Unlimited uses',
+                'pricing.pro.f2': 'All features',
+                'pricing.pro.f3': 'Priority support',
+                'pricing.cta': 'Get Started',
+                'download.title': 'Ready to Get Started?',
+                'download.subtitle': 'Download TextLen today and experience the future of OCR',
+                'footer.product': 'Product',
+                'footer.company': 'Company',
+                'footer.legal': 'Legal',
+                'footer.features': 'Features',
+                'footer.pricing': 'Pricing',
+                'footer.privacy': 'Privacy',
+                'footer.about': 'About Hen Works',
+                'footer.contact': 'Contact',
+                'footer.blog': 'Blog',
+                'footer.terms': 'Terms of Service',
+                'footer.copyright': '© 2026 Hen Works. All rights reserved.',
+                'footer.madeWith': 'Made with care in Taiwan 🇹🇼'
+            },
+            zh: {
+                'nav.features': '功能',
+                'nav.pricing': '定價',
+                'nav.privacy': '隱私',
+                'hero.title': '文字辨識，',
+                'hero.titleHighlight': '重新定義',
+                'hero.tagline': 'AI 驅動的 OCR 工作室',
+                'hero.description': '使用尖端 AI 從圖像中提取文字。所有處理都在您的 Mac 上本地進行 – 您的數據永遠不會離開您的設備。',
+                'hero.cta': '立即下載',
+                'hero.learn': '瞭解更多',
+                'hero.fast': '超快速',
+                'hero.private': '100% 隱私',
+                'features.title': '強大功能',
+                'features.subtitle': '專業文字辨識所需的一切',
+                'features.f1.title': '雙 OCR 模型',
+                'features.f1.desc': '標準和佈局模式，精確提取文字',
+                'features.f2.title': '100% 本地處理',
+                'features.f2.desc': '所有 AI 在您的 Mac 上運行，永遠不上傳到雲端',
+                'features.f3.title': '批量處理',
+                'features.f3.desc': '以閃電般的速度處理多個圖像',
+                'features.f4.title': 'AI 文字橡皮擦',
+                'features.f4.desc': 'DeepEraser 智慧地移除不需要的文字',
+                'features.f5.title': '表格提取',
+                'features.f5.desc': '自動檢測和提取表格數據',
+                'features.f6.title': '32 種語言',
+                'features.f6.desc': '即時識別多種語言的文字',
+                'features.f7.title': 'LaTeX 轉換',
+                'features.f7.desc': '自動將公式轉換為 LaTeX',
+                'features.f8.title': 'PDF 匯出（3 種模式）',
+                'features.f8.desc': '文本層、可搜尋或圖像型 PDF',
+                'showcase.standard.title': '標準 OCR',
+                'showcase.standard.desc': '用於文件、標誌和螢幕截圖的快速、準確的文字辨識。非常適合快速文本提取和高精度。',
+                'showcase.layout.title': '佈局 OCR',
+                'showcase.layout.desc': '保留文件結構和格式。理想用於具有多列、標題和多樣佈局的複雜文件。',
+                'showcase.batch.title': '批量處理',
+                'showcase.batch.desc': '自動處理數百張圖像。使用智慧批量處理為大型文件集合節省時間。',
+                'showcase.table.title': '表格提取',
+                'showcase.table.desc': '自動從文件中檢測和提取表格。一鍵將表格轉換為結構化數據格式。',
+                'privacy.title': '您的隱私，我們的優先',
+                'privacy.promise': '100% 設備上處理',
+                'privacy.promiseDesc': '所有 AI 模型都在您的 Mac 上本地運行。圖像和文字永遠不會發送到雲服務器。您的數據完全屬於您。',
+                'privacy.f1.title': '無雲上傳',
+                'privacy.f1.desc': '零網絡請求用於處理',
+                'privacy.f2.title': '無數據追蹤',
+                'privacy.f2.desc': '我們不收集使用分析',
+                'privacy.f3.title': '無需帳戶',
+                'privacy.f3.desc': '無需註冊或登入即可使用',
+                'privacy.f4.title': '本地模型',
+                'privacy.f4.desc': '所有 AI 模型都存儲在您的設備上',
+                'pricing.title': '簡單定價',
+                'pricing.subtitle': '適合所有人的靈活方案',
+                'pricing.popular': '最受歡迎',
+                'pricing.free.name': '免費',
+                'pricing.free.price': 'NT$0',
+                'pricing.free.period': '15 次/月',
+                'pricing.free.desc': '完美試用 TextLen',
+                'pricing.free.f1': '每月 15 次免費使用',
+                'pricing.free.f2': '標準 OCR 模式',
+                'pricing.free.f3': '基本 PDF 匯出',
+                'pricing.lifetime.name': '永久',
+                'pricing.lifetime.price': 'NT$330',
+                'pricing.lifetime.period': '一次性付款',
+                'pricing.lifetime.desc': '無限使用的最佳價值',
+                'pricing.lifetime.f1': '無限使用',
+                'pricing.lifetime.f2': '兩種 OCR 模式',
+                'pricing.lifetime.f3': '所有匯出格式',
+                'pricing.lifetime.f4': '表格提取',
+                'pricing.lifetime.f5': '未來更新',
+                'pricing.pro.name': 'Pro 月訂',
+                'pricing.pro.price': 'NT$210',
+                'pricing.pro.period': '/月',
+                'pricing.pro.desc': '為高級用戶',
+                'pricing.pro.f1': '無限使用',
+                'pricing.pro.f2': '所有功能',
+                'pricing.pro.f3': '優先支持',
+                'pricing.cta': '開始使用',
+                'download.title': '準備好開始了嗎？',
+                'download.subtitle': '立即下載 TextLen，體驗 OCR 的未來',
+                'footer.product': '產品',
+                'footer.company': '公司',
+                'footer.legal': '法律',
+                'footer.features': '功能',
+                'footer.pricing': '定價',
+                'footer.privacy': '隱私',
+                'footer.about': '關於 Hen Works',
+                'footer.contact': '聯繫',
+                'footer.blog': '部落格',
+                'footer.terms': '服務條款',
+                'footer.copyright': '© 2026 Hen Works。版權所有。',
+                'footer.madeWith': '用心在台灣製作 🇹🇼'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function toggleLanguage(lang) {
+            currentLanguage = lang;
+            updatePageLanguage();
+
+            // Update button states
+            document.querySelectorAll('.language-toggle').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        function updatePageLanguage() {
+            document.documentElement.lang = currentLanguage;
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.dataset.i18n;
+                const text = translations[currentLanguage][key];
+                if (text) {
+                    elem.textContent = text;
+                }
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .showcase').forEach(elem => {
+            observer.observe(elem);
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize with English
+        updatePageLanguage();
+    </script>
+</body>
+</html>
