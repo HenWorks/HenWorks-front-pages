@@ -212,13 +212,57 @@
         }
         @media(max-width:640px){
             .page{padding:0 12px 12px}.video-hero{padding:12px 12px 0}
-            .nav-links{display:none}.nav-lang{margin-right:8px}
-            .slide-thumbs{grid-template-columns:repeat(2,1fr)}
-            .feat-grid,.price-grid,.steps{grid-template-columns:1fr}
-            .priv-feats{grid-template-columns:1fr}
-            .footer-top{flex-direction:column;gap:24px}
-            .hero h1{font-size:28px}.cta h2{font-size:28px}
+            /* Nav */
+            .nav{padding:0 12px;height:52px}
+            .nav-links{display:none}
+            .nav-logo span{display:none}
+            .nav-logo img{width:28px;height:28px}
+            .nav-lang{margin-right:4px;gap:2px}
+            .nav-lang button{padding:4px 6px;font-size:10px}
+            .nav-cta{padding:6px 12px;font-size:11px;gap:4px}
+            /* Video controls */
+            .video-lang-switch{top:12px;right:12px;gap:4px}
+            .video-lang-btn{padding:4px 10px;font-size:10px}
+            .video-mute{bottom:12px;right:12px;width:34px;height:34px;border-radius:8px}
+            .video-mute svg{width:16px;height:16px}
+            /* Hero */
+            .hero{padding:32px 20px 28px;gap:24px}
+            .hero h1{font-size:26px}.hero-desc{font-size:14px}
             .hero-stats{gap:20px}.hero-stat strong{font-size:22px}
+            .hero-cta-group{flex-direction:column;width:100%}
+            .btn-primary,.btn-secondary{padding:12px 24px;font-size:14px;width:100%;justify-content:center}
+            /* Slide Info */
+            .slide-info{padding:24px 20px;gap:20px;flex-direction:column}
+            .slide-meta{flex:none}
+            .slide-num{font-size:48px}
+            .slide-ttl{font-size:18px}
+            .slide-dsc{font-size:13px}
+            .slide-thumbs{grid-template-columns:repeat(3,1fr);gap:8px}
+            /* Sections */
+            .features,.how,.pricing,.privacy{padding:48px 20px}
+            .section-hdr{margin-bottom:32px}
+            .section-hdr h2{font-size:28px}
+            .section-hdr p{font-size:14px}
+            .feat-grid{grid-template-columns:1fr;gap:12px}
+            .price-grid,.steps{grid-template-columns:1fr}
+            .feat-card{padding:24px}
+            .step-n{font-size:48px}
+            /* Privacy */
+            .priv-box{padding:32px 20px}
+            .priv-box h3{font-size:22px}
+            .priv-feats{grid-template-columns:1fr}
+            /* Pricing */
+            .price-card{padding:28px}
+            .price-amt{font-size:32px}
+            /* CTA */
+            .cta{padding:48px 20px;margin:0 12px 12px}
+            .cta h2{font-size:26px}
+            .cta>p{font-size:14px}
+            .cta-dl{padding:14px 32px;font-size:14px}
+            /* Footer */
+            .footer{padding:32px 20px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer-links{flex-direction:column;gap:24px}
         }
     </style>
 </head>
