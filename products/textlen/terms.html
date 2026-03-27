@@ -4,441 +4,654 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use - TextLen</title>
+    <meta name="description" content="TextLen Terms of Use and End User License Agreement.">
+    <link rel="icon" href="../../images/textlen-logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --yellow:#F5E642;--yellow-soft:#FAF089;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
         }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #1d1d1f;
-            background-color: #ffffff;
+        /* Animations */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        /* Page wrapper */
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        /* Nav */
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo img{width:32px;height:32px;border-radius:6px}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--yellow);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px;margin-right:16px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
+        .nav-lang button.active{background:var(--black);color:var(--white)}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        /* Hero */
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--yellow) 0%,var(--yellow-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        /* Highlight box */
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(245,230,66,.12) 0%,rgba(245,230,66,.04) 100%);border-radius:20px;border:1px solid rgba(245,230,66,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        /* Content */
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--yellow);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        /* Tier cards */
+        .tier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .tier-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .tier-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .tier-card strong{display:block;font-size:15px;margin-bottom:6px}
+        .tier-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        /* Footer */
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand img{width:24px;height:24px;border-radius:4px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        /* Language sections */
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        /* Responsive */
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .tier-grid{grid-template-columns:1fr}
         }
-
-        header {
-            background-color: #f5f5f7;
-            border-bottom: 1px solid #e5e5e7;
-            padding: 24px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #6b21a8;
-            text-decoration: none;
-        }
-
-        nav {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        nav a {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #6b21a8;
-        }
-
-        nav a.active {
-            color: #6b21a8;
-            font-weight: 600;
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 8px;
-            border-left: 1px solid #e5e5e7;
-            padding-left: 24px;
-        }
-
-        .language-btn {
-            background: none;
-            border: none;
-            color: #1d1d1f;
-            font-size: 13px;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .language-btn.active {
-            background-color: #e5e5e7;
-            color: #6b21a8;
-            font-weight: 500;
-        }
-
-        .language-btn:hover {
-            background-color: #f5f5f7;
-        }
-
-        main {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 48px 20px;
-        }
-
-        h1 {
-            font-size: 38px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1d1d1f;
-        }
-
-        .last-updated {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-
-        section {
-            margin-bottom: 40px;
-            display: none;
-        }
-
-        section.active {
-            display: block;
-        }
-
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 32px 0 16px 0;
-            color: #1d1d1f;
-        }
-
-        h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 24px 0 12px 0;
-            color: #1d1d1f;
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: #424245;
-            font-size: 15px;
-        }
-
-        ul, ol {
-            margin-left: 24px;
-            margin-bottom: 16px;
-        }
-
-        li {
-            margin-bottom: 12px;
-            color: #424245;
-            font-size: 15px;
-        }
-
-        a {
-            color: #6b21a8;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.7;
-        }
-
-        strong {
-            color: #1d1d1f;
-            font-weight: 600;
-        }
-
-        .highlight {
-            background-color: #f5f5f7;
-            padding: 16px;
-            border-left: 4px solid #6b21a8;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        footer {
-            background-color: #f5f5f7;
-            border-top: 1px solid #e5e5e7;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            max-width: 980px;
-            margin: 0 auto;
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .footer-links {
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #6b21a8;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 12px;
-                border-left: none;
-            }
-
-            .language-selector {
-                border-left: none;
-                padding-left: 0;
-                border-top: 1px solid #e5e5e7;
-                padding-top: 16px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            main {
-                padding: 32px 16px;
-            }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}.nav-lang{margin-right:8px}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">TextLen</a>
-            <nav>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html" class="active">Terms</a>
-            </nav>
-            <div class="language-selector">
-                <button class="language-btn active" onclick="switchLanguage('en')">EN</button>
-                <button class="language-btn" onclick="switchLanguage('zh')">繁體</button>
-            </div>
+<div class="page">
+<div class="card">
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="../../images/textlen-logo.png" alt="TextLen">
+            <span>TextLen</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html" data-i18n="nav.privacy">Privacy</a></li>
+            <li><a href="terms.html" class="active" data-i18n="nav.terms">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
         </div>
-    </header>
+        <a href="index.html" class="nav-cta" data-i18n="nav.back">Back to TextLen &#8599;</a>
+    </nav>
 
-    <main>
-        <!-- English Version -->
-        <section class="active" id="terms-en">
-            <h1>Terms of Use & End User License Agreement</h1>
-            <p class="last-updated">Last updated: March 25, 2026</p>
-
-            <h2>1. Agreement to Terms</h2>
-            <p>By downloading, installing, and using TextLen ("the App"), you agree to be bound by these Terms of Use and End User License Agreement ("Terms"). If you do not agree to these Terms, do not use the App.</p>
-
-            <h2>2. License Grant</h2>
-            <p>Hen Works grants you a limited, non-exclusive, non-transferable, and revocable license to use the App in accordance with these Terms. You may not sublicense, sell, rent, lease, transfer, assign, or otherwise dispose of the App.</p>
-
-            <h2>3. Proprietary AI Models</h2>
-            <div class="highlight">
-                <strong>AI models are proprietary and protected by AES-256-GCM encryption.</strong> You may not attempt to reverse engineer, decompile, disassemble, or otherwise derive the source code or underlying algorithm of the AI models.
-            </div>
-
-            <h2>4. "As-Is" Disclaimer</h2>
-            <p>The App is provided "as-is" without warranty of any kind, express or implied. Hen Works does not warrant that the App will be uninterrupted, error-free, or secure. To the fullest extent permitted by law, Hen Works disclaims all warranties, express or implied, including merchantability and fitness for a particular purpose.</p>
-
-            <h2>5. OCR Accuracy</h2>
-            <p>OCR (Optical Character Recognition) results may not be 100% accurate. Hen Works does not guarantee the accuracy or completeness of any OCR output. You are responsible for reviewing and verifying any text extracted by the App before using it for important purposes.</p>
-
-            <h2>6. User Responsibility</h2>
-            <p>You are solely responsible for the content you process with the App. Hen Works does not warrant or endorse any specific use case, and you assume all risks associated with using OCR results in your business or personal workflow.</p>
-
-            <h2>7. Usage Limits & Subscription Tiers</h2>
-            <h3>Free Tier</h3>
-            <ul>
-                <li>15 OCR operations per month</li>
-            </ul>
-
-            <h3>Paid Tiers</h3>
-            <p>Additional subscription tiers are available with higher usage limits. See the App for current pricing and tier details.</p>
-
-            <h2>8. Subscriptions & Auto-Renewal</h2>
-            <p>Subscriptions automatically renew unless cancelled. <strong>You must cancel your subscription at least 24 hours before the renewal date to avoid being charged for the next billing cycle.</strong> Cancellation can be managed through Apple's subscription settings.</p>
-
-            <h2>9. Refunds</h2>
-            <p>Refunds for in-app purchases and subscriptions are handled through Apple. Please refer to Apple's App Store refund policy for eligibility and procedures. Hen Works does not provide direct refunds.</p>
-
-            <h2>10. Limitation of Liability</h2>
-            <p>To the fullest extent permitted by law, Hen Works shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App, including but not limited to loss of data, business interruption, or lost profits.</p>
-
-            <h2>11. Indemnification</h2>
-            <p>You agree to indemnify and hold harmless Hen Works from any claims, damages, or losses arising from your use of the App or violation of these Terms.</p>
-
-            <h2>12. Pricing & Modification</h2>
-            <p>Hen Works reserves the right to modify pricing, subscription tiers, and features at any time. Any significant changes will be communicated to users in advance.</p>
-
-            <h2>13. Intellectual Property</h2>
-            <p>The App, including all content, features, and functionality, is owned by Hen Works or its content suppliers and protected by international copyright and intellectual property laws. Your use of the App does not grant you ownership of any intellectual property rights.</p>
-
-            <h2>14. Termination</h2>
-            <p>Hen Works may terminate or suspend your access to the App at any time, without notice, if you violate these Terms or engage in illegal activity.</p>
-
-            <h2>15. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of Taiwan (R.O.C.), without regard to conflict of law principles.</p>
-
-            <h2>16. Dispute Resolution</h2>
-            <p>Any disputes arising from these Terms or your use of the App shall be resolved in the courts of Taiwan (R.O.C.).</p>
-
-            <h2>17. Contact & Support</h2>
-            <p>For support inquiries, feature requests, or bug reports, please contact:</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>18. Entire Agreement</h2>
-            <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and Hen Works regarding the App and supersede all prior agreements and understandings.</p>
-
-            <h2>19. Severability</h2>
-            <p>If any provision of these Terms is found to be invalid or unenforceable, that provision shall be severable and shall not affect the validity or enforceability of the remaining provisions.</p>
-
-            <h2>20. Changes to These Terms</h2>
-            <p>Hen Works may update these Terms from time to time. Your continued use of the App following any changes constitutes your acceptance of the updated Terms.</p>
+    <!-- English -->
+    <div class="lang-section active" id="lang-en">
+        <section class="policy-hero anim">
+            <h1>Terms of <em>Use</em></h1>
+            <p class="date">Last updated: March 26, 2026</p>
+            <p class="summary">By downloading, installing, and using TextLen, you agree to be bound by these Terms of Use and End User License Agreement.</p>
         </section>
 
-        <!-- Chinese (Traditional) Version -->
-        <section id="terms-zh">
-            <h1>使用條款及最終用戶許可協議</h1>
-            <p class="last-updated">最後更新：2026年3月25日</p>
-
-            <h2>1. 同意條款</h2>
-            <p>透過下載、安裝和使用 TextLen（以下簡稱「本應用程式」），您同意受本使用條款及最終用戶許可協議（以下簡稱「本條款」）的約束。如果您不同意本條款，請不要使用本應用程式。</p>
-
-            <h2>2. 許可授予</h2>
-            <p>Hen Works 根據本條款授予您有限的、非專屬的、不可轉讓的和可撤銷的許可，以使用本應用程式。您不得再授權、銷售、出租、出借、轉讓、分配或以其他方式處置本應用程式。</p>
-
-            <h2>3. 專有 AI 模型</h2>
-            <div class="highlight">
-                <strong>AI 模型為專有模型，受 AES-256-GCM 加密保護。</strong>您不得嘗試對 AI 模型進行逆向工程、反編譯、反彙編或以其他方式推導其原始碼或基礎演算法。
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>1. Agreement to Terms</h2>
+                <p>By downloading, installing, and using TextLen ("the App"), you agree to be bound by these Terms of Use and End User License Agreement ("Terms"). If you do not agree to these Terms, do not use the App.</p>
             </div>
 
-            <h2>4. 「現狀」免責聲明</h2>
-            <p>本應用程式按「現狀」提供，不提供任何明示或暗示的保證。Hen Works 不保證本應用程式將不中斷、無誤或安全。在法律允許的最大範圍內，Hen Works 免除所有明示或暗示的保證，包括商品性和特定目的的適用性。</p>
-
-            <h2>5. OCR 準確性</h2>
-            <p>OCR（光學字符識別）結果可能不是 100% 準確的。Hen Works 不保證任何 OCR 輸出的準確性或完整性。您應在將應用程式提取的任何文字用於重要目的之前，負責審查和驗證。</p>
-
-            <h2>6. 用戶責任</h2>
-            <p>您單獨負責使用本應用程式處理的內容。Hen Works 不保證或認可任何具體使用案例，您承擔與在業務或個人工作流程中使用 OCR 結果相關的所有風險。</p>
-
-            <h2>7. 使用限制和訂閱層級</h2>
-            <h3>免費層級</h3>
-            <ul>
-                <li>每月 15 次 OCR 操作</li>
-            </ul>
-
-            <h3>付費層級</h3>
-            <p>提供具有更高使用限制的其他訂閱層級。請參閱應用程式以了解當前定價和層級詳情。</p>
-
-            <h2>8. 訂閱和自動續訂</h2>
-            <p>訂閱會自動續訂，除非您取消。<strong>您必須在續訂日期前至少 24 小時取消訂閱，以避免被收取下一個計費週期的費用。</strong>可以通過 Apple 的訂閱設定進行取消。</p>
-
-            <h2>9. 退款</h2>
-            <p>應用內購買和訂閱的退款由 Apple 處理。請參閱 Apple App Store 退款政策以了解符合條件的情況和程序。Hen Works 不提供直接退款。</p>
-
-            <h2>10. 責任限制</h2>
-            <p>在法律允許的最大範圍內，Hen Works 不對由於您使用本應用程式而引起的任何間接、附帶、特殊、後果性或懲罰性損害承擔責任，包括但不限於數據丟失、業務中斷或利潤損失。</p>
-
-            <h2>11. 賠償</h2>
-            <p>您同意賠償並使 Hen Works 免受因您使用本應用程式或違反本條款而引起的任何索賠、損害或損失。</p>
-
-            <h2>12. 定價和修改</h2>
-            <p>Hen Works 保留隨時修改定價、訂閱層級和功能的權利。任何重大變更將提前告知用戶。</p>
-
-            <h2>13. 智慧財產</h2>
-            <p>本應用程式，包括所有內容、功能和特性，由 Hen Works 或其內容供應商擁有，受國際版權和智慧財產法保護。您對本應用程式的使用不授予您任何智慧財產權的所有權。</p>
-
-            <h2>14. 終止</h2>
-            <p>Hen Works 可隨時無通知地終止或暫停您對本應用程式的訪問，如果您違反本條款或從事非法活動。</p>
-
-            <h2>15. 管轄法律</h2>
-            <p>本條款應受中華民國（台灣）法律的管轄和解釋，不考慮法律衝突原則。</p>
-
-            <h2>16. 爭議解決</h2>
-            <p>由本條款或您使用本應用程式引起的任何爭議應在中華民國（台灣）法院解決。</p>
-
-            <h2>17. 聯絡和支援</h2>
-            <p>如有支援查詢、功能請求或錯誤報告，請聯絡：</p>
-            <ul>
-                <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>18. 完整協議</h2>
-            <p>本條款連同隱私政策，構成您和 Hen Works 就本應用程式的完整協議，並取代所有先前的協議和諒解。</p>
-
-            <h2>19. 可分割性</h2>
-            <p>如果本條款的任何條款被發現無效或不可執行，該條款應可分割，不影響其餘條款的有效性或可執行性。</p>
-
-            <h2>20. 本條款的變更</h2>
-            <p>Hen Works 可能不時更新本條款。您繼續使用本應用程式表示接受更新的條款。</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+            <div class="policy-section anim">
+                <h2>2. License Grant</h2>
+                <p>Hen Works grants you a limited, non-exclusive, non-transferable, and revocable license to use the App in accordance with these Terms. You may not sublicense, sell, rent, lease, transfer, assign, or otherwise dispose of the App.</p>
             </div>
-            <p>&copy; 2026 Hen Works. All rights reserved.</p>
+
+            <div class="policy-section anim">
+                <h2>3. "As-Is" Disclaimer</h2>
+                <p>The App is provided "as-is" without warranty of any kind, express or implied. Hen Works does not warrant that the App will be uninterrupted, error-free, or secure. To the fullest extent permitted by law, Hen Works disclaims all warranties, including merchantability and fitness for a particular purpose.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>4. OCR Accuracy</h2>
+                <p>OCR (Optical Character Recognition) results may not be 100% accurate. Hen Works does not guarantee the accuracy or completeness of any OCR output. You are responsible for reviewing and verifying any text extracted by the App before using it for important purposes.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>5. User Responsibility</h2>
+                <p>You are solely responsible for the content you process with the App. Hen Works does not warrant or endorse any specific use case, and you assume all risks associated with using OCR results in your business or personal workflow.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>6. Usage Limits & Subscription Tiers</h2>
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <strong>Free Tier</strong>
+                        <span>Includes free credits to get started. Purchase more credits as needed after they are used up.</span>
+                    </div>
+                    <div class="tier-card">
+                        <strong>Paid Tiers</strong>
+                        <span>Lifetime and monthly subscription tiers with unlimited usage. See the App for current pricing and details.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>7. Subscriptions & Auto-Renewal</h2>
+                <p>Subscriptions automatically renew unless cancelled. <strong>You must cancel at least 24 hours before the renewal date to avoid being charged.</strong> Cancellation can be managed through Apple's subscription settings.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>8. Refunds</h2>
+                <p>Refunds for in-app purchases and subscriptions are handled through Apple. Please refer to Apple's App Store refund policy for eligibility and procedures. Hen Works does not provide direct refunds.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>9. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, Hen Works shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App, including but not limited to loss of data, business interruption, or lost profits.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>10. Indemnification</h2>
+                <p>You agree to indemnify and hold harmless Hen Works from any claims, damages, or losses arising from your use of the App or violation of these Terms.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>11. Pricing & Modification</h2>
+                <p>Hen Works reserves the right to modify pricing, subscription tiers, and features at any time. Any significant changes will be communicated to users in advance.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>12. Intellectual Property</h2>
+                <p>The App, including all content, features, and functionality, is owned by Hen Works or its content suppliers and protected by international copyright and intellectual property laws.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>13. Termination</h2>
+                <p>Hen Works may terminate or suspend your access to the App at any time, without notice, if you violate these Terms or engage in illegal activity.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>14. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of Taiwan (R.O.C.), without regard to conflict of law principles.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>15. Dispute Resolution</h2>
+                <p>Any disputes arising from these Terms or your use of the App shall be resolved in the courts of Taiwan (R.O.C.).</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>16. Contact & Support</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>17. Entire Agreement</h2>
+                <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and Hen Works regarding the App and supersede all prior agreements.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>18. Severability</h2>
+                <p>If any provision of these Terms is found invalid or unenforceable, that provision shall be severable and shall not affect the remaining provisions.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>19. Changes to These Terms</h2>
+                <p>Hen Works may update these Terms from time to time. Your continued use of the App following any changes constitutes your acceptance of the updated Terms.</p>
+            </div>
         </div>
-    </footer>
+    </div>
 
-    <script>
-        function switchLanguage(lang) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
+    <!-- Chinese (Traditional) -->
+    <div class="lang-section" id="lang-zh">
+        <section class="policy-hero">
+            <h1>使用<em>條款</em></h1>
+            <p class="date">最後更新：2026年3月26日</p>
+            <p class="summary">透過下載、安裝和使用 TextLen，您同意受本使用條款及最終用戶許可協議的約束。</p>
+        </section>
 
-            // Show selected language
-            const langMap = {
-                'en': 'terms-en',
-                'zh': 'terms-zh'
-            };
-            document.getElementById(langMap[lang]).classList.add('active');
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 同意條款</h2>
+                <p>透過下載、安裝和使用 TextLen（以下簡稱「本應用程式」），您同意受本使用條款及最終用戶許可協議（以下簡稱「本條款」）的約束。如果您不同意本條款，請不要使用本應用程式。</p>
+            </div>
 
-            // Update button states
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-    </script>
+            <div class="policy-section">
+                <h2>2. 許可授予</h2>
+                <p>Hen Works 根據本條款授予您有限的、非專屬的、不可轉讓的和可撤銷的許可，以使用本應用程式。您不得再授權、銷售、出租、出借、轉讓、分配或以其他方式處置本應用程式。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3.「現狀」免責聲明</h2>
+                <p>本應用程式按「現狀」提供，不提供任何明示或暗示的保證。Hen Works 不保證本應用程式將不中斷、無誤或安全。在法律允許的最大範圍內，Hen Works 免除所有保證，包括商品性和特定目的的適用性。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. OCR 準確性</h2>
+                <p>OCR（光學字符識別）結果可能不是 100% 準確的。Hen Works 不保證任何 OCR 輸出的準確性或完整性。您應在將應用程式提取的文字用於重要目的之前，負責審查和驗證。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. 用戶責任</h2>
+                <p>您單獨負責使用本應用程式處理的內容。Hen Works 不保證或認可任何具體使用案例，您承擔與在業務或個人工作流程中使用 OCR 結果相關的所有風險。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. 使用限制和訂閱層級</h2>
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <strong>免費層級</strong>
+                        <span>含免費額度使用，用完後可按需購買更多額度。</span>
+                    </div>
+                    <div class="tier-card">
+                        <strong>付費層級</strong>
+                        <span>提供永久和月訂層級，享有無限使用。詳見應用程式內的定價和說明。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. 訂閱和自動續訂</h2>
+                <p>訂閱會自動續訂，除非您取消。<strong>您必須在續訂日期前至少 24 小時取消訂閱，以避免被收取費用。</strong>可以通過 Apple 的訂閱設定進行取消。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 退款</h2>
+                <p>應用內購買和訂閱的退款由 Apple 處理。請參閱 Apple App Store 退款政策以了解符合條件和程序。Hen Works 不提供直接退款。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 責任限制</h2>
+                <p>在法律允許的最大範圍內，Hen Works 不對由於您使用本應用程式而引起的任何間接、附帶、特殊、後果性或懲罰性損害承擔責任，包括但不限於數據丟失、業務中斷或利潤損失。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 賠償</h2>
+                <p>您同意賠償並使 Hen Works 免受因您使用本應用程式或違反本條款而引起的任何索賠、損害或損失。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 定價和修改</h2>
+                <p>Hen Works 保留隨時修改定價、訂閱層級和功能的權利。任何重大變更將提前告知用戶。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 智慧財產</h2>
+                <p>本應用程式，包括所有內容、功能和特性，由 Hen Works 或其內容供應商擁有，受國際版權和智慧財產法保護。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 終止</h2>
+                <p>如果您違反本條款或從事非法活動，Hen Works 可隨時無通知地終止或暫停您對本應用程式的訪問。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 管轄法律</h2>
+                <p>本條款應受中華民國（台灣）法律的管轄和解釋，不考慮法律衝突原則。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 爭議解決</h2>
+                <p>由本條款或您使用本應用程式引起的任何爭議應在中華民國（台灣）法院解決。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. 聯絡和支援</h2>
+                <ul>
+                    <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 完整協議</h2>
+                <p>本條款連同隱私政策，構成您和 Hen Works 就本應用程式的完整協議，並取代所有先前的協議。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 可分割性</h2>
+                <p>如果本條款的任何條款被發現無效或不可執行，該條款應可分割，不影響其餘條款的有效性或可執行性。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 本條款的變更</h2>
+                <p>Hen Works 可能不時更新本條款。您繼續使用本應用程式表示接受更新的條款。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese -->
+    <div class="lang-section" id="lang-ja">
+        <section class="policy-hero">
+            <h1>利用<em>規約</em></h1>
+            <p class="date">最終更新：2026年3月26日</p>
+            <p class="summary">TextLenをダウンロード、インストール、使用することにより、お客様はこの利用規約およびエンドユーザーライセンス契約に拘束されることに同意します。</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 規約への同意</h2>
+                <p>TextLen（以下「本アプリ」）をダウンロード、インストール、使用することにより、お客様は本利用規約およびエンドユーザーライセンス契約（以下「本規約」）に拘束されることに同意します。本規約に同意しない場合は、本アプリを使用しないでください。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. ライセンスの付与</h2>
+                <p>Hen Worksは、本規約に従い、本アプリを使用するための限定的、非独占的、譲渡不可、取消可能なライセンスをお客様に付与します。お客様は本アプリをサブライセンス、販売、賃貸、リース、譲渡、移転、その他の方法で処分してはなりません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3.「現状」免責事項</h2>
+                <p>本アプリは、明示的または黙示的を問わず、いかなる保証もなく「現状のまま」提供されます。Hen Worksは、本アプリが中断なく、エラーなく、またはセキュアであることを保証しません。法律で認められる最大限の範囲で、Hen Worksは商品性および特定目的への適合性を含むすべての保証を否認します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. OCRの正確性</h2>
+                <p>OCR（光学式文字認識）の結果は100%正確ではない場合があります。Hen WorksはOCR出力の正確性または完全性を保証しません。重要な目的に使用する前に、本アプリで抽出したテキストを確認・検証する責任はお客様にあります。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. ユーザーの責任</h2>
+                <p>お客様は本アプリで処理するコンテンツに対して単独で責任を負います。Hen Worksは特定の使用ケースを保証または推奨するものではなく、ビジネスまたは個人のワークフローでOCR結果を使用することに関連するすべてのリスクはお客様が負います。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. 使用制限とサブスクリプション</h2>
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <strong>無料プラン</strong>
+                        <span>無料クレジット付きで始められます。使い切った後は必要に応じて追加購入できます。</span>
+                    </div>
+                    <div class="tier-card">
+                        <strong>有料プラン</strong>
+                        <span>永久プランと月額サブスクリプションで無制限利用が可能。詳細はアプリ内でご確認ください。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. サブスクリプションと自動更新</h2>
+                <p>サブスクリプションはキャンセルされない限り自動的に更新されます。<strong>課金を避けるために、更新日の少なくとも24時間前にキャンセルしてください。</strong>Appleのサブスクリプション設定からキャンセルできます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 返金</h2>
+                <p>アプリ内購入およびサブスクリプションの返金はAppleを通じて処理されます。対象条件と手順についてはApple App Storeの返金ポリシーをご参照ください。Hen Worksは直接の返金を行いません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 責任の制限</h2>
+                <p>法律で認められる最大限の範囲で、Hen Worksは、データの損失、事業の中断、逸失利益を含むがこれに限定されない、お客様の本アプリの使用から生じるいかなる間接的、付随的、特別、結果的、または懲罰的損害に対しても責任を負いません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 補償</h2>
+                <p>お客様は、本アプリの使用または本規約の違反から生じるいかなる請求、損害、損失からもHen Worksを補償し、免責することに同意します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 価格設定と変更</h2>
+                <p>Hen Worksは、いつでも価格設定、サブスクリプションプラン、機能を変更する権利を留保します。重要な変更は事前にユーザーに通知されます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 知的財産権</h2>
+                <p>本アプリは、すべてのコンテンツ、機能を含め、Hen Worksまたはそのコンテンツ提供者が所有し、国際著作権および知的財産法によって保護されています。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 終了</h2>
+                <p>お客様が本規約に違反した場合または違法行為を行った場合、Hen Worksは通知なしにいつでも本アプリへのアクセスを終了または停止することができます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 準拠法</h2>
+                <p>本規約は、法の抵触に関する原則にかかわらず、台湾（中華民国）の法律に準拠し、解釈されるものとします。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 紛争解決</h2>
+                <p>本規約またはお客様の本アプリの使用から生じるいかなる紛争も、台湾（中華民国）の裁判所で解決されるものとします。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. お問い合わせ・サポート</h2>
+                <ul>
+                    <li><strong>メール：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>ウェブサイト：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 完全合意</h2>
+                <p>本規約はプライバシーポリシーとともに、本アプリに関するお客様とHen Worksとの間の完全な合意を構成し、以前のすべての合意に優先します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 可分性</h2>
+                <p>本規約のいずれかの条項が無効または執行不能と判断された場合、その条項は分離可能であり、残りの条項の有効性または執行可能性に影響を与えません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 本規約の変更</h2>
+                <p>Hen Worksは本規約を随時更新する場合があります。変更後も本アプリの使用を継続することは、更新された規約への同意を意味します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Korean -->
+    <div class="lang-section" id="lang-ko">
+        <section class="policy-hero">
+            <h1>이용<em>약관</em></h1>
+            <p class="date">마지막 업데이트: 2026년 3월 26일</p>
+            <p class="summary">TextLen을 다운로드, 설치 및 사용함으로써 귀하는 본 이용약관 및 최종 사용자 라이선스 계약에 동의하게 됩니다.</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 약관 동의</h2>
+                <p>TextLen(이하 "본 앱")을 다운로드, 설치 및 사용함으로써 귀하는 본 이용약관 및 최종 사용자 라이선스 계약(이하 "본 약관")에 구속됨에 동의합니다. 본 약관에 동의하지 않는 경우 본 앱을 사용하지 마십시오.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. 라이선스 부여</h2>
+                <p>Hen Works는 본 약관에 따라 본 앱을 사용할 수 있는 제한적, 비독점적, 양도 불가능, 취소 가능한 라이선스를 귀하에게 부여합니다. 귀하는 본 앱을 재라이선스, 판매, 임대, 리스, 양도, 이전 또는 기타 방법으로 처분해서는 안 됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. "있는 그대로" 면책 조항</h2>
+                <p>본 앱은 명시적이든 묵시적이든 어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다. Hen Works는 본 앱이 중단 없이, 오류 없이 또는 안전하게 작동할 것을 보증하지 않습니다. 법이 허용하는 최대 범위 내에서 Hen Works는 상품성 및 특정 목적에의 적합성을 포함한 모든 보증을 부인합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. OCR 정확성</h2>
+                <p>OCR(광학 문자 인식) 결과는 100% 정확하지 않을 수 있습니다. Hen Works는 OCR 출력의 정확성 또는 완전성을 보증하지 않습니다. 중요한 목적으로 사용하기 전에 본 앱에서 추출한 텍스트를 검토하고 확인할 책임은 귀하에게 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. 사용자 책임</h2>
+                <p>귀하는 본 앱으로 처리하는 콘텐츠에 대해 단독으로 책임을 집니다. Hen Works는 특정 사용 사례를 보증하거나 지지하지 않으며, 비즈니스 또는 개인 워크플로에서 OCR 결과를 사용하는 것과 관련된 모든 위험은 귀하가 부담합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. 사용 제한 및 구독</h2>
+                <div class="tier-grid">
+                    <div class="tier-card">
+                        <strong>무료 플랜</strong>
+                        <span>무료 크레딧이 포함되어 시작할 수 있습니다. 사용 후 필요에 따라 추가 구매할 수 있습니다.</span>
+                    </div>
+                    <div class="tier-card">
+                        <strong>유료 플랜</strong>
+                        <span>영구 플랜과 월간 구독으로 무제한 사용이 가능합니다. 현재 가격은 앱에서 확인하세요.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. 구독 및 자동 갱신</h2>
+                <p>구독은 취소하지 않는 한 자동으로 갱신됩니다. <strong>요금 청구를 피하려면 갱신일 최소 24시간 전에 취소해야 합니다.</strong> Apple의 구독 설정에서 취소할 수 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 환불</h2>
+                <p>앱 내 구매 및 구독의 환불은 Apple을 통해 처리됩니다. 자격 조건 및 절차는 Apple App Store 환불 정책을 참조하세요. Hen Works는 직접 환불을 제공하지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 책임 제한</h2>
+                <p>법이 허용하는 최대 범위 내에서, Hen Works는 데이터 손실, 사업 중단 또는 이익 손실을 포함하되 이에 국한되지 않는, 귀하의 본 앱 사용으로 인한 간접적, 부수적, 특별, 결과적 또는 징벌적 손해에 대해 책임을 지지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 배상</h2>
+                <p>귀하는 본 앱의 사용 또는 본 약관 위반으로 인한 모든 청구, 손해 또는 손실로부터 Hen Works를 배상하고 면책하는 데 동의합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 가격 및 수정</h2>
+                <p>Hen Works는 언제든 가격, 구독 플랜 및 기능을 수정할 권리를 보유합니다. 중요한 변경 사항은 사전에 사용자에게 통보됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 지적 재산권</h2>
+                <p>본 앱은 모든 콘텐츠, 기능을 포함하여 Hen Works 또는 그 콘텐츠 제공자가 소유하며 국제 저작권 및 지적 재산법에 의해 보호됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 종료</h2>
+                <p>귀하가 본 약관을 위반하거나 불법 활동에 관여하는 경우, Hen Works는 통보 없이 언제든 본 앱에 대한 귀하의 접근을 종료하거나 중단할 수 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 준거법</h2>
+                <p>본 약관은 법률 충돌 원칙에 관계없이 대만(중화민국)의 법률에 따라 규율되고 해석됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 분쟁 해결</h2>
+                <p>본 약관 또는 귀하의 본 앱 사용으로 인한 모든 분쟁은 대만(중화민국) 법원에서 해결됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. 문의 및 지원</h2>
+                <ul>
+                    <li><strong>이메일:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>웹사이트:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 완전한 합의</h2>
+                <p>본 약관은 개인정보처리방침과 함께 본 앱에 관한 귀하와 Hen Works 간의 완전한 합의를 구성하며 이전의 모든 합의에 우선합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 분리 가능성</h2>
+                <p>본 약관의 조항이 무효 또는 집행 불가능으로 판명되는 경우, 해당 조항은 분리 가능하며 나머지 조항의 유효성 또는 집행 가능성에 영향을 미치지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 본 약관의 변경</h2>
+                <p>Hen Works는 본 약관을 수시로 업데이트할 수 있습니다. 변경 후에도 본 앱의 사용을 계속하면 업데이트된 약관에 동의하는 것으로 간주됩니다.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><img src="../../images/textlen-logo.png" alt="TextLen"><span>TextLen</span></div>
+            <small>AI-Powered OCR Studio for macOS</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Product</h4><a href="index.html">Features</a><a href="index.html#pricing">Pricing</a></div>
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About Hen Works</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 Hen Works. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+let curLang='en';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    // Re-trigger animations for new section
+    el.querySelectorAll('.anim').forEach(a=>{a.classList.remove('show');void a.offsetWidth;a.classList.add('show')});
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+
+// Scroll animations
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

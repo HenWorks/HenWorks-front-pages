@@ -4,1294 +4,752 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TextLen - AI-Powered OCR Studio for macOS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="TextLen is a powerful macOS OCR studio with AI-powered text recognition, batch processing, layout editing and table extraction. 100% on-device, private.">
+    <link rel="icon" href="../../images/textlen-logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6B21A8;
-            --primary-light: #8B5CF6;
-            --primary-lighter: #A78BFA;
-            --primary-dark: #581C87;
-            --accent: #EC4899;
-            --success: #10B981;
-            --gray-50: #F9FAFB;
-            --gray-100: #F3F4F6;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-600: #4B5563;
-            --gray-900: #111827;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', 'Helvetica Neue', sans-serif;
-            color: var(--gray-900);
-            background-color: #FFFFFF;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray-900);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .language-toggle {
-            background: var(--gray-100);
-            border: none;
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--gray-900);
-            transition: all 0.3s ease;
-        }
-
-        .language-toggle:hover {
-            background: var(--gray-200);
-        }
-
-        .language-toggle.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, rgba(107, 33, 168, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-
-        .hero-text h1 .gradient-text {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text .tagline {
-            font-size: 1.3rem;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .hero-text .description {
-            font-size: 1.05rem;
-            color: var(--gray-600);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            box-shadow: 0 8px 24px rgba(107, 33, 168, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(107, 33, 168, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--gray-100);
-            color: var(--gray-900);
-            border: 2px solid transparent;
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-200);
-        }
-
-        .hero-features {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.95rem;
-        }
-
-        .feature-badge {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            color: var(--gray-600);
-        }
-
-        .feature-badge strong {
-            color: var(--gray-900);
-        }
-
-        .hero-image {
-            position: relative;
-            height: 400px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-image-placeholder {
-            text-align: center;
-            color: var(--gray-600);
-        }
-
-        .hero-image-placeholder p {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            animation: slideUp 0.6s ease-out both;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(107, 33, 168, 0.15);
-            border-color: rgba(107, 33, 168, 0.2);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            color: var(--gray-900);
-        }
-
-        .feature-card p {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Showcases Section */
-        .showcases {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, var(--gray-50) 0%, #FFFFFF 100%);
-        }
-
-        .showcases-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 6rem;
-        }
-
-        .showcase:nth-child(even) {
-            direction: rtl;
-        }
-
-        .showcase:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .showcase-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--gray-900);
-        }
-
-        .showcase-content p {
-            color: var(--gray-600);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .showcase-image {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
-            aspect-ratio: 16 / 9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .showcase-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .showcase-image-placeholder {
-            text-align: center;
-            color: var(--gray-600);
-            width: 100%;
-        }
-
-        .showcase-image-placeholder p {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Privacy Section */
-        .privacy {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, rgba(107, 33, 168, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
-        }
-
-        .privacy-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .privacy-container h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--gray-900);
-        }
-
-        .privacy-box {
-            background: white;
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            padding: 3rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.1);
-        }
-
-        .privacy-box h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .privacy-box p {
-            font-size: 1.05rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-        }
-
-        .privacy-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .privacy-feature {
-            padding: 1.5rem;
-            background: var(--gray-50);
-            border-radius: 12px;
-            border: 1px solid var(--gray-200);
-        }
-
-        .privacy-feature strong {
-            display: block;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .privacy-feature span {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            border: 2px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(107, 33, 168, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(107, 33, 168, 0.2);
-        }
-
-        .pricing-card:hover:not(.featured) {
-            border-color: var(--primary-light);
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.1);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 1.5rem 0;
-        }
-
-        .pricing-price small {
-            font-size: 1rem;
-            color: var(--gray-600);
-            display: block;
-            font-weight: 400;
-        }
-
-        .pricing-description {
-            color: var(--gray-600);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            min-height: 50px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .pricing-features li {
-            padding: 0.6rem 0;
-            color: var(--gray-600);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .pricing-features li:before {
-            content: '✓';
-            color: var(--success);
-            font-weight: 700;
-            margin-right: 0.75rem;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Download Section */
-        .download {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-        }
-
-        .download h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .download p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .download-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .download-badge:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .download-badge img {
-            height: 40px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--gray-900);
-            color: white;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-image {
-                height: 300px;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .cta-buttons .btn {
-                width: 100%;
-            }
-
-            .showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .showcase:nth-child(even) {
-                direction: ltr;
-            }
-
-            .showcase-content h3 {
-                font-size: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .privacy-container h2 {
-                font-size: 1.8rem;
-            }
-
-            .download h2 {
-                font-size: 1.8rem;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --yellow:#F5E642;--yellow-soft:#FAF089;
+            --purple:#2D1B4E;--purple-light:#7B4DAA;--blue-soft:#C5CDE0;
+            --green:#28C840;--red:#FF5F57;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        /* === Animations === */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+        @keyframes slideLeft{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes slideRight{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+        @keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}.anim.d4{transition-delay:.4s}.anim.d5{transition-delay:.5s}
+
+        /* === Video Hero === */
+        .video-hero{position:relative;width:100%;max-width:1280px;margin:0 auto;padding:24px 24px 0;overflow:hidden}
+        .video-wrapper{position:relative;border-radius:24px 24px 0 0;overflow:hidden;background:#1A1A1A;aspect-ratio:16/9}
+        .video-wrapper video{width:100%;height:100%;object-fit:cover;display:block}
+        .video-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,var(--bg) 100%);pointer-events:none;opacity:0;transition:opacity 1.5s ease}
+        .video-overlay.active{opacity:1}
+        .video-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--yellow);transition:width .3s linear;border-radius:2px}
+        .video-lang-switch{position:absolute;top:20px;right:20px;display:flex;gap:6px;z-index:10}
+        .video-lang-btn{padding:6px 14px;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;background:rgba(0,0,0,.4);backdrop-filter:blur(12px);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all .3s}
+        .video-lang-btn:hover,.video-lang-btn.active{background:rgba(255,255,255,.9);color:var(--black);border-color:transparent}
+        .video-replay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:none;color:#fff;font-size:24px;cursor:pointer;display:none;align-items:center;justify-content:center;transition:transform .3s}
+        .video-replay:hover{transform:translate(-50%,-50%) scale(1.1)}
+        .video-replay.show{display:flex}
+
+        /* === Page wrapper === */
+        .page{max-width:1280px;margin:0 auto;padding:0 24px 24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        /* === Nav === */
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo img{width:32px;height:32px;border-radius:6px}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--yellow);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px;margin-right:16px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
+        .nav-lang button.active{background:var(--black);color:var(--white)}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        /* === Hero === */
+        .hero{display:flex;align-items:flex-start;padding:80px 64px 60px;gap:48px;min-height:640px;position:relative}
+        .hero-text{flex:0 0 440px;animation:slideRight 1s cubic-bezier(.16,1,.3,1)}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:rgba(245,230,66,.2);font-size:12px;font-weight:600;margin-bottom:20px}
+        .hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+        .hero h1{font-size:48px;font-weight:800;line-height:1.08;margin-bottom:20px;letter-spacing:-.03em}
+        .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--yellow) 0%,var(--yellow-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-desc{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:16px;max-width:420px}
+        .hero-stats{display:flex;gap:32px;margin-bottom:32px}
+        .hero-stat{display:flex;flex-direction:column}
+        .hero-stat strong{font-size:28px;font-weight:800;color:var(--black)}
+        .hero-stat span{font-size:12px;color:var(--gray-light);font-weight:500}
+        .hero-cta-group{display:flex;gap:12px;align-items:center}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:var(--black);color:var(--white);font-size:15px;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:transparent;color:var(--black);font-size:15px;font-weight:600;text-decoration:none;border:2px solid var(--gray-border);cursor:pointer;transition:all .3s}
+        .btn-secondary:hover{border-color:var(--black);transform:translateY(-2px)}
+
+        /* === Laptop Carousel === */
+        .hero-laptop{flex:1;display:flex;flex-direction:column;align-items:center;animation:slideLeft 1s cubic-bezier(.16,1,.3,1) .15s both}
+        .laptop-screen{width:100%;max-width:680px;border-radius:12px 12px 0 0;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+        .laptop-bar{display:flex;align-items:center;gap:7px;padding:0 14px;height:30px;background:#16162A}
+        .d{width:11px;height:11px;border-radius:50%}.d-r{background:#FF5F57}.d-y{background:#FEBC2E}.d-g{background:#28C840}
+        .laptop-bar span{flex:1;text-align:center;font-size:11px;color:#888}
+        .carousel-vp{width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;background:#1A1A2E}
+        .carousel-track{display:flex;height:100%;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+        .carousel-slide{min-width:100%;height:100%}
+        .carousel-slide img{width:100%;height:100%;object-fit:cover}
+        .carousel-arrows{position:absolute;bottom:12px;right:12px;display:flex;gap:6px}
+        .c-arrow{width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,.9);color:var(--black);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(10px)}
+        .c-arrow:hover{transform:scale(1.1)}
+        .laptop-base{width:100%;max-width:680px;display:flex;flex-direction:column;align-items:center}
+        .lb-top{width:100%;height:3px;background:linear-gradient(90deg,#ccc,#e5e5e5,#ccc)}
+        .lb-btm{width:160px;height:14px;background:linear-gradient(90deg,#d5d5d5,#e8e8e8,#d5d5d5);border-radius:0 0 8px 8px}
+        .carousel-dots{display:flex;gap:8px;justify-content:center;padding:16px 0 8px}
+        .c-dot{width:8px;height:8px;border-radius:50%;background:#ccc;border:none;cursor:pointer;transition:all .3s}
+        .c-dot.active{background:var(--black);transform:scale(1.3)}
+
+        /* === Slide Info === */
+        .slide-info{display:flex;padding:40px 64px;gap:40px;border-top:1px solid rgba(0,0,0,.06)}
+        .slide-meta{flex:0 0 300px;transition:opacity .4s,transform .4s}
+        .slide-num{font-size:64px;font-weight:900;color:var(--yellow);line-height:1}
+        .slide-ttl{font-size:20px;font-weight:700;margin:8px 0}
+        .slide-dsc{font-size:14px;color:var(--gray);line-height:1.8}
+        .slide-thumbs{flex:1;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+        .s-thumb{aspect-ratio:1;border-radius:12px;background:#1A1A2E;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;cursor:pointer;transition:all .3s;border:2px solid transparent;position:relative;overflow:hidden}
+        .s-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 50%,transparent 100%);z-index:1;transition:all .3s}
+        .s-thumb.active{border-color:var(--yellow);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+        .s-thumb.active::before{background:linear-gradient(to top,rgba(45,27,78,.85) 0%,rgba(45,27,78,.4) 50%,transparent 100%)}
+        .s-thumb:hover:not(.active){transform:translateY(-4px)}
+        .s-thumb-n{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);position:relative;z-index:2}.s-thumb.active .s-thumb-n{color:var(--yellow)}
+        .s-thumb-t{font-size:10px;color:rgba(255,255,255,.9);font-weight:500;position:relative;z-index:2}.s-thumb.active .s-thumb-t{color:#fff;font-weight:600}
+
+        /* === Features === */
+        .features{padding:80px 64px;background:var(--bg)}
+        .section-hdr{text-align:center;margin-bottom:56px}
+        .section-hdr h2{font-size:42px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+        .section-hdr p{font-size:16px;color:var(--gray)}
+        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+        .feat-card{background:var(--white);border-radius:20px;padding:36px;transition:all .4s}
+        .feat-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+        .feat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
+        .feat-icon.yel{background:rgba(245,230,66,.15)}.feat-icon.pur{background:rgba(107,33,168,.08)}.feat-icon.grn{background:rgba(16,185,129,.08)}.feat-icon.blu{background:rgba(197,205,224,.3)}
+        .feat-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .feat-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+        /* === How It Works === */
+        .how{padding:80px 64px}
+        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1100px;margin:56px auto 0}
+        .step{text-align:center;position:relative}
+        .step-n{font-size:72px;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:12px}
+        .step h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .step p{font-size:14px;color:var(--gray);line-height:1.7}
+
+        /* === Privacy === */
+        .privacy{padding:80px 64px;background:var(--bg)}
+        .priv-box{max-width:960px;margin:40px auto 0;background:var(--white);border-radius:24px;padding:56px;text-align:center}
+        .priv-box h3{font-size:28px;font-weight:800;margin-bottom:12px}
+        .priv-box>p{font-size:15px;color:var(--gray);max-width:600px;margin:0 auto 40px;line-height:1.8}
+        .priv-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .priv-feat{padding:24px 16px;border-radius:16px;background:#F9F9F9;text-align:center;transition:all .3s}
+        .priv-feat:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .priv-feat .icon{font-size:28px;margin-bottom:8px}
+        .priv-feat strong{display:block;font-size:14px;margin-bottom:4px}
+        .priv-feat span{font-size:12px;color:var(--gray)}
+
+        /* === Pricing === */
+        .pricing{padding:80px 64px}
+        .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:56px auto 0}
+        .price-card{background:var(--white);border-radius:24px;padding:40px;border:2px solid transparent;transition:all .4s;position:relative}
+        .price-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+        .price-card.pop{border-color:var(--yellow);box-shadow:0 16px 40px rgba(245,230,66,.2)}
+        .price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--black);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap}
+        .price-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+        .price-amt{font-size:40px;font-weight:900;margin-bottom:4px}
+        .price-per{font-size:14px;color:var(--gray);margin-bottom:20px}
+        .price-desc{font-size:13px;color:var(--gray);margin-bottom:24px;line-height:1.6}
+        .price-list{list-style:none;margin-bottom:32px}
+        .price-list li{padding:7px 0;font-size:13px;color:var(--gray);display:flex;align-items:center;gap:8px}
+        .price-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:14px}
+
+        /* === CTA === */
+        .cta{padding:80px 64px;text-align:center;background:var(--white);border-radius:24px;margin:0 24px 24px}
+        .cta h2{font-size:44px;font-weight:800;max-width:640px;margin:0 auto 12px;line-height:1.12;letter-spacing:-.02em}
+        .cta h2 em{font-style:normal;color:var(--yellow)}
+        .cta>p{font-size:16px;color:var(--gray);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+        .cta-dl{display:inline-flex;align-items:center;gap:12px;padding:18px 48px;border-radius:14px;background:var(--black);color:var(--white);font-size:16px;font-weight:700;text-decoration:none;transition:all .3s;position:relative;overflow:hidden}
+        .cta-dl::after{content:'';position:absolute;inset:-2px;border-radius:16px;background:var(--yellow);opacity:.15;filter:blur(12px);z-index:-1}
+        .cta-dl:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.2)}
+
+        /* === Footer === */
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand img{width:24px;height:24px;border-radius:4px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        /* === Responsive === */
+        @media(max-width:1024px){
+            .hero{flex-direction:column;padding:48px 32px 40px;min-height:auto;gap:32px}
+            .hero-text{flex:none;width:100%;text-align:center}
+            .hero h1{font-size:36px}
+            .hero-desc,.hero-stats{justify-content:center;margin-left:auto;margin-right:auto}
+            .hero-cta-group{justify-content:center}
+            .hero-laptop{width:100%}
+            .slide-info{flex-direction:column;padding:32px}
+            .slide-thumbs{grid-template-columns:repeat(3,1fr)}
+            .feat-grid,.price-grid{grid-template-columns:1fr 1fr}
+            .steps{grid-template-columns:repeat(2,1fr)}
+            .priv-feats{grid-template-columns:repeat(2,1fr)}
+            .nav{padding:0 24px}.features,.how,.pricing,.privacy{padding:48px 32px}
+        }
+        @media(max-width:640px){
+            .page{padding:0 12px 12px}.video-hero{padding:12px 12px 0}
+            .nav-links{display:none}.nav-lang{margin-right:8px}
+            .slide-thumbs{grid-template-columns:repeat(2,1fr)}
+            .feat-grid,.price-grid,.steps{grid-template-columns:1fr}
+            .priv-feats{grid-template-columns:1fr}
+            .footer-top{flex-direction:column;gap:24px}
+            .hero h1{font-size:28px}.cta h2{font-size:28px}
+            .hero-stats{gap:20px}.hero-stat strong{font-size:22px}
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="nav">
-        <div class="nav-container">
-            <div class="nav-logo">TextLen</div>
-            <div class="nav-links">
-                <a href="#features" data-i18n="nav.features">Features</a>
-                <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-                <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
-                <button class="language-toggle active" onclick="toggleLanguage('en')" data-lang="en">English</button>
-                <button class="language-toggle" onclick="toggleLanguage('zh')" data-lang="zh">繁中</button>
-            </div>
+
+<!-- ===== VIDEO HERO (Apple-style) ===== -->
+<div class="video-hero" id="videoHero">
+    <div class="video-wrapper" id="videoWrapper">
+        <video id="promoVideo" muted playsinline preload="auto">
+            <source src="videos/promo-en.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay" id="videoOverlay"></div>
+        <div class="video-progress" id="videoProgress"></div>
+        <div class="video-lang-switch" id="videoLangSwitch">
+            <button class="video-lang-btn active" data-vlang="en">EN</button>
+            <button class="video-lang-btn" data-vlang="zh">中文</button>
+            <button class="video-lang-btn" data-vlang="ja">日本語</button>
+            <button class="video-lang-btn" data-vlang="ko">한국어</button>
         </div>
+        <button class="video-replay" id="videoReplay" onclick="replayVideo()">&#8634;</button>
+    </div>
+</div>
+
+<!-- ===== MAIN PAGE ===== -->
+<div class="page">
+<div class="card">
+
+    <!-- Nav -->
+    <nav class="nav" id="mainNav">
+        <a href="/" class="nav-logo">
+            <img src="../../images/textlen-logo.png" alt="TextLen">
+            <span>TextLen</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features" class="active" data-i18n="nav.features">Features</a></li>
+            <li><a href="#how" data-i18n="nav.how">How it works</a></li>
+            <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+            <li><a href="#privacy" data-i18n="nav.privacy">Privacy</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+        <a href="#download" class="nav-cta" data-i18n="nav.cta">Get started &#8599;</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>
-                    <span data-i18n="hero.title">Text Recognition,</span>
-                    <span class="gradient-text" data-i18n="hero.titleHighlight">Reimagined</span>
-                </h1>
-                <p class="tagline" data-i18n="hero.tagline">AI-Powered OCR Studio</p>
-                <p class="description" data-i18n="hero.description">
-                    Extract text from images with cutting-edge AI. All processing happens locally on your Mac – your data never leaves your device.
-                </p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary" data-i18n="hero.cta" onclick="document.getElementById('download').scrollIntoView({behavior: 'smooth'})">Download Now</button>
-                    <button class="btn btn-secondary" data-i18n="hero.learn" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Learn More</button>
-                </div>
-                <div class="hero-features">
-                    <div class="feature-badge">
-                        <span>⚡</span>
-                        <span><strong data-i18n="hero.fast">Ultra-fast</strong></span>
+    <!-- Hero -->
+    <section class="hero" id="heroSection">
+        <div class="hero-text">
+            <div class="hero-badge" data-i18n="hero.badge">macOS OCR Studio</div>
+            <h1><span data-i18n="hero.title1">Text Recognition, </span><em data-i18n="hero.title2">Reimagined</em></h1>
+            <p class="hero-desc" data-i18n="hero.desc">Extract text from any image with cutting-edge on-device AI. Dual OCR models, layout reconstruction, table extraction, and 3-mode PDF export. Your data never leaves your Mac.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><strong>32</strong><span data-i18n="hero.s1">Languages</span></div>
+                <div class="hero-stat"><strong>100%</strong><span data-i18n="hero.s2">Private</span></div>
+                <div class="hero-stat"><strong>3</strong><span data-i18n="hero.s3">PDF Modes</span></div>
+            </div>
+            <div class="hero-cta-group">
+                <a href="#download" class="btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    <span data-i18n="hero.cta">Download on Mac App Store</span>
+                </a>
+                <a href="#features" class="btn-secondary" data-i18n="hero.learn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-laptop">
+            <div class="laptop-screen">
+                <div class="laptop-bar"><div class="d d-r"></div><div class="d d-y"></div><div class="d d-g"></div><span>TextLen</span></div>
+                <div class="carousel-vp" id="carousel">
+                    <div class="carousel-track" id="cTrack">
+                        <div class="carousel-slide"><img src="../../images/textlen-standard-ocr1.png" alt="Standard OCR" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-batch-ocr.png" alt="Batch OCR" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-layout-rebuild.png" alt="AI Reconstruction" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-layout-annotate.png" alt="Layout Editor" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-table-ocr.png" alt="Table Extraction" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-magazine.png" alt="Multi-Language OCR" loading="lazy"></div>
                     </div>
-                    <div class="feature-badge">
-                        <span>🔒</span>
-                        <span><strong data-i18n="hero.private">100% Private</strong></span>
+                    <div class="carousel-arrows">
+                        <button class="c-arrow" onclick="cPrev()">&#8249;</button>
+                        <button class="c-arrow" onclick="cNext()">&#8250;</button>
                     </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="../Screenshots/asc_ready/Standard_OCR1.png" alt="TextLen Interface">
-            </div>
+            <div class="laptop-base"><div class="lb-top"></div><div class="lb-btm"></div></div>
+            <div class="carousel-dots" id="cDots"></div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-header">
-            <h2 data-i18n="features.title">Powerful Features</h2>
-            <p data-i18n="features.subtitle">Everything you need for professional text recognition</p>
+    <!-- Slide Info -->
+    <div class="slide-info" id="slideInfo">
+        <div class="slide-meta" id="slideMeta">
+            <div class="slide-num" id="sNum">01</div>
+            <div class="slide-ttl" id="sTtl">Standard OCR</div>
+            <div class="slide-dsc" id="sDsc">Fast and accurate text recognition supporting 32 languages. Perfect for documents, signs, screenshots, and handwritten notes with excellent accuracy.</div>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📄</div>
-                <h3 data-i18n="features.f1.title">Dual OCR Models</h3>
-                <p data-i18n="features.f1.desc">Standard & Layout mode for precise text extraction</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔐</div>
-                <h3 data-i18n="features.f2.title">100% Local Processing</h3>
-                <p data-i18n="features.f2.desc">All AI runs on your Mac. No cloud uploads, ever</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 data-i18n="features.f3.title">Batch Processing</h3>
-                <p data-i18n="features.f3.desc">Process multiple images at lightning speed</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗑️</div>
-                <h3 data-i18n="features.f4.title">AI Text Eraser</h3>
-                <p data-i18n="features.f4.desc">DeepEraser removes unwanted text intelligently</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 data-i18n="features.f5.title">Table Extraction</h3>
-                <p data-i18n="features.f5.desc">Automatically detect and extract table data</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3 data-i18n="features.f6.title">32 Languages</h3>
-                <p data-i18n="features.f6.desc">Recognize text in multiple languages instantly</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📐</div>
-                <h3 data-i18n="features.f7.title">LaTeX Conversion</h3>
-                <p data-i18n="features.f7.desc">Convert equations to LaTeX automatically</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📑</div>
-                <h3 data-i18n="features.f8.title">PDF Export (3 Modes)</h3>
-                <p data-i18n="features.f8.desc">Text layer, searchable, or image-based PDFs</p>
-            </div>
+        <div class="slide-thumbs" id="sThumbs"></div>
+    </div>
+
+</div><!-- /.card -->
+
+<!-- Features -->
+<section class="features" id="features">
+    <div class="section-hdr anim"><h2 data-i18n="feat.title">Powerful Features</h2><p data-i18n="feat.sub">Everything you need for professional text recognition on macOS</p></div>
+    <div class="feat-grid">
+        <div class="feat-card anim"><div class="feat-icon yel">&#9997;&#65039;</div><h3 data-i18n="feat.1t">Dual OCR Models</h3><p data-i18n="feat.1d">Standard mode for speed, Layout mode for complex documents. Both powered by on-device AI for maximum accuracy.</p></div>
+        <div class="feat-card anim d1"><div class="feat-icon pur">&#128274;</div><h3 data-i18n="feat.2t">100% Local Processing</h3><p data-i18n="feat.2d">All AI models run entirely on your Mac. Zero cloud uploads, zero data collection. Your documents stay completely private.</p></div>
+        <div class="feat-card anim d2"><div class="feat-icon grn">&#9889;</div><h3 data-i18n="feat.3t">Batch Processing</h3><p data-i18n="feat.3d">Configurable concurrency and custom prompt presets for maximum processing efficiency.</p></div>
+        <div class="feat-card anim"><div class="feat-icon blu">&#128202;</div><h3 data-i18n="feat.4t">Smart Table Extraction</h3><p data-i18n="feat.4d">Auto-detect tables from any image. Export as Raw text, Markdown, CSV, TSV, or interactive Grid format instantly.</p></div>
+        <div class="feat-card anim d1"><div class="feat-icon yel">&#129504;</div><h3 data-i18n="feat.5t">AI Text Reconstruction</h3><p data-i18n="feat.5d">Intelligently rebuild fragmented OCR output into clean, well-structured paragraphs using advanced language models.</p></div>
+        <div class="feat-card anim d2"><div class="feat-icon pur">&#127759;</div><h3 data-i18n="feat.6t">32 Languages</h3><p data-i18n="feat.6d">English, 繁體中文, 简体中文, 日本語, 한국어, Español, Français, Deutsch, Português, Italiano, Tiếng Việt, ไทย, العربية, हिन्दी and 18 more languages with high accuracy. Supports mixed-language documents.</p></div>
+        <div class="feat-card anim"><div class="feat-icon grn">&#128196;</div><h3 data-i18n="feat.7t">3-Mode PDF Export</h3><p data-i18n="feat.7d">Layout-preserved PDF, searchable text overlay, or AI-cleaned version. Three export modes for every use case.</p></div>
+        <div class="feat-card anim d1"><div class="feat-icon blu">&#128295;</div><h3 data-i18n="feat.8t">Interactive Layout Editor</h3><p data-i18n="feat.8d">Visually annotate and fine-tune OCR recognition regions. Adjust bounding boxes for pixel-perfect accuracy on complex layouts.</p></div>
+        <div class="feat-card anim d2"><div class="feat-icon yel">&#10024;</div><h3 data-i18n="feat.9t">AI Text Eraser</h3><p data-i18n="feat.9d">DeepEraser technology intelligently removes unwanted text from images while preserving the original background.</p></div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how" id="how">
+    <div class="section-hdr anim"><h2 data-i18n="how.title">How It Works</h2><p data-i18n="how.sub">Four simple steps from image to text</p></div>
+    <div class="steps">
+        <div class="step anim"><div class="step-n">01</div><h3 data-i18n="how.1t">Open Image</h3><p data-i18n="how.1d">Drag and drop, paste from clipboard, or browse to open any image or PDF file.</p></div>
+        <div class="step anim d1"><div class="step-n">02</div><h3 data-i18n="how.2t">AI Recognition</h3><p data-i18n="how.2d">Choose Standard or Layout mode. Our on-device AI engine extracts text with high accuracy.</p></div>
+        <div class="step anim d2"><div class="step-n">03</div><h3 data-i18n="how.3t">Edit &amp; Refine</h3><p data-i18n="how.3d">Use the Layout Editor to adjust regions, or let AI reconstruct fragmented text automatically.</p></div>
+        <div class="step anim d3"><div class="step-n">04</div><h3 data-i18n="how.4t">Export</h3><p data-i18n="how.4d">Copy text, save as Markdown, extract tables, or export as PDF in three different modes.</p></div>
+    </div>
+</section>
+
+<!-- Privacy -->
+<section class="privacy" id="privacy">
+    <div class="section-hdr anim"><h2 data-i18n="priv.title">Your Privacy, Our Priority</h2></div>
+    <div class="priv-box anim">
+        <h3 data-i18n="priv.h">100% On-Device Processing</h3>
+        <p data-i18n="priv.d">Every AI model runs locally on your Mac's Neural Engine. Your images and text are never transmitted to any server. We don't even have servers to send data to.</p>
+        <div class="priv-feats">
+            <div class="priv-feat"><div class="icon">&#9729;&#65039;</div><strong data-i18n="priv.1t">No Cloud Upload</strong><span data-i18n="priv.1d">Zero network requests for any processing</span></div>
+            <div class="priv-feat"><div class="icon">&#128064;</div><strong data-i18n="priv.2t">No Data Tracking</strong><span data-i18n="priv.2d">We don't collect any usage analytics</span></div>
+            <div class="priv-feat"><div class="icon">&#128187;</div><strong data-i18n="priv.4t">Local AI Models</strong><span data-i18n="priv.4d">All models stored on your device</span></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Showcases Section -->
-    <section class="showcases" id="showcases">
-        <div class="showcases-container">
-            <div class="showcase">
-                <div class="showcase-content">
-                    <h3 data-i18n="showcase.standard.title">Standard OCR</h3>
-                    <p data-i18n="showcase.standard.desc">
-                        Fast and accurate text recognition for documents, signs, and screenshots. Perfect for quick text extraction with excellent accuracy.
-                    </p>
-                </div>
-                <div class="showcase-image">
-                    <img src="../Screenshots/asc_ready/Standard_OCR2.png" alt="Standard OCR Mode">
-                </div>
-            </div>
-
-            <div class="showcase">
-                <div class="showcase-content">
-                    <h3 data-i18n="showcase.layout.title">Layout OCR</h3>
-                    <p data-i18n="showcase.layout.desc">
-                        Preserves document structure and formatting. Ideal for complex documents with multiple columns, headers, and varied layouts.
-                    </p>
-                </div>
-                <div class="showcase-image">
-                    <img src="../Screenshots/asc_ready/Pro_layout_OCR1.png" alt="Layout OCR Mode">
-                </div>
-            </div>
-
-            <div class="showcase">
-                <div class="showcase-content">
-                    <h3 data-i18n="showcase.batch.title">Batch Processing</h3>
-                    <p data-i18n="showcase.batch.desc">
-                        Process hundreds of images automatically. Save time with intelligent batch processing for large document collections.
-                    </p>
-                </div>
-                <div class="showcase-image">
-                    <img src="../Screenshots/asc_ready/Batch_OCR.png" alt="Batch OCR Processing">
-                </div>
-            </div>
-
-            <div class="showcase">
-                <div class="showcase-content">
-                    <h3 data-i18n="showcase.table.title">Table Extraction</h3>
-                    <p data-i18n="showcase.table.desc">
-                        Automatically detect and extract tables from documents. Convert tables to structured data formats with a single click.
-                    </p>
-                </div>
-                <div class="showcase-image">
-                    <img src="../Screenshots/asc_ready/Support_Table_OCR.png" alt="Table Extraction">
-                </div>
-            </div>
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+    <div class="section-hdr anim"><h2 data-i18n="price.title">Simple Pricing</h2><p data-i18n="price.sub">Flexible plans for everyone</p></div>
+    <div class="price-grid">
+        <div class="price-card anim">
+            <h3 data-i18n="price.f.name">Free</h3>
+            <div class="price-amt" data-i18n="price.f.amt">$0</div>
+            <div class="price-per" data-i18n="price.f.per">Includes free credits</div>
+            <p class="price-desc" data-i18n="price.f.desc">Get started with free credits, purchase more as needed</p>
+            <ul class="price-list">
+                <li data-i18n="price.f.1">Free credits included</li>
+                <li data-i18n="price.f.2">Standard OCR mode</li>
+                <li data-i18n="price.f.3">Basic text export</li>
+            </ul>
+            <button class="btn-secondary" style="width:100%;justify-content:center" data-i18n="price.cta">Get Started</button>
         </div>
-    </section>
-
-    <!-- Privacy Section -->
-    <section class="privacy" id="privacy">
-        <div class="privacy-container">
-            <h2 data-i18n="privacy.title">Your Privacy, Our Priority</h2>
-            <div class="privacy-box">
-                <h3 data-i18n="privacy.promise">100% On-Device Processing</h3>
-                <p data-i18n="privacy.promiseDesc">
-                    All AI models run locally on your Mac. Images and text are never sent to cloud servers. Your data is completely yours.
-                </p>
-            </div>
-            <div class="privacy-features">
-                <div class="privacy-feature">
-                    <strong data-i18n="privacy.f1.title">No Cloud Upload</strong>
-                    <span data-i18n="privacy.f1.desc">Zero network requests for processing</span>
-                </div>
-                <div class="privacy-feature">
-                    <strong data-i18n="privacy.f2.title">No Data Tracking</strong>
-                    <span data-i18n="privacy.f2.desc">We don't collect usage analytics</span>
-                </div>
-                <div class="privacy-feature">
-                    <strong data-i18n="privacy.f3.title">No Accounts Required</strong>
-                    <span data-i18n="privacy.f3.desc">Works without sign-up or login</span>
-                </div>
-                <div class="privacy-feature">
-                    <strong data-i18n="privacy.f4.title">Local Models</strong>
-                    <span data-i18n="privacy.f4.desc">All AI models stored on your device</span>
-                </div>
-            </div>
+        <div class="price-card pop anim d1">
+            <div class="price-badge" data-i18n="price.pop">Most Popular</div>
+            <h3 data-i18n="price.p.name">Pro Monthly</h3>
+            <div class="price-amt" data-i18n="price.p.amt">$6.99</div>
+            <div class="price-per" data-i18n="price.p.per">/month</div>
+            <p class="price-desc" data-i18n="price.p.desc">Full power — all modes, formats & local API</p>
+            <ul class="price-list">
+                <li data-i18n="price.p.1">Unlimited Standard OCR</li>
+                <li data-i18n="price.p.2">Exclusive Layout OCR mode</li>
+                <li data-i18n="price.p.3">All export formats</li>
+                <li data-i18n="price.p.4">Table extraction</li>
+                <li data-i18n="price.p.5">Built-in REST API server</li>
+                <li data-i18n="price.p.6">Version updates included</li>
+                <li data-i18n="price.p.7">Early access to new features</li>
+            </ul>
+            <button class="btn-secondary" style="width:100%;justify-content:center" data-i18n="price.sub">Subscribe</button>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-header">
-            <h2 data-i18n="pricing.title">Simple Pricing</h2>
-            <p data-i18n="pricing.subtitle">Flexible plans for everyone</p>
+        <div class="price-card anim d2">
+            <h3 data-i18n="price.l.name">Lifetime</h3>
+            <div class="price-amt" data-i18n="price.l.amt">$9.99</div>
+            <div class="price-per" data-i18n="price.l.per">One-time payment</div>
+            <p class="price-desc" data-i18n="price.l.desc">Best value — unlock Standard OCR forever</p>
+            <ul class="price-list">
+                <li data-i18n="price.l.1">Unlimited Standard OCR</li>
+                <li data-i18n="price.l.2">Table extraction</li>
+                <li data-i18n="price.l.3">Version updates included</li>
+            </ul>
+            <button class="btn-primary" style="width:100%;justify-content:center" data-i18n="price.buy">Buy Now</button>
         </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 data-i18n="pricing.free.name">Free</h3>
-                <div class="pricing-price">
-                    <span data-i18n="pricing.free.price">NT$0</span>
-                    <small data-i18n="pricing.free.period">15 uses/month</small>
-                </div>
-                <p class="pricing-description" data-i18n="pricing.free.desc">Perfect for trying TextLen</p>
-                <ul class="pricing-features">
-                    <li data-i18n="pricing.free.f1">15 free uses per month</li>
-                    <li data-i18n="pricing.free.f2">Standard OCR mode</li>
-                    <li data-i18n="pricing.free.f3">Basic PDF export</li>
-                </ul>
-                <button class="btn btn-secondary" data-i18n="pricing.cta">Get Started</button>
-            </div>
+    </div>
+</section>
 
-            <div class="pricing-card featured">
-                <div class="pricing-badge" data-i18n="pricing.popular">Most Popular</div>
-                <h3 data-i18n="pricing.lifetime.name">Lifetime</h3>
-                <div class="pricing-price">
-                    <span data-i18n="pricing.lifetime.price">NT$330</span>
-                    <small data-i18n="pricing.lifetime.period">One-time payment</small>
-                </div>
-                <p class="pricing-description" data-i18n="pricing.lifetime.desc">Best value for unlimited use</p>
-                <ul class="pricing-features">
-                    <li data-i18n="pricing.lifetime.f1">Unlimited uses</li>
-                    <li data-i18n="pricing.lifetime.f2">Both OCR modes</li>
-                    <li data-i18n="pricing.lifetime.f3">All export formats</li>
-                    <li data-i18n="pricing.lifetime.f4">Table extraction</li>
-                    <li data-i18n="pricing.lifetime.f5">Future updates</li>
-                </ul>
-                <button class="btn btn-primary" data-i18n="pricing.cta">Buy Now</button>
-            </div>
+<!-- CTA -->
+<section class="cta anim" id="download">
+    <h2><span data-i18n="cta.t1">Text Recognition, </span><em data-i18n="cta.t2">Reimagined</em></h2>
+    <p data-i18n="cta.d">A powerful Mac OCR studio with dual AI models, table extraction, and 3-mode PDF export. 100% private, 100% on-device.</p>
+    <a href="#" class="cta-dl">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-i18n="cta.btn">Download on the Mac App Store</span>
+    </a>
+</section>
 
-            <div class="pricing-card">
-                <h3 data-i18n="pricing.pro.name">Pro Monthly</h3>
-                <div class="pricing-price">
-                    <span data-i18n="pricing.pro.price">NT$210</span>
-                    <small data-i18n="pricing.pro.period">/month</small>
-                </div>
-                <p class="pricing-description" data-i18n="pricing.pro.desc">For power users</p>
-                <ul class="pricing-features">
-                    <li data-i18n="pricing.pro.f1">Unlimited uses</li>
-                    <li data-i18n="pricing.pro.f2">All features</li>
-                    <li data-i18n="pricing.pro.f3">Priority support</li>
-                </ul>
-                <button class="btn btn-secondary" data-i18n="pricing.cta">Subscribe</button>
-            </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><img src="../../images/textlen-logo.png" alt="TextLen"><span>TextLen</span></div>
+            <small data-i18n="ft.tag">AI-Powered OCR Studio for macOS</small>
         </div>
-    </section>
-
-    <!-- Download Section -->
-    <section class="download" id="download">
-        <h2 data-i18n="download.title">Ready to Get Started?</h2>
-        <p data-i18n="download.subtitle">Download TextLen today and experience the future of OCR</p>
-        <div class="download-badge">
-            <svg width="180" height="54" viewBox="0 0 180 54" style="display: block;">
-                <rect width="180" height="54" rx="8" fill="rgba(0,0,0,0.1)"/>
-                <text x="90" y="27" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="600">
-                    Download on Mac App Store
-                </text>
-            </svg>
+        <div class="footer-links">
+            <div class="footer-col"><h4 data-i18n="ft.prod">Product</h4><a href="#features" data-i18n="ft.feat">Features</a><a href="#pricing" data-i18n="ft.price">Pricing</a><a href="#privacy" data-i18n="ft.priv">Privacy</a></div>
+            <div class="footer-col"><h4 data-i18n="ft.comp">Company</h4><a href="https://henworks.com" target="_blank" data-i18n="ft.about">About Hen Works</a><a href="mailto:info@henworks.com" data-i18n="ft.contact">Contact</a></div>
+            <div class="footer-col"><h4 data-i18n="ft.legal">Legal</h4><a href="privacy.html" data-i18n="ft.pp">Privacy Policy</a><a href="terms.html" data-i18n="ft.tos">Terms of Service</a></div>
         </div>
-    </section>
+    </div>
+    <div class="footer-btm">
+        <span data-i18n="ft.copy">&copy; 2026 Hen Works. All rights reserved.</span>
+        <span data-i18n="ft.made">Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+</div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4 data-i18n="footer.product">Product</h4>
-                <ul>
-                    <li><a href="#features" data-i18n="footer.features">Features</a></li>
-                    <li><a href="#pricing" data-i18n="footer.pricing">Pricing</a></li>
-                    <li><a href="#privacy" data-i18n="footer.privacy">Privacy</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4 data-i18n="footer.company">Company</h4>
-                <ul>
-                    <li><a href="https://henworks.com" data-i18n="footer.about" target="_blank">About Hen Works</a></li>
-                    <li><a href="#" data-i18n="footer.contact">Contact</a></li>
-                    <li><a href="#" data-i18n="footer.blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4 data-i18n="footer.legal">Legal</h4>
-                <ul>
-                    <li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
-                    <li><a href="terms.html" data-i18n="footer.terms">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p data-i18n="footer.copyright">© 2026 Hen Works. All rights reserved.</p>
-            <p data-i18n="footer.madeWith">Made with care in Taiwan 🇹🇼</p>
-        </div>
-    </footer>
+<script>
+let curLang='en';
 
-    <script>
-        // Internationalization
-        const translations = {
-            en: {
-                'nav.features': 'Features',
-                'nav.pricing': 'Pricing',
-                'nav.privacy': 'Privacy',
-                'hero.title': 'Text Recognition,',
-                'hero.titleHighlight': 'Reimagined',
-                'hero.tagline': 'AI-Powered OCR Studio',
-                'hero.description': 'Extract text from images with cutting-edge AI. All processing happens locally on your Mac – your data never leaves your device.',
-                'hero.cta': 'Download Now',
-                'hero.learn': 'Learn More',
-                'hero.fast': 'Ultra-fast',
-                'hero.private': '100% Private',
-                'features.title': 'Powerful Features',
-                'features.subtitle': 'Everything you need for professional text recognition',
-                'features.f1.title': 'Dual OCR Models',
-                'features.f1.desc': 'Standard & Layout mode for precise text extraction',
-                'features.f2.title': '100% Local Processing',
-                'features.f2.desc': 'All AI runs on your Mac. No cloud uploads, ever',
-                'features.f3.title': 'Batch Processing',
-                'features.f3.desc': 'Process multiple images at lightning speed',
-                'features.f4.title': 'AI Text Eraser',
-                'features.f4.desc': 'DeepEraser removes unwanted text intelligently',
-                'features.f5.title': 'Table Extraction',
-                'features.f5.desc': 'Automatically detect and extract table data',
-                'features.f6.title': '32 Languages',
-                'features.f6.desc': 'Recognize text in multiple languages instantly',
-                'features.f7.title': 'LaTeX Conversion',
-                'features.f7.desc': 'Convert equations to LaTeX automatically',
-                'features.f8.title': 'PDF Export (3 Modes)',
-                'features.f8.desc': 'Text layer, searchable, or image-based PDFs',
-                'showcase.standard.title': 'Standard OCR',
-                'showcase.standard.desc': 'Fast and accurate text recognition for documents, signs, and screenshots. Perfect for quick text extraction with excellent accuracy.',
-                'showcase.layout.title': 'Layout OCR',
-                'showcase.layout.desc': 'Preserves document structure and formatting. Ideal for complex documents with multiple columns, headers, and varied layouts.',
-                'showcase.batch.title': 'Batch Processing',
-                'showcase.batch.desc': 'Process hundreds of images automatically. Save time with intelligent batch processing for large document collections.',
-                'showcase.table.title': 'Table Extraction',
-                'showcase.table.desc': 'Automatically detect and extract tables from documents. Convert tables to structured data formats with a single click.',
-                'privacy.title': 'Your Privacy, Our Priority',
-                'privacy.promise': '100% On-Device Processing',
-                'privacy.promiseDesc': 'All AI models run locally on your Mac. Images and text are never sent to cloud servers. Your data is completely yours.',
-                'privacy.f1.title': 'No Cloud Upload',
-                'privacy.f1.desc': 'Zero network requests for processing',
-                'privacy.f2.title': 'No Data Tracking',
-                'privacy.f2.desc': 'We don\'t collect usage analytics',
-                'privacy.f3.title': 'No Accounts Required',
-                'privacy.f3.desc': 'Works without sign-up or login',
-                'privacy.f4.title': 'Local Models',
-                'privacy.f4.desc': 'All AI models stored on your device',
-                'pricing.title': 'Simple Pricing',
-                'pricing.subtitle': 'Flexible plans for everyone',
-                'pricing.popular': 'Most Popular',
-                'pricing.free.name': 'Free',
-                'pricing.free.price': 'NT$0',
-                'pricing.free.period': '15 uses/month',
-                'pricing.free.desc': 'Perfect for trying TextLen',
-                'pricing.free.f1': '15 free uses per month',
-                'pricing.free.f2': 'Standard OCR mode',
-                'pricing.free.f3': 'Basic PDF export',
-                'pricing.lifetime.name': 'Lifetime',
-                'pricing.lifetime.price': 'NT$330',
-                'pricing.lifetime.period': 'One-time payment',
-                'pricing.lifetime.desc': 'Best value for unlimited use',
-                'pricing.lifetime.f1': 'Unlimited uses',
-                'pricing.lifetime.f2': 'Both OCR modes',
-                'pricing.lifetime.f3': 'All export formats',
-                'pricing.lifetime.f4': 'Table extraction',
-                'pricing.lifetime.f5': 'Future updates',
-                'pricing.pro.name': 'Pro Monthly',
-                'pricing.pro.price': 'NT$210',
-                'pricing.pro.period': '/month',
-                'pricing.pro.desc': 'For power users',
-                'pricing.pro.f1': 'Unlimited uses',
-                'pricing.pro.f2': 'All features',
-                'pricing.pro.f3': 'Priority support',
-                'pricing.cta': 'Get Started',
-                'download.title': 'Ready to Get Started?',
-                'download.subtitle': 'Download TextLen today and experience the future of OCR',
-                'footer.product': 'Product',
-                'footer.company': 'Company',
-                'footer.legal': 'Legal',
-                'footer.features': 'Features',
-                'footer.pricing': 'Pricing',
-                'footer.privacy': 'Privacy',
-                'footer.about': 'About Hen Works',
-                'footer.contact': 'Contact',
-                'footer.blog': 'Blog',
-                'footer.terms': 'Terms of Service',
-                'footer.copyright': '© 2026 Hen Works. All rights reserved.',
-                'footer.madeWith': 'Made with care in Taiwan 🇹🇼'
-            },
-            zh: {
-                'nav.features': '功能',
-                'nav.pricing': '定價',
-                'nav.privacy': '隱私',
-                'hero.title': '文字辨識，',
-                'hero.titleHighlight': '重新定義',
-                'hero.tagline': 'AI 驅動的 OCR 工作室',
-                'hero.description': '使用尖端 AI 從圖像中提取文字。所有處理都在您的 Mac 上本地進行 – 您的數據永遠不會離開您的設備。',
-                'hero.cta': '立即下載',
-                'hero.learn': '瞭解更多',
-                'hero.fast': '超快速',
-                'hero.private': '100% 隱私',
-                'features.title': '強大功能',
-                'features.subtitle': '專業文字辨識所需的一切',
-                'features.f1.title': '雙 OCR 模型',
-                'features.f1.desc': '標準和佈局模式，精確提取文字',
-                'features.f2.title': '100% 本地處理',
-                'features.f2.desc': '所有 AI 在您的 Mac 上運行，永遠不上傳到雲端',
-                'features.f3.title': '批量處理',
-                'features.f3.desc': '以閃電般的速度處理多個圖像',
-                'features.f4.title': 'AI 文字橡皮擦',
-                'features.f4.desc': 'DeepEraser 智慧地移除不需要的文字',
-                'features.f5.title': '表格提取',
-                'features.f5.desc': '自動檢測和提取表格數據',
-                'features.f6.title': '32 種語言',
-                'features.f6.desc': '即時識別多種語言的文字',
-                'features.f7.title': 'LaTeX 轉換',
-                'features.f7.desc': '自動將公式轉換為 LaTeX',
-                'features.f8.title': 'PDF 匯出（3 種模式）',
-                'features.f8.desc': '文本層、可搜尋或圖像型 PDF',
-                'showcase.standard.title': '標準 OCR',
-                'showcase.standard.desc': '用於文件、標誌和螢幕截圖的快速、準確的文字辨識。非常適合快速文本提取和高精度。',
-                'showcase.layout.title': '佈局 OCR',
-                'showcase.layout.desc': '保留文件結構和格式。理想用於具有多列、標題和多樣佈局的複雜文件。',
-                'showcase.batch.title': '批量處理',
-                'showcase.batch.desc': '自動處理數百張圖像。使用智慧批量處理為大型文件集合節省時間。',
-                'showcase.table.title': '表格提取',
-                'showcase.table.desc': '自動從文件中檢測和提取表格。一鍵將表格轉換為結構化數據格式。',
-                'privacy.title': '您的隱私，我們的優先',
-                'privacy.promise': '100% 設備上處理',
-                'privacy.promiseDesc': '所有 AI 模型都在您的 Mac 上本地運行。圖像和文字永遠不會發送到雲服務器。您的數據完全屬於您。',
-                'privacy.f1.title': '無雲上傳',
-                'privacy.f1.desc': '零網絡請求用於處理',
-                'privacy.f2.title': '無數據追蹤',
-                'privacy.f2.desc': '我們不收集使用分析',
-                'privacy.f3.title': '無需帳戶',
-                'privacy.f3.desc': '無需註冊或登入即可使用',
-                'privacy.f4.title': '本地模型',
-                'privacy.f4.desc': '所有 AI 模型都存儲在您的設備上',
-                'pricing.title': '簡單定價',
-                'pricing.subtitle': '適合所有人的靈活方案',
-                'pricing.popular': '最受歡迎',
-                'pricing.free.name': '免費',
-                'pricing.free.price': 'NT$0',
-                'pricing.free.period': '15 次/月',
-                'pricing.free.desc': '完美試用 TextLen',
-                'pricing.free.f1': '每月 15 次免費使用',
-                'pricing.free.f2': '標準 OCR 模式',
-                'pricing.free.f3': '基本 PDF 匯出',
-                'pricing.lifetime.name': '永久',
-                'pricing.lifetime.price': 'NT$330',
-                'pricing.lifetime.period': '一次性付款',
-                'pricing.lifetime.desc': '無限使用的最佳價值',
-                'pricing.lifetime.f1': '無限使用',
-                'pricing.lifetime.f2': '兩種 OCR 模式',
-                'pricing.lifetime.f3': '所有匯出格式',
-                'pricing.lifetime.f4': '表格提取',
-                'pricing.lifetime.f5': '未來更新',
-                'pricing.pro.name': 'Pro 月訂',
-                'pricing.pro.price': 'NT$210',
-                'pricing.pro.period': '/月',
-                'pricing.pro.desc': '為高級用戶',
-                'pricing.pro.f1': '無限使用',
-                'pricing.pro.f2': '所有功能',
-                'pricing.pro.f3': '優先支持',
-                'pricing.cta': '開始使用',
-                'download.title': '準備好開始了嗎？',
-                'download.subtitle': '立即下載 TextLen，體驗 OCR 的未來',
-                'footer.product': '產品',
-                'footer.company': '公司',
-                'footer.legal': '法律',
-                'footer.features': '功能',
-                'footer.pricing': '定價',
-                'footer.privacy': '隱私',
-                'footer.about': '關於 Hen Works',
-                'footer.contact': '聯繫',
-                'footer.blog': '部落格',
-                'footer.terms': '服務條款',
-                'footer.copyright': '© 2026 Hen Works。版權所有。',
-                'footer.madeWith': '用心在台灣製作 🇹🇼'
-            }
-        };
+// ========== SLIDE DATA (i18n) ==========
+const slideImgs=['../../images/textlen-standard-ocr1.png','../../images/textlen-batch-ocr.png','../../images/textlen-layout-rebuild.png','../../images/textlen-layout-annotate.png','../../images/textlen-table-ocr.png','../../images/textlen-magazine.png'];
+const slideI18n={
+en:[
+    {t:'Standard OCR',d:'Fast and accurate text recognition supporting 32 languages. Perfect for documents, signs, screenshots and handwritten notes.'},
+    {t:'Batch Processing',d:'Configurable concurrency and custom prompt presets for maximum processing efficiency.'},
+    {t:'AI Reconstruction',d:'Intelligently rebuild fragmented OCR output into clean, well-structured paragraphs using on-device language models.'},
+    {t:'Layout Editor',d:'Visually annotate and fine-tune OCR recognition regions with an interactive bounding box editor for pixel-perfect accuracy.'},
+    {t:'Table Extraction',d:'Auto-detect tables from images and export as Raw text, Markdown, CSV, TSV, or interactive Grid format with one click.'},
+    {t:'Multi-Language',d:'Supports 32 languages including English, 繁體中文, 简体中文, 日本語, 한국어, Español, Français, Deutsch and more.'}
+],
+zh:[
+    {t:'標準 OCR',d:'快速準確的文字辨識，支援 32 種語言。適合文件、標誌、截圖和手寫筆記。'},
+    {t:'批次處理',d:'可設定並行數量和自訂提示預設，實現最大處理效率。'},
+    {t:'AI 重建',d:'使用裝置端語言模型，智慧地將零碎的 OCR 輸出重建為乾淨、結構良好的段落。'},
+    {t:'版面編輯器',d:'視覺化標註和微調 OCR 辨識區域，調整邊界框達到像素級精準度。'},
+    {t:'表格擷取',d:'自動偵測圖片中的表格，一鍵匯出為 Raw、Markdown、CSV、TSV 或互動式 Grid 格式。'},
+    {t:'多語言',d:'支援 32 種語言，包括 English、繁體中文、简体中文、日本語、한국어、Español、Français、Deutsch 等。'}
+],
+ja:[
+    {t:'標準OCR',d:'32言語に対応した高速・高精度テキスト認識。ドキュメント、看板、スクリーンショット、手書きノートに最適。'},
+    {t:'バッチ処理',d:'設定可能な並行処理数とカスタムプリセットで、最大の処理効率を実現。'},
+    {t:'AI再構成',d:'デバイス内言語モデルで断片化されたOCR出力をクリーンで構造化された段落に再構築。'},
+    {t:'レイアウトエディタ',d:'OCR認識領域を視覚的に注釈・微調整。バウンディングボックスでピクセル単位の精度を実現。'},
+    {t:'表抽出',d:'画像から表を自動検出。Raw、Markdown、CSV、TSV、Grid形式でワンクリックエクスポート。'},
+    {t:'多言語',d:'English、繁體中文、简体中文、日本語、한국어、Español、Français、Deutschなど32言語に対応。'}
+],
+ko:[
+    {t:'표준 OCR',d:'32개 언어를 지원하는 빠르고 정확한 텍스트 인식. 문서, 간판, 스크린샷, 필기 노트에 적합.'},
+    {t:'일괄 처리',d:'구성 가능한 동시성과 사용자 정의 프리셋으로 최대 처리 효율 달성.'},
+    {t:'AI 재구성',d:'온디바이스 언어 모델로 단편화된 OCR 출력을 깔끔하고 체계적인 단락으로 재구축.'},
+    {t:'레이아웃 편집기',d:'OCR 인식 영역을 시각적으로 주석 및 미세 조정. 바운딩 박스로 픽셀 단위 정확도 달성.'},
+    {t:'표 추출',d:'이미지에서 표를 자동 감지. Raw, Markdown, CSV, TSV, Grid 형식으로 원클릭 내보내기.'},
+    {t:'다국어',d:'English, 繁體中文, 简体中文, 日本語, 한국어, Español, Français, Deutsch 등 32개 언어 지원.'}
+]};
+function getSlides(){return slideI18n[curLang]||slideI18n.en}
+let cIdx=0,cTimer;
+const cTrack=document.getElementById('cTrack'),cDots=document.getElementById('cDots'),sThumbs=document.getElementById('sThumbs');
 
-        let currentLanguage = 'en';
+// Build dots & thumbs
+getSlides().forEach((_,i)=>{
+    const dot=document.createElement('button');dot.className='c-dot'+(i===0?' active':'');dot.onclick=()=>cGo(i);cDots.appendChild(dot);
+    const th=document.createElement('div');th.className='s-thumb'+(i===0?' active':'');th.onclick=()=>cGo(i);
+    th.style.backgroundImage=`url(${slideImgs[i]})`;th.style.backgroundSize='cover';th.style.backgroundPosition='center';
+    th.innerHTML=`<div class="s-thumb-n">${String(i+1).padStart(2,'0')}</div><div class="s-thumb-t">${getSlides()[i].t}</div>`;
+    sThumbs.appendChild(th);
+});
 
-        function toggleLanguage(lang) {
-            currentLanguage = lang;
-            updatePageLanguage();
+function cGo(i){
+    const sl=getSlides();
+    cIdx=i;cTrack.style.transform=`translateX(-${i*100}%)`;
+    document.querySelectorAll('.c-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+    document.querySelectorAll('.s-thumb').forEach((t,j)=>t.classList.toggle('active',j===i));
+    const m=document.getElementById('slideMeta');m.style.opacity='0';m.style.transform='translateY(10px)';
+    setTimeout(()=>{
+        document.getElementById('sNum').textContent=String(i+1).padStart(2,'0');
+        document.getElementById('sTtl').textContent=sl[i].t;
+        document.getElementById('sDsc').textContent=sl[i].d;
+        m.style.opacity='1';m.style.transform='translateY(0)';
+    },200);
+    clearInterval(cTimer);cAuto();
+}
+function updateSlideLang(){
+    const sl=getSlides();
+    document.querySelectorAll('.s-thumb').forEach((t,j)=>{
+        const ttl=t.querySelector('.s-thumb-t');if(ttl)ttl.textContent=sl[j].t;
+    });
+    document.getElementById('sTtl').textContent=sl[cIdx].t;
+    document.getElementById('sDsc').textContent=sl[cIdx].d;
+}
+function cNext(){cGo((cIdx+1)%getSlides().length)}
+function cPrev(){cGo((cIdx-1+getSlides().length)%getSlides().length)}
+function cAuto(){cTimer=setInterval(cNext,4500)}
+cAuto();
+document.getElementById('carousel').addEventListener('mouseenter',()=>clearInterval(cTimer));
+document.getElementById('carousel').addEventListener('mouseleave',cAuto);
 
-            // Update button states
-            document.querySelectorAll('.language-toggle').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-        }
+// ========== VIDEO HERO (Apple-style) ==========
+const video=document.getElementById('promoVideo'),overlay=document.getElementById('videoOverlay'),
+      progress=document.getElementById('videoProgress'),replay=document.getElementById('videoReplay');
+let videoLang='en';
 
-        function updatePageLanguage() {
-            document.documentElement.lang = currentLanguage;
-            document.querySelectorAll('[data-i18n]').forEach(elem => {
-                const key = elem.dataset.i18n;
-                const text = translations[currentLanguage][key];
-                if (text) {
-                    elem.textContent = text;
-                }
-            });
-        }
+video.addEventListener('timeupdate',()=>{
+    if(video.duration){
+        const pct=(video.currentTime/video.duration)*100;
+        progress.style.width=pct+'%';
+        if(pct>85)overlay.classList.add('active');
+    }
+});
+video.addEventListener('ended',()=>{
+    replay.classList.add('show');
+    overlay.classList.add('active');
+});
+function replayVideo(){
+    replay.classList.remove('show');overlay.classList.remove('active');
+    video.currentTime=0;video.play();
+}
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+// Video language switch
+document.querySelectorAll('.video-lang-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        const lang=btn.dataset.vlang;videoLang=lang;
+        document.querySelectorAll('.video-lang-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const wasPlaying=!video.paused;
+        video.src=`videos/promo-${lang}.mp4`;
+        video.load();
+        if(wasPlaying)video.play();
+        else video.play();
+        replay.classList.remove('show');overlay.classList.remove('active');
+        // Sync page language
+        setLang(lang==='zh'?'zh':lang);
+    });
+});
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
+// Autoplay video on load
+video.play().catch(()=>{});
 
-        document.querySelectorAll('.feature-card, .showcase').forEach(elem => {
-            observer.observe(elem);
-        });
+// ========== i18n (4 LANGUAGES) ==========
+const T={
+en:{
+'nav.features':'Features','nav.how':'How it works','nav.pricing':'Pricing','nav.privacy':'Privacy','nav.cta':'Get started ↗',
+'hero.badge':'macOS OCR Studio','hero.title1':'Text Recognition, ','hero.title2':'Reimagined',
+'hero.desc':'Extract text from any image with cutting-edge on-device AI. Dual OCR models, layout reconstruction, table extraction, and 3-mode PDF export. Your data never leaves your Mac.',
+'hero.s1':'Languages','hero.s2':'Private','hero.s3':'PDF Modes',
+'hero.cta':'Download on Mac App Store','hero.learn':'Learn More',
+'feat.title':'Powerful Features','feat.sub':'Everything you need for professional text recognition on macOS',
+'feat.1t':'Dual OCR Models','feat.1d':'Standard mode for speed, Layout mode for complex documents. Both powered by on-device AI for maximum accuracy.',
+'feat.2t':'100% Local Processing','feat.2d':'All AI models run entirely on your Mac. Zero cloud uploads, zero data collection. Your documents stay completely private.',
+'feat.3t':'Batch Processing','feat.3d':'Configurable concurrency and custom prompt presets for maximum processing efficiency.',
+'feat.4t':'Smart Table Extraction','feat.4d':'Auto-detect tables from any image. Export as Raw text, Markdown, CSV, TSV, or interactive Grid format instantly.',
+'feat.5t':'AI Text Reconstruction','feat.5d':'Intelligently rebuild fragmented OCR output into clean, well-structured paragraphs using advanced language models.',
+'feat.6t':'32 Languages','feat.6d':'English, 繁體中文, 简体中文, 日本語, 한국어, Español, Français, Deutsch, Português, Italiano, Tiếng Việt, ไทย, العربية, हिन्दी and 18 more languages. Supports mixed-language documents.',
+'feat.7t':'3-Mode PDF Export','feat.7d':'Layout-preserved PDF, searchable text overlay, or AI-cleaned version. Three export modes for every use case.',
+'feat.8t':'Interactive Layout Editor','feat.8d':'Visually annotate and fine-tune OCR recognition regions. Adjust bounding boxes for pixel-perfect accuracy on complex layouts.',
+'feat.9t':'AI Text Eraser','feat.9d':'DeepEraser technology intelligently removes unwanted text from images while preserving the original background.',
+'how.title':'How It Works','how.sub':'Four simple steps from image to text',
+'how.1t':'Open Image','how.1d':'Drag and drop, paste from clipboard, or browse to open any image or PDF file.',
+'how.2t':'AI Recognition','how.2d':'Choose Standard or Layout mode. Our on-device AI engine extracts text with high accuracy.',
+'how.3t':'Edit & Refine','how.3d':'Use the Layout Editor to adjust regions, or let AI reconstruct fragmented text automatically.',
+'how.4t':'Export','how.4d':'Copy text, save as Markdown, extract tables, or export as PDF in three different modes.',
+'priv.title':'Your Privacy, Our Priority','priv.h':'100% On-Device Processing',
+'priv.d':'Every AI model runs locally on your Mac\'s Neural Engine. Your images and text are never transmitted to any server. We don\'t even have servers to send data to.',
+'priv.1t':'No Cloud Upload','priv.1d':'Zero network requests for any processing',
+'priv.2t':'No Data Tracking','priv.2d':'We don\'t collect any usage analytics',
+'priv.4t':'Local AI Models','priv.4d':'All models stored on your device',
+'price.title':'Simple Pricing','price.sub':'Flexible plans for everyone','price.pop':'Most Popular',
+'price.f.name':'Free','price.f.amt':'$0','price.f.per':'Includes free credits','price.f.desc':'Get started with free credits, purchase more as needed',
+'price.f.1':'Free credits included','price.f.2':'Standard OCR mode','price.f.3':'Basic text export',
+'price.l.name':'Lifetime','price.l.amt':'$9.99','price.l.per':'One-time payment','price.l.desc':'Best value — unlock Standard OCR forever',
+'price.l.1':'Unlimited Standard OCR','price.l.2':'Table extraction','price.l.3':'Version updates included',
+'price.p.name':'Pro Monthly','price.p.amt':'$6.99','price.p.per':'/month','price.p.desc':'Full power — all modes, formats & local API',
+'price.p.1':'Unlimited Standard OCR','price.p.2':'Exclusive Layout OCR mode','price.p.3':'All export formats','price.p.4':'Table extraction','price.p.5':'Built-in REST API server','price.p.6':'Version updates included','price.p.7':'Early access to new features',
+'price.cta':'Get Started','price.buy':'Buy Now','price.sub':'Subscribe',
+'cta.t1':'Text Recognition, ','cta.t2':'Reimagined','cta.d':'A powerful Mac OCR studio with dual AI models, table extraction, and 3-mode PDF export. 100% private, 100% on-device.','cta.btn':'Download on the Mac App Store',
+'ft.tag':'AI-Powered OCR Studio for macOS','ft.prod':'Product','ft.comp':'Company','ft.legal':'Legal',
+'ft.feat':'Features','ft.price':'Pricing','ft.priv':'Privacy','ft.about':'About Hen Works','ft.contact':'Contact',
+'ft.pp':'Privacy Policy','ft.tos':'Terms of Service','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'Made with care in Taiwan 🇹🇼'
+},
+zh:{
+'nav.features':'功能','nav.how':'使用方式','nav.pricing':'定價','nav.privacy':'隱私','nav.cta':'開始使用 ↗',
+'hero.badge':'macOS OCR 工作室','hero.title1':'文字辨識，','hero.title2':'重新定義',
+'hero.desc':'使用最先進的裝置端 AI 從任何圖片中擷取文字。雙 OCR 模型、版面重建、表格擷取及三種 PDF 匯出模式。您的資料永遠不會離開 Mac。',
+'hero.s1':'種語言','hero.s2':'隱私保護','hero.s3':'種 PDF 模式',
+'hero.cta':'在 Mac App Store 下載','hero.learn':'了解更多',
+'feat.title':'強大功能','feat.sub':'macOS 上專業文字辨識所需的一切',
+'feat.1t':'雙 OCR 模型','feat.1d':'標準模式追求速度，版面模式處理複雜文件。兩者都由裝置端 AI 驅動，確保最高精度。',
+'feat.2t':'100% 本地處理','feat.2d':'所有 AI 模型完全在 Mac 上運行。零雲端上傳、零資料收集，文件完全私密。',
+'feat.3t':'批次處理','feat.3d':'可設定並行數量和自訂提示預設，實現最大處理效率。',
+'feat.4t':'智慧表格擷取','feat.4d':'自動偵測任何圖片中的表格，即時匯出為 Raw、Markdown、CSV、TSV 或互動式 Grid 格式。',
+'feat.5t':'AI 文字重建','feat.5d':'使用先進語言模型，智慧地將零碎的 OCR 輸出重建為乾淨、結構良好的段落。',
+'feat.6t':'支援 32 種語言','feat.6d':'English、繁體中文、简体中文、日本語、한국어、Español、Français、Deutsch、Português、Italiano、Tiếng Việt、ไทย、العربية、हिन्दी 等 32 種語言，支援混合語言文件。',
+'feat.7t':'三種 PDF 匯出','feat.7d':'版面保留 PDF、可搜尋文字覆蓋層、AI 清潔版。三種匯出模式滿足各種需求。',
+'feat.8t':'互動式版面編輯器','feat.8d':'視覺化標註和微調 OCR 辨識區域，調整邊界框達到像素級精準度。',
+'feat.9t':'AI 文字橡皮擦','feat.9d':'DeepEraser 技術智慧地移除圖片中不需要的文字，同時保留原始背景。',
+'how.title':'使用方式','how.sub':'四個簡單步驟，從圖片到文字',
+'how.1t':'開啟圖片','how.1d':'拖放、從剪貼簿貼上，或瀏覽開啟任何圖片或 PDF 檔案。',
+'how.2t':'AI 辨識','how.2d':'選擇標準或版面模式，裝置端 AI 引擎高精度地擷取文字。',
+'how.3t':'編輯優化','how.3d':'使用版面編輯器調整區域，或讓 AI 自動重建零碎文字。',
+'how.4t':'匯出結果','how.4d':'複製文字、存為 Markdown、擷取表格，或以三種模式匯出 PDF。',
+'priv.title':'您的隱私，我們的優先','priv.h':'100% 裝置端處理',
+'priv.d':'每個 AI 模型都在 Mac 的 Neural Engine 上本地運行。圖片和文字絕不會傳送到任何伺服器。我們甚至沒有可以傳送資料的伺服器。',
+'priv.1t':'無雲端上傳','priv.1d':'處理過程零網路請求',
+'priv.2t':'無資料追蹤','priv.2d':'我們不收集任何使用數據',
+'priv.4t':'本地 AI 模型','priv.4d':'所有模型都存儲在裝置上',
+'price.title':'簡單定價','price.sub':'適合所有人的靈活方案','price.pop':'最受歡迎',
+'price.f.name':'免費','price.f.amt':'NT$0','price.f.per':'含免費額度','price.f.desc':'含免費額度使用，用完後按需購買',
+'price.f.1':'含免費額度使用','price.f.2':'標準 OCR 模式','price.f.3':'基本文字匯出',
+'price.l.name':'永久','price.l.amt':'NT$330','price.l.per':'一次性付款','price.l.desc':'最佳價值 — 永久解鎖標準 OCR',
+'price.l.1':'標準 OCR 模式無限使用','price.l.2':'表格擷取','price.l.3':'保持版本更新',
+'price.p.name':'Pro 月訂','price.p.amt':'NT$210','price.p.per':'/月','price.p.desc':'全功能解鎖 — 所有模式、格式與本地 API',
+'price.p.1':'標準 OCR 模式無限使用','price.p.2':'專屬佈局 OCR 模式無限使用','price.p.3':'所有匯出格式','price.p.4':'表格擷取','price.p.5':'內建 REST API 伺服器','price.p.6':'保持版本更新','price.p.7':'新功能優先使用權',
+'price.cta':'開始使用','price.buy':'立即購買','price.sub':'訂閱',
+'cta.t1':'文字辨識，','cta.t2':'重新定義','cta.d':'強大的 Mac OCR 工作室，配備雙 AI 模型、表格擷取和三種 PDF 匯出模式。100% 隱私，100% 裝置端。','cta.btn':'在 Mac App Store 下載',
+'ft.tag':'macOS AI 驅動 OCR 工作室','ft.prod':'產品','ft.comp':'公司','ft.legal':'法律',
+'ft.feat':'功能','ft.price':'定價','ft.priv':'隱私','ft.about':'關於 Hen Works','ft.contact':'聯繫',
+'ft.pp':'隱私權政策','ft.tos':'服務條款','ft.copy':'© 2026 Hen Works。版權所有。','ft.made':'用心在台灣製作 🇹🇼'
+},
+ja:{
+'nav.features':'機能','nav.how':'使い方','nav.pricing':'料金','nav.privacy':'プライバシー','nav.cta':'始める ↗',
+'hero.badge':'macOS OCR スタジオ','hero.title1':'テキスト認識を、','hero.title2':'再定義する',
+'hero.desc':'最先端のデバイス内AIであらゆる画像からテキストを抽出。デュアルOCRモデル、レイアウト復元、表抽出、3モードPDF出力。データはMacから出ません。',
+'hero.s1':'言語','hero.s2':'プライベート','hero.s3':'PDF モード',
+'hero.cta':'Mac App Storeでダウンロード','hero.learn':'詳しく見る',
+'feat.title':'強力な機能','feat.sub':'macOSでプロフェッショナルなテキスト認識に必要なすべて',
+'feat.1t':'デュアルOCRモデル','feat.1d':'スピード重視の標準モード、複雑な文書にはレイアウトモード。どちらもデバイス内AIで最高精度を実現。',
+'feat.2t':'100% ローカル処理','feat.2d':'すべてのAIモデルはMac上で完全に動作。クラウドアップロードゼロ、データ収集ゼロ。文書は完全にプライベート。',
+'feat.3t':'バッチ処理','feat.3d':'設定可能な並行処理数とカスタムプリセットで、最大の処理効率を実現。',
+'feat.4t':'スマート表抽出','feat.4d':'あらゆる画像から表を自動検出。Raw、Markdown、CSV、TSV、Grid形式で即座にエクスポート。',
+'feat.5t':'AIテキスト再構成','feat.5d':'高度な言語モデルを使用して、断片化されたOCR出力をクリーンで構造化された段落に再構築。',
+'feat.6t':'32言語対応','feat.6d':'English、繁體中文、简体中文、日本語、한국어、Español、Français、Deutsch、Português、Italiano、Tiếng Việt、ไทย、العربية、हिन्दीなど32言語に対応。多言語混在文書もサポート。',
+'feat.7t':'3モードPDF出力','feat.7d':'レイアウト保持PDF、検索可能テキストオーバーレイ、AIクリーン版。あらゆる用途に3つの出力モード。',
+'feat.8t':'インタラクティブレイアウトエディタ','feat.8d':'OCR認識領域を視覚的に注釈・微調整。バウンディングボックスを調整してピクセル単位の精度を実現。',
+'feat.9t':'AIテキスト消去','feat.9d':'DeepEraser技術が画像から不要なテキストを賢く除去し、元の背景を保持。',
+'how.title':'使い方','how.sub':'画像からテキストまで4つの簡単ステップ',
+'how.1t':'画像を開く','how.1d':'ドラッグ＆ドロップ、クリップボードから貼り付け、またはブラウズして画像やPDFを開く。',
+'how.2t':'AI認識','how.2d':'標準またはレイアウトモードを選択。デバイス内AIエンジンが高精度でテキストを抽出。',
+'how.3t':'編集・精製','how.3d':'レイアウトエディタで領域を調整、またはAIに断片化されたテキストの自動再構成をお任せ。',
+'how.4t':'エクスポート','how.4d':'テキストをコピー、Markdownで保存、表を抽出、または3モードでPDFエクスポート。',
+'priv.title':'プライバシーを最優先に','priv.h':'100% デバイス内処理',
+'priv.d':'すべてのAIモデルはMacのNeural Engine上でローカルに動作。画像やテキストは一切サーバーに送信されません。',
+'priv.1t':'クラウドアップロードなし','priv.1d':'処理にネットワーク通信ゼロ',
+'priv.2t':'データ追跡なし','priv.2d':'使用分析データを一切収集しません',
+'priv.4t':'ローカルAIモデル','priv.4d':'すべてのモデルをデバイスに保存',
+'price.title':'シンプルな料金','price.sub':'あらゆるニーズに対応','price.pop':'最も人気',
+'price.f.name':'無料','price.f.amt':'¥0','price.f.per':'無料クレジット付き','price.f.desc':'無料クレジットで始めて、必要に応じて追加購入',
+'price.f.1':'無料クレジット付き','price.f.2':'標準OCRモード','price.f.3':'基本テキスト出力',
+'price.l.name':'永久','price.l.amt':'¥1,500','price.l.per':'一回限りの支払い','price.l.desc':'最高の価値 — 標準OCRを永久にアンロック',
+'price.l.1':'標準OCRモード無制限','price.l.2':'表抽出','price.l.3':'バージョンアップデート付き',
+'price.p.name':'Pro 月額','price.p.amt':'¥980','price.p.per':'/月','price.p.desc':'フルパワー — 全モード、形式＆ローカルAPI',
+'price.p.1':'標準OCRモード無制限','price.p.2':'専用レイアウトOCRモード無制限','price.p.3':'すべての出力形式','price.p.4':'表抽出','price.p.5':'内蔵REST APIサーバー','price.p.6':'バージョンアップデート付き','price.p.7':'新機能への優先アクセス',
+'price.cta':'始める','price.buy':'今すぐ購入','price.sub':'購読する',
+'cta.t1':'テキスト認識を、','cta.t2':'再定義する','cta.d':'デュアルAIモデル、表抽出、3モードPDF出力を備えた強力なMac OCRスタジオ。100%プライベート。','cta.btn':'Mac App Storeでダウンロード',
+'ft.tag':'macOS AI搭載 OCRスタジオ','ft.prod':'製品','ft.comp':'会社','ft.legal':'法的情報',
+'ft.feat':'機能','ft.price':'料金','ft.priv':'プライバシー','ft.about':'Hen Worksについて','ft.contact':'お問い合わせ',
+'ft.pp':'プライバシーポリシー','ft.tos':'利用規約','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'台湾で心を込めて作りました 🇹🇼'
+},
+ko:{
+'nav.features':'기능','nav.how':'사용법','nav.pricing':'가격','nav.privacy':'개인정보','nav.cta':'시작하기 ↗',
+'hero.badge':'macOS OCR 스튜디오','hero.title1':'텍스트 인식, ','hero.title2':'다시 상상하다',
+'hero.desc':'최첨단 온디바이스 AI로 모든 이미지에서 텍스트를 추출합니다. 듀얼 OCR 모델, 레이아웃 재구성, 표 추출 및 3가지 PDF 내보내기. 데이터는 Mac을 떠나지 않습니다.',
+'hero.s1':'개 언어','hero.s2':'비공개','hero.s3':'가지 PDF 모드',
+'hero.cta':'Mac App Store에서 다운로드','hero.learn':'자세히 보기',
+'feat.title':'강력한 기능','feat.sub':'macOS에서 전문 텍스트 인식에 필요한 모든 것',
+'feat.1t':'듀얼 OCR 모델','feat.1d':'속도를 위한 표준 모드, 복잡한 문서를 위한 레이아웃 모드. 모두 온디바이스 AI로 최고 정확도 보장.',
+'feat.2t':'100% 로컬 처리','feat.2d':'모든 AI 모델이 Mac에서 완전히 실행됩니다. 클라우드 업로드 제로, 데이터 수집 제로.',
+'feat.3t':'일괄 처리','feat.3d':'구성 가능한 동시성과 사용자 정의 프리셋으로 최대 처리 효율 달성.',
+'feat.4t':'스마트 표 추출','feat.4d':'모든 이미지에서 표를 자동 감지. Raw, Markdown, CSV, TSV, Grid 형식으로 즉시 내보내기.',
+'feat.5t':'AI 텍스트 재구성','feat.5d':'고급 언어 모델을 사용하여 단편화된 OCR 출력을 깔끔하고 체계적인 단락으로 재구축.',
+'feat.6t':'32개 언어 지원','feat.6d':'English, 繁體中文, 简体中文, 日本語, 한국어, Español, Français, Deutsch, Português, Italiano, Tiếng Việt, ไทย, العربية, हिन्दी 등 32개 언어 지원. 다국어 혼합 문서 지원.',
+'feat.7t':'3가지 PDF 내보내기','feat.7d':'레이아웃 보존 PDF, 검색 가능한 텍스트 오버레이, AI 정제 버전. 모든 용도에 맞는 3가지 내보내기 모드.',
+'feat.8t':'대화형 레이아웃 편집기','feat.8d':'OCR 인식 영역을 시각적으로 주석 및 미세 조정. 바운딩 박스를 조정하여 픽셀 단위 정확도 달성.',
+'feat.9t':'AI 텍스트 지우개','feat.9d':'DeepEraser 기술이 원래 배경을 보존하면서 이미지에서 원치 않는 텍스트를 지능적으로 제거.',
+'how.title':'사용법','how.sub':'이미지에서 텍스트까지 4단계',
+'how.1t':'이미지 열기','how.1d':'드래그 앤 드롭, 클립보드에서 붙여넣기, 또는 브라우저로 이미지나 PDF 파일을 열기.',
+'how.2t':'AI 인식','how.2d':'표준 또는 레이아웃 모드를 선택. 온디바이스 AI 엔진이 높은 정확도로 텍스트를 추출.',
+'how.3t':'편집 및 정제','how.3d':'레이아웃 편집기로 영역을 조정하거나, AI가 단편화된 텍스트를 자동으로 재구성.',
+'how.4t':'내보내기','how.4d':'텍스트 복사, Markdown으로 저장, 표 추출, 또는 3가지 모드로 PDF 내보내기.',
+'priv.title':'당신의 개인정보, 우리의 최우선','priv.h':'100% 온디바이스 처리',
+'priv.d':'모든 AI 모델은 Mac의 Neural Engine에서 로컬로 실행됩니다. 이미지와 텍스트는 어떤 서버로도 전송되지 않습니다.',
+'priv.1t':'클라우드 업로드 없음','priv.1d':'처리에 네트워크 요청 제로',
+'priv.2t':'데이터 추적 없음','priv.2d':'사용 분석 데이터를 수집하지 않음',
+'priv.4t':'로컬 AI 모델','priv.4d':'모든 모델이 디바이스에 저장',
+'price.title':'간단한 가격','price.sub':'모두를 위한 유연한 플랜','price.pop':'가장 인기',
+'price.f.name':'무료','price.f.amt':'₩0','price.f.per':'무료 크레딧 포함','price.f.desc':'무료 크레딧으로 시작하고, 필요에 따라 추가 구매',
+'price.f.1':'무료 크레딧 포함','price.f.2':'표준 OCR 모드','price.f.3':'기본 텍스트 내보내기',
+'price.l.name':'영구','price.l.amt':'₩14,000','price.l.per':'일회성 결제','price.l.desc':'최고의 가치 — 표준 OCR 영구 해제',
+'price.l.1':'표준 OCR 모드 무제한','price.l.2':'표 추출','price.l.3':'버전 업데이트 포함',
+'price.p.name':'Pro 월간','price.p.amt':'₩8,900','price.p.per':'/월','price.p.desc':'풀 파워 — 모든 모드, 형식 및 로컬 API',
+'price.p.1':'표준 OCR 모드 무제한','price.p.2':'전용 레이아웃 OCR 모드 무제한','price.p.3':'모든 내보내기 형식','price.p.4':'표 추출','price.p.5':'내장 REST API 서버','price.p.6':'버전 업데이트 포함','price.p.7':'새 기능 우선 사용 권한',
+'price.cta':'시작하기','price.buy':'지금 구매','price.sub':'구독',
+'cta.t1':'텍스트 인식, ','cta.t2':'다시 상상하다','cta.d':'듀얼 AI 모델, 표 추출, 3가지 PDF 내보내기를 갖춘 강력한 Mac OCR 스튜디오. 100% 비공개.','cta.btn':'Mac App Store에서 다운로드',
+'ft.tag':'macOS AI 기반 OCR 스튜디오','ft.prod':'제품','ft.comp':'회사','ft.legal':'법적 정보',
+'ft.feat':'기능','ft.price':'가격','ft.priv':'개인정보','ft.about':'Hen Works 소개','ft.contact':'문의',
+'ft.pp':'개인정보 처리방침','ft.tos':'이용약관','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'대만에서 정성을 담아 제작 🇹🇼'
+}
+};
 
-        // Smooth scroll for anchors
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+function setLang(lang){
+    curLang=lang;document.documentElement.lang=lang==='zh'?'zh-Hant':lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.dataset.i18n;if(T[lang]&&T[lang][k])el.textContent=T[lang][k];
+    });
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    updateSlideLang();
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        const lang=btn.dataset.lang;setLang(lang);
+        // Sync video language
+        const vMap={en:'en',zh:'zh',ja:'ja',ko:'ko'};
+        document.querySelectorAll('.video-lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.vlang===vMap[lang]));
+        const v=document.getElementById('promoVideo');
+        v.src=`videos/promo-${vMap[lang]}.mp4`;v.load();v.play().catch(()=>{});
+        document.getElementById('videoReplay').classList.remove('show');
+        document.getElementById('videoOverlay').classList.remove('active');
+    });
+});
 
-        // Initialize with English
-        updatePageLanguage();
-    </script>
+// ========== Scroll Animations ==========
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+
+// Keyboard carousel
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')cNext();if(e.key==='ArrowLeft')cPrev()});
+</script>
 </body>
 </html>

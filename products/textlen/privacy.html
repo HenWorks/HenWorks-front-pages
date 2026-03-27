@@ -4,597 +4,671 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - TextLen</title>
+    <meta name="description" content="TextLen Privacy Policy - Learn how we protect your data with 100% on-device OCR processing.">
+    <link rel="icon" href="../../images/textlen-logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --yellow:#F5E642;--yellow-soft:#FAF089;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
         }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #1d1d1f;
-            background-color: #ffffff;
+        /* Animations */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        /* Page wrapper */
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        /* Nav */
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo img{width:32px;height:32px;border-radius:6px}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--yellow);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px;margin-right:16px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
+        .nav-lang button.active{background:var(--black);color:var(--white)}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        /* Hero */
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--yellow) 0%,var(--yellow-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        /* Highlight box */
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(245,230,66,.12) 0%,rgba(245,230,66,.04) 100%);border-radius:20px;border:1px solid rgba(245,230,66,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        /* Content */
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--yellow);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        /* Info cards */
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .info-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .info-card .ic-icon{font-size:24px;margin-bottom:8px}
+        .info-card strong{display:block;font-size:14px;margin-bottom:4px}
+        .info-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        /* Footer */
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand img{width:24px;height:24px;border-radius:4px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        /* Language sections */
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        /* Responsive */
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .info-grid{grid-template-columns:1fr}
         }
-
-        header {
-            background-color: #f5f5f7;
-            border-bottom: 1px solid #e5e5e7;
-            padding: 24px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: #6b21a8;
-            text-decoration: none;
-        }
-
-        nav {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        nav a {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #6b21a8;
-        }
-
-        nav a.active {
-            color: #6b21a8;
-            font-weight: 600;
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 8px;
-            border-left: 1px solid #e5e5e7;
-            padding-left: 24px;
-        }
-
-        .language-btn {
-            background: none;
-            border: none;
-            color: #1d1d1f;
-            font-size: 13px;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .language-btn.active {
-            background-color: #e5e5e7;
-            color: #6b21a8;
-            font-weight: 500;
-        }
-
-        .language-btn:hover {
-            background-color: #f5f5f7;
-        }
-
-        main {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 48px 20px;
-        }
-
-        h1 {
-            font-size: 38px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1d1d1f;
-        }
-
-        .last-updated {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 32px;
-        }
-
-        section {
-            margin-bottom: 40px;
-            display: none;
-        }
-
-        section.active {
-            display: block;
-        }
-
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 32px 0 16px 0;
-            color: #1d1d1f;
-        }
-
-        h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 24px 0 12px 0;
-            color: #1d1d1f;
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: #424245;
-            font-size: 15px;
-        }
-
-        ul, ol {
-            margin-left: 24px;
-            margin-bottom: 16px;
-        }
-
-        li {
-            margin-bottom: 12px;
-            color: #424245;
-            font-size: 15px;
-        }
-
-        a {
-            color: #6b21a8;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.7;
-        }
-
-        strong {
-            color: #1d1d1f;
-            font-weight: 600;
-        }
-
-        .highlight {
-            background-color: #f5f5f7;
-            padding: 16px;
-            border-left: 4px solid #6b21a8;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-
-        footer {
-            background-color: #f5f5f7;
-            border-top: 1px solid #e5e5e7;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            max-width: 980px;
-            margin: 0 auto;
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .footer-links {
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #6b21a8;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 12px;
-                border-left: none;
-            }
-
-            .language-selector {
-                border-left: none;
-                padding-left: 0;
-                border-top: 1px solid #e5e5e7;
-                padding-top: 16px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            main {
-                padding: 32px 16px;
-            }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}.nav-lang{margin-right:8px}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">TextLen</a>
-            <nav>
-                <a href="privacy.html" class="active">Privacy</a>
-                <a href="terms.html">Terms</a>
-            </nav>
-            <div class="language-selector">
-                <button class="language-btn active" onclick="switchLanguage('en')">EN</button>
-                <button class="language-btn" onclick="switchLanguage('zh')">繁體</button>
-                <button class="language-btn" onclick="switchLanguage('ja')">日本語</button>
-                <button class="language-btn" onclick="switchLanguage('ko')">한국어</button>
+<div class="page">
+<div class="card">
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="../../images/textlen-logo.png" alt="TextLen">
+            <span>TextLen</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html" class="active" data-i18n="nav.privacy">Privacy</a></li>
+            <li><a href="terms.html" data-i18n="nav.terms">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+        <a href="index.html" class="nav-cta" data-i18n="nav.back">Back to TextLen &#8599;</a>
+    </nav>
+
+    <!-- English -->
+    <div class="lang-section active" id="lang-en">
+        <section class="policy-hero anim">
+            <h1>Privacy <em>Policy</em></h1>
+            <p class="date">Last updated: March 26, 2026</p>
+            <p class="summary">At Hen Works, your privacy is our top priority. TextLen processes all OCR entirely on your Mac — your images and results never leave your device.</p>
+        </section>
+
+        <div class="highlight-box anim d1">
+            <div class="icon">🔒</div>
+            <div class="text">
+                <strong>100% On-Device Processing</strong>
+                <p>All OCR processing runs locally on your Mac's Neural Engine. Your images, documents, and OCR results are never uploaded to any server or shared with any third party.</p>
             </div>
         </div>
-    </header>
 
-    <main>
-        <!-- English Version -->
-        <section class="active" id="privacy-en">
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: March 25, 2026</p>
-
-            <h2>Introduction</h2>
-            <p>At Hen Works, we are committed to protecting your privacy. This Privacy Policy explains how TextLen collects, uses, and safeguards your information when you use our macOS application.</p>
-
-            <h2>Local-First OCR Processing</h2>
-            <div class="highlight">
-                <strong>All OCR processing is 100% local on your Mac.</strong> Your images and OCR results never leave your device. We do not upload, store, or process images on cloud servers.
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>Information We Collect</h2>
+                <h3>Authentication</h3>
+                <ul>
+                    <li><strong>Email Address:</strong> Collected during account creation via Firebase Auth (Google) for secure login and verification.</li>
+                </ul>
+                <h3>Usage Data</h3>
+                <ul>
+                    <li><strong>Usage Count:</strong> Number of OCR operations performed, used to manage subscription tiers.</li>
+                    <li><strong>Purchase History:</strong> Records of in-app purchases and subscriptions via Apple StoreKit.</li>
+                </ul>
+                <h3>Images & OCR Results</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>Never Uploaded</strong>
+                        <span>Your images are processed 100% on-device and never sent to any server.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>Never Stored</strong>
+                        <span>OCR results stay in your local app memory and are never persisted externally.</span>
+                    </div>
+                </div>
             </div>
 
-            <h2>Information We Collect</h2>
-            <h3>Authentication</h3>
-            <ul>
-                <li><strong>Email Address:</strong> Collected during account creation via Firebase Auth (Google)</li>
-            </ul>
-
-            <h3>Usage Data</h3>
-            <ul>
-                <li><strong>Usage Count:</strong> Number of OCR operations performed</li>
-                <li><strong>Purchase History:</strong> Records of in-app purchases and subscriptions</li>
-            </ul>
-
-            <h3>Images & OCR Results</h3>
-            <ul>
-                <li><strong>Never Collected:</strong> Your images and OCR results are processed entirely on your device and are never sent to our servers or any third party</li>
-            </ul>
-
-            <h2>Third-Party Services</h2>
-            <p>TextLen integrates with the following third-party services:</p>
-            <ul>
-                <li><strong>Firebase Auth (Google):</strong> Handles secure authentication and email verification</li>
-                <li><strong>Apple StoreKit:</strong> Manages in-app purchases and subscription billing</li>
-                <li><strong>Firebase Cloud Functions:</strong> Processes subscription events and usage analytics</li>
-            </ul>
-
-            <h2>Data Storage & Location</h2>
-            <p>Limited user data (email, usage count, purchase history) is stored in Firebase databases located in <strong>asia-east1 (Taiwan)</strong> for optimal performance and compliance.</p>
-
-            <h2>Your Privacy Rights</h2>
-            <p>You have the right to:</p>
-            <ul>
-                <li><strong>Access:</strong> Request a copy of your personal data</li>
-                <li><strong>Delete:</strong> Request deletion of your account and associated data</li>
-                <li><strong>Export:</strong> Download your data in a portable format</li>
-                <li><strong>Opt-Out:</strong> Disable analytics and non-essential data collection</li>
-            </ul>
-            <p>To exercise these rights, contact <a href="mailto:info@henworks.com">info@henworks.com</a></p>
-
-            <h2>Children's Privacy</h2>
-            <p>TextLen is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will take steps to delete such information and terminate the child's account.</p>
-
-            <h2>Security</h2>
-            <p>We employ industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
-
-            <h2>Contact Us</h2>
-            <p>If you have questions about this Privacy Policy, please contact:</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>In-App Advertising</h2>
-            <p>TextLen may display advertisements within the app via an embedded web view. Ads are served from <strong>henworks.com</strong> and may include:</p>
-            <ul>
-                <li><strong>Self-hosted ads:</strong> Promotions for HenWorks products and services.</li>
-                <li><strong>Google AdSense:</strong> Third-party advertisements served by Google. AdSense uses cookies to serve ads based on your prior visits to websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site and/or other sites on the internet.</li>
-                <li><strong>Affiliate links:</strong> Recommended products or services. We may receive a commission if you make a purchase through these links. All affiliate content is clearly labeled.</li>
-            </ul>
-            <p>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. For more information on Google's data practices, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>.</p>
-
-            <h2>Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date above. Your continued use of TextLen following any changes constitutes your acceptance of the updated Privacy Policy.</p>
-        </section>
-
-        <!-- Chinese (Traditional) Version -->
-        <section id="privacy-zh">
-            <h1>隱私政策</h1>
-            <p class="last-updated">最後更新：2026年3月25日</p>
-
-            <h2>簡介</h2>
-            <p>在 Hen Works，我們致力於保護您的隱私。本隱私政策說明 TextLen 在您使用我們的 macOS 應用程式時如何收集、使用和保護您的資訊。</p>
-
-            <h2>本地優先的 OCR 處理</h2>
-            <div class="highlight">
-                <strong>所有 OCR 處理完全在您的 Mac 上進行。</strong>您的影像和 OCR 結果永遠不會離開您的設備。我們不會在雲端伺服器上上傳、儲存或處理影像。
+            <div class="policy-section anim">
+                <h2>Third-Party Services</h2>
+                <p>TextLen integrates with the following trusted services:</p>
+                <ul>
+                    <li><strong>Firebase Auth (Google):</strong> Handles secure authentication and email verification.</li>
+                    <li><strong>Apple StoreKit:</strong> Manages in-app purchases and subscription billing through Apple's secure infrastructure.</li>
+                    <li><strong>Firebase Cloud Functions:</strong> Processes subscription events and minimal usage analytics.</li>
+                </ul>
             </div>
 
-            <h2>我們收集的資訊</h2>
-            <h3>身份驗證</h3>
-            <ul>
-                <li><strong>電子郵件地址：</strong>透過 Firebase Auth (Google) 在帳戶建立期間收集</li>
-            </ul>
-
-            <h3>使用資料</h3>
-            <ul>
-                <li><strong>使用次數：</strong>執行的 OCR 操作次數</li>
-                <li><strong>購買歷史：</strong>應用內購買和訂閱記錄</li>
-            </ul>
-
-            <h3>影像和 OCR 結果</h3>
-            <ul>
-                <li><strong>永不收集：</strong>您的影像和 OCR 結果完全在您的設備上處理，永遠不會發送到我們的伺服器或任何第三方</li>
-            </ul>
-
-            <h2>第三方服務</h2>
-            <p>TextLen 整合以下第三方服務：</p>
-            <ul>
-                <li><strong>Firebase Auth (Google)：</strong>處理安全身份驗證和電子郵件驗證</li>
-                <li><strong>Apple StoreKit：</strong>管理應用內購買和訂閱計費</li>
-                <li><strong>Firebase Cloud Functions：</strong>處理訂閱事件和使用分析</li>
-            </ul>
-
-            <h2>資料儲存和位置</h2>
-            <p>有限的用戶資料（電子郵件、使用次數、購買歷史）儲存在位於 <strong>asia-east1 (台灣)</strong> 的 Firebase 資料庫中，以實現最佳性能和合規性。</p>
-
-            <h2>您的隱私權</h2>
-            <p>您有權：</p>
-            <ul>
-                <li><strong>存取：</strong>要求取得您的個人資料副本</li>
-                <li><strong>刪除：</strong>要求刪除您的帳戶和相關資料</li>
-                <li><strong>匯出：</strong>以可攜式格式下載您的資料</li>
-                <li><strong>退出：</strong>停用分析和非必要的資料收集</li>
-            </ul>
-            <p>若要行使這些權利，請聯絡 <a href="mailto:info@henworks.com">info@henworks.com</a></p>
-
-            <h2>兒童隱私</h2>
-            <p>TextLen 不適合 13 歲以下的兒童。我們不會故意從 13 歲以下的兒童收集個人資訊。如果我們發現 13 歲以下的兒童向我們提供了個人資訊，我們將採取步驟刪除此類資訊並終止該兒童的帳戶。</p>
-
-            <h2>安全性</h2>
-            <p>我們採用業界標準的安全措施來保護您的個人資訊免遭未經授權的存取、修改、披露或破壞。但是，互聯網上沒有 100% 安全的傳輸方式。</p>
-
-            <h2>聯絡我們</h2>
-            <p>如果您對本隱私政策有任何疑問，請聯絡：</p>
-            <ul>
-                <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>應用程式內廣告</h2>
-            <p>TextLen 可能透過內嵌網頁視窗在應用程式內顯示廣告，廣告由 <strong>henworks.com</strong> 提供，可能包含：</p>
-            <ul>
-                <li><strong>自家廣告：</strong>HenWorks 產品與服務的推廣內容。</li>
-                <li><strong>Google AdSense：</strong>由 Google 提供的第三方廣告。AdSense 使用 Cookie 根據您過去的網站瀏覽記錄提供廣告。</li>
-                <li><strong>聯盟行銷連結：</strong>推薦的產品或服務。若您透過這些連結購買，我們可能獲得佣金。所有聯盟內容均有明確標示。</li>
-            </ul>
-            <p>您可至 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 廣告設定</a> 選擇退出個人化廣告。</p>
-
-            <h2>本政策的變更</h2>
-            <p>我們可能不時更新本隱私政策。我們將透過更新上方的「最後更新」日期來通知您任何變更。您繼續使用 TextLen 表示接受更新的隱私政策。</p>
-        </section>
-
-        <!-- Japanese Version -->
-        <section id="privacy-ja">
-            <h1>プライバシーポリシー</h1>
-            <p class="last-updated">最終更新：2026年3月25日</p>
-
-            <h2>はじめに</h2>
-            <p>Hen Worksでは、お客様のプライバシー保護に尽力しています。本プライバシーポリシーは、TextLenのmacOSアプリケーションをご利用の際に、当社がお客様の情報をどのように収集、使用、保護するかについて説明しています。</p>
-
-            <h2>ローカルファーストなOCR処理</h2>
-            <div class="highlight">
-                <strong>すべてのOCR処理はお客様のMac上で100%ローカルで実行されます。</strong>お客様の画像とOCR結果は、お客様のデバイスを離れることはありません。クラウドサーバーに画像をアップロード、保存、または処理することはありません。
+            <div class="policy-section anim">
+                <h2>Data Storage & Location</h2>
+                <p>Limited user data (email, usage count, purchase history) is stored in Firebase databases located in <strong>asia-east1 (Taiwan)</strong> for optimal performance and compliance with local regulations.</p>
             </div>
 
-            <h2>当社が収集する情報</h2>
-            <h3>認証</h3>
-            <ul>
-                <li><strong>メールアドレス：</strong>Firebase Auth（Google）を介したアカウント作成時に収集</li>
-            </ul>
-
-            <h3>使用データ</h3>
-            <ul>
-                <li><strong>使用回数：</strong>実行されたOCR操作の数</li>
-                <li><strong>購入履歴：</strong>アプリ内購入とサブスクリプションの記録</li>
-            </ul>
-
-            <h3>画像とOCR結果</h3>
-            <ul>
-                <li><strong>収集されません：</strong>お客様の画像とOCR結果はお客様のデバイス上で完全に処理され、当社のサーバーまたは第三者に送信されることはありません</li>
-            </ul>
-
-            <h2>第三者サービス</h2>
-            <p>TextLenは以下の第三者サービスと統合されています：</p>
-            <ul>
-                <li><strong>Firebase Auth（Google）：</strong>安全な認証とメール検証を処理</li>
-                <li><strong>Apple StoreKit：</strong>アプリ内購入とサブスクリプション請求を管理</li>
-                <li><strong>Firebase Cloud Functions：</strong>サブスクリプションイベントと使用分析を処理</li>
-            </ul>
-
-            <h2>データストレージと場所</h2>
-            <p>限定的なユーザーデータ（メール、使用回数、購入履歴）は、最適なパフォーマンスとコンプライアンスのために<strong>asia-east1（台湾）</strong>に位置するFirebaseデータベースに保存されます。</p>
-
-            <h2>お客様のプライバシー権</h2>
-            <p>お客様は以下の権利があります：</p>
-            <ul>
-                <li><strong>アクセス：</strong>個人データのコピーをリクエスト</li>
-                <li><strong>削除：</strong>アカウントと関連データの削除をリクエスト</li>
-                <li><strong>エクスポート：</strong>ポータブル形式でデータをダウンロード</li>
-                <li><strong>オプトアウト：</strong>分析と非必須のデータ収集を無効化</li>
-            </ul>
-            <p>これらの権利を行使するには、<a href="mailto:info@henworks.com">info@henworks.com</a>にお問い合わせください</p>
-
-            <h2>児童のプライバシー</h2>
-            <p>TextLenは13歳未満の児童を対象としていません。当社は13歳未満の児童から個人情報を故意に収集しません。13歳未満の児童が当社に個人情報を提供したことが判明した場合、当社はそのような情報を削除し、児童のアカウントを終了する措置を講じます。</p>
-
-            <h2>セキュリティ</h2>
-            <p>当社は、お客様の個人情報を不正アクセス、改ざん、開示、または破壊から保護するために、業界標準のセキュリティ対策を採用しています。ただし、インターネット上の100%安全な送信方法はありません。</p>
-
-            <h2>お問い合わせ</h2>
-            <p>本プライバシーポリシーについてご質問がある場合は、以下にお問い合わせください：</p>
-            <ul>
-                <li><strong>メール：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>ウェブサイト：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>アプリ内広告</h2>
-            <p>TextLenは、埋め込みウェブビューを通じてアプリ内に広告を表示する場合があります。広告は <strong>henworks.com</strong> から配信され、以下が含まれる場合があります：</p>
-            <ul>
-                <li><strong>自社広告：</strong>HenWorks の製品・サービスのプロモーション。</li>
-                <li><strong>Google AdSense：</strong>Google が配信するサードパーティ広告。AdSense は Cookie を使用して、過去のウェブサイト訪問に基づいた広告を表示します。</li>
-                <li><strong>アフィリエイトリンク：</strong>推奨製品やサービス。これらのリンクから購入された場合、当社は手数料を受け取る場合があります。すべてのアフィリエイトコンテンツは明確に表示されます。</li>
-            </ul>
-            <p><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 広告設定</a> からパーソナライズド広告をオプトアウトできます。</p>
-
-            <h2>本ポリシーの変更</h2>
-            <p>当社は本プライバシーポリシーを随時更新する場合があります。変更については、上記の「最終更新」日付を更新することでお知らせします。TextLenの使用を継続することは、更新されたプライバシーポリシーへの同意を意味します。</p>
-        </section>
-
-        <!-- Korean Version -->
-        <section id="privacy-ko">
-            <h1>개인정보처리방침</h1>
-            <p class="last-updated">마지막 업데이트: 2026년 3월 25일</p>
-
-            <h2>소개</h2>
-            <p>Hen Works에서는 귀하의 개인정보 보호를 약속합니다. 본 개인정보처리방침은 TextLen의 macOS 애플리케이션을 사용하실 때 당사가 귀하의 정보를 어떻게 수집, 사용 및 보호하는지 설명합니다.</p>
-
-            <h2>로컬 우선 OCR 처리</h2>
-            <div class="highlight">
-                <strong>모든 OCR 처리는 귀하의 Mac에서 100% 로컬로 실행됩니다.</strong> 귀하의 이미지 및 OCR 결과는 귀하의 기기를 절대 떠나지 않습니다. 클라우드 서버에 이미지를 업로드, 저장 또는 처리하지 않습니다.
+            <div class="policy-section anim">
+                <h2>Your Privacy Rights</h2>
+                <p>You have the right to:</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>Access</strong>
+                        <span>Request a copy of your personal data at any time.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>Delete</strong>
+                        <span>Request deletion of your account and all associated data.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">📦</div>
+                        <strong>Export</strong>
+                        <span>Download your data in a portable format.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>Opt-Out</strong>
+                        <span>Disable analytics and non-essential data collection.</span>
+                    </div>
+                </div>
+                <p>To exercise these rights, contact <a href="mailto:info@henworks.com">info@henworks.com</a></p>
             </div>
 
-            <h2>당사가 수집하는 정보</h2>
-            <h3>인증</h3>
-            <ul>
-                <li><strong>이메일 주소:</strong> Firebase Auth(Google)를 통한 계정 생성 시 수집</li>
-            </ul>
-
-            <h3>사용 데이터</h3>
-            <ul>
-                <li><strong>사용 횟수:</strong> 실행된 OCR 작업의 횟수</li>
-                <li><strong>구매 이력:</strong> 앱 내 구매 및 구독 기록</li>
-            </ul>
-
-            <h3>이미지 및 OCR 결과</h3>
-            <ul>
-                <li><strong>수집되지 않음:</strong> 귀하의 이미지 및 OCR 결과는 귀하의 기기에서만 처리되며 당사 서버 또는 제3자에게 전송되지 않습니다</li>
-            </ul>
-
-            <h2>제3자 서비스</h2>
-            <p>TextLen은 다음과 같은 제3자 서비스와 통합됩니다:</p>
-            <ul>
-                <li><strong>Firebase Auth(Google):</strong> 안전한 인증 및 이메일 인증 처리</li>
-                <li><strong>Apple StoreKit:</strong> 앱 내 구매 및 구독 청구 관리</li>
-                <li><strong>Firebase Cloud Functions:</strong> 구독 이벤트 및 사용 분석 처리</li>
-            </ul>
-
-            <h2>데이터 저장 및 위치</h2>
-            <p>제한된 사용자 데이터(이메일, 사용 횟수, 구매 이력)는 최적의 성능 및 규정 준수를 위해 <strong>asia-east1(대만)</strong>에 위치한 Firebase 데이터베이스에 저장됩니다.</p>
-
-            <h2>귀하의 개인정보 보호 권리</h2>
-            <p>귀하는 다음과 같은 권리를 가집니다:</p>
-            <ul>
-                <li><strong>접근:</strong> 개인 데이터 사본 요청</li>
-                <li><strong>삭제:</strong> 계정 및 관련 데이터 삭제 요청</li>
-                <li><strong>내보내기:</strong> 휴대용 형식으로 데이터 다운로드</li>
-                <li><strong>거부:</strong> 분석 및 비필수 데이터 수집 비활성화</li>
-            </ul>
-            <p>이러한 권리를 행사하려면 <a href="mailto:info@henworks.com">info@henworks.com</a>으로 문의하시기 바랍니다</p>
-
-            <h2>아동 개인정보 보호</h2>
-            <p>TextLen은 13세 미만의 아동을 위한 것이 아닙니다. 당사는 13세 미만의 아동으로부터 개인정보를 의도적으로 수집하지 않습니다. 13세 미만의 아동이 당사에 개인정보를 제공했음을 알게 되면, 당사는 해당 정보를 삭제하고 아동의 계정을 종료하기 위한 조치를 취합니다.</p>
-
-            <h2>보안</h2>
-            <p>당사는 귀하의 개인정보를 무단 접근, 변경, 공개 또는 파괴로부터 보호하기 위해 업계 표준 보안 조치를 채택합니다. 그러나 인터넷을 통한 100% 안전한 전송 방법은 없습니다.</p>
-
-            <h2>문의</h2>
-            <p>본 개인정보처리방침에 대한 질문이 있으시면 다음으로 문의하시기 바랍니다:</p>
-            <ul>
-                <li><strong>이메일:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
-                <li><strong>웹사이트:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
-            </ul>
-
-            <h2>앱 내 광고</h2>
-            <p>TextLen은 내장 웹뷰를 통해 앱 내에 광고를 표시할 수 있습니다. 광고는 <strong>henworks.com</strong>에서 제공되며 다음을 포함할 수 있습니다:</p>
-            <ul>
-                <li><strong>자사 광고:</strong> HenWorks 제품 및 서비스 프로모션.</li>
-                <li><strong>Google AdSense:</strong> Google이 제공하는 제3자 광고. AdSense는 쿠키를 사용하여 이전 웹사이트 방문 기록을 기반으로 광고를 제공합니다.</li>
-                <li><strong>제휴 링크:</strong> 추천 제품 또는 서비스. 이 링크를 통해 구매하시면 당사가 수수료를 받을 수 있습니다. 모든 제휴 콘텐츠는 명확하게 표시됩니다.</li>
-            </ul>
-            <p><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 광고 설정</a>에서 맞춤형 광고를 거부할 수 있습니다.</p>
-
-            <h2>본 방침의 변경</h2>
-            <p>당사는 본 개인정보처리방침을 수시로 업데이트할 수 있습니다. 변경 사항은 위의 "마지막 업데이트" 날짜를 업데이트하여 공지합니다. TextLen의 지속적인 사용은 업데이트된 개인정보처리방침에 대한 동의를 의미합니다.</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+            <div class="policy-section anim">
+                <h2>In-App Advertising</h2>
+                <p>TextLen may display advertisements within the app via an embedded web view. Ads are served from <strong>henworks.com</strong> and may include:</p>
+                <ul>
+                    <li><strong>Self-hosted ads:</strong> Promotions for HenWorks products and services.</li>
+                    <li><strong>Google AdSense:</strong> Third-party advertisements served by Google. AdSense uses cookies to serve ads based on your prior visits to websites.</li>
+                    <li><strong>Affiliate links:</strong> Recommended products or services. We may receive a commission if you make a purchase through these links. All affiliate content is clearly labeled.</li>
+                </ul>
+                <p>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
             </div>
-            <p>&copy; 2026 Hen Works. All rights reserved.</p>
+
+            <div class="policy-section anim">
+                <h2>Children's Privacy</h2>
+                <p>TextLen is not intended for children under 13. We do not knowingly collect personal information from children under 13. If we become aware that a child has provided personal information, we will take steps to delete it promptly.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Security</h2>
+                <p>We employ industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date above. Your continued use of TextLen following any changes constitutes your acceptance of the updated Privacy Policy.</p>
+            </div>
         </div>
-    </footer>
+    </div>
 
-    <script>
-        function switchLanguage(lang) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
+    <!-- Chinese (Traditional) -->
+    <div class="lang-section" id="lang-zh">
+        <section class="policy-hero">
+            <h1>隱私<em>政策</em></h1>
+            <p class="date">最後更新：2026年3月26日</p>
+            <p class="summary">在 Hen Works，您的隱私是我們的首要任務。TextLen 的所有 OCR 處理完全在您的 Mac 上進行 — 您的影像和結果永遠不會離開您的裝置。</p>
+        </section>
 
-            // Show selected language
-            const langMap = {
-                'en': 'privacy-en',
-                'zh': 'privacy-zh',
-                'ja': 'privacy-ja',
-                'ko': 'privacy-ko'
-            };
-            document.getElementById(langMap[lang]).classList.add('active');
+        <div class="highlight-box">
+            <div class="icon">🔒</div>
+            <div class="text">
+                <strong>100% 本機端處理</strong>
+                <p>所有 OCR 處理都在您 Mac 的 Neural Engine 上本地執行。您的影像、文件和 OCR 結果絕不會上傳到任何伺服器或與第三方共享。</p>
+            </div>
+        </div>
 
-            // Update button states
-            document.querySelectorAll('.language-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-    </script>
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>我們收集的資訊</h2>
+                <h3>身份驗證</h3>
+                <ul>
+                    <li><strong>電子郵件地址：</strong>透過 Firebase Auth (Google) 在帳戶建立期間收集，用於安全登入和驗證。</li>
+                </ul>
+                <h3>使用資料</h3>
+                <ul>
+                    <li><strong>使用次數：</strong>執行的 OCR 操作次數，用於管理訂閱層級。</li>
+                    <li><strong>購買歷史：</strong>透過 Apple StoreKit 進行的應用內購買和訂閱記錄。</li>
+                </ul>
+                <h3>影像與 OCR 結果</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>永不上傳</strong>
+                        <span>您的影像 100% 在裝置上處理，絕不發送至任何伺服器。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>永不儲存</strong>
+                        <span>OCR 結果保留在您的本機應用記憶體中，絕不會被外部保留。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>第三方服務</h2>
+                <p>TextLen 整合以下受信任的服務：</p>
+                <ul>
+                    <li><strong>Firebase Auth (Google)：</strong>處理安全身份驗證和電子郵件驗證。</li>
+                    <li><strong>Apple StoreKit：</strong>透過 Apple 的安全基礎設施管理應用內購買和訂閱計費。</li>
+                    <li><strong>Firebase Cloud Functions：</strong>處理訂閱事件和最小限度的使用分析。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>資料儲存與位置</h2>
+                <p>有限的用戶資料（電子郵件、使用次數、購買歷史）儲存在位於 <strong>asia-east1（台灣）</strong>的 Firebase 資料庫中，以實現最佳效能和遵守當地法規。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>您的隱私權</h2>
+                <p>您有權：</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>存取</strong>
+                        <span>隨時要求取得您的個人資料副本。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>刪除</strong>
+                        <span>要求刪除您的帳戶和所有相關資料。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">📦</div>
+                        <strong>匯出</strong>
+                        <span>以可攜式格式下載您的資料。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>退出</strong>
+                        <span>停用分析和非必要的資料收集。</span>
+                    </div>
+                </div>
+                <p>若要行使這些權利，請聯絡 <a href="mailto:info@henworks.com">info@henworks.com</a></p>
+            </div>
+
+            <div class="policy-section">
+                <h2>應用程式內廣告</h2>
+                <p>TextLen 可能透過內嵌網頁視窗在應用程式內顯示廣告。廣告由 <strong>henworks.com</strong> 提供，可能包含：</p>
+                <ul>
+                    <li><strong>自家廣告：</strong>HenWorks 產品與服務的推廣內容。</li>
+                    <li><strong>Google AdSense：</strong>由 Google 提供的第三方廣告。AdSense 使用 Cookie 根據您過去的網站瀏覽記錄提供廣告。</li>
+                    <li><strong>聯盟行銷連結：</strong>推薦的產品或服務。若您透過這些連結購買，我們可能獲得佣金。所有聯盟內容均有明確標示。</li>
+                </ul>
+                <p>您可至 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 廣告設定</a>選擇退出個人化廣告。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>兒童隱私</h2>
+                <p>TextLen 不適合 13 歲以下的兒童。我們不會故意從 13 歲以下的兒童收集個人資訊。如果我們發現兒童提供了個人資訊，我們將立即採取步驟刪除相關資料。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>安全性</h2>
+                <p>我們採用業界標準的安全措施來保護您的個人資訊免遭未經授權的存取、修改、披露或破壞。但是，互聯網上沒有 100% 安全的傳輸方式。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>聯絡我們</h2>
+                <ul>
+                    <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>本政策的變更</h2>
+                <p>我們可能不時更新本隱私政策。我們將透過更新上方的「最後更新」日期來通知您任何變更。您繼續使用 TextLen 表示接受更新的隱私政策。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese -->
+    <div class="lang-section" id="lang-ja">
+        <section class="policy-hero">
+            <h1>プライバシー<em>ポリシー</em></h1>
+            <p class="date">最終更新：2026年3月26日</p>
+            <p class="summary">Hen Worksでは、お客様のプライバシーを最優先にしています。TextLenのすべてのOCR処理はお客様のMac上で完結します — 画像や結果がデバイスを離れることはありません。</p>
+        </section>
+
+        <div class="highlight-box">
+            <div class="icon">🔒</div>
+            <div class="text">
+                <strong>100% オンデバイス処理</strong>
+                <p>すべてのOCR処理はお客様のMacのNeural Engine上でローカルに実行されます。画像、ドキュメント、OCR結果は一切サーバーにアップロードされず、第三者と共有されることもありません。</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>当社が収集する情報</h2>
+                <h3>認証</h3>
+                <ul>
+                    <li><strong>メールアドレス：</strong>Firebase Auth（Google）を介したアカウント作成時に収集。安全なログインと認証に使用。</li>
+                </ul>
+                <h3>使用データ</h3>
+                <ul>
+                    <li><strong>使用回数：</strong>実行されたOCR操作の数。サブスクリプション管理に使用。</li>
+                    <li><strong>購入履歴：</strong>Apple StoreKitを通じたアプリ内購入とサブスクリプションの記録。</li>
+                </ul>
+                <h3>画像とOCR結果</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>アップロードされません</strong>
+                        <span>お客様の画像は100%デバイス上で処理され、サーバーに送信されることはありません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>保存されません</strong>
+                        <span>OCR結果はローカルアプリのメモリに保持され、外部に永続化されることはありません。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>第三者サービス</h2>
+                <p>TextLenは以下の信頼できるサービスと統合されています：</p>
+                <ul>
+                    <li><strong>Firebase Auth（Google）：</strong>安全な認証とメール検証を処理。</li>
+                    <li><strong>Apple StoreKit：</strong>Appleの安全なインフラを通じてアプリ内購入とサブスクリプション請求を管理。</li>
+                    <li><strong>Firebase Cloud Functions：</strong>サブスクリプションイベントと最小限の使用分析を処理。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>データストレージと場所</h2>
+                <p>限定的なユーザーデータ（メール、使用回数、購入履歴）は、最適なパフォーマンスと現地法規遵守のために<strong>asia-east1（台湾）</strong>に位置するFirebaseデータベースに保存されます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>お客様のプライバシー権</h2>
+                <p>お客様は以下の権利があります：</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>アクセス</strong>
+                        <span>いつでも個人データのコピーをリクエスト可能。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>削除</strong>
+                        <span>アカウントと関連データすべての削除をリクエスト可能。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">📦</div>
+                        <strong>エクスポート</strong>
+                        <span>ポータブル形式でデータをダウンロード可能。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>オプトアウト</strong>
+                        <span>分析と非必須のデータ収集を無効化可能。</span>
+                    </div>
+                </div>
+                <p>これらの権利を行使するには、<a href="mailto:info@henworks.com">info@henworks.com</a>にお問い合わせください。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>アプリ内広告</h2>
+                <p>TextLenは、埋め込みウェブビューを通じてアプリ内に広告を表示する場合があります。広告は<strong>henworks.com</strong>から配信され、以下が含まれる場合があります：</p>
+                <ul>
+                    <li><strong>自社広告：</strong>HenWorksの製品・サービスのプロモーション。</li>
+                    <li><strong>Google AdSense：</strong>Googleが配信するサードパーティ広告。AdSenseはCookieを使用して過去のウェブサイト訪問に基づいた広告を表示します。</li>
+                    <li><strong>アフィリエイトリンク：</strong>推奨製品やサービス。これらのリンクから購入された場合、当社は手数料を受け取る場合があります。すべてのアフィリエイトコンテンツは明確に表示されます。</li>
+                </ul>
+                <p><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google広告設定</a>からパーソナライズド広告をオプトアウトできます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>児童のプライバシー</h2>
+                <p>TextLenは13歳未満の児童を対象としていません。当社は13歳未満の児童から個人情報を故意に収集しません。児童が個人情報を提供したことが判明した場合、速やかに削除措置を講じます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>セキュリティ</h2>
+                <p>当社は、お客様の個人情報を不正アクセス、改ざん、開示、破壊から保護するために業界標準のセキュリティ対策を採用しています。ただし、インターネット上の100%安全な送信方法はありません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>お問い合わせ</h2>
+                <ul>
+                    <li><strong>メール：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>ウェブサイト：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>本ポリシーの変更</h2>
+                <p>当社は本プライバシーポリシーを随時更新する場合があります。変更については「最終更新」日付を更新してお知らせします。TextLenの使用を継続することは、更新されたプライバシーポリシーへの同意を意味します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Korean -->
+    <div class="lang-section" id="lang-ko">
+        <section class="policy-hero">
+            <h1>개인정보<em>처리방침</em></h1>
+            <p class="date">마지막 업데이트: 2026년 3월 26일</p>
+            <p class="summary">Hen Works에서 귀하의 개인정보는 최우선 과제입니다. TextLen의 모든 OCR 처리는 귀하의 Mac에서 완전히 이루어집니다 — 이미지와 결과는 절대 기기를 떠나지 않습니다.</p>
+        </section>
+
+        <div class="highlight-box">
+            <div class="icon">🔒</div>
+            <div class="text">
+                <strong>100% 온디바이스 처리</strong>
+                <p>모든 OCR 처리는 귀하의 Mac Neural Engine에서 로컬로 실행됩니다. 이미지, 문서, OCR 결과는 어떤 서버에도 업로드되지 않으며 제3자와 공유되지 않습니다.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>당사가 수집하는 정보</h2>
+                <h3>인증</h3>
+                <ul>
+                    <li><strong>이메일 주소:</strong> Firebase Auth(Google)를 통한 계정 생성 시 수집. 안전한 로그인 및 인증에 사용.</li>
+                </ul>
+                <h3>사용 데이터</h3>
+                <ul>
+                    <li><strong>사용 횟수:</strong> 실행된 OCR 작업 횟수. 구독 관리에 사용.</li>
+                    <li><strong>구매 이력:</strong> Apple StoreKit을 통한 앱 내 구매 및 구독 기록.</li>
+                </ul>
+                <h3>이미지 및 OCR 결과</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>업로드되지 않음</strong>
+                        <span>귀하의 이미지는 100% 기기에서 처리되며 서버로 전송되지 않습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>저장되지 않음</strong>
+                        <span>OCR 결과는 로컬 앱 메모리에 유지되며 외부에 영구 저장되지 않습니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>제3자 서비스</h2>
+                <p>TextLen은 다음과 같은 신뢰할 수 있는 서비스와 통합됩니다:</p>
+                <ul>
+                    <li><strong>Firebase Auth(Google):</strong> 안전한 인증 및 이메일 인증 처리.</li>
+                    <li><strong>Apple StoreKit:</strong> Apple의 안전한 인프라를 통해 앱 내 구매 및 구독 청구 관리.</li>
+                    <li><strong>Firebase Cloud Functions:</strong> 구독 이벤트 및 최소한의 사용 분석 처리.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>데이터 저장 및 위치</h2>
+                <p>제한된 사용자 데이터(이메일, 사용 횟수, 구매 이력)는 최적의 성능 및 현지 규정 준수를 위해 <strong>asia-east1(대만)</strong>에 위치한 Firebase 데이터베이스에 저장됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>귀하의 개인정보 보호 권리</h2>
+                <p>귀하는 다음과 같은 권리를 가집니다:</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>접근</strong>
+                        <span>언제든 개인 데이터 사본을 요청할 수 있습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>삭제</strong>
+                        <span>계정 및 관련 데이터 전체의 삭제를 요청할 수 있습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">📦</div>
+                        <strong>내보내기</strong>
+                        <span>휴대용 형식으로 데이터를 다운로드할 수 있습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>거부</strong>
+                        <span>분석 및 비필수 데이터 수집을 비활성화할 수 있습니다.</span>
+                    </div>
+                </div>
+                <p>이러한 권리를 행사하려면 <a href="mailto:info@henworks.com">info@henworks.com</a>으로 문의하시기 바랍니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>앱 내 광고</h2>
+                <p>TextLen은 내장 웹뷰를 통해 앱 내에 광고를 표시할 수 있습니다. 광고는 <strong>henworks.com</strong>에서 제공되며 다음을 포함할 수 있습니다:</p>
+                <ul>
+                    <li><strong>자사 광고:</strong> HenWorks 제품 및 서비스 프로모션.</li>
+                    <li><strong>Google AdSense:</strong> Google이 제공하는 제3자 광고. AdSense는 쿠키를 사용하여 이전 웹사이트 방문 기록을 기반으로 광고를 제공합니다.</li>
+                    <li><strong>제휴 링크:</strong> 추천 제품 또는 서비스. 이 링크를 통해 구매하시면 당사가 수수료를 받을 수 있습니다. 모든 제휴 콘텐츠는 명확하게 표시됩니다.</li>
+                </ul>
+                <p><a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 광고 설정</a>에서 맞춤형 광고를 거부할 수 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>아동 개인정보 보호</h2>
+                <p>TextLen은 13세 미만의 아동을 위한 것이 아닙니다. 당사는 13세 미만의 아동으로부터 개인정보를 의도적으로 수집하지 않습니다. 아동이 개인정보를 제공했음을 알게 되면 신속하게 삭제 조치를 취합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>보안</h2>
+                <p>당사는 귀하의 개인정보를 무단 접근, 변경, 공개 또는 파괴로부터 보호하기 위해 업계 표준 보안 조치를 채택합니다. 그러나 인터넷을 통한 100% 안전한 전송 방법은 없습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>문의</h2>
+                <ul>
+                    <li><strong>이메일:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>웹사이트:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>본 방침의 변경</h2>
+                <p>당사는 본 개인정보처리방침을 수시로 업데이트할 수 있습니다. 변경 사항은 "마지막 업데이트" 날짜를 업데이트하여 공지합니다. TextLen의 지속적인 사용은 업데이트된 개인정보처리방침에 대한 동의를 의미합니다.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><img src="../../images/textlen-logo.png" alt="TextLen"><span>TextLen</span></div>
+            <small data-i18n="ft.tag">AI-Powered OCR Studio for macOS</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Product</h4><a href="index.html">Features</a><a href="index.html#pricing">Pricing</a></div>
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About Hen Works</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 Hen Works. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+let curLang='en';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    // Re-trigger animations for new section
+    el.querySelectorAll('.anim').forEach(a=>{a.classList.remove('show');void a.offsetWidth;a.classList.add('show')});
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+
+// Scroll animations
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
