@@ -568,6 +568,8 @@ document.querySelectorAll('.video-lang-btn').forEach(btn=>{
 const muteBtn=document.getElementById('videoMute'),iconMuted=document.getElementById('iconMuted'),iconUnmuted=document.getElementById('iconUnmuted');
 muteBtn.addEventListener('click',()=>{
     video.muted=!video.muted;
+    video.volume=1;
+    if(!video.muted&&video.paused)video.play().catch(()=>{});
     iconMuted.style.display=video.muted?'block':'none';
     iconUnmuted.style.display=video.muted?'none':'block';
 });
