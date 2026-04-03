@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TextLen - AI-Powered OCR Studio for macOS</title>
     <meta name="description" content="TextLen is a powerful macOS OCR studio with AI-powered text recognition, batch processing, layout editing and table extraction. 100% on-device, private.">
+    <meta name="keywords" content="TextLen, OCR, macOS, text recognition, table extraction, layout OCR, batch processing, HenWorks">
+    <link rel="canonical" href="https://henworks.com/products/textlen/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="TextLen - AI-Powered OCR Studio for macOS">
+    <meta property="og:description" content="Powerful macOS OCR studio with AI-powered text recognition, layout editing, table extraction and REST API. 100% on-device, private.">
+    <meta property="og:url" content="https://henworks.com/products/textlen/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://henworks.com/images/textlen-logo.png">
+    <meta property="og:site_name" content="HenWorks">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TextLen - AI-Powered OCR Studio for macOS">
+    <meta name="twitter:description" content="Powerful macOS OCR studio with AI-powered text recognition, layout editing, table extraction and REST API. 100% on-device, private.">
+    <meta name="twitter:image" content="https://henworks.com/images/textlen-logo.png">
     <link rel="icon" href="../../images/textlen-logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -271,7 +285,7 @@
 <!-- ===== VIDEO HERO (Apple-style) ===== -->
 <div class="video-hero" id="videoHero">
     <div class="video-wrapper" id="videoWrapper">
-        <video id="promoVideo" muted playsinline preload="auto">
+        <video id="promoVideo" muted playsinline preload="metadata">
             <source src="videos/promo-en.mp4" type="video/mp4">
         </video>
         <div class="video-overlay" id="videoOverlay"></div>
@@ -341,12 +355,12 @@
                 <div class="laptop-bar"><div class="d d-r"></div><div class="d d-y"></div><div class="d d-g"></div><span>TextLen</span></div>
                 <div class="carousel-vp" id="carousel">
                     <div class="carousel-track" id="cTrack">
-                        <div class="carousel-slide"><img src="../../images/textlen-standard-ocr1.png" alt="Standard OCR" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="../../images/textlen-batch-ocr.png" alt="Batch OCR" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="../../images/textlen-layout-rebuild.png" alt="AI Reconstruction" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="../../images/textlen-layout-annotate.png" alt="Layout Editor" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="../../images/textlen-table-ocr.png" alt="Table Extraction" loading="lazy"></div>
-                        <div class="carousel-slide"><img src="../../images/textlen-magazine.png" alt="Multi-Language OCR" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-standard-ocr1.webp" alt="Standard OCR" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-batch-ocr.webp" alt="Batch OCR" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-layout-rebuild.webp" alt="AI Reconstruction" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-layout-annotate.webp" alt="Layout Editor" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-table-ocr.webp" alt="Table Extraction" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="../../images/textlen-magazine.webp" alt="Multi-Language OCR" loading="lazy"></div>
                     </div>
                     <div class="carousel-arrows">
                         <button class="c-arrow" onclick="cPrev()">&#8249;</button>
@@ -494,7 +508,7 @@
 let curLang='en';
 
 // ========== SLIDE DATA (i18n) ==========
-const slideImgs=['../../images/textlen-standard-ocr1.png','../../images/textlen-batch-ocr.png','../../images/textlen-layout-rebuild.png','../../images/textlen-layout-annotate.png','../../images/textlen-table-ocr.png','../../images/textlen-magazine.png'];
+const slideImgs=['../../images/textlen-standard-ocr1.webp','../../images/textlen-batch-ocr.webp','../../images/textlen-layout-rebuild.webp','../../images/textlen-layout-annotate.webp','../../images/textlen-table-ocr.webp','../../images/textlen-magazine.webp'];
 const slideI18n={
 en:[
     {t:'Standard OCR',d:'Fast and accurate text recognition supporting 32 languages. Perfect for documents, signs, screenshots and handwritten notes.'},

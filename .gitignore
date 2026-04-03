@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Temporary screenshots
+mobile-*.png
+mobile-*.jpeg
+
+# Spec workflow
+.spec-workflow/
+
+# Pencil design files
+*.pen
+
+# Editor
+.vscode/
+*.swp
+*~
