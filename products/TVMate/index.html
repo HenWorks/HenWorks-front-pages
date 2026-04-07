@@ -60,10 +60,10 @@
             --font-ui:'Inter',-apple-system,sans-serif;
         }
         html{scroll-behavior:smooth}
-        body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+        body{font-family:var(--font-body);background:#C4B598;color:var(--ink);line-height:1.6;overflow-x:hidden}
 
         /* === Newspaper Page === */
-        .paper{max-width:1100px;margin:0 auto;background:url('paper-bg.webp') center/cover;background-color:var(--paper);position:relative}
+        .paper{max-width:1100px;margin:0 auto;background:url('paper-bg.webp') center top/100% auto repeat-y;background-color:var(--paper);position:relative}
         .paper::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,230,208,.15) 0%,rgba(242,230,208,.1) 100%);pointer-events:none}
 
         /* === Masthead === */
@@ -151,7 +151,7 @@
         .brand-box .bt{font-size:9px;color:var(--ink-muted)}
 
         /* === Footer === */
-        .paper-footer{position:relative;z-index:1;border-top:3px double var(--ink);margin:0 36px;padding:10px 0;text-align:center}
+        .paper-footer{position:relative;z-index:1;border-top:3px double var(--ink);margin:0 36px;padding:14px 0 20px;text-align:center;background:var(--paper)}
         .paper-footer p{font-size:10px;color:var(--ink-muted);line-height:1.6}
         .paper-footer a{color:var(--ink);text-decoration:none}
         .paper-footer a:hover{color:var(--warm)}
