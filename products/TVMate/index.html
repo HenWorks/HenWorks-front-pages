@@ -139,10 +139,10 @@
         .pull-quote{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:8px 0;margin:10px 0;text-align:center;font-family:var(--font-head);font-size:16px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.3}
 
         /* === Images === */
-        .n-img{width:100%;border:1px solid var(--ink);border-radius:1px;object-fit:cover;display:block}
+        .n-img{width:100%;border:1px solid var(--ink);border-radius:1px;object-fit:contain;display:block;height:auto}
         .n-caption{font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.4;margin:3px 0 8px}
         .img-pair{display:flex;gap:6px;margin:8px 0}
-        .img-pair img{flex:1;height:110px;object-fit:cover;border:1px solid var(--ink)}
+        .img-pair img{flex:1;min-width:0;border:1px solid var(--ink);object-fit:contain;height:auto}
         .dummy-img{width:100%;border:1px dashed var(--rule-light);background:var(--paper-dark);display:flex;align-items:center;justify-content:center;font-family:var(--font-ui);font-size:10px;color:var(--ink-muted);border-radius:1px;overflow:hidden}
 
         /* === Brand box === */
@@ -176,7 +176,7 @@
         @media(max-width:500px){
             .nameplate h1{font-size:28px;letter-spacing:1px}
             .h-edition{font-size:20px}
-            .img-pair img{height:80px}
+            .img-pair img{max-height:120px}
             .n-table{font-size:10px}
         }
     </style>
@@ -241,7 +241,7 @@
                 <h4 class="h-sub" data-i18n="vhs.h">VHS 錄影帶盒風格</h4>
                 <p class="p" data-i18n="vhs.p">在「強烈復古」與「無聲電影」模式下，首頁海報卡片化身為 VHS 錄影帶盒 — 白色塑膠殼邊框、隨機品牌色帶（TDK 藍、JVC 紅、Kodak 黃、Fuji 綠、Maxell 紫、Sony 黑）、底部 Courier 打字機字型標題標籤，點擊時播放「開盒」3D 翻蓋動畫。</p>
 
-                <img src="images/vhs-ui.webp" alt="VHS 錄影帶盒風格 UI" class="n-img" style="height:120px;margin:6px 0" loading="lazy">
+                <img src="images/vhs-ui.webp" alt="VHS 錄影帶盒風格 UI" class="n-img" style="margin:6px 0" loading="lazy">
                 <p class="n-caption" data-i18n="vhs.cap">VHS 錄影帶盒風格 — 白色塑膠殼邊框搭配隨機品牌色帶。</p>
 
                 <h4 class="h-sub" data-i18n="room.h">復古客廳主題</h4>
@@ -261,7 +261,7 @@
                     </tbody>
                 </table>
 
-                <img src="images/silent-film.webp" alt="無聲電影模式 — 黑白膠片效果" class="n-img" style="height:100px;margin:6px 0" loading="lazy">
+                <img src="images/silent-film.webp" alt="無聲電影模式 — 黑白膠片效果" class="n-img" style="margin:6px 0" loading="lazy">
                 <p class="n-caption" data-i18n="up.cap">無聲電影模式 — 黑白膠片、刮痕粒子、16fps 掉幀模擬。</p>
 
                 <hr class="rule">
@@ -284,7 +284,7 @@
 
             <!-- Col 3: Hero Image + Search + TMDB -->
             <div class="col col-1of3">
-                <img src="images/hero-main.webp" alt="TVMate Apple TV 主介面" class="n-img" style="height:180px" loading="lazy">
+                <img src="images/hero-main.webp" alt="TVMate Apple TV 主介面" class="n-img" loading="lazy">
                 <p class="n-caption" data-i18n="hero.cap">TVMate 主畫面 — 支援 Cinematic、Classic、PosterWall 三種輪播風格。</p>
 
                 <hr class="rule">
@@ -337,7 +337,7 @@
                 <h4 class="h-sub" data-i18n="fav.h">收藏 & Premium</h4>
                 <p class="p small" data-i18n="fav.p">一鍵收藏喜愛影片，獨立收藏頁面瀏覽。Premium 版一次買斷，永久移除廣告 — 無訂閱、無隱藏費用。</p>
 
-                <img src="images/crt-mode.webp" alt="CRT 模式設定介面" class="n-img" style="height:110px;margin:8px 0" loading="lazy">
+                <img src="images/crt-mode.webp" alt="CRT 模式設定介面" class="n-img" style="margin:8px 0" loading="lazy">
                 <p class="n-caption" data-i18n="play.cap">CRT 模式設定 — 五段可調，即時預覽效果。</p>
             </div>
 
@@ -356,7 +356,7 @@
                     </tbody>
                 </table>
 
-                <img src="images/carousel-styles.webp" alt="三種首頁輪播風格對比" class="n-img" style="height:110px;margin:6px 0" loading="lazy">
+                <img src="images/carousel-styles.webp" alt="三種首頁輪播風格對比" class="n-img" style="margin:6px 0" loading="lazy">
                 <p class="n-caption" data-i18n="atv.style.cap">Cinematic / Classic / PosterWall — 三種風格，設置中隨時切換。</p>
 
                 <h4 class="h-sub" data-i18n="atv.nav.h">tvOS 原生導航</h4>
@@ -375,7 +375,7 @@
                 <h4 class="h-sub" data-i18n="parent.h">家長控制</h4>
                 <p class="p small" data-i18n="parent.p">4 位數 PIN 鎖定 — App 啟動自動鎖定和內容分級過濾，為家庭觀影提供安心保障。</p>
 
-                <img src="3.webp" alt="TVMate 伺服器設定" class="n-img" style="height:130px;margin-top:8px" loading="lazy">
+                <img src="3.webp" alt="TVMate 伺服器設定" class="n-img" style="margin-top:8px" loading="lazy">
                 <p class="n-caption" data-i18n="atv.cap">簡潔的連線設定介面 — 輸入伺服器位址即可開始使用。</p>
             </div>
 
