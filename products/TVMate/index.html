@@ -62,24 +62,26 @@
         html{scroll-behavior:smooth}
         body{font-family:var(--font-body);background:#E8DBCA;color:var(--ink);line-height:1.6;overflow-x:hidden}
 
-        /* === Newspaper Page === */
+        /* === Newspaper Page (9-slice background) === */
         .paper{
             max-width:1100px;margin:0 auto;position:relative;
-            background:url('paper-bg.webp') center top repeat-y;
+            background:url('paper-mid.webp') center top repeat-y;
             background-size:100% auto;
             background-color:#F0E4CE;
         }
-        /* subtle overlay to soften vertical tile seams */
+        /* Top strip — covers first 200px */
         .paper::before{
-            content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-            background:repeating-linear-gradient(
-                180deg,
-                transparent 0px,
-                transparent 810px,
-                rgba(240,228,206,.6) 812px,
-                rgba(240,228,206,.6) 826px,
-                transparent 828px
-            );
+            content:'';position:absolute;top:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-top.webp') center top no-repeat;
+            background-size:100% 100%;
+        }
+        /* Bottom strip — covers last 200px */
+        .paper::after{
+            content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-bot.webp') center bottom no-repeat;
+            background-size:100% 100%;
         }
 
         /* === Masthead === */
