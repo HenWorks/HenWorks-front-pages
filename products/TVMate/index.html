@@ -3,401 +3,588 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVMate — Vintage Cinema Experience for Apple TV & Android TV</title>
-    <meta name="description" content="TVMate brings a vintage cinematic experience to your living room. CIFilter vintage poster tones, CRT tube simulation, multi-source media aggregation for Apple TV and Android TV.">
-    <meta name="keywords" content="TVMate, Apple TV, Android TV, CRT, vintage poster, retro, media player, Jellyfin, Plex, Emby, WebDAV, HenWorks">
+    <title>TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多源影音聚合 | Hen Works</title>
+    <meta name="description" content="TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、支援 Plex / Jellyfin / Emby / WebDAV / SMB 多源聚合。一次買斷，永久免廣告。">
+    <meta name="keywords" content="TVMate, Apple TV, tvOS, CRT, 復古, vintage, media player, 媒體播放器, Plex, Jellyfin, Emby, WebDAV, SMB, NAS, VHS, HDR, Dolby Vision, TMDB, Hen Works, 影像升頻, 家長控制">
     <link rel="canonical" href="https://henworks.com/products/TVMate/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://henworks.com/products/TVMate/">
+    <link rel="alternate" hreflang="en" href="https://henworks.com/products/TVMate/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://henworks.com/products/TVMate/">
     <!-- Open Graph -->
-    <meta property="og:title" content="TVMate — Vintage Cinema Experience for Apple TV & Android TV">
-    <meta property="og:description" content="CIFilter vintage poster tones, CRT tube simulation, multi-source media aggregation. Relive the warmth of classic movie theaters.">
+    <meta property="og:title" content="TVMate — Apple TV 復古媒體播放器 | CRT 映像管 & 多源聚合">
+    <meta property="og:description" content="把客廳變回黃金年代的電影院。CRT 映像管模擬、VHS 風格、影像升頻、Plex / Jellyfin / Emby / WebDAV / SMB 一站管理。">
     <meta property="og:url" content="https://henworks.com/products/TVMate/">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="product">
     <meta property="og:image" content="https://henworks.com/products/TVMate/1.webp">
     <meta property="og:site_name" content="HenWorks">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:locale:alternate" content="en_US">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TVMate — Vintage Cinema Experience for Apple TV & Android TV">
-    <meta name="twitter:description" content="CIFilter vintage poster tones, CRT tube simulation, multi-source media aggregation. Relive the warmth of classic movie theaters.">
+    <meta name="twitter:title" content="TVMate — Apple TV 復古媒體播放器">
+    <meta name="twitter:description" content="CRT 映像管模擬、VHS 錄影帶盒風格、影像升頻、多源聚合。把客廳變回黃金年代的電影院。">
     <meta name="twitter:image" content="https://henworks.com/products/TVMate/1.webp">
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TVMate",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "tvOS",
+        "description": "Apple TV 復古媒體播放器，CRT 映像管模擬、多源影音聚合、影像升頻。",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TWD",
+            "description": "免費下載，Premium 一次買斷"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Hen Works",
+            "url": "https://henworks.com"
+        }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
             --ink:#1C1C1C;--ink-light:#4A4A4A;--ink-muted:#7A7060;
             --paper:#F2E6D0;--paper-dark:#E8D9BF;--paper-border:#C4B598;
-            --warm:#E8A04C;--warm-soft:#F5D08A;--warm-deep:#C4722A;
-            --sepia:#D4A574;--red-accent:#8B2500;
-            --rule:#2A2A2A;--rule-light:#B0A48C;
-            --font-head:'Playfair Display',Georgia,'Times New Roman',serif;
-            --font-body:'Newsreader',Georgia,'Times New Roman',serif;
+            --warm:#E8A04C;--warm-deep:#C4722A;--sepia:#D4A574;
+            --red-accent:#8B2500;--rule-light:#B0A48C;
+            --font-head:'Playfair Display',Georgia,serif;
+            --font-body:'Newsreader',Georgia,serif;
             --font-ui:'Inter',-apple-system,sans-serif;
         }
         html{scroll-behavior:smooth}
         body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
 
-        /* === Paper texture === */
-        .paper-page{
-            max-width:1100px;margin:0 auto;
-            background:url('paper-bg.webp') center/cover;
-            background-color:var(--paper);
-            position:relative;
-        }
-        .paper-page::before{
-            content:'';position:absolute;inset:0;
-            background:linear-gradient(180deg,rgba(242,230,208,.95) 0%,rgba(242,230,208,.88) 50%,rgba(232,217,191,.92) 100%);
-            pointer-events:none;
-        }
+        /* === Newspaper Page === */
+        .paper{max-width:1100px;margin:0 auto;background:url('paper-bg.webp') center/cover;background-color:var(--paper);position:relative}
+        .paper::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,230,208,.94) 0%,rgba(242,230,208,.88) 100%);pointer-events:none}
 
-        /* === Top Section === */
-        .top-section{
-            position:relative;z-index:1;
-            padding:28px 36px;
-        }
-
-        /* === Headline === */
-        .headline{
-            font-family:var(--font-head);font-size:46px;font-weight:900;
-            text-align:center;line-height:1.1;letter-spacing:-.5px;
-            color:var(--ink);margin-bottom:6px;
-        }
-
-        /* === 3-Column Body === */
-        .cols-3{display:flex;gap:0;padding-top:6px}
-        .col-L{width:310px;flex-shrink:0;padding-right:14px;border-right:1px solid var(--rule-light)}
-        .col-M{flex:1;padding:0 14px;border-right:1px solid var(--rule-light)}
-        .col-R{width:340px;flex-shrink:0;padding-left:14px}
-
-        /* === Typography === */
-        .body-text{
-            font-family:var(--font-body);font-size:14px;font-weight:400;
-            color:var(--ink-light);line-height:1.55;
-            text-indent:2em;margin-bottom:8px;
-        }
-        .body-text.italic{font-style:italic}
-        .body-text.no-indent{text-indent:0}
-        .col-heading{
-            font-family:var(--font-head);font-size:17px;font-weight:700;
-            font-style:italic;color:var(--ink);margin:14px 0 6px;
-        }
-        .col-heading.center{text-align:center}
-        .caps-block{
-            font-family:var(--font-body);font-size:13px;font-weight:600;
-            color:var(--ink);line-height:1.5;margin:8px 0;
-        }
-        .caps-block small{font-weight:400;color:var(--ink-light)}
-        .img-caption{
-            font-family:var(--font-body);font-size:11px;font-style:italic;
-            color:var(--ink-muted);line-height:1.4;margin:4px 0 8px;
-        }
-
-        /* === Images === */
-        .col-img{
-            width:100%;border-radius:2px;
-            border:1px solid var(--ink);
-            object-fit:cover;
-        }
-        .col-img-row{display:flex;gap:6px;margin:6px 0}
-        .col-img-row img{flex:1;height:120px;object-fit:cover;border:1px solid var(--ink);border-radius:2px}
-
-        /* === Bottom Section === */
-        .bottom-section{
-            position:relative;z-index:1;
-            padding:0 36px 8px;
-        }
-        .cols-3-bottom{display:flex;gap:0}
-        .col-b1{flex:1;padding-right:14px;border-right:1px solid var(--rule-light)}
-        .col-b2{flex:1;padding:0 14px;border-right:1px solid var(--rule-light)}
-        .col-b3{width:420px;flex-shrink:0;padding-left:14px}
-
-        /* === Brand Box === */
-        .brand-box{
-            border:3px solid var(--ink);padding:6px 14px 4px;
-            display:flex;flex-direction:column;align-items:center;
-            margin-bottom:6px;
-        }
-        .brand-box .brand-name{
-            font-family:var(--font-head);font-size:28px;font-weight:900;
-            letter-spacing:1px;color:var(--ink);
-        }
-        .brand-box .brand-sub{
-            font-family:var(--font-body);font-size:10px;color:var(--ink-muted);
-        }
-
-        /* === Comparison Table === */
-        .tbl-title{
-            font-family:var(--font-body);font-size:12px;font-weight:600;
-            color:var(--ink);margin:4px 0 2px;
-        }
-        .cmp-table{width:100%;border:1px solid var(--ink);border-collapse:collapse;font-family:var(--font-body)}
-        .cmp-table th{
-            background:var(--ink);color:var(--paper);
-            font-size:10px;font-weight:700;padding:3px 4px;
-            text-align:center;
-        }
-        .cmp-table th:first-child{text-align:left;width:120px;padding-left:6px}
-        .cmp-table td{
-            font-size:10px;padding:2px 4px;text-align:center;
-            border-bottom:1px solid rgba(0,0,0,.06);
-        }
-        .cmp-table td:first-child{text-align:left;font-weight:400;padding-left:6px}
-        .cmp-table tr:nth-child(odd){background:rgba(232,160,76,.08)}
-        .cmp-table tr:nth-child(even){background:rgba(212,165,116,.06)}
-        .cmp-table .check{color:var(--red-accent);font-weight:700}
-        .cmp-table .dash{color:var(--ink-muted)}
-        .tbl-note{
-            font-family:var(--font-body);font-size:9px;color:var(--ink-muted);
-            text-align:center;letter-spacing:1px;line-height:1.5;margin-top:4px;
-        }
-
-        /* === Divider === */
-        .divider{border:none;border-top:1px solid var(--rule-light);margin:12px 0}
-        .divider.thick{border-top:2px solid var(--ink)}
-
-        /* === Language Toggle === */
-        .lang-bar{
-            position:sticky;top:0;z-index:100;
-            background:var(--ink);color:var(--paper);
-            display:flex;justify-content:space-between;align-items:center;
-            padding:8px 36px;font-family:var(--font-ui);
-        }
-        .lang-bar .masthead{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:1px}
-        .lang-btns{display:flex;gap:4px}
-        .lang-btns button{
-            padding:4px 10px;border:1px solid rgba(242,230,208,.3);border-radius:4px;
-            background:transparent;color:var(--paper);font-size:11px;font-weight:600;
-            cursor:pointer;transition:all .2s;font-family:var(--font-ui);
-        }
+        /* === Masthead === */
+        .masthead{position:sticky;top:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:6px 36px;font-family:var(--font-ui)}
+        .mast-left{display:flex;align-items:baseline;gap:16px}
+        .mast-title{font-family:var(--font-head);font-size:20px;font-weight:900;letter-spacing:1px}
+        .mast-sub{font-size:10px;color:var(--sepia);letter-spacing:.5px}
+        .mast-right{display:flex;align-items:center;gap:12px}
+        .mast-date{font-size:9px;color:var(--sepia);letter-spacing:.5px}
+        .lang-btns{display:flex;gap:3px}
+        .lang-btns button{padding:3px 8px;border:1px solid rgba(242,230,208,.3);border-radius:3px;background:transparent;color:var(--paper);font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
         .lang-btns button.active{background:var(--warm);color:var(--ink);border-color:var(--warm)}
         .lang-btns button:hover:not(.active){border-color:var(--warm);color:var(--warm)}
 
+        /* === Nameplate === */
+        .nameplate{position:relative;z-index:1;text-align:center;padding:20px 36px 0;border-bottom:3px double var(--ink)}
+        .nameplate-top{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:var(--ink-muted);letter-spacing:.5px;padding-bottom:4px;border-bottom:1px solid var(--ink)}
+        .nameplate h1{font-family:var(--font-head);font-size:64px;font-weight:900;letter-spacing:3px;line-height:1;padding:10px 0 4px;color:var(--ink)}
+        .nameplate-tagline{font-family:var(--font-body);font-size:13px;font-style:italic;color:var(--ink-muted);padding-bottom:10px}
+
+        /* === Section wrapper === */
+        .sect{position:relative;z-index:1;padding:16px 36px}
+        .sect+.sect{border-top:1px solid var(--rule-light)}
+
+        /* === Headlines === */
+        .h-edition{font-family:var(--font-head);font-size:32px;font-weight:900;text-align:center;line-height:1.15;letter-spacing:-.5px;color:var(--ink);margin-bottom:2px}
+        .h-deck{font-family:var(--font-body);font-size:14px;font-style:italic;text-align:center;color:var(--ink-muted);margin-bottom:12px}
+        .h-section{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--ink);margin:12px 0 6px;line-height:1.2}
+        .h-sub{font-family:var(--font-head);font-size:15px;font-weight:700;font-style:italic;color:var(--ink);margin:10px 0 4px}
+        .h-kicker{font-family:var(--font-ui);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--red-accent);margin-bottom:2px}
+
+        /* === Columns === */
+        .cols{display:flex;gap:0}
+        .col{padding:0 14px;border-right:1px solid var(--rule-light)}
+        .col:first-child{padding-left:0}
+        .col:last-child{padding-right:0;border-right:none}
+        .col-1of3{width:33.33%}.col-2of5{width:40%}.col-3of5{width:60%}
+        .col-fill{flex:1}
+
+        /* === Body text === */
+        .p{font-size:13px;color:var(--ink-light);line-height:1.55;margin-bottom:8px;text-indent:2em;text-align:justify}
+        .p.no-indent{text-indent:0}
+        .p.small{font-size:11px}
+
+        /* === Newspaper table === */
+        .n-table{width:100%;border-collapse:collapse;font-family:var(--font-body);margin:8px 0;font-size:11px}
+        .n-table th{background:var(--ink);color:var(--paper);font-size:10px;font-weight:700;padding:4px 6px;text-align:left}
+        .n-table td{padding:4px 6px;border-bottom:1px solid var(--rule-light);vertical-align:top;color:var(--ink-light)}
+        .n-table td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+        .n-table tr:nth-child(even){background:rgba(232,160,76,.06)}
+        .n-table.center-cols td:not(:first-child){text-align:center}
+        .n-table .ck{color:var(--red-accent);font-weight:700;font-family:var(--font-ui)}
+        .n-table .ds{color:var(--ink-muted)}
+
+        /* === Comparison table === */
+        .cmp-table{width:100%;border:1px solid var(--ink);border-collapse:collapse;font-family:var(--font-body);margin:6px 0}
+        .cmp-table th{background:var(--ink);color:var(--paper);font-size:9px;font-weight:700;padding:3px 4px;text-align:center}
+        .cmp-table th:first-child{text-align:left;width:110px;padding-left:6px}
+        .cmp-table td{font-size:9px;padding:2px 4px;text-align:center;border-bottom:1px solid rgba(0,0,0,.05)}
+        .cmp-table td:first-child{text-align:left;padding-left:6px}
+        .cmp-table tr:nth-child(odd){background:rgba(232,160,76,.06)}
+
+        /* === Feature list === */
+        .feat-list{font-size:12px;color:var(--ink-light);line-height:1.6;margin:6px 0 10px;padding-left:1.5em}
+        .feat-list li{margin-bottom:3px}
+        .feat-list li strong{color:var(--ink)}
+
+        /* === Inline spec === */
+        .spec-line{font-size:11px;color:var(--ink-light);line-height:1.5;margin-bottom:2px}
+        .spec-line strong{color:var(--ink)}
+
+        /* === Pull quote === */
+        .pull-quote{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:8px 0;margin:10px 0;text-align:center;font-family:var(--font-head);font-size:16px;font-weight:700;font-style:italic;color:var(--ink);line-height:1.3}
+
+        /* === Images === */
+        .n-img{width:100%;border:1px solid var(--ink);border-radius:1px;object-fit:cover;display:block}
+        .n-caption{font-size:10px;font-style:italic;color:var(--ink-muted);line-height:1.4;margin:3px 0 8px}
+        .img-pair{display:flex;gap:6px;margin:8px 0}
+        .img-pair img{flex:1;height:110px;object-fit:cover;border:1px solid var(--ink)}
+
+        /* === Brand box === */
+        .brand-box{border:3px solid var(--ink);padding:6px 14px 4px;display:flex;flex-direction:column;align-items:center;margin-bottom:8px}
+        .brand-box .bn{font-family:var(--font-head);font-size:26px;font-weight:900;letter-spacing:1px;color:var(--ink)}
+        .brand-box .bt{font-size:9px;color:var(--ink-muted)}
+
         /* === Footer === */
-        .paper-footer{
-            position:relative;z-index:1;
-            text-align:center;padding:12px 36px 16px;
-            font-size:10px;color:var(--ink-muted);
-            border-top:2px solid var(--ink);
-            margin:0 36px;
-        }
+        .paper-footer{position:relative;z-index:1;border-top:3px double var(--ink);margin:0 36px;padding:10px 0;text-align:center}
+        .paper-footer p{font-size:10px;color:var(--ink-muted);line-height:1.6}
+        .paper-footer a{color:var(--ink);text-decoration:none}
+        .paper-footer a:hover{color:var(--warm)}
+
+        /* === Dividers === */
+        .rule{border:none;border-top:1px solid var(--rule-light);margin:10px 0}
+        .rule.thick{border-top:2px solid var(--ink)}
+        .rule.double{border-top:3px double var(--ink)}
 
         /* === Responsive === */
-        @media(max-width:1024px){
-            .cols-3{flex-direction:column}
-            .col-L,.col-M,.col-R{width:100%;padding:0;border-right:none;border-bottom:1px solid var(--rule-light);padding-bottom:16px;margin-bottom:16px}
-            .col-R{border-bottom:none;margin-bottom:0}
-            .cols-3-bottom{flex-direction:column}
-            .col-b1,.col-b2,.col-b3{width:100%;padding:0;border-right:none;border-bottom:1px solid var(--rule-light);padding-bottom:16px;margin-bottom:16px}
-            .col-b3{border-bottom:none;margin-bottom:0}
-            .headline{font-size:32px}
+        @media(max-width:900px){
+            .cols{flex-direction:column}
+            .col{width:100%!important;padding:0!important;border-right:none!important;border-bottom:1px solid var(--rule-light);padding-bottom:12px!important;margin-bottom:12px}
+            .col:last-child{border-bottom:none;margin-bottom:0}
+            .nameplate h1{font-size:40px}
+            .h-edition{font-size:24px}
+            .sect{padding:12px 20px}
+            .masthead{padding:6px 20px}
+            .nameplate{padding:16px 20px 0}
+            .paper-footer{margin:0 20px}
         }
-        @media(max-width:640px){
-            .top-section,.bottom-section{padding:16px 16px}
-            .lang-bar{padding:8px 16px}
-            .headline{font-size:24px}
-            .paper-footer{margin:0 16px}
-            .col-img-row img{height:80px}
+        @media(max-width:500px){
+            .nameplate h1{font-size:28px;letter-spacing:1px}
+            .h-edition{font-size:20px}
+            .img-pair img{height:80px}
+            .n-table{font-size:10px}
         }
     </style>
 </head>
 <body>
 
-<!-- Language Bar -->
-<div class="lang-bar">
-    <div class="masthead">TVMate</div>
-    <div class="lang-btns" id="langBtns">
-        <button data-lang="zh" class="active">中文</button>
-        <button data-lang="en">EN</button>
+<!-- Masthead -->
+<header class="masthead">
+    <div class="mast-left">
+        <div class="mast-title">TVMate</div>
+        <div class="mast-sub" data-i18n="mast.sub">Apple TV 功能介紹</div>
     </div>
-</div>
-
-<div class="paper-page">
-
-    <!-- ===== TOP SECTION ===== -->
-    <div class="top-section">
-
-        <h1 class="headline" data-i18n="headline">如何為你的客廳，挑選最好的<br>復古電影體驗</h1>
-
-        <div class="cols-3">
-
-            <!-- Column Left -->
-            <div class="col-L">
-                <p class="body-text italic" data-i18n="cL.p1">許多人會好奇，是否需要犧牲畫質才能獲得復古觀影體驗？完全不需要。以 TVMate 最佳 19 吋（對角線）復古影音播放器為例，您獲得的畫質與大型主機完全相同。從電子技術角度而言基本相同，只是外觀更為精巧緊湊。無論您選擇哪種裝置，購買前最重要的兩個問題是：復古效果品質如何？設定是否容易？</p>
-
-                <h3 class="col-heading" data-i18n="cL.h1">色調與 TVMate 的優勢</h3>
-                <p class="body-text" data-i18n="cL.p2">並非所有播放器都能持續提供優質的復古色調。某些產品上，您會看到不自然的偏色或過度飽和。TVMate 的解決方案是一項名為 ATL（自動色調鎖定）的巧妙技術。只需按下 TVMate 上的 ATL 按鈕，即可自動獲得自然的復古色調。即使切換頻道也能保持。此外，TVMate 還配備：</p>
-
-                <div class="caps-block" data-i18n="cL.caps">
-                    KEYED AUTOMATIC GAIN CONTROL<br><small>— 防止畫面閃爍</small><br>
-                    AUTOMATIC CHROMA CONTROL<br><small>— 色彩穩定不漂移</small><br>
-                    AUTOMATIC COLOR PURIFIER<br><small>— 色彩純淨還原</small>
-                </div>
-
-                <h3 class="col-heading" data-i18n="cL.h2">智慧篩選與為何 TVMate 採用此技術</h3>
-                <p class="body-text" data-i18n="cL.p3">TVMate 內建 AFC — 自動篩選控制。在較好的播放器上才會配備。AFC 能在您開啟裝置時自動微調畫面，切換來源時也會自動調整。許多人無法像 AFC 那樣精細地調校。TVMate 將 AFC 應用於其最佳復古播放器及大多數其他型號。</p>
-            </div>
-
-            <!-- Column Middle -->
-            <div class="col-M">
-                <p class="body-text" data-i18n="cM.p1">此外，TVMate 還展現了強大的多源聚合能力。支援 Jellyfin、Plex、Emby、WebDAV 及 SMB 等多種來源。一個 App 統一管理所有影片庫。</p>
-
-                <h3 class="col-heading center" data-i18n="cM.h1">多源影音，進階功能</h3>
-                <p class="body-text" data-i18n="cM.p2">寬螢幕畫面讓您看到比以往更多的影像內容。如同許多近年的創新，TVMate 最佳復古播放器搭載寬螢幕功能。明亮映像管為您呈現明亮、清晰、銳利的畫面。TVMate 在其最佳播放器中使用了頂級明亮映像管，讓您在不沖淡暗色調的前提下獲得出色亮度。蝕刻玻璃面板減少眩光 — 就像燈罩一樣。蝕刻面板雖然成本更高，但 TVMate 將其用在最佳播放器上。光線擴散螢幕如同遮陽板。如果您的裝置在明亮房間中使用，它能防止強光沖淡畫面。幾乎沒有其他品牌在其最佳播放器上配備光線擴散螢幕，TVMate 則有。</p>
-
-                <div class="col-img-row">
-                    <img src="2.webp" alt="TVMate screenshot 1" loading="lazy">
-                    <img src="4.webp" alt="TVMate screenshot 2" loading="lazy">
-                </div>
-                <p class="img-caption" data-i18n="cM.cap">某些播放器的人臉會偏紅，甚至偏綠。TVMate 的自動色調鎖定讓色彩自然呈現。</p>
-
-                <p class="body-text" data-i18n="cM.p3">Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組。</p>
-            </div>
-
-            <!-- Column Right -->
-            <div class="col-R">
-                <img src="1.webp" alt="TVMate main interface" class="col-img" style="height:240px" loading="lazy">
-                <p class="img-caption" data-i18n="cR.cap">TVMate 最佳 19 吋（對角線）復古影音播放器，支援自動色調鎖定與智慧篩選功能。</p>
-
-                <p class="body-text" data-i18n="cR.p1">您可以信賴 TVMate 的服務品質。無論您搬到街對面還是國家的另一端。事實上，我們甚至在出貨前就逐一檢查每個版本。當您從 App Store 購買 TVMate 時，您的應用程式在安裝前已經過完整測試。並非所有開發商都這樣做。如果 TVMate 需要任何支援，我們將直接為您到府服務。您不必把裝置送回。並非所有零售商都提供 19 吋（對角線）裝置的到府服務。</p>
-
-                <p class="body-text" data-i18n="cR.p2">除了 TVMate 最佳復古影音播放器外，我們的商店和目錄中還有許多其他復古影音應用可供選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。</p>
-
-                <p class="body-text no-indent" data-i18n="cR.close" style="margin-top:12px">
-                    　　歡迎前往<br>
-                    　　App Store<br>
-                    　　立即體驗
-                </p>
-            </div>
-
+    <div class="mast-right">
+        <div class="mast-date" data-i18n="mast.date">APRIL 2026 EDITION</div>
+        <div class="lang-btns" id="langBtns">
+            <button data-lang="zh" class="active">中文</button>
+            <button data-lang="en">EN</button>
         </div>
     </div>
+</header>
 
-    <hr class="divider thick" style="margin:0 36px">
+<div class="paper">
 
-    <!-- ===== BOTTOM SECTION ===== -->
-    <div class="bottom-section">
-        <div class="cols-3-bottom">
+    <!-- Nameplate -->
+    <div class="nameplate">
+        <div class="nameplate-top">
+            <span data-i18n="np.left">台灣 · Hen Works 出品</span>
+            <span data-i18n="np.right">tvOS 15+ · Apple TV HD / 4K</span>
+        </div>
+        <h1>TVMate</h1>
+        <p class="nameplate-tagline" data-i18n="np.tagline">你的個人媒體中心，盡在大螢幕。</p>
+    </div>
 
-            <!-- Column B1 -->
-            <div class="col-b1">
-                <p class="body-text" style="font-size:13px" data-i18n="c1.t">並非所有零售商都維修他們賣的產品。TVMate 則不同。如果您的 TVMate 需要任何支援，我們將直接為您提供服務。您不必把裝置寄回。並非所有開發商都提供到府服務。除了 TVMate 最佳復古影音播放器外，我們的商店中還有許多其他復古影音選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購或 Google Play 訂閱方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。</p>
-                <p class="body-text no-indent" data-i18n="c1.cta" style="font-size:13px;margin-top:8px">
-                    　　歡迎前往<br>
-                    　　App Store<br>
-                    　　立即體驗
-                </p>
-            </div>
+    <!-- ===== SECTION 1: CRT + VHS + Multi-Source ===== -->
+    <section class="sect" id="features">
+        <h2 class="h-edition" data-i18n="s1.h">復古電影體驗 · 多源影音聚合 · 影像升頻</h2>
+        <p class="h-deck" data-i18n="s1.deck">CRT 映像管效果 — 把客廳變回黃金年代的電影院</p>
 
-            <!-- Column B2 -->
-            <div class="col-b2">
-                <h3 class="col-heading" style="margin-top:0" data-i18n="c2.h">購買前請先了解服務</h3>
-                <p class="body-text" style="font-size:13px" data-i18n="c2.t">請務必在購買前了解服務差異。並非所有零售商都維修他們賣的產品。TVMate 則不同。Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組化設計。</p>
-                <p class="body-text no-indent" style="font-size:13px;margin-top:8px" data-i18n="c2.note">模擬電視接收效果適用於所有裝置。</p>
-            </div>
+        <div class="cols">
+            <!-- Col 1: CRT -->
+            <div class="col col-1of3">
+                <div class="h-kicker" data-i18n="crt.kick">VINTAGE CINEMA</div>
+                <h3 class="h-section" data-i18n="crt.h">CRT 映像管模擬</h3>
+                <p class="p" data-i18n="crt.p1">TVMate 內建 Metal GPU 即時渲染的 CRT 映像管模擬系統，為影片和整個 App 介面帶來真實的復古質感。五種預設模式，從微妙到極致，一鍵切換。</p>
 
-            <!-- Column B3 - Brand + Table -->
-            <div class="col-b3">
-                <div class="brand-box">
-                    <div class="brand-name">TVMate</div>
-                    <div class="brand-sub">by Hen Works</div>
-                </div>
-
-                <p class="tbl-title" data-i18n="tbl.title">比較 TVMate 最佳功能與其他品牌的差異</p>
-                <table class="cmp-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="tbl.feat">功能</th>
-                            <th>TVMate</th>
-                            <th data-i18n="tbl.a">品牌A</th>
-                            <th data-i18n="tbl.b">品牌B</th>
-                            <th data-i18n="tbl.c">品牌C</th>
-                        </tr>
-                    </thead>
+                <table class="n-table">
+                    <thead><tr><th data-i18n="crt.th1">模式</th><th data-i18n="crt.th2">效果描述</th></tr></thead>
                     <tbody>
-                        <tr><td data-i18n="tbl.r1">自動色調鎖定</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r2">智慧篩選功能</td><td class="check">✓</td><td class="dash">✓</td><td class="dash">—</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r3">CRT 映像管模擬</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r4">復古海報色調</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r5">多源影音聚合</td><td class="check">✓</td><td class="dash">✓</td><td class="dash">—</td><td class="dash">✓</td></tr>
-                        <tr><td data-i18n="tbl.r6">即時預覽效果</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r7">完整隱私保護</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r8">模組化設計</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
-                        <tr><td data-i18n="tbl.r9">到府服務支援</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="crt.m1n">輕微</td><td data-i18n="crt.m1d">淡淡的暖色調與掃描線，日常觀影推薦</td></tr>
+                        <tr><td data-i18n="crt.m2n">標準</td><td data-i18n="crt.m2d">經典 CRT 電視感 — 掃描線、螢幕曲率、磷光點、邊緣暗角</td></tr>
+                        <tr><td data-i18n="crt.m3n">強烈復古</td><td data-i18n="crt.m3d">90 年代老電視 — 明顯曲率、厚重掃描線、色彩溢出、VHS 錄影帶盒風格介面</td></tr>
+                        <tr><td data-i18n="crt.m4n">無聲電影</td><td data-i18n="crt.m4d">卓別林風格 — 黑白膠片、隨機刮痕與灰塵粒子、掉幀模擬（16fps 放映機感）、泛黃色溫</td></tr>
                     </tbody>
                 </table>
-                <p class="tbl-note" data-i18n="tbl.note">✦ 購物時請攜帶此表格進行比較 ✦<br>前往任何 APP STORE 了解更多 TVMATE 功能</p>
+
+                <h4 class="h-sub" data-i18n="vhs.h">VHS 錄影帶盒風格</h4>
+                <p class="p" data-i18n="vhs.p">在「強烈復古」與「無聲電影」模式下，首頁海報卡片化身為 VHS 錄影帶盒 — 白色塑膠殼邊框、隨機品牌色帶（TDK 藍、JVC 紅、Kodak 黃、Fuji 綠、Maxell 紫、Sony 黑）、底部 Courier 打字機字型標題標籤，點擊時播放「開盒」3D 翻蓋動畫。</p>
+
+                <h4 class="h-sub" data-i18n="room.h">復古客廳主題</h4>
+                <p class="p" data-i18n="room.p">首頁背景變身為懷舊客廳場景，搭配 CRT 電視開機影片，彷彿回到 VHS 租片年代。</p>
             </div>
 
+            <!-- Col 2: Upscaling + Core -->
+            <div class="col col-1of3">
+                <div class="h-kicker" data-i18n="up.kick">IMAGE UPSCALING</div>
+                <h3 class="h-section" data-i18n="up.h">影像升頻</h3>
+                <p class="p" data-i18n="up.p">為老舊低解析度影片注入新生命。可與 CRT 效果疊加使用（先升頻再套用復古濾鏡），智慧降級機制在偵測到掉幀時自動切換至 Lanczos。</p>
+
+                <table class="n-table">
+                    <thead><tr><th data-i18n="up.th1">模式</th><th data-i18n="up.th2">說明</th><th data-i18n="up.th3">硬體需求</th></tr></thead>
+                    <tbody>
+                        <tr><td>Lanczos</td><td data-i18n="up.r1d">高品質傳統演算法，穩定流暢</td><td>Apple TV HD+</td></tr>
+                    </tbody>
+                </table>
+
+                <hr class="rule">
+
+                <div class="h-kicker" data-i18n="src.kick">MEDIA SOURCES</div>
+                <h3 class="h-section" data-i18n="src.h">多伺服器媒體管理</h3>
+                <p class="p" data-i18n="src.p">一個 App 管理所有影片來源 — 動態添加 / 移除媒體源，統一首頁呈現所有伺服器內容，連線狀態即時指示。</p>
+
+                <table class="n-table">
+                    <thead><tr><th data-i18n="src.th1">媒體源</th><th data-i18n="src.th2">說明</th></tr></thead>
+                    <tbody>
+                        <tr><td>Plex</td><td data-i18n="src.r1">完整 Plex Media Server 支援，含 PIN 碼認證與資料庫瀏覽</td></tr>
+                        <tr><td>Jellyfin</td><td data-i18n="src.r2">開源媒體伺服器，完整 API 整合</td></tr>
+                        <tr><td>Emby</td><td data-i18n="src.r3">家庭媒體伺服器，完整支援</td></tr>
+                        <tr><td>WebDAV</td><td data-i18n="src.r4">雲端硬碟存取（支援 OpenList 對接 Google Drive、OneDrive、Dropbox 等 50+ 雲盤）</td></tr>
+                        <tr><td>SMB/NAS</td><td data-i18n="src.r5">本地網路儲存直接存取</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Col 3: Hero Image + Search + TMDB -->
+            <div class="col col-1of3">
+                <img src="1.webp" alt="TVMate Apple TV 主介面" class="n-img" style="height:180px" loading="lazy">
+                <p class="n-caption" data-i18n="hero.cap">TVMate 主畫面 — 支援 Cinematic、Classic、PosterWall 三種輪播風格。</p>
+
+                <hr class="rule">
+
+                <div class="h-kicker" data-i18n="search.kick">SMART SEARCH</div>
+                <h3 class="h-sub" data-i18n="search.h">統一搜尋 & TMDB 智慧推薦</h3>
+                <p class="p" data-i18n="search.p">從所有媒體伺服器中搜尋，智慧去重 — 相同影片自動合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。</p>
+
+                <div class="img-pair">
+                    <img src="2.webp" alt="TVMate 媒體源選擇" loading="lazy">
+                    <img src="4.webp" alt="TVMate 搜尋與瀏覽" loading="lazy">
+                </div>
+                <p class="n-caption" data-i18n="search.cap">左：多源媒體管理介面。右：智慧搜尋與 TMDB 資料匹配。</p>
+
+                <div class="pull-quote" data-i18n="pq1">「一個 App，管理所有影片庫。<br>從 Plex 到 NAS，全部統一。」</div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- ===== SECTION 2: Playback + Apple TV + Privacy ===== -->
+    <section class="sect" id="playback">
+        <h2 class="h-edition" data-i18n="s2.h">播放引擎 · Apple TV 專屬體驗 · 隱私保護</h2>
+        <p class="h-deck" data-i18n="s2.deck">基於 Apple AVPlayer 的高品質播放 — 從 HDR 到 Dolby Atmos 全面支援</p>
+
+        <div class="cols">
+            <!-- Col 1: Playback Engine -->
+            <div class="col col-1of3">
+                <div class="h-kicker" data-i18n="play.kick">PLAYBACK ENGINE</div>
+                <h3 class="h-section" data-i18n="play.h">播放引擎</h3>
+
+                <div class="spec-line"><strong data-i18n="play.fmt">影片格式</strong> — MP4, MKV, MOV, M4V, TS, M3U8</div>
+                <div class="spec-line"><strong data-i18n="play.codec">編碼支援</strong> — H.264, H.265 (HEVC), AV1</div>
+                <div class="spec-line"><strong data-i18n="play.hdr">HDR</strong> — HDR10, HDR10+, Dolby Vision, HLG</div>
+                <div class="spec-line"><strong data-i18n="play.audio">音訊</strong> — AAC, EAC3, TrueHD, DTS, FLAC, Dolby Atmos</div>
+                <div class="spec-line"><strong data-i18n="play.track">多音軌</strong> — <span data-i18n="play.trackd">語言選擇 + 編碼/聲道/碼率資訊</span></div>
+                <div class="spec-line"><strong data-i18n="play.sub">字幕</strong> — SRT, ASS, SSA, PGS, VTT (<span data-i18n="play.subd">內嵌 + 外掛</span>)</div>
+                <div class="spec-line"><strong>Dolby Vision</strong> — <span data-i18n="play.dv">可設定 DV 優先於 HDR10</span></div>
+                <div class="spec-line"><strong data-i18n="play.lang">預設語言</strong> — <span data-i18n="play.langd">可分別設定音訊與字幕預設語言</span></div>
+                <div class="spec-line"><strong>Content Match</strong> — <span data-i18n="play.cm">自動切換 HDR 輸出模式</span></div>
+
+                <hr class="rule">
+
+                <h4 class="h-sub" data-i18n="cont.h">繼續觀看</h4>
+                <ul class="feat-list">
+                    <li data-i18n="cont.l1"><strong>自動記錄</strong> — 播放進度即時保存</li>
+                    <li data-i18n="cont.l2"><strong>首頁優先</strong> — 按觀看時間自動排序</li>
+                    <li data-i18n="cont.l3"><strong>歷史頁面</strong> — 完整記錄含進度百分比</li>
+                </ul>
+
+                <h4 class="h-sub" data-i18n="fav.h">收藏 & Premium</h4>
+                <p class="p small" data-i18n="fav.p">一鍵收藏喜愛影片，獨立收藏頁面瀏覽。Premium 版一次買斷，永久移除廣告 — 無訂閱、無隱藏費用。</p>
+            </div>
+
+            <!-- Col 2: Apple TV Experience -->
+            <div class="col col-1of3">
+                <div class="h-kicker" data-i18n="atv.kick">APPLE TV EXCLUSIVE</div>
+                <h3 class="h-section" data-i18n="atv.h">Apple TV 專屬體驗</h3>
+
+                <h4 class="h-sub" data-i18n="atv.style.h">首頁輪播風格</h4>
+                <table class="n-table">
+                    <thead><tr><th data-i18n="atv.style.th1">風格</th><th data-i18n="atv.style.th2">說明</th></tr></thead>
+                    <tbody>
+                        <tr><td>Cinematic</td><td data-i18n="atv.style.r1">全螢幕大圖 + 漸層文字覆蓋，Netflix 風格</td></tr>
+                        <tr><td>Classic</td><td data-i18n="atv.style.r2">上方海報清晰、下方背景模糊，沉穩大氣</td></tr>
+                        <tr><td>PosterWall</td><td data-i18n="atv.style.r3">3×2 海報拼貼牆，電影院櫥窗感</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 class="h-sub" data-i18n="atv.nav.h">tvOS 原生導航</h4>
+                <ul class="feat-list">
+                    <li data-i18n="atv.nav.l1"><strong>側邊欄</strong> — 首頁/搜索/收藏/歷史/設置 + 各源媒體庫</li>
+                    <li data-i18n="atv.nav.l2"><strong>Siri Remote</strong> — Apple TV 遙控器原生焦點系統</li>
+                    <li data-i18n="atv.nav.l3"><strong>焦點回憶</strong> — 返回上級時恢復上次焦點位置</li>
+                    <li data-i18n="atv.nav.l4"><strong>流暢過渡</strong> — 頁面切換動畫</li>
+                </ul>
+
+                <h4 class="h-sub" data-i18n="atv.file.h">檔案瀏覽器</h4>
+                <p class="p small" data-i18n="atv.file.p">適用於 WebDAV / SMB 等資料夾式來源 — 樹狀資料夾導航、依檔案類型顯示圖示（影片、字幕、音訊、資料夾），點擊影片直接播放。</p>
+
+                <hr class="rule">
+
+                <h4 class="h-sub" data-i18n="parent.h">家長控制</h4>
+                <p class="p small" data-i18n="parent.p">4 位數 PIN 鎖定 — App 啟動自動鎖定和內容分級過濾，為家庭觀影提供安心保障。</p>
+
+                <img src="3.webp" alt="TVMate 伺服器設定" class="n-img" style="height:130px;margin-top:8px" loading="lazy">
+                <p class="n-caption" data-i18n="atv.cap">簡潔的連線設定介面 — 輸入伺服器位址即可開始使用。</p>
+            </div>
+
+            <!-- Col 3: Privacy + Comparison + Brand -->
+            <div class="col col-1of3">
+                <div class="brand-box">
+                    <div class="bn">TVMate</div>
+                    <div class="bt">by Hen Works</div>
+                </div>
+
+                <div class="h-kicker" data-i18n="priv.kick">PRIVACY FIRST</div>
+                <h3 class="h-sub" data-i18n="priv.h">隱私優先</h3>
+                <ul class="feat-list" style="font-size:11px">
+                    <li data-i18n="priv.l1"><strong>零追蹤</strong> — 不含廣告 SDK、數據追蹤或分析工具</li>
+                    <li data-i18n="priv.l2"><strong>本地儲存</strong> — 所有資料不傳送至任何伺服器</li>
+                    <li data-i18n="priv.l3"><strong>加密憑證</strong> — 透過 OS 安全鑰匙圈儲存</li>
+                    <li data-i18n="priv.l4"><strong>完整刪除</strong> — 刪除 App 即永久移除所有資料</li>
+                </ul>
+
+                <hr class="rule">
+
+                <h4 class="h-sub" data-i18n="i18n.h">本地化支援</h4>
+                <p class="p small no-indent" data-i18n="i18n.p">繁體中文 — 完整本地化<br>English — Full localization<br>更多語言即將支援。</p>
+
+                <hr class="rule">
+
+                <p class="tbl-title" style="font-size:11px;font-weight:600;margin:4px 0 2px" data-i18n="tbl.title">TVMate vs. 同類產品功能比較</p>
+                <table class="cmp-table">
+                    <thead>
+                        <tr><th data-i18n="tbl.feat">功能</th><th>TVMate</th><th>Infuse</th><th>VLC</th><th>Plex</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="tbl.r1">CRT 映像管模擬</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r2">VHS 錄影帶盒風格</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r3">影像升頻</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r4">多源聚合</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r5">TMDB 推薦</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
+                        <tr><td data-i18n="tbl.r6">Dolby Vision</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
+                        <tr><td data-i18n="tbl.r7">Dolby Atmos</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
+                        <tr><td data-i18n="tbl.r8">家長控制</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td><td class="ck">✓</td></tr>
+                        <tr><td data-i18n="tbl.r9">一次買斷</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r10">零追蹤隱私</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td><td class="ds">—</td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:8px;color:var(--ink-muted);text-align:center;letter-spacing:.5px;margin-top:3px" data-i18n="tbl.note">✦ 資料來源：各產品官方網站，截至 2026 年 4 月 ✦</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <div class="paper-footer">
-        <span data-i18n="ft.copy">&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼</span>
+        <p data-i18n="ft.line1"><a href="https://henworks.com">Hen Works</a> · 台灣製作 · <a href="mailto:info@henworks.com">info@henworks.com</a></p>
+        <p data-i18n="ft.line2">&copy; 2026 Hen Works. All rights reserved.</p>
+        <p style="margin-top:4px;font-style:italic" data-i18n="ft.slogan">TVMate — 讓每個螢幕都是你的電影院。</p>
     </div>
 
 </div>
 
 <script>
 let curLang='zh';
-
 const T={
 zh:{
-'headline':'如何為你的客廳，挑選最好的<br>復古電影體驗',
-'cL.p1':'許多人會好奇，是否需要犧牲畫質才能獲得復古觀影體驗？完全不需要。以 TVMate 最佳 19 吋（對角線）復古影音播放器為例，您獲得的畫質與大型主機完全相同。從電子技術角度而言基本相同，只是外觀更為精巧緊湊。無論您選擇哪種裝置，購買前最重要的兩個問題是：復古效果品質如何？設定是否容易？',
-'cL.h1':'色調與 TVMate 的優勢',
-'cL.p2':'並非所有播放器都能持續提供優質的復古色調。某些產品上，您會看到不自然的偏色或過度飽和。TVMate 的解決方案是一項名為 ATL（自動色調鎖定）的巧妙技術。只需按下 TVMate 上的 ATL 按鈕，即可自動獲得自然的復古色調。即使切換頻道也能保持。此外，TVMate 還配備：',
-'cL.caps':'KEYED AUTOMATIC GAIN CONTROL<br><small>— 防止畫面閃爍</small><br>AUTOMATIC CHROMA CONTROL<br><small>— 色彩穩定不漂移</small><br>AUTOMATIC COLOR PURIFIER<br><small>— 色彩純淨還原</small>',
-'cL.h2':'智慧篩選與為何 TVMate 採用此技術',
-'cL.p3':'TVMate 內建 AFC — 自動篩選控制。在較好的播放器上才會配備。AFC 能在您開啟裝置時自動微調畫面，切換來源時也會自動調整。許多人無法像 AFC 那樣精細地調校。TVMate 將 AFC 應用於其最佳復古播放器及大多數其他型號。',
-'cM.p1':'此外，TVMate 還展現了強大的多源聚合能力。支援 Jellyfin、Plex、Emby、WebDAV 及 SMB 等多種來源。一個 App 統一管理所有影片庫。',
-'cM.h1':'多源影音，進階功能',
-'cM.p2':'寬螢幕畫面讓您看到比以往更多的影像內容。如同許多近年的創新，TVMate 最佳復古播放器搭載寬螢幕功能。明亮映像管為您呈現明亮、清晰、銳利的畫面。TVMate 在其最佳播放器中使用了頂級明亮映像管，讓您在不沖淡暗色調的前提下獲得出色亮度。蝕刻玻璃面板減少眩光 — 就像燈罩一樣。蝕刻面板雖然成本更高，但 TVMate 將其用在最佳播放器上。光線擴散螢幕如同遮陽板。如果您的裝置在明亮房間中使用，它能防止強光沖淡畫面。幾乎沒有其他品牌在其最佳播放器上配備光線擴散螢幕，TVMate 則有。',
-'cM.cap':'某些播放器的人臉會偏紅，甚至偏綠。TVMate 的自動色調鎖定讓色彩自然呈現。',
-'cM.p3':'Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組。',
-'cR.cap':'TVMate 最佳 19 吋（對角線）復古影音播放器，支援自動色調鎖定與智慧篩選功能。',
-'cR.p1':'您可以信賴 TVMate 的服務品質。無論您搬到街對面還是國家的另一端。事實上，我們甚至在出貨前就逐一檢查每個版本。當您從 App Store 購買 TVMate 時，您的應用程式在安裝前已經過完整測試。並非所有開發商都這樣做。如果 TVMate 需要任何支援，我們將直接為您到府服務。您不必把裝置送回。並非所有零售商都提供 19 吋（對角線）裝置的到府服務。',
-'cR.p2':'除了 TVMate 最佳復古影音播放器外，我們的商店和目錄中還有許多其他復古影音應用可供選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。',
-'cR.close':'　　歡迎前往<br>　　App Store<br>　　立即體驗',
-'c1.t':'並非所有零售商都維修他們賣的產品。TVMate 則不同。如果您的 TVMate 需要任何支援，我們將直接為您提供服務。您不必把裝置寄回。並非所有開發商都提供到府服務。除了 TVMate 最佳復古影音播放器外，我們的商店中還有許多其他復古影音選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購或 Google Play 訂閱方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。',
-'c1.cta':'　　歡迎前往<br>　　App Store<br>　　立即體驗',
-'c2.h':'購買前請先了解服務',
-'c2.t':'請務必在購買前了解服務差異。並非所有零售商都維修他們賣的產品。TVMate 則不同。Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組化設計。',
-'c2.note':'模擬電視接收效果適用於所有裝置。',
-'tbl.title':'比較 TVMate 最佳功能與其他品牌的差異',
-'tbl.feat':'功能','tbl.a':'品牌A','tbl.b':'品牌B','tbl.c':'品牌C',
-'tbl.r1':'自動色調鎖定','tbl.r2':'智慧篩選功能','tbl.r3':'CRT 映像管模擬','tbl.r4':'復古海報色調',
-'tbl.r5':'多源影音聚合','tbl.r6':'即時預覽效果','tbl.r7':'完整隱私保護','tbl.r8':'模組化設計','tbl.r9':'到府服務支援',
-'tbl.note':'✦ 購物時請攜帶此表格進行比較 ✦<br>前往任何 APP STORE 了解更多 TVMATE 功能',
-'ft.copy':'&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼'
+'mast.sub':'Apple TV 功能介紹',
+'mast.date':'2026 年 4 月號',
+'np.left':'台灣 · Hen Works 出品',
+'np.right':'tvOS 15+ · Apple TV HD / 4K',
+'np.tagline':'你的個人媒體中心，盡在大螢幕。',
+'s1.h':'復古電影體驗 · 多源影音聚合 · 影像升頻',
+'s1.deck':'CRT 映像管效果 — 把客廳變回黃金年代的電影院',
+'crt.kick':'VINTAGE CINEMA',
+'crt.h':'CRT 映像管模擬',
+'crt.p1':'TVMate 內建 Metal GPU 即時渲染的 CRT 映像管模擬系統，為影片和整個 App 介面帶來真實的復古質感。五種預設模式，從微妙到極致，一鍵切換。',
+'crt.th1':'模式','crt.th2':'效果描述',
+'crt.m1n':'輕微','crt.m1d':'淡淡的暖色調與掃描線，日常觀影推薦',
+'crt.m2n':'標準','crt.m2d':'經典 CRT 電視感 — 掃描線、螢幕曲率、磷光點、邊緣暗角',
+'crt.m3n':'強烈復古','crt.m3d':'90 年代老電視 — 明顯曲率、厚重掃描線、色彩溢出、VHS 錄影帶盒風格介面',
+'crt.m4n':'無聲電影','crt.m4d':'卓別林風格 — 黑白膠片、隨機刮痕與灰塵粒子、掉幀模擬（16fps 放映機感）、泛黃色溫',
+'vhs.h':'VHS 錄影帶盒風格',
+'vhs.p':'在「強烈復古」與「無聲電影」模式下，首頁海報卡片化身為 VHS 錄影帶盒 — 白色塑膠殼邊框、隨機品牌色帶（TDK 藍、JVC 紅、Kodak 黃、Fuji 綠、Maxell 紫、Sony 黑）、底部 Courier 打字機字型標題標籤，點擊時播放「開盒」3D 翻蓋動畫。',
+'room.h':'復古客廳主題',
+'room.p':'首頁背景變身為懷舊客廳場景，搭配 CRT 電視開機影片，彷彿回到 VHS 租片年代。',
+'up.kick':'IMAGE UPSCALING','up.h':'影像升頻',
+'up.p':'為老舊低解析度影片注入新生命。可與 CRT 效果疊加使用（先升頻再套用復古濾鏡），智慧降級機制在偵測到掉幀時自動切換至 Lanczos。',
+'up.th1':'模式','up.th2':'說明','up.th3':'硬體需求',
+'up.r1d':'高品質傳統演算法，穩定流暢',
+'src.kick':'MEDIA SOURCES','src.h':'多伺服器媒體管理',
+'src.p':'一個 App 管理所有影片來源 — 動態添加 / 移除媒體源，統一首頁呈現所有伺服器內容，連線狀態即時指示。',
+'src.th1':'媒體源','src.th2':'說明',
+'src.r1':'完整 Plex Media Server 支援，含 PIN 碼認證與資料庫瀏覽',
+'src.r2':'開源媒體伺服器，完整 API 整合',
+'src.r3':'家庭媒體伺服器，完整支援',
+'src.r4':'雲端硬碟存取（支援 OpenList 對接 Google Drive、OneDrive、Dropbox 等 50+ 雲盤）',
+'src.r5':'本地網路儲存直接存取',
+'hero.cap':'TVMate 主畫面 — 支援 Cinematic、Classic、PosterWall 三種輪播風格。',
+'search.kick':'SMART SEARCH','search.h':'統一搜尋 & TMDB 智慧推薦',
+'search.p':'從所有媒體伺服器中搜尋，智慧去重 — 相同影片自動合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。',
+'search.cap':'左：多源媒體管理介面。右：智慧搜尋與 TMDB 資料匹配。',
+'pq1':'「一個 App，管理所有影片庫。<br>從 Plex 到 NAS，全部統一。」',
+'s2.h':'播放引擎 · Apple TV 專屬體驗 · 隱私保護',
+'s2.deck':'基於 Apple AVPlayer 的高品質播放 — 從 HDR 到 Dolby Atmos 全面支援',
+'play.kick':'PLAYBACK ENGINE','play.h':'播放引擎',
+'play.fmt':'影片格式','play.codec':'編碼支援','play.hdr':'HDR','play.audio':'音訊',
+'play.track':'多音軌','play.trackd':'語言選擇 + 編碼/聲道/碼率資訊',
+'play.sub':'字幕','play.subd':'內嵌 + 外掛',
+'play.dv':'可設定 DV 優先於 HDR10',
+'play.lang':'預設語言','play.langd':'可分別設定音訊與字幕預設語言',
+'play.cm':'自動切換 HDR 輸出模式',
+'cont.h':'繼續觀看',
+'cont.l1':'<strong>自動記錄</strong> — 播放進度即時保存',
+'cont.l2':'<strong>首頁優先</strong> — 按觀看時間自動排序',
+'cont.l3':'<strong>歷史頁面</strong> — 完整記錄含進度百分比',
+'fav.h':'收藏 & Premium',
+'fav.p':'一鍵收藏喜愛影片，獨立收藏頁面瀏覽。Premium 版一次買斷，永久移除廣告 — 無訂閱、無隱藏費用。',
+'atv.kick':'APPLE TV EXCLUSIVE','atv.h':'Apple TV 專屬體驗',
+'atv.style.h':'首頁輪播風格','atv.style.th1':'風格','atv.style.th2':'說明',
+'atv.style.r1':'全螢幕大圖 + 漸層文字覆蓋，Netflix 風格',
+'atv.style.r2':'上方海報清晰、下方背景模糊，沉穩大氣',
+'atv.style.r3':'3×2 海報拼貼牆，電影院櫥窗感',
+'atv.nav.h':'tvOS 原生導航',
+'atv.nav.l1':'<strong>側邊欄</strong> — 首頁/搜索/收藏/歷史/設置 + 各源媒體庫',
+'atv.nav.l2':'<strong>Siri Remote</strong> — Apple TV 遙控器原生焦點系統',
+'atv.nav.l3':'<strong>焦點回憶</strong> — 返回上級時恢復上次焦點位置',
+'atv.nav.l4':'<strong>流暢過渡</strong> — 頁面切換動畫',
+'atv.file.h':'檔案瀏覽器',
+'atv.file.p':'適用於 WebDAV / SMB 等資料夾式來源 — 樹狀資料夾導航、依檔案類型顯示圖示（影片、字幕、音訊、資料夾），點擊影片直接播放。',
+'parent.h':'家長控制',
+'parent.p':'4 位數 PIN 鎖定 — App 啟動自動鎖定和內容分級過濾，為家庭觀影提供安心保障。',
+'atv.cap':'簡潔的連線設定介面 — 輸入伺服器位址即可開始使用。',
+'priv.kick':'PRIVACY FIRST','priv.h':'隱私優先',
+'priv.l1':'<strong>零追蹤</strong> — 不含廣告 SDK、數據追蹤或分析工具',
+'priv.l2':'<strong>本地儲存</strong> — 所有資料不傳送至任何伺服器',
+'priv.l3':'<strong>加密憑證</strong> — 透過 OS 安全鑰匙圈儲存',
+'priv.l4':'<strong>完整刪除</strong> — 刪除 App 即永久移除所有資料',
+'i18n.h':'本地化支援',
+'i18n.p':'繁體中文 — 完整本地化<br>English — Full localization<br>更多語言即將支援。',
+'tbl.title':'TVMate vs. 同類產品功能比較',
+'tbl.feat':'功能',
+'tbl.r1':'CRT 映像管模擬','tbl.r2':'VHS 錄影帶盒風格','tbl.r3':'影像升頻','tbl.r4':'多源聚合',
+'tbl.r5':'TMDB 推薦','tbl.r6':'Dolby Vision','tbl.r7':'Dolby Atmos',
+'tbl.r8':'家長控制','tbl.r9':'一次買斷','tbl.r10':'零追蹤隱私',
+'tbl.note':'✦ 資料來源：各產品官方網站，截至 2026 年 4 月 ✦',
+'ft.line1':'<a href="https://henworks.com">Hen Works</a> · 台灣製作 · <a href="mailto:info@henworks.com">info@henworks.com</a>',
+'ft.line2':'&copy; 2026 Hen Works. All rights reserved.',
+'ft.slogan':'TVMate — 讓每個螢幕都是你的電影院。'
 },
 en:{
-'headline':'How to Choose the Best<br>Vintage Cinema Experience for Your Living Room',
-'cL.p1':'Many people wonder: do you have to sacrifice picture quality to get a vintage viewing experience? Absolutely not. Take TVMate\'s best 19-inch (diagonal) vintage media player, for example — the picture quality is identical to that of a full-size unit. Electronically, they\'re essentially the same, just more compact and elegant. Regardless of which device you choose, the two most important questions before buying are: How good is the vintage effect? And how easy is it to set up?',
-'cL.h1':'Color Tones & TVMate\'s Advantage',
-'cL.p2':'Not all players consistently deliver quality vintage color tones. On some products, you\'ll see unnatural color casts or over-saturation. TVMate\'s solution is a clever technology called ATL (Automatic Tone Lock). Simply press the ATL button on your TVMate, and you\'ll automatically get natural vintage tones. They stay consistent even when switching channels. Additionally, TVMate features:',
-'cL.caps':'KEYED AUTOMATIC GAIN CONTROL<br><small>— Prevents picture flickering</small><br>AUTOMATIC CHROMA CONTROL<br><small>— Colors stay stable, no drifting</small><br>AUTOMATIC COLOR PURIFIER<br><small>— Pure, accurate color reproduction</small>',
-'cL.h2':'Smart Filtering & Why TVMate Uses This Technology',
-'cL.p3':'TVMate has built-in AFC — Automatic Filter Control. Only found on better players. AFC automatically fine-tunes the picture when you turn on your device, and adjusts automatically when switching sources. Most people can\'t calibrate as precisely as AFC does. TVMate applies AFC to its best vintage players and most other models.',
-'cM.p1':'Furthermore, TVMate demonstrates powerful multi-source aggregation. Supporting Jellyfin, Plex, Emby, WebDAV, and SMB sources — one app to manage all your media libraries.',
-'cM.h1':'Multi-Source Media, Advanced Features',
-'cM.p2':'Widescreen display lets you see more content than ever before. Like many recent innovations, TVMate\'s best vintage player features widescreen capability. A bright picture tube delivers bright, clear, sharp images. TVMate uses top-grade bright tubes in its best players, giving you outstanding brightness without washing out dark tones. Etched glass faceplate reduces glare — like a lampshade. Though more expensive, TVMate uses it on their best players. A light-diffusing screen works like a visor. If your device is used in a bright room, it prevents strong light from washing out the picture. Few other brands offer a light-diffusing screen on their best players — TVMate does.',
-'cM.cap':'Some players render faces too red, even green. TVMate\'s Automatic Tone Lock keeps colors looking natural.',
-'cM.p3':'Snap-out modules are printed circuit boards containing transistors, diodes, and vacuum tubes. They snap out easily for quick servicing. TVMate uses these modules in its best vintage players.',
-'cR.cap':'TVMate\'s best 19-inch (diagonal) vintage media player with Automatic Tone Lock and Smart Filtering.',
-'cR.p1':'You can count on TVMate for service. Whether you move across the street or across the country. In fact, we inspect every release before shipping. When you purchase TVMate from the App Store, your app has been fully tested before installation. Not all developers do this. If your TVMate ever needs service, we come directly to you. You don\'t have to send your device back. Not all retailers offer in-home service for 19-inch (diagonal) devices.',
-'cR.p2':'In addition to TVMate\'s best vintage media player, our store and catalog offer many other vintage media choices. Subscription plans start at NT$220/month. You can also use our convenient App Store in-app purchase plan. When you add up all the features — vintage tones, privacy protection, multi-source aggregation, and dependable service — you get far more than meets the eye with TVMate.',
-'cR.close':'　　Visit the<br>　　App Store<br>　　Experience it today',
-'c1.t':'Not all retailers service the products they sell. TVMate is different. If your TVMate ever needs service, we come directly to you. You don\'t have to send your device back. Not all developers offer in-home service. Beyond TVMate\'s best vintage media player, our store has many other vintage media options. Subscription plans start at NT$220/month. You can use our convenient App Store in-app purchase or Google Play subscription. When you add up all the features — vintage tones, privacy, multi-source aggregation, and dependable service — you get far more than meets the eye.',
-'c1.cta':'　　Visit the<br>　　App Store<br>　　Experience it today',
-'c2.h':'Know the Service Before You Buy',
-'c2.t':'Be sure to understand service differences before you buy. Not all retailers service the products they sell. TVMate is different. Snap-out modules are printed circuit boards containing transistors, diodes, and vacuum tubes. They snap out easily for quick servicing. TVMate uses these modular designs in its best vintage players.',
-'c2.note':'Simulated TV reception effect works on all devices.',
-'tbl.title':'Compare TVMate\'s Best Features Against Other Brands',
-'tbl.feat':'Feature','tbl.a':'Brand A','tbl.b':'Brand B','tbl.c':'Brand C',
-'tbl.r1':'Auto Tone Lock','tbl.r2':'Smart Filtering','tbl.r3':'CRT Tube Simulation','tbl.r4':'Vintage Poster Tones',
-'tbl.r5':'Multi-Source Aggregation','tbl.r6':'Real-Time Preview','tbl.r7':'Full Privacy Protection','tbl.r8':'Modular Design','tbl.r9':'In-Home Service',
-'tbl.note':'✦ Bring this chart when you shop — compare for yourself ✦<br>Visit any APP STORE to learn more about TVMATE',
-'ft.copy':'&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼'
+'mast.sub':'Apple TV Features',
+'mast.date':'APRIL 2026 EDITION',
+'np.left':'Taiwan · by Hen Works',
+'np.right':'tvOS 15+ · Apple TV HD / 4K',
+'np.tagline':'Your personal media center, on the big screen.',
+'s1.h':'Vintage Cinema · Multi-Source Aggregation · Image Upscaling',
+'s1.deck':'CRT tube effects — turn your living room back into a golden-age cinema',
+'crt.kick':'VINTAGE CINEMA',
+'crt.h':'CRT Tube Simulation',
+'crt.p1':'TVMate features a Metal GPU real-time CRT tube simulation system, bringing authentic vintage texture to your videos and the entire app interface. Five preset modes from subtle to extreme, switchable with a single tap.',
+'crt.th1':'Mode','crt.th2':'Description',
+'crt.m1n':'Subtle','crt.m1d':'Gentle warm tones & scanlines — recommended for daily viewing',
+'crt.m2n':'Standard','crt.m2d':'Classic CRT TV feel — scanlines, screen curvature, phosphor dots, edge vignette',
+'crt.m3n':'Heavy Retro','crt.m3d':'90s old TV — pronounced curvature, thick scanlines, color bleed, VHS tape-style UI',
+'crt.m4n':'Silent Film','crt.m4d':'Chaplin-style — B&W film, random scratches & dust particles, frame-drop simulation (16fps projector feel), yellowish warmth',
+'vhs.h':'VHS Tape Case Style',
+'vhs.p':'In "Heavy Retro" and "Silent Film" modes, homepage poster cards transform into VHS tape cases — white plastic shell borders, random brand color strips (TDK blue, JVC red, Kodak yellow, Fuji green, Maxell purple, Sony black), Courier typewriter font title labels at bottom, and a 3D flip-open animation on tap.',
+'room.h':'Vintage Living Room Theme',
+'room.p':'The homepage background transforms into a nostalgic living room scene with a CRT TV boot-up video, as if returning to the VHS rental era.',
+'up.kick':'IMAGE UPSCALING','up.h':'Image Upscaling',
+'up.p':'Breathe new life into old low-resolution videos. Can be stacked with CRT effects (upscale first, then apply retro filter). Smart fallback automatically switches to Lanczos when frame drops are detected.',
+'up.th1':'Mode','up.th2':'Description','up.th3':'Hardware',
+'up.r1d':'High-quality traditional algorithm, stable and smooth',
+'src.kick':'MEDIA SOURCES','src.h':'Multi-Server Media Management',
+'src.p':'One app to manage all your video sources — dynamically add/remove sources, unified homepage showing all server content, real-time connection status.',
+'src.th1':'Source','src.th2':'Description',
+'src.r1':'Full Plex Media Server support with PIN authentication & library browsing',
+'src.r2':'Open-source media server with full API integration',
+'src.r3':'Home media server, fully supported',
+'src.r4':'Cloud storage access (supports OpenList for Google Drive, OneDrive, Dropbox & 50+ cloud services)',
+'src.r5':'Direct local network storage access',
+'hero.cap':'TVMate home screen — supports Cinematic, Classic, and PosterWall carousel styles.',
+'search.kick':'SMART SEARCH','search.h':'Unified Search & TMDB Recommendations',
+'search.p':'Search across all media servers with smart deduplication — identical titles auto-merge. TMDB integration provides personalized recommendations: auto-matching local videos, similar title suggestions, "For You" homepage section, rich poster & cast metadata, and caching for faster browsing.',
+'search.cap':'Left: Multi-source media management. Right: Smart search with TMDB matching.',
+'pq1':'"One app to manage all your libraries.<br>From Plex to NAS, unified."',
+'s2.h':'Playback Engine · Apple TV Experience · Privacy',
+'s2.deck':'High-quality playback powered by Apple AVPlayer — full HDR to Dolby Atmos support',
+'play.kick':'PLAYBACK ENGINE','play.h':'Playback Engine',
+'play.fmt':'Video Formats','play.codec':'Codecs','play.hdr':'HDR','play.audio':'Audio',
+'play.track':'Multi-Track','play.trackd':'Language selection + codec/channel/bitrate info',
+'play.sub':'Subtitles','play.subd':'Embedded + External',
+'play.dv':'DV can be prioritized over HDR10',
+'play.lang':'Default Language','play.langd':'Set default audio & subtitle languages separately',
+'play.cm':'Auto-switch HDR output mode',
+'cont.h':'Continue Watching',
+'cont.l1':'<strong>Auto-save</strong> — Playback progress saved in real-time',
+'cont.l2':'<strong>Homepage priority</strong> — Sorted by last watched time',
+'cont.l3':'<strong>History page</strong> — Full playback records with progress %',
+'fav.h':'Favorites & Premium',
+'fav.p':'One-tap favorites with dedicated favorites page. Premium is a one-time purchase — permanently ad-free, no subscriptions, no hidden fees.',
+'atv.kick':'APPLE TV EXCLUSIVE','atv.h':'Apple TV Exclusive Experience',
+'atv.style.h':'Homepage Carousel Styles','atv.style.th1':'Style','atv.style.th2':'Description',
+'atv.style.r1':'Full-screen hero + gradient text overlay, Netflix-style',
+'atv.style.r2':'Clear poster top, blurred background below — elegant and immersive',
+'atv.style.r3':'3×2 poster collage wall, cinema showcase feel',
+'atv.nav.h':'tvOS Native Navigation',
+'atv.nav.l1':'<strong>Sidebar</strong> — Home/Search/Favorites/History/Settings + per-source libraries',
+'atv.nav.l2':'<strong>Siri Remote</strong> — Native Apple TV remote focus system',
+'atv.nav.l3':'<strong>Focus Memory</strong> — Restores last focus position when navigating back',
+'atv.nav.l4':'<strong>Smooth Transitions</strong> — Page switch animations',
+'atv.file.h':'File Browser',
+'atv.file.p':'For folder-based sources like WebDAV/SMB — tree folder navigation, file-type icons (video, subtitle, audio, folder), tap to play directly.',
+'parent.h':'Parental Controls',
+'parent.p':'4-digit PIN lock — auto-lock on app launch with content rating filtering for worry-free family viewing.',
+'atv.cap':'Clean server setup interface — enter your server address to get started.',
+'priv.kick':'PRIVACY FIRST','priv.h':'Privacy First',
+'priv.l1':'<strong>Zero tracking</strong> — No ad SDKs, data tracking, or analytics',
+'priv.l2':'<strong>Local storage</strong> — No data sent to any server',
+'priv.l3':'<strong>Encrypted credentials</strong> — Stored via OS secure keychain',
+'priv.l4':'<strong>Full deletion</strong> — Uninstall removes all data permanently',
+'i18n.h':'Localization',
+'i18n.p':'繁體中文 — Full localization<br>English — Full localization<br>More languages coming soon.',
+'tbl.title':'TVMate vs. Competitors',
+'tbl.feat':'Feature',
+'tbl.r1':'CRT Tube Simulation','tbl.r2':'VHS Tape Style','tbl.r3':'Image Upscaling','tbl.r4':'Multi-Source',
+'tbl.r5':'TMDB Recommendations','tbl.r6':'Dolby Vision','tbl.r7':'Dolby Atmos',
+'tbl.r8':'Parental Controls','tbl.r9':'One-Time Purchase','tbl.r10':'Zero-Tracking Privacy',
+'tbl.note':'✦ Data from official product websites, as of April 2026 ✦',
+'ft.line1':'<a href="https://henworks.com">Hen Works</a> · Made in Taiwan · <a href="mailto:info@henworks.com">info@henworks.com</a>',
+'ft.line2':'&copy; 2026 Hen Works. All rights reserved.',
+'ft.slogan':'TVMate — Every screen is your cinema.'
 }
 };
 
@@ -406,14 +593,32 @@ function setLang(lang){
     document.documentElement.lang=lang==='zh'?'zh-Hant':'en';
     const t=T[lang];if(!t)return;
     document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k=el.dataset.i18n;
-        if(t[k])el.innerHTML=t[k];
+        const k=el.dataset.i18n;if(t[k])el.innerHTML=t[k];
     });
     document.querySelectorAll('#langBtns button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    // Update meta for SEO
+    if(lang==='en'){
+        document.title='TVMate — Vintage Media Player for Apple TV | CRT Simulation & Multi-Source | Hen Works';
+        document.querySelector('meta[name="description"]').content='TVMate brings vintage cinema to Apple TV. Real-time CRT tube simulation, VHS tape style, image upscaling, Plex/Jellyfin/Emby/WebDAV/SMB multi-source. One-time purchase, ad-free forever.';
+    }else{
+        document.title='TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多源影音聚合 | Hen Works';
+        document.querySelector('meta[name="description"]').content='TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、支援 Plex / Jellyfin / Emby / WebDAV / SMB 多源聚合。一次買斷，永久免廣告。';
+    }
 }
 
+// Auto-detect language from URL param
+const urlParams=new URLSearchParams(window.location.search);
+const langParam=urlParams.get('lang');
+if(langParam&&T[langParam])setLang(langParam);
+
 document.querySelectorAll('#langBtns button').forEach(btn=>{
-    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+    btn.addEventListener('click',()=>{
+        setLang(btn.dataset.lang);
+        const url=new URL(window.location);
+        if(btn.dataset.lang==='zh')url.searchParams.delete('lang');
+        else url.searchParams.set('lang',btn.dataset.lang);
+        window.history.replaceState({},'',url);
+    });
 });
 </script>
 </body>
