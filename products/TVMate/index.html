@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多源影音聚合 | Hen Works</title>
-    <meta name="description" content="TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、支援 Plex / Jellyfin / Emby / WebDAV / SMB 多源聚合。一次買斷，永久免廣告。">
-    <meta name="keywords" content="TVMate, Apple TV, tvOS, CRT, 復古, vintage, media player, 媒體播放器, Plex, Jellyfin, Emby, WebDAV, SMB, NAS, VHS, HDR, Dolby Vision, TMDB, Hen Works, 影像升頻, 家長控制">
+    <title>TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多伺服器統一管理 | Hen Works</title>
+    <meta name="description" content="TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、統一管理你的 Plex / Jellyfin / Emby / WebDAV / SMB 私人媒體庫。一次買斷，永久免廣告。">
+    <meta name="keywords" content="TVMate, Apple TV, tvOS, CRT, 復古, vintage, media player, 媒體播放器, Plex, Jellyfin, Emby, WebDAV, SMB, NAS, VHS, HDR, Dolby Vision, TMDB, Hen Works, 影像升頻, 家長控制, 私人媒體庫, 多伺服器">
     <link rel="canonical" href="https://henworks.com/products/TVMate/">
     <link rel="alternate" hreflang="zh-Hant" href="https://henworks.com/products/TVMate/">
     <link rel="alternate" hreflang="en" href="https://henworks.com/products/TVMate/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://henworks.com/products/TVMate/">
     <!-- Open Graph -->
-    <meta property="og:title" content="TVMate — Apple TV 復古媒體播放器 | CRT 映像管 & 多源聚合">
-    <meta property="og:description" content="把客廳變回黃金年代的電影院。CRT 映像管模擬、VHS 風格、影像升頻、Plex / Jellyfin / Emby / WebDAV / SMB 一站管理。">
+    <meta property="og:title" content="TVMate — Apple TV 復古媒體播放器 | CRT 映像管 & 多伺服器管理">
+    <meta property="og:description" content="把客廳變回黃金年代的電影院。CRT 映像管模擬、VHS 風格、影像升頻，統一管理你的 Plex / Jellyfin / Emby / WebDAV / SMB 私人媒體庫。">
     <meta property="og:url" content="https://henworks.com/products/TVMate/">
     <meta property="og:type" content="product">
     <meta property="og:image" content="https://henworks.com/products/TVMate/1.webp">
@@ -22,7 +22,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TVMate — Apple TV 復古媒體播放器">
-    <meta name="twitter:description" content="CRT 映像管模擬、VHS 錄影帶盒風格、影像升頻、多源聚合。把客廳變回黃金年代的電影院。">
+    <meta name="twitter:description" content="CRT 映像管模擬、VHS 錄影帶盒風格、影像升頻，統一管理你的私人媒體庫。把客廳變回黃金年代的電影院。">
     <meta name="twitter:image" content="https://henworks.com/products/TVMate/1.webp">
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -32,7 +32,7 @@
         "name": "TVMate",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "tvOS",
-        "description": "Apple TV 復古媒體播放器，CRT 映像管模擬、多源影音聚合、影像升頻。",
+        "description": "Apple TV 復古媒體播放器，CRT 映像管模擬、多伺服器統一管理、影像升頻。",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -63,8 +63,8 @@
         body{font-family:var(--font-body);background:#C4B598;color:var(--ink);line-height:1.6;overflow-x:hidden}
 
         /* === Newspaper Page === */
-        .paper{max-width:1100px;margin:0 auto;background:url('paper-bg.webp') center top/100% auto repeat-y;background-color:var(--paper);position:relative}
-        .paper::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,230,208,.15) 0%,rgba(242,230,208,.1) 100%);pointer-events:none}
+        .paper{max-width:1100px;margin:0 auto;background:url('paper-bg.webp') center/100% 100% no-repeat;background-color:var(--paper);position:relative}
+        .paper::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,230,208,.08) 0%,rgba(242,230,208,.12) 50%,rgba(242,230,208,.08) 100%);pointer-events:none}
 
         /* === Masthead === */
         .masthead{position:sticky;top:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:6px 36px;font-family:var(--font-ui)}
@@ -212,7 +212,7 @@
 
     <!-- ===== SECTION 1: CRT + VHS + Multi-Source ===== -->
     <section class="sect" id="features">
-        <h2 class="h-edition" data-i18n="s1.h">復古電影體驗 · 多源影音聚合 · 影像升頻</h2>
+        <h2 class="h-edition" data-i18n="s1.h">復古電影體驗 · 多伺服器管理 · 影像升頻</h2>
         <p class="h-deck" data-i18n="s1.deck">CRT 映像管效果 — 把客廳變回黃金年代的電影院</p>
 
         <div class="cols">
@@ -268,7 +268,7 @@
 
                 <div class="h-kicker" data-i18n="src.kick">MEDIA SOURCES</div>
                 <h3 class="h-section" data-i18n="src.h">多伺服器媒體管理</h3>
-                <p class="p" data-i18n="src.p">一個 App 管理所有影片來源 — 動態添加 / 移除媒體源，統一首頁呈現所有伺服器內容，連線狀態即時指示。</p>
+                <p class="p" data-i18n="src.p">一個 App 連接你所有的私人媒體伺服器 — 動態添加 / 移除播放來源，統一首頁呈現所有伺服器內容，連線狀態即時指示。</p>
 
                 <table class="n-table">
                     <thead><tr><th data-i18n="src.th1">媒體源</th><th data-i18n="src.th2">說明</th></tr></thead>
@@ -290,16 +290,16 @@
                 <hr class="rule">
 
                 <div class="h-kicker" data-i18n="search.kick">SMART SEARCH</div>
-                <h3 class="h-sub" data-i18n="search.h">統一搜尋 & TMDB 智慧推薦</h3>
-                <p class="p" data-i18n="search.p">從所有媒體伺服器中搜尋，智慧去重 — 相同影片自動合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。</p>
+                <h3 class="h-sub" data-i18n="search.h">跨伺服器搜尋 & TMDB 智慧推薦</h3>
+                <p class="p" data-i18n="search.p">從你的所有私人媒體伺服器中搜尋，自動識別重複項目合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。</p>
 
                 <div class="img-pair">
                     <img src="2.webp" alt="TVMate 媒體源選擇" loading="lazy">
                     <img src="4.webp" alt="TVMate 搜尋與瀏覽" loading="lazy">
                 </div>
-                <p class="n-caption" data-i18n="search.cap">左：多源媒體管理介面。右：智慧搜尋與 TMDB 資料匹配。</p>
+                <p class="n-caption" data-i18n="search.cap">左：多伺服器媒體庫管理介面。右：跨伺服器搜尋與 TMDB 資料匹配。</p>
 
-                <div class="pull-quote" data-i18n="pq1">「一個 App，管理所有影片庫。<br>從 Plex 到 NAS，全部統一。」</div>
+                <div class="pull-quote" data-i18n="pq1">「一個 App，連接你所有的<br>私人媒體伺服器。」</div>
             </div>
         </div>
     </section>
@@ -411,7 +411,7 @@
                         <tr><td data-i18n="tbl.r1">CRT 映像管模擬</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td><td class="ds">—</td></tr>
                         <tr><td data-i18n="tbl.r2">VHS 錄影帶盒風格</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td><td class="ds">—</td></tr>
                         <tr><td data-i18n="tbl.r3">影像升頻</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td></tr>
-                        <tr><td data-i18n="tbl.r4">多源聚合</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td></tr>
+                        <tr><td data-i18n="tbl.r4">多伺服器管理</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ds">—</td></tr>
                         <tr><td data-i18n="tbl.r5">TMDB 推薦</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
                         <tr><td data-i18n="tbl.r6">Dolby Vision</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
                         <tr><td data-i18n="tbl.r7">Dolby Atmos</td><td class="ck">✓</td><td class="ck">✓</td><td class="ds">—</td><td class="ck">✓</td></tr>
@@ -443,7 +443,7 @@ zh:{
 'np.left':'台灣 · Hen Works 出品',
 'np.right':'tvOS 15+ · Apple TV HD / 4K',
 'np.tagline':'你的個人媒體中心，盡在大螢幕。',
-'s1.h':'復古電影體驗 · 多源影音聚合 · 影像升頻',
+'s1.h':'復古電影體驗 · 多伺服器管理 · 影像升頻',
 's1.deck':'CRT 映像管效果 — 把客廳變回黃金年代的電影院',
 'crt.kick':'VINTAGE CINEMA',
 'crt.h':'CRT 映像管模擬',
@@ -465,7 +465,7 @@ zh:{
 'up.r1d':'高品質傳統演算法，穩定流暢',
 'up.cap':'無聲電影模式 — 黑白膠片、刮痕粒子、16fps 掉幀模擬。',
 'src.kick':'MEDIA SOURCES','src.h':'多伺服器媒體管理',
-'src.p':'一個 App 管理所有影片來源 — 動態添加 / 移除媒體源，統一首頁呈現所有伺服器內容，連線狀態即時指示。',
+'src.p':'一個 App 連接你所有的私人媒體伺服器 — 動態添加 / 移除播放來源，統一首頁呈現所有伺服器內容，連線狀態即時指示。',
 'src.th1':'媒體源','src.th2':'說明',
 'src.r1':'完整 Plex Media Server 支援，含 PIN 碼認證與資料庫瀏覽',
 'src.r2':'開源媒體伺服器，完整 API 整合',
@@ -473,10 +473,10 @@ zh:{
 'src.r4':'雲端硬碟存取（支援 OpenList 對接 Google Drive、OneDrive、Dropbox 等 50+ 雲盤）',
 'src.r5':'本地網路儲存直接存取',
 'hero.cap':'TVMate 主畫面 — 支援 Cinematic、Classic、PosterWall 三種輪播風格。',
-'search.kick':'SMART SEARCH','search.h':'統一搜尋 & TMDB 智慧推薦',
-'search.p':'從所有媒體伺服器中搜尋，智慧去重 — 相同影片自動合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。',
-'search.cap':'左：多源媒體管理介面。右：智慧搜尋與 TMDB 資料匹配。',
-'pq1':'「一個 App，管理所有影片庫。<br>從 Plex 到 NAS，全部統一。」',
+'search.kick':'SMART SEARCH','search.h':'跨伺服器搜尋 & TMDB 智慧推薦',
+'search.p':'從你的所有私人媒體伺服器中搜尋，自動識別重複項目合併顯示。整合 TMDB 提供個人化推薦：自動匹配本地影片與 TMDB 資料庫、詳情頁顯示相似影片、首頁「為你推薦」區塊、豐富海報與演員元資料、快取機制提升瀏覽速度。',
+'search.cap':'左：多伺服器媒體庫管理介面。右：跨伺服器搜尋與 TMDB 資料匹配。',
+'pq1':'「一個 App，連接你所有的<br>私人媒體伺服器。」',
 's2.h':'播放引擎 · Apple TV 專屬體驗 · 隱私保護',
 's2.deck':'基於 Apple AVPlayer 的高品質播放 — 從 HDR 到 Dolby Atmos 全面支援',
 'play.kick':'PLAYBACK ENGINE','play.h':'播放引擎',
@@ -518,7 +518,7 @@ zh:{
 'i18n.p':'繁體中文 — 完整本地化<br>English — Full localization<br>更多語言即將支援。',
 'tbl.title':'TVMate vs. 同類產品功能比較',
 'tbl.feat':'功能',
-'tbl.r1':'CRT 映像管模擬','tbl.r2':'VHS 錄影帶盒風格','tbl.r3':'影像升頻','tbl.r4':'多源聚合',
+'tbl.r1':'CRT 映像管模擬','tbl.r2':'VHS 錄影帶盒風格','tbl.r3':'影像升頻','tbl.r4':'多伺服器管理',
 'tbl.r5':'TMDB 推薦','tbl.r6':'Dolby Vision','tbl.r7':'Dolby Atmos',
 'tbl.r8':'家長控制','tbl.r9':'一次買斷','tbl.r10':'零追蹤隱私',
 'tbl.note':'✦ 資料來源：各產品官方網站，截至 2026 年 4 月 ✦',
@@ -532,7 +532,7 @@ en:{
 'np.left':'Taiwan · by Hen Works',
 'np.right':'tvOS 15+ · Apple TV HD / 4K',
 'np.tagline':'Your personal media center, on the big screen.',
-'s1.h':'Vintage Cinema · Multi-Source Aggregation · Image Upscaling',
+'s1.h':'Vintage Cinema · Multi-Server Management · Image Upscaling',
 's1.deck':'CRT tube effects — turn your living room back into a golden-age cinema',
 'crt.kick':'VINTAGE CINEMA',
 'crt.h':'CRT Tube Simulation',
@@ -554,7 +554,7 @@ en:{
 'up.r1d':'High-quality traditional algorithm, stable and smooth',
 'up.cap':'Silent Film mode — B&W film, scratch particles, 16fps frame-drop simulation.',
 'src.kick':'MEDIA SOURCES','src.h':'Multi-Server Media Management',
-'src.p':'One app to manage all your video sources — dynamically add/remove sources, unified homepage showing all server content, real-time connection status.',
+'src.p':'One app to connect all your private media servers — dynamically add/remove playback sources, unified homepage for all server content, real-time connection status.',
 'src.th1':'Source','src.th2':'Description',
 'src.r1':'Full Plex Media Server support with PIN authentication & library browsing',
 'src.r2':'Open-source media server with full API integration',
@@ -562,10 +562,10 @@ en:{
 'src.r4':'Cloud storage access (supports OpenList for Google Drive, OneDrive, Dropbox & 50+ cloud services)',
 'src.r5':'Direct local network storage access',
 'hero.cap':'TVMate home screen — supports Cinematic, Classic, and PosterWall carousel styles.',
-'search.kick':'SMART SEARCH','search.h':'Unified Search & TMDB Recommendations',
-'search.p':'Search across all media servers with smart deduplication — identical titles auto-merge. TMDB integration provides personalized recommendations: auto-matching local videos, similar title suggestions, "For You" homepage section, rich poster & cast metadata, and caching for faster browsing.',
-'search.cap':'Left: Multi-source media management. Right: Smart search with TMDB matching.',
-'pq1':'"One app to manage all your libraries.<br>From Plex to NAS, unified."',
+'search.kick':'SMART SEARCH','search.h':'Cross-Server Search & TMDB Recommendations',
+'search.p':'Search across all your private media servers, automatically identifying duplicate items and merging them. TMDB integration provides personalized recommendations: auto-matching local videos, similar title suggestions, "For You" homepage section, rich poster & cast metadata, and caching for faster browsing.',
+'search.cap':'Left: Multi-server media library management. Right: Cross-server search with TMDB matching.',
+'pq1':'"One app to connect all your<br>private media servers."',
 's2.h':'Playback Engine · Apple TV Experience · Privacy',
 's2.deck':'High-quality playback powered by Apple AVPlayer — full HDR to Dolby Atmos support',
 'play.kick':'PLAYBACK ENGINE','play.h':'Playback Engine',
@@ -607,7 +607,7 @@ en:{
 'i18n.p':'繁體中文 — Full localization<br>English — Full localization<br>More languages coming soon.',
 'tbl.title':'TVMate vs. Competitors',
 'tbl.feat':'Feature',
-'tbl.r1':'CRT Tube Simulation','tbl.r2':'VHS Tape Style','tbl.r3':'Image Upscaling','tbl.r4':'Multi-Source',
+'tbl.r1':'CRT Tube Simulation','tbl.r2':'VHS Tape Style','tbl.r3':'Image Upscaling','tbl.r4':'Multi-Server Mgmt',
 'tbl.r5':'TMDB Recommendations','tbl.r6':'Dolby Vision','tbl.r7':'Dolby Atmos',
 'tbl.r8':'Parental Controls','tbl.r9':'One-Time Purchase','tbl.r10':'Zero-Tracking Privacy',
 'tbl.note':'✦ Data from official product websites, as of April 2026 ✦',
@@ -627,11 +627,11 @@ function setLang(lang){
     document.querySelectorAll('#langBtns button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
     // Update meta for SEO
     if(lang==='en'){
-        document.title='TVMate — Vintage Media Player for Apple TV | CRT Simulation & Multi-Source | Hen Works';
+        document.title='TVMate — Vintage Media Player for Apple TV | CRT Simulation & Multi-Server | Hen Works';
         document.querySelector('meta[name="description"]').content='TVMate brings vintage cinema to Apple TV. Real-time CRT tube simulation, VHS tape style, image upscaling, Plex/Jellyfin/Emby/WebDAV/SMB multi-source. One-time purchase, ad-free forever.';
     }else{
-        document.title='TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多源影音聚合 | Hen Works';
-        document.querySelector('meta[name="description"]').content='TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、支援 Plex / Jellyfin / Emby / WebDAV / SMB 多源聚合。一次買斷，永久免廣告。';
+        document.title='TVMate — Apple TV 復古媒體播放器 | CRT 映像管模擬、多伺服器統一管理 | Hen Works';
+        document.querySelector('meta[name="description"]').content='TVMate 為 Apple TV 打造復古電影院體驗。CRT 映像管即時模擬、VHS 錄影帶盒風格、影像升頻、統一管理你的 Plex / Jellyfin / Emby / WebDAV / SMB 私人媒體庫。一次買斷，永久免廣告。';
     }
 }
 
