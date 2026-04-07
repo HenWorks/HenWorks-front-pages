@@ -20,539 +20,400 @@
     <meta name="twitter:description" content="CIFilter vintage poster tones, CRT tube simulation, multi-source media aggregation. Relive the warmth of classic movie theaters.">
     <meta name="twitter:image" content="https://henworks.com/products/TVMate/1.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --bg:#0A0A0A;--card:#111111;--white:#FFFFFF;--black:#000000;
-            --gray:#999999;--gray-light:#666666;--gray-border:rgba(255,255,255,0.1);
+            --ink:#1C1C1C;--ink-light:#4A4A4A;--ink-muted:#7A7060;
+            --paper:#F2E6D0;--paper-dark:#E8D9BF;--paper-border:#C4B598;
             --warm:#E8A04C;--warm-soft:#F5D08A;--warm-deep:#C4722A;
-            --sepia:#D4A574;--sepia-dark:#8B6914;
-            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+            --sepia:#D4A574;--red-accent:#8B2500;
+            --rule:#2A2A2A;--rule-light:#B0A48C;
+            --font-head:'Playfair Display',Georgia,'Times New Roman',serif;
+            --font-body:'Newsreader',Georgia,'Times New Roman',serif;
+            --font-ui:'Inter',-apple-system,sans-serif;
         }
         html{scroll-behavior:smooth}
-        body{font-family:var(--font);background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
+        body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
 
-        /* === Animations === */
-        @keyframes fadeUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-        @keyframes slideLeft{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes slideRight{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-10%)}30%{transform:translate(3%,5%)}50%{transform:translate(-2%,8%)}70%{transform:translate(5%,-3%)}90%{transform:translate(-3%,2%)}}
-        @keyframes flicker{0%,100%{opacity:.97}50%{opacity:1}}
-        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-        .anim.show{opacity:1;transform:translateY(0)}
-        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}.anim.d4{transition-delay:.4s}
+        /* === Paper texture === */
+        .paper-page{
+            max-width:1100px;margin:0 auto;
+            background:url('paper-bg.webp') center/cover;
+            background-color:var(--paper);
+            position:relative;
+        }
+        .paper-page::before{
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(180deg,rgba(242,230,208,.95) 0%,rgba(242,230,208,.88) 50%,rgba(232,217,191,.92) 100%);
+            pointer-events:none;
+        }
 
-        /* === Page wrapper === */
-        .page{max-width:1280px;margin:0 auto;padding:0 24px 24px}
+        /* === Top Section === */
+        .top-section{
+            position:relative;z-index:1;
+            padding:28px 36px;
+        }
 
-        /* === Nav === */
-        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-border)}
-        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-        .nav-logo span{font-size:18px;font-weight:800;color:var(--warm);letter-spacing:-.02em}
-        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
-        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s}
-        .nav-links a:hover,.nav-links a.active{color:var(--white)}
-        .nav-spacer{flex:1}
-        .nav-lang{display:flex;gap:4px;margin-right:16px}
-        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
-        .nav-lang button.active{background:var(--warm);color:var(--black)}
-        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--warm);color:var(--black);font-size:13px;font-weight:700;text-decoration:none;transition:all .3s}
-        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,160,76,.3)}
+        /* === Headline === */
+        .headline{
+            font-family:var(--font-head);font-size:46px;font-weight:900;
+            text-align:center;line-height:1.1;letter-spacing:-.5px;
+            color:var(--ink);margin-bottom:6px;
+        }
 
-        /* === Hero === */
-        .hero{display:flex;align-items:center;padding:80px 64px 60px;gap:64px;min-height:640px;position:relative;overflow:hidden}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(232,160,76,.06) 0%,transparent 60%);pointer-events:none}
-        .hero-text{flex:0 0 440px;animation:slideRight 1s cubic-bezier(.16,1,.3,1);position:relative;z-index:2}
-        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:rgba(232,160,76,.15);border:1px solid rgba(232,160,76,.2);font-size:12px;font-weight:600;color:var(--warm);margin-bottom:20px}
-        .hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--warm);animation:flicker 2s ease-in-out infinite}
-        .hero h1{font-size:48px;font-weight:900;line-height:1.08;margin-bottom:20px;letter-spacing:-.03em}
-        .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--warm) 0%,var(--warm-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-        .hero-desc{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:24px;max-width:420px}
-        .hero-platforms{display:flex;gap:12px;margin-bottom:32px}
-        .platform-tag{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid var(--gray-border);color:var(--gray);transition:all .3s}
-        .platform-tag:hover{border-color:var(--warm);color:var(--warm)}
-        .hero-cta-group{display:flex;gap:12px;align-items:center}
-        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:var(--warm);color:var(--black);font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .3s}
-        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(232,160,76,.3)}
-        .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;background:transparent;color:var(--white);font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid var(--gray-border);cursor:pointer;transition:all .3s}
-        .btn-secondary:hover{border-color:var(--warm);color:var(--warm);transform:translateY(-2px)}
+        /* === 3-Column Body === */
+        .cols-3{display:flex;gap:0;padding-top:6px}
+        .col-L{width:310px;flex-shrink:0;padding-right:14px;border-right:1px solid var(--rule-light)}
+        .col-M{flex:1;padding:0 14px;border-right:1px solid var(--rule-light)}
+        .col-R{width:340px;flex-shrink:0;padding-left:14px}
 
-        /* === TV Carousel === */
-        .hero-tv{flex:1;display:flex;flex-direction:column;align-items:center;animation:slideLeft 1s cubic-bezier(.16,1,.3,1) .15s both;position:relative}
-        .tv-frame{width:100%;max-width:640px;position:relative}
-        .tv-screen{width:100%;border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6),0 0 60px rgba(232,160,76,.08);position:relative;aspect-ratio:16/9;background:#111}
-        /* Film grain overlay */
-        .tv-screen::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5;pointer-events:none;animation:grain 8s steps(10) infinite;mix-blend-mode:overlay;z-index:3}
-        /* CRT vignette */
-        .tv-screen::before{content:'';position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 0 100px rgba(0,0,0,.4);pointer-events:none;z-index:2}
-        .carousel-vp{width:100%;height:100%;overflow:hidden;position:relative}
-        .carousel-track{display:flex;height:100%;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-        .carousel-slide{min-width:100%;height:100%}
-        .carousel-slide img{width:100%;height:100%;object-fit:cover}
-        .carousel-arrows{position:absolute;bottom:16px;right:16px;display:flex;gap:8px;z-index:5}
-        .c-arrow{width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);backdrop-filter:blur(10px);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-        .c-arrow:hover{background:var(--warm);color:var(--black);border-color:var(--warm);transform:scale(1.1)}
-        .carousel-dots{display:flex;gap:8px;justify-content:center;padding:16px 0 8px}
-        .c-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .3s}
-        .c-dot.active{background:var(--warm);transform:scale(1.3)}
-        /* TV stand */
-        .tv-stand{width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center}
-        .tv-stand-top{width:60%;height:3px;background:linear-gradient(90deg,transparent,rgba(232,160,76,.3),transparent);border-radius:2px}
-        .tv-stand-leg{width:30%;height:6px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);border-radius:0 0 4px 4px}
+        /* === Typography === */
+        .body-text{
+            font-family:var(--font-body);font-size:14px;font-weight:400;
+            color:var(--ink-light);line-height:1.55;
+            text-indent:2em;margin-bottom:8px;
+        }
+        .body-text.italic{font-style:italic}
+        .body-text.no-indent{text-indent:0}
+        .col-heading{
+            font-family:var(--font-head);font-size:17px;font-weight:700;
+            font-style:italic;color:var(--ink);margin:14px 0 6px;
+        }
+        .col-heading.center{text-align:center}
+        .caps-block{
+            font-family:var(--font-body);font-size:13px;font-weight:600;
+            color:var(--ink);line-height:1.5;margin:8px 0;
+        }
+        .caps-block small{font-weight:400;color:var(--ink-light)}
+        .img-caption{
+            font-family:var(--font-body);font-size:11px;font-style:italic;
+            color:var(--ink-muted);line-height:1.4;margin:4px 0 8px;
+        }
 
-        /* === Slide Info === */
-        .slide-info{display:flex;padding:40px 64px;gap:40px;border-top:1px solid var(--gray-border);background:var(--card);border-radius:0 0 24px 24px}
-        .slide-meta{flex:0 0 300px;transition:opacity .4s,transform .4s}
-        .slide-num{font-size:64px;font-weight:900;color:var(--warm);line-height:1}
-        .slide-ttl{font-size:20px;font-weight:700;margin:8px 0}
-        .slide-dsc{font-size:14px;color:var(--gray);line-height:1.8}
-        .slide-thumbs{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-        .s-thumb{aspect-ratio:16/9;border-radius:12px;background:#1A1A1A;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;cursor:pointer;transition:all .3s;border:2px solid transparent;position:relative;overflow:hidden}
-        .s-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 50%,transparent 100%);z-index:1;transition:all .3s}
-        .s-thumb.active{border-color:var(--warm);box-shadow:0 4px 16px rgba(232,160,76,.2)}
-        .s-thumb.active::before{background:linear-gradient(to top,rgba(139,105,20,.6) 0%,rgba(139,105,20,.2) 50%,transparent 100%)}
-        .s-thumb:hover:not(.active){transform:translateY(-4px)}
-        .s-thumb-n{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);position:relative;z-index:2}.s-thumb.active .s-thumb-n{color:var(--warm)}
-        .s-thumb-t{font-size:10px;color:rgba(255,255,255,.9);font-weight:500;position:relative;z-index:2}.s-thumb.active .s-thumb-t{color:#fff;font-weight:600}
+        /* === Images === */
+        .col-img{
+            width:100%;border-radius:2px;
+            border:1px solid var(--ink);
+            object-fit:cover;
+        }
+        .col-img-row{display:flex;gap:6px;margin:6px 0}
+        .col-img-row img{flex:1;height:120px;object-fit:cover;border:1px solid var(--ink);border-radius:2px}
 
-        /* === Features === */
-        .features{padding:80px 0}
-        .section-hdr{text-align:center;margin-bottom:56px}
-        .section-hdr h2{font-size:42px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
-        .section-hdr h2 em{font-style:normal;color:var(--warm)}
-        .section-hdr p{font-size:16px;color:var(--gray)}
-        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
-        .feat-card{background:var(--card);border:1px solid var(--gray-border);border-radius:20px;padding:36px;transition:all .4s}
-        .feat-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(232,160,76,.08);border-color:rgba(232,160,76,.2)}
-        .feat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px}
-        .feat-icon.warm{background:rgba(232,160,76,.12)}.feat-icon.sepia{background:rgba(212,165,116,.12)}.feat-icon.cool{background:rgba(100,149,237,.1)}.feat-icon.green{background:rgba(16,185,129,.1)}
-        .feat-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
-        .feat-card p{font-size:14px;color:var(--gray);line-height:1.7}
+        /* === Bottom Section === */
+        .bottom-section{
+            position:relative;z-index:1;
+            padding:0 36px 8px;
+        }
+        .cols-3-bottom{display:flex;gap:0}
+        .col-b1{flex:1;padding-right:14px;border-right:1px solid var(--rule-light)}
+        .col-b2{flex:1;padding:0 14px;border-right:1px solid var(--rule-light)}
+        .col-b3{width:420px;flex-shrink:0;padding-left:14px}
 
-        /* === How It Works === */
-        .how{padding:80px 0}
-        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1100px;margin:56px auto 0}
-        .step{text-align:center;position:relative}
-        .step-n{font-size:72px;font-weight:900;color:var(--warm);line-height:1;margin-bottom:12px;opacity:.6}
-        .step h3{font-size:18px;font-weight:700;margin-bottom:8px}
-        .step p{font-size:14px;color:var(--gray);line-height:1.7}
+        /* === Brand Box === */
+        .brand-box{
+            border:3px solid var(--ink);padding:6px 14px 4px;
+            display:flex;flex-direction:column;align-items:center;
+            margin-bottom:6px;
+        }
+        .brand-box .brand-name{
+            font-family:var(--font-head);font-size:28px;font-weight:900;
+            letter-spacing:1px;color:var(--ink);
+        }
+        .brand-box .brand-sub{
+            font-family:var(--font-body);font-size:10px;color:var(--ink-muted);
+        }
 
-        /* === Source Support === */
-        .sources{padding:80px 0}
-        .source-grid{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;max-width:800px;margin:40px auto 0}
-        .source-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 32px;background:var(--card);border:1px solid var(--gray-border);border-radius:16px;transition:all .3s;min-width:140px}
-        .source-item:hover{border-color:var(--warm);transform:translateY(-4px);box-shadow:0 8px 24px rgba(232,160,76,.1)}
-        .source-icon{font-size:32px}
-        .source-name{font-size:14px;font-weight:600}
-        .source-desc{font-size:11px;color:var(--gray-light)}
+        /* === Comparison Table === */
+        .tbl-title{
+            font-family:var(--font-body);font-size:12px;font-weight:600;
+            color:var(--ink);margin:4px 0 2px;
+        }
+        .cmp-table{width:100%;border:1px solid var(--ink);border-collapse:collapse;font-family:var(--font-body)}
+        .cmp-table th{
+            background:var(--ink);color:var(--paper);
+            font-size:10px;font-weight:700;padding:3px 4px;
+            text-align:center;
+        }
+        .cmp-table th:first-child{text-align:left;width:120px;padding-left:6px}
+        .cmp-table td{
+            font-size:10px;padding:2px 4px;text-align:center;
+            border-bottom:1px solid rgba(0,0,0,.06);
+        }
+        .cmp-table td:first-child{text-align:left;font-weight:400;padding-left:6px}
+        .cmp-table tr:nth-child(odd){background:rgba(232,160,76,.08)}
+        .cmp-table tr:nth-child(even){background:rgba(212,165,116,.06)}
+        .cmp-table .check{color:var(--red-accent);font-weight:700}
+        .cmp-table .dash{color:var(--ink-muted)}
+        .tbl-note{
+            font-family:var(--font-body);font-size:9px;color:var(--ink-muted);
+            text-align:center;letter-spacing:1px;line-height:1.5;margin-top:4px;
+        }
 
-        /* === CTA === */
-        .cta{padding:80px 64px;text-align:center;background:var(--card);border:1px solid var(--gray-border);border-radius:24px;margin:0 0 24px;position:relative;overflow:hidden}
-        .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(232,160,76,.08) 0%,transparent 60%);pointer-events:none}
-        .cta h2{font-size:44px;font-weight:800;max-width:640px;margin:0 auto 12px;line-height:1.12;letter-spacing:-.02em;position:relative}
-        .cta h2 em{font-style:normal;color:var(--warm)}
-        .cta>p{font-size:16px;color:var(--gray);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
-        .cta-soon{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:14px;background:rgba(232,160,76,.15);border:1.5px solid rgba(232,160,76,.3);color:var(--warm);font-size:16px;font-weight:700;position:relative}
-        .cta-soon::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--warm);animation:flicker 2s ease-in-out infinite}
+        /* === Divider === */
+        .divider{border:none;border-top:1px solid var(--rule-light);margin:12px 0}
+        .divider.thick{border-top:2px solid var(--ink)}
+
+        /* === Language Toggle === */
+        .lang-bar{
+            position:sticky;top:0;z-index:100;
+            background:var(--ink);color:var(--paper);
+            display:flex;justify-content:space-between;align-items:center;
+            padding:8px 36px;font-family:var(--font-ui);
+        }
+        .lang-bar .masthead{font-family:var(--font-head);font-size:14px;font-weight:700;letter-spacing:1px}
+        .lang-btns{display:flex;gap:4px}
+        .lang-btns button{
+            padding:4px 10px;border:1px solid rgba(242,230,208,.3);border-radius:4px;
+            background:transparent;color:var(--paper);font-size:11px;font-weight:600;
+            cursor:pointer;transition:all .2s;font-family:var(--font-ui);
+        }
+        .lang-btns button.active{background:var(--warm);color:var(--ink);border-color:var(--warm)}
+        .lang-btns button:hover:not(.active){border-color:var(--warm);color:var(--warm)}
 
         /* === Footer === */
-        .footer{padding:40px 0}
-        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
-        .footer-brand{display:flex;flex-direction:column;gap:6px}
-        .footer-brand span{font-weight:800;font-size:16px;color:var(--warm)}
-        .footer-brand small{font-size:12px;color:var(--gray-light)}
-        .footer-links{display:flex;gap:56px}
-        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
-        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
-        .footer-col a:hover{color:var(--warm)}
-        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+        .paper-footer{
+            position:relative;z-index:1;
+            text-align:center;padding:12px 36px 16px;
+            font-size:10px;color:var(--ink-muted);
+            border-top:2px solid var(--ink);
+            margin:0 36px;
+        }
 
         /* === Responsive === */
         @media(max-width:1024px){
-            .hero{flex-direction:column;padding:48px 32px 40px;min-height:auto;gap:32px}
-            .hero-text{flex:none;width:100%;text-align:center}
-            .hero h1{font-size:36px}
-            .hero-desc{margin-left:auto;margin-right:auto}
-            .hero-platforms{justify-content:center}
-            .hero-cta-group{justify-content:center}
-            .hero-tv{width:100%}
-            .slide-info{flex-direction:column;padding:32px}
-            .slide-thumbs{grid-template-columns:repeat(2,1fr)}
-            .feat-grid{grid-template-columns:1fr 1fr}
-            .steps{grid-template-columns:repeat(2,1fr)}
-            .nav{padding:0 24px}
+            .cols-3{flex-direction:column}
+            .col-L,.col-M,.col-R{width:100%;padding:0;border-right:none;border-bottom:1px solid var(--rule-light);padding-bottom:16px;margin-bottom:16px}
+            .col-R{border-bottom:none;margin-bottom:0}
+            .cols-3-bottom{flex-direction:column}
+            .col-b1,.col-b2,.col-b3{width:100%;padding:0;border-right:none;border-bottom:1px solid var(--rule-light);padding-bottom:16px;margin-bottom:16px}
+            .col-b3{border-bottom:none;margin-bottom:0}
+            .headline{font-size:32px}
         }
         @media(max-width:640px){
-            .page{padding:0 12px 12px}
-            .nav{padding:0 12px;height:52px}
-            .nav-links{display:none}
-            .nav-lang{margin-right:4px;gap:2px}
-            .nav-lang button{padding:4px 6px;font-size:10px}
-            .nav-cta{padding:6px 12px;font-size:11px;gap:4px}
-            .hero{padding:32px 20px 28px;gap:24px}
-            .hero h1{font-size:28px}
-            .hero-desc{font-size:14px}
-            .hero-cta-group{flex-direction:column;width:100%}
-            .btn-primary,.btn-secondary{padding:12px 24px;font-size:14px;width:100%;justify-content:center}
-            .slide-info{padding:24px 20px;gap:20px}
-            .slide-num{font-size:48px}
-            .slide-thumbs{grid-template-columns:repeat(2,1fr);gap:8px}
-            .features,.how,.sources{padding:48px 20px}
-            .section-hdr{margin-bottom:32px}
-            .section-hdr h2{font-size:28px}
-            .feat-grid{grid-template-columns:1fr;gap:12px}
-            .steps{grid-template-columns:1fr}
-            .source-grid{gap:12px}
-            .source-item{min-width:120px;padding:16px 20px}
-            .cta{padding:48px 20px}
-            .cta h2{font-size:26px}
-            .footer{padding:32px 20px}
-            .footer-top{flex-direction:column;gap:24px}
-            .footer-links{flex-direction:column;gap:24px}
+            .top-section,.bottom-section{padding:16px 16px}
+            .lang-bar{padding:8px 16px}
+            .headline{font-size:24px}
+            .paper-footer{margin:0 16px}
+            .col-img-row img{height:80px}
         }
     </style>
 </head>
 <body>
 
-<!-- ===== MAIN PAGE ===== -->
-<div class="page">
+<!-- Language Bar -->
+<div class="lang-bar">
+    <div class="masthead">TVMate</div>
+    <div class="lang-btns" id="langBtns">
+        <button data-lang="zh" class="active">中文</button>
+        <button data-lang="en">EN</button>
+    </div>
+</div>
 
-    <!-- Nav -->
-    <nav class="nav" id="mainNav">
-        <a href="/" class="nav-logo">
-            <span>TVMate</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#features" class="active" data-i18n="nav.features">Features</a></li>
-            <li><a href="#how" data-i18n="nav.how">How it works</a></li>
-            <li><a href="#sources" data-i18n="nav.sources">Sources</a></li>
-        </ul>
-        <div class="nav-spacer"></div>
-        <div class="nav-lang" id="navLang">
-            <button data-lang="zh" class="active">中文</button>
-            <button data-lang="en">EN</button>
-            <button data-lang="ja">日本語</button>
-            <button data-lang="ko">한국어</button>
-        </div>
-        <a href="#cta" class="nav-cta" data-i18n="nav.cta">Coming Soon</a>
-    </nav>
+<div class="paper-page">
 
-    <!-- Hero -->
-    <section class="hero" id="heroSection">
-        <div class="hero-text">
-            <div class="hero-badge" data-i18n="hero.badge">Vintage Cinema Experience</div>
-            <h1><span data-i18n="hero.title1">你的客廳，</span><br><em data-i18n="hero.title2">復古電影院</em></h1>
-            <p class="hero-desc" data-i18n="hero.desc">TVMate 為 Apple TV 和 Android TV 打造復古影音體驗。CIFilter 像素級海報色調、CRT 映像管模擬，搭配多源影音聚合，在大螢幕上重現經典電影院的溫暖氛圍。</p>
-            <div class="hero-platforms">
-                <span class="platform-tag">Apple TV</span>
-                <span class="platform-tag">Android TV</span>
-                <span class="platform-tag">tvOS 15+</span>
-            </div>
-            <div class="hero-cta-group">
-                <a href="#cta" class="btn-primary" data-i18n="hero.cta">即將上線</a>
-                <a href="#features" class="btn-secondary" data-i18n="hero.learn">了解更多</a>
-            </div>
-        </div>
+    <!-- ===== TOP SECTION ===== -->
+    <div class="top-section">
 
-        <div class="hero-tv">
-            <div class="tv-frame">
-                <div class="tv-screen">
-                    <div class="carousel-vp" id="carousel">
-                        <div class="carousel-track" id="cTrack">
-                            <div class="carousel-slide"><img src="1.webp" alt="TVMate Home" loading="lazy"></div>
-                            <div class="carousel-slide"><img src="2.webp" alt="Media Sources" loading="lazy"></div>
-                            <div class="carousel-slide"><img src="4.webp" alt="Search & Browse" loading="lazy"></div>
-                            <div class="carousel-slide"><img src="3.webp" alt="Server Setup" loading="lazy"></div>
-                        </div>
-                        <div class="carousel-arrows">
-                            <button class="c-arrow" onclick="cPrev()">&#8249;</button>
-                            <button class="c-arrow" onclick="cNext()">&#8250;</button>
-                        </div>
-                    </div>
+        <h1 class="headline" data-i18n="headline">如何為你的客廳，挑選最好的<br>復古電影體驗</h1>
+
+        <div class="cols-3">
+
+            <!-- Column Left -->
+            <div class="col-L">
+                <p class="body-text italic" data-i18n="cL.p1">許多人會好奇，是否需要犧牲畫質才能獲得復古觀影體驗？完全不需要。以 TVMate 最佳 19 吋（對角線）復古影音播放器為例，您獲得的畫質與大型主機完全相同。從電子技術角度而言基本相同，只是外觀更為精巧緊湊。無論您選擇哪種裝置，購買前最重要的兩個問題是：復古效果品質如何？設定是否容易？</p>
+
+                <h3 class="col-heading" data-i18n="cL.h1">色調與 TVMate 的優勢</h3>
+                <p class="body-text" data-i18n="cL.p2">並非所有播放器都能持續提供優質的復古色調。某些產品上，您會看到不自然的偏色或過度飽和。TVMate 的解決方案是一項名為 ATL（自動色調鎖定）的巧妙技術。只需按下 TVMate 上的 ATL 按鈕，即可自動獲得自然的復古色調。即使切換頻道也能保持。此外，TVMate 還配備：</p>
+
+                <div class="caps-block" data-i18n="cL.caps">
+                    KEYED AUTOMATIC GAIN CONTROL<br><small>— 防止畫面閃爍</small><br>
+                    AUTOMATIC CHROMA CONTROL<br><small>— 色彩穩定不漂移</small><br>
+                    AUTOMATIC COLOR PURIFIER<br><small>— 色彩純淨還原</small>
                 </div>
-            </div>
-            <div class="tv-stand"><div class="tv-stand-top"></div><div class="tv-stand-leg"></div></div>
-            <div class="carousel-dots" id="cDots"></div>
-        </div>
-    </section>
 
-    <!-- Slide Info -->
-    <div class="slide-info" id="slideInfo">
-        <div class="slide-meta" id="slideMeta">
-            <div class="slide-num" id="sNum">01</div>
-            <div class="slide-ttl" id="sTtl">Apple TV 主畫面</div>
-            <div class="slide-dsc" id="sDsc">復古風格的 TVMate 主介面，支援遙控器快速導航與聚焦互動。</div>
+                <h3 class="col-heading" data-i18n="cL.h2">智慧篩選與為何 TVMate 採用此技術</h3>
+                <p class="body-text" data-i18n="cL.p3">TVMate 內建 AFC — 自動篩選控制。在較好的播放器上才會配備。AFC 能在您開啟裝置時自動微調畫面，切換來源時也會自動調整。許多人無法像 AFC 那樣精細地調校。TVMate 將 AFC 應用於其最佳復古播放器及大多數其他型號。</p>
+            </div>
+
+            <!-- Column Middle -->
+            <div class="col-M">
+                <p class="body-text" data-i18n="cM.p1">此外，TVMate 還展現了強大的多源聚合能力。支援 Jellyfin、Plex、Emby、WebDAV 及 SMB 等多種來源。一個 App 統一管理所有影片庫。</p>
+
+                <h3 class="col-heading center" data-i18n="cM.h1">多源影音，進階功能</h3>
+                <p class="body-text" data-i18n="cM.p2">寬螢幕畫面讓您看到比以往更多的影像內容。如同許多近年的創新，TVMate 最佳復古播放器搭載寬螢幕功能。明亮映像管為您呈現明亮、清晰、銳利的畫面。TVMate 在其最佳播放器中使用了頂級明亮映像管，讓您在不沖淡暗色調的前提下獲得出色亮度。蝕刻玻璃面板減少眩光 — 就像燈罩一樣。蝕刻面板雖然成本更高，但 TVMate 將其用在最佳播放器上。光線擴散螢幕如同遮陽板。如果您的裝置在明亮房間中使用，它能防止強光沖淡畫面。幾乎沒有其他品牌在其最佳播放器上配備光線擴散螢幕，TVMate 則有。</p>
+
+                <div class="col-img-row">
+                    <img src="2.webp" alt="TVMate screenshot 1" loading="lazy">
+                    <img src="4.webp" alt="TVMate screenshot 2" loading="lazy">
+                </div>
+                <p class="img-caption" data-i18n="cM.cap">某些播放器的人臉會偏紅，甚至偏綠。TVMate 的自動色調鎖定讓色彩自然呈現。</p>
+
+                <p class="body-text" data-i18n="cM.p3">Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組。</p>
+            </div>
+
+            <!-- Column Right -->
+            <div class="col-R">
+                <img src="1.webp" alt="TVMate main interface" class="col-img" style="height:240px" loading="lazy">
+                <p class="img-caption" data-i18n="cR.cap">TVMate 最佳 19 吋（對角線）復古影音播放器，支援自動色調鎖定與智慧篩選功能。</p>
+
+                <p class="body-text" data-i18n="cR.p1">您可以信賴 TVMate 的服務品質。無論您搬到街對面還是國家的另一端。事實上，我們甚至在出貨前就逐一檢查每個版本。當您從 App Store 購買 TVMate 時，您的應用程式在安裝前已經過完整測試。並非所有開發商都這樣做。如果 TVMate 需要任何支援，我們將直接為您到府服務。您不必把裝置送回。並非所有零售商都提供 19 吋（對角線）裝置的到府服務。</p>
+
+                <p class="body-text" data-i18n="cR.p2">除了 TVMate 最佳復古影音播放器外，我們的商店和目錄中還有許多其他復古影音應用可供選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。</p>
+
+                <p class="body-text no-indent" data-i18n="cR.close" style="margin-top:12px">
+                    　　歡迎前往<br>
+                    　　App Store<br>
+                    　　立即體驗
+                </p>
+            </div>
+
         </div>
-        <div class="slide-thumbs" id="sThumbs"></div>
     </div>
 
-    <!-- Features -->
-    <section class="features" id="features">
-        <div class="section-hdr anim"><h2><span data-i18n="feat.title1">復古光影，</span><em data-i18n="feat.title2">重新定義</em></h2><p data-i18n="feat.sub">從海報到播放，每一幀都充滿電影感。</p></div>
-        <div class="feat-grid">
-            <div class="feat-card anim"><div class="feat-icon warm">&#127910;</div><h3 data-i18n="feat.1t">復古海報色調</h3><p data-i18n="feat.1d">CIFilter 像素級處理，透過 Sepia、色溫偏暖、膠片顆粒等效果鏈，讓每張海報都散發經典電影院的溫暖質感。</p></div>
-            <div class="feat-card anim d1"><div class="feat-icon sepia">&#128250;</div><h3 data-i18n="feat.2t">CRT 映像管模擬</h3><p data-i18n="feat.2d">Metal 驅動的掃描線、螢幕曲面、磷光點與暖色暗角。四段可調：關閉、輕微、標準、強烈復古。</p></div>
-            <div class="feat-card anim d2"><div class="feat-icon cool">&#127916;</div><h3 data-i18n="feat.3t">多源影音聚合</h3><p data-i18n="feat.3d">支援 Jellyfin、Plex、Emby、WebDAV、SMB 等多種媒體來源，一個 App 統一管理所有影片庫。</p></div>
-            <div class="feat-card anim"><div class="feat-icon green">&#128187;</div><h3 data-i18n="feat.4t">雙平台統一體驗</h3><p data-i18n="feat.4d">Apple TV (tvOS) 與 Android TV 雙平台原生開發，共用設計語言與功能集，確保一致的觀影體驗。</p></div>
-            <div class="feat-card anim d1"><div class="feat-icon warm">&#127760;</div><h3 data-i18n="feat.5t">智慧搜尋與篩選</h3><p data-i18n="feat.5d">依類型、年份、地區、評分多維度篩選。支援語音搜尋與鍵盤輸入，快速找到想看的內容。</p></div>
-            <div class="feat-card anim d2"><div class="feat-icon sepia">&#128274;</div><h3 data-i18n="feat.6t">完整隱私保護</h3><p data-i18n="feat.6d">所有影片處理在裝置本地完成。播放記錄、收藏清單純本地存儲，不上傳任何資料到雲端。</p></div>
-        </div>
-    </section>
+    <hr class="divider thick" style="margin:0 36px">
 
-    <!-- How It Works -->
-    <section class="how" id="how">
-        <div class="section-hdr anim"><h2 data-i18n="how.title">開始使用</h2><p data-i18n="how.sub">四個步驟，打造你的復古家庭影院</p></div>
-        <div class="steps">
-            <div class="step anim"><div class="step-n">01</div><h3 data-i18n="how.1t">安裝 TVMate</h3><p data-i18n="how.1d">從 App Store 或 Google Play 下載安裝到你的 Apple TV 或 Android TV。</p></div>
-            <div class="step anim d1"><div class="step-n">02</div><h3 data-i18n="how.2t">新增媒體源</h3><p data-i18n="how.2d">連接你的 Jellyfin、Plex、Emby 伺服器，或輸入 WebDAV/SMB 位址。</p></div>
-            <div class="step anim d2"><div class="step-n">03</div><h3 data-i18n="how.3t">選擇復古風格</h3><p data-i18n="how.3d">在設定中選擇 CRT 效果等級：輕微、標準或強烈復古，即時預覽效果。</p></div>
-            <div class="step anim d3"><div class="step-n">04</div><h3 data-i18n="how.4t">享受觀影</h3><p data-i18n="how.4d">坐上沙發，拿起遙控器，沉浸在復古電影院的氛圍中。</p></div>
-        </div>
-    </section>
+    <!-- ===== BOTTOM SECTION ===== -->
+    <div class="bottom-section">
+        <div class="cols-3-bottom">
 
-    <!-- Source Support -->
-    <section class="sources" id="sources">
-        <div class="section-hdr anim"><h2 data-i18n="src.title">支援媒體源</h2><p data-i18n="src.sub">連接你已有的影片庫，無需遷移</p></div>
-        <div class="source-grid">
-            <div class="source-item anim"><div class="source-icon">&#128230;</div><div class="source-name">Jellyfin</div><div class="source-desc" data-i18n="src.jellyfin">開源媒體系統</div></div>
-            <div class="source-item anim d1"><div class="source-icon">&#9654;&#65039;</div><div class="source-name">Plex</div><div class="source-desc" data-i18n="src.plex">Plex Media Server</div></div>
-            <div class="source-item anim d2"><div class="source-icon">&#128251;</div><div class="source-name">Emby</div><div class="source-desc" data-i18n="src.emby">Emby Server</div></div>
-            <div class="source-item anim d3"><div class="source-icon">&#128193;</div><div class="source-name">WebDAV</div><div class="source-desc" data-i18n="src.webdav">WebDAV / OpenList</div></div>
-            <div class="source-item anim d4"><div class="source-icon">&#128421;</div><div class="source-name">SMB</div><div class="source-desc" data-i18n="src.smb">本地 NAS 共享</div></div>
-        </div>
-    </section>
+            <!-- Column B1 -->
+            <div class="col-b1">
+                <p class="body-text" style="font-size:13px" data-i18n="c1.t">並非所有零售商都維修他們賣的產品。TVMate 則不同。如果您的 TVMate 需要任何支援，我們將直接為您提供服務。您不必把裝置寄回。並非所有開發商都提供到府服務。除了 TVMate 最佳復古影音播放器外，我們的商店中還有許多其他復古影音選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購或 Google Play 訂閱方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。</p>
+                <p class="body-text no-indent" data-i18n="c1.cta" style="font-size:13px;margin-top:8px">
+                    　　歡迎前往<br>
+                    　　App Store<br>
+                    　　立即體驗
+                </p>
+            </div>
 
-    <!-- CTA -->
-    <section class="cta anim" id="cta">
-        <h2><span data-i18n="cta.t1">你的客廳，</span><br><em data-i18n="cta.t2">復古電影院</em></h2>
-        <p data-i18n="cta.d">TVMate 即將登陸 Apple TV 和 Android TV。復古海報色調、CRT 映像管模擬、多源影音聚合 — 大螢幕觀影的全新體驗。</p>
-        <div class="cta-soon" data-i18n="cta.btn">Coming Soon</div>
-    </section>
+            <!-- Column B2 -->
+            <div class="col-b2">
+                <h3 class="col-heading" style="margin-top:0" data-i18n="c2.h">購買前請先了解服務</h3>
+                <p class="body-text" style="font-size:13px" data-i18n="c2.t">請務必在購買前了解服務差異。並非所有零售商都維修他們賣的產品。TVMate 則不同。Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組化設計。</p>
+                <p class="body-text no-indent" style="font-size:13px;margin-top:8px" data-i18n="c2.note">模擬電視接收效果適用於所有裝置。</p>
+            </div>
+
+            <!-- Column B3 - Brand + Table -->
+            <div class="col-b3">
+                <div class="brand-box">
+                    <div class="brand-name">TVMate</div>
+                    <div class="brand-sub">by Hen Works</div>
+                </div>
+
+                <p class="tbl-title" data-i18n="tbl.title">比較 TVMate 最佳功能與其他品牌的差異</p>
+                <table class="cmp-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="tbl.feat">功能</th>
+                            <th>TVMate</th>
+                            <th data-i18n="tbl.a">品牌A</th>
+                            <th data-i18n="tbl.b">品牌B</th>
+                            <th data-i18n="tbl.c">品牌C</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td data-i18n="tbl.r1">自動色調鎖定</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r2">智慧篩選功能</td><td class="check">✓</td><td class="dash">✓</td><td class="dash">—</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r3">CRT 映像管模擬</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r4">復古海報色調</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r5">多源影音聚合</td><td class="check">✓</td><td class="dash">✓</td><td class="dash">—</td><td class="dash">✓</td></tr>
+                        <tr><td data-i18n="tbl.r6">即時預覽效果</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r7">完整隱私保護</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r8">模組化設計</td><td class="check">✓</td><td class="dash">—</td><td class="dash">✓</td><td class="dash">—</td></tr>
+                        <tr><td data-i18n="tbl.r9">到府服務支援</td><td class="check">✓</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td></tr>
+                    </tbody>
+                </table>
+                <p class="tbl-note" data-i18n="tbl.note">✦ 購物時請攜帶此表格進行比較 ✦<br>前往任何 APP STORE 了解更多 TVMATE 功能</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <span>TVMate</span>
-                <small data-i18n="ft.tag">Vintage Cinema for Your Living Room</small>
-            </div>
-            <div class="footer-links">
-                <div class="footer-col"><h4 data-i18n="ft.prod">Product</h4><a href="#features" data-i18n="ft.feat">Features</a><a href="#sources" data-i18n="ft.src">Sources</a></div>
-                <div class="footer-col"><h4 data-i18n="ft.comp">Company</h4><a href="https://henworks.com" target="_blank" data-i18n="ft.about">About Hen Works</a><a href="mailto:info@henworks.com" data-i18n="ft.contact">Contact</a></div>
-            </div>
-        </div>
-        <div class="footer-btm">
-            <span data-i18n="ft.copy">&copy; 2026 Hen Works. All rights reserved.</span>
-            <span data-i18n="ft.made">Made with care in Taiwan &#127481;&#127484;</span>
-        </div>
-    </footer>
+    <div class="paper-footer">
+        <span data-i18n="ft.copy">&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼</span>
+    </div>
+
 </div>
 
 <script>
 let curLang='zh';
 
-// ========== SLIDE DATA (i18n) ==========
-const slideImgs=['1.webp','2.webp','4.webp','3.webp'];
-const slideI18n={
-zh:[
-    {t:'Apple TV 主畫面',d:'復古風格的 TVMate 主介面，支援遙控器快速導航與聚焦互動。'},
-    {t:'媒體源選擇',d:'支援 Plex、Emby、Jellyfin、WebDAV、SMB 等五種主流媒體來源。'},
-    {t:'搜尋與瀏覽',d:'多維度篩選：類型、年份、地區。海報以復古色調呈現，瀏覽即享電影感。'},
-    {t:'伺服器設定',d:'簡潔的連線介面，輸入伺服器位址即可開始使用。支援帳號密碼認證。'}
-],
-en:[
-    {t:'Apple TV Home',d:'TVMate home interface with vintage styling, optimized for remote control navigation and focus interaction.'},
-    {t:'Media Sources',d:'Support for Plex, Emby, Jellyfin, WebDAV, and SMB — five major media source types.'},
-    {t:'Search & Browse',d:'Multi-dimensional filtering by genre, year, and region. Posters rendered in vintage tones for a cinematic browsing experience.'},
-    {t:'Server Setup',d:'Clean connection interface. Enter your server address to get started. Supports username/password authentication.'}
-],
-ja:[
-    {t:'Apple TV ホーム',d:'ヴィンテージスタイルのTVMateホーム画面。リモコン操作とフォーカスインタラクションに最適化。'},
-    {t:'メディアソース',d:'Plex、Emby、Jellyfin、WebDAV、SMBの5種類のメディアソースに対応。'},
-    {t:'検索・閲覧',d:'ジャンル、年代、地域で多角的にフィルタリング。ポスターはヴィンテージ色調でシネマ感溢れるブラウジング体験。'},
-    {t:'サーバー設定',d:'シンプルな接続画面。サーバーアドレスを入力するだけで開始。ユーザー名/パスワード認証に対応。'}
-],
-ko:[
-    {t:'Apple TV 홈',d:'빈티지 스타일의 TVMate 홈 화면. 리모컨 내비게이션과 포커스 인터랙션에 최적화.'},
-    {t:'미디어 소스',d:'Plex, Emby, Jellyfin, WebDAV, SMB 5가지 주요 미디어 소스 유형 지원.'},
-    {t:'검색 및 탐색',d:'장르, 연도, 지역별 다차원 필터링. 포스터가 빈티지 톤으로 렌더링되어 시네마틱 브라우징 경험 제공.'},
-    {t:'서버 설정',d:'깔끔한 연결 인터페이스. 서버 주소를 입력하면 바로 시작. 사용자 이름/비밀번호 인증 지원.'}
-]};
-function getSlides(){return slideI18n[curLang]||slideI18n.en}
-let cIdx=0,cTimer;
-const cTrack=document.getElementById('cTrack'),cDots=document.getElementById('cDots'),sThumbs=document.getElementById('sThumbs');
-
-// Build dots & thumbs
-getSlides().forEach((_,i)=>{
-    const dot=document.createElement('button');dot.className='c-dot'+(i===0?' active':'');dot.onclick=()=>cGo(i);cDots.appendChild(dot);
-    const th=document.createElement('div');th.className='s-thumb'+(i===0?' active':'');th.onclick=()=>cGo(i);
-    th.style.backgroundImage=`url(${slideImgs[i]})`;th.style.backgroundSize='cover';th.style.backgroundPosition='center';
-    th.innerHTML=`<div class="s-thumb-n">${String(i+1).padStart(2,'0')}</div><div class="s-thumb-t">${getSlides()[i].t}</div>`;
-    sThumbs.appendChild(th);
-});
-
-function cGo(i){
-    const sl=getSlides();
-    cIdx=i;cTrack.style.transform=`translateX(-${i*100}%)`;
-    document.querySelectorAll('.c-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
-    document.querySelectorAll('.s-thumb').forEach((t,j)=>t.classList.toggle('active',j===i));
-    const m=document.getElementById('slideMeta');m.style.opacity='0';m.style.transform='translateY(10px)';
-    setTimeout(()=>{
-        document.getElementById('sNum').textContent=String(i+1).padStart(2,'0');
-        document.getElementById('sTtl').textContent=sl[i].t;
-        document.getElementById('sDsc').textContent=sl[i].d;
-        m.style.opacity='1';m.style.transform='translateY(0)';
-    },200);
-    clearInterval(cTimer);cAuto();
-}
-function updateSlideLang(){
-    const sl=getSlides();
-    document.querySelectorAll('.s-thumb').forEach((t,j)=>{
-        const ttl=t.querySelector('.s-thumb-t');if(ttl)ttl.textContent=sl[j].t;
-    });
-    document.getElementById('sTtl').textContent=sl[cIdx].t;
-    document.getElementById('sDsc').textContent=sl[cIdx].d;
-}
-function cNext(){cGo((cIdx+1)%getSlides().length)}
-function cPrev(){cGo((cIdx-1+getSlides().length)%getSlides().length)}
-function cAuto(){cTimer=setInterval(cNext,5000)}
-cAuto();
-document.getElementById('carousel').addEventListener('mouseenter',()=>clearInterval(cTimer));
-document.getElementById('carousel').addEventListener('mouseleave',cAuto);
-
-// ========== i18n (4 LANGUAGES) ==========
 const T={
 zh:{
-'nav.features':'功能','nav.how':'使用方式','nav.sources':'媒體源','nav.cta':'即將上線',
-'hero.badge':'復古影音體驗','hero.title1':'你的客廳，','hero.title2':'復古電影院',
-'hero.desc':'TVMate 為 Apple TV 和 Android TV 打造復古影音體驗。CIFilter 像素級海報色調、CRT 映像管模擬，搭配多源影音聚合，在大螢幕上重現經典電影院的溫暖氛圍。',
-'hero.cta':'即將上線','hero.learn':'了解更多',
-'feat.title1':'復古光影，','feat.title2':'重新定義','feat.sub':'從海報到播放，每一幀都充滿電影感。',
-'feat.1t':'復古海報色調','feat.1d':'CIFilter 像素級處理，透過 Sepia、色溫偏暖、膠片顆粒等效果鏈，讓每張海報都散發經典電影院的溫暖質感。',
-'feat.2t':'CRT 映像管模擬','feat.2d':'Metal 驅動的掃描線、螢幕曲面、磷光點與暖色暗角。四段可調：關閉、輕微、標準、強烈復古。',
-'feat.3t':'多源影音聚合','feat.3d':'支援 Jellyfin、Plex、Emby、WebDAV、SMB 等多種媒體來源，一個 App 統一管理所有影片庫。',
-'feat.4t':'雙平台統一體驗','feat.4d':'Apple TV (tvOS) 與 Android TV 雙平台原生開發，共用設計語言與功能集，確保一致的觀影體驗。',
-'feat.5t':'智慧搜尋與篩選','feat.5d':'依類型、年份、地區、評分多維度篩選。支援語音搜尋與鍵盤輸入，快速找到想看的內容。',
-'feat.6t':'完整隱私保護','feat.6d':'所有影片處理在裝置本地完成。播放記錄、收藏清單純本地存儲，不上傳任何資料到雲端。',
-'how.title':'開始使用','how.sub':'四個步驟，打造你的復古家庭影院',
-'how.1t':'安裝 TVMate','how.1d':'從 App Store 或 Google Play 下載安裝到你的 Apple TV 或 Android TV。',
-'how.2t':'新增媒體源','how.2d':'連接你的 Jellyfin、Plex、Emby 伺服器，或輸入 WebDAV/SMB 位址。',
-'how.3t':'選擇復古風格','how.3d':'在設定中選擇 CRT 效果等級：輕微、標準或強烈復古，即時預覽效果。',
-'how.4t':'享受觀影','how.4d':'坐上沙發，拿起遙控器，沉浸在復古電影院的氛圍中。',
-'src.title':'支援媒體源','src.sub':'連接你已有的影片庫，無需遷移',
-'src.jellyfin':'開源媒體系統','src.plex':'Plex Media Server','src.emby':'Emby Server','src.webdav':'WebDAV / OpenList','src.smb':'本地 NAS 共享',
-'cta.t1':'你的客廳，','cta.t2':'復古電影院','cta.d':'TVMate 即將登陸 Apple TV 和 Android TV。復古海報色調、CRT 映像管模擬、多源影音聚合 — 大螢幕觀影的全新體驗。','cta.btn':'即將上線',
-'ft.tag':'你客廳裡的復古電影院','ft.prod':'產品','ft.comp':'公司','ft.feat':'功能','ft.src':'媒體源',
-'ft.about':'關於 Hen Works','ft.contact':'聯繫','ft.copy':'© 2026 Hen Works。版權所有。','ft.made':'用心在台灣製作 🇹🇼'
+'headline':'如何為你的客廳，挑選最好的<br>復古電影體驗',
+'cL.p1':'許多人會好奇，是否需要犧牲畫質才能獲得復古觀影體驗？完全不需要。以 TVMate 最佳 19 吋（對角線）復古影音播放器為例，您獲得的畫質與大型主機完全相同。從電子技術角度而言基本相同，只是外觀更為精巧緊湊。無論您選擇哪種裝置，購買前最重要的兩個問題是：復古效果品質如何？設定是否容易？',
+'cL.h1':'色調與 TVMate 的優勢',
+'cL.p2':'並非所有播放器都能持續提供優質的復古色調。某些產品上，您會看到不自然的偏色或過度飽和。TVMate 的解決方案是一項名為 ATL（自動色調鎖定）的巧妙技術。只需按下 TVMate 上的 ATL 按鈕，即可自動獲得自然的復古色調。即使切換頻道也能保持。此外，TVMate 還配備：',
+'cL.caps':'KEYED AUTOMATIC GAIN CONTROL<br><small>— 防止畫面閃爍</small><br>AUTOMATIC CHROMA CONTROL<br><small>— 色彩穩定不漂移</small><br>AUTOMATIC COLOR PURIFIER<br><small>— 色彩純淨還原</small>',
+'cL.h2':'智慧篩選與為何 TVMate 採用此技術',
+'cL.p3':'TVMate 內建 AFC — 自動篩選控制。在較好的播放器上才會配備。AFC 能在您開啟裝置時自動微調畫面，切換來源時也會自動調整。許多人無法像 AFC 那樣精細地調校。TVMate 將 AFC 應用於其最佳復古播放器及大多數其他型號。',
+'cM.p1':'此外，TVMate 還展現了強大的多源聚合能力。支援 Jellyfin、Plex、Emby、WebDAV 及 SMB 等多種來源。一個 App 統一管理所有影片庫。',
+'cM.h1':'多源影音，進階功能',
+'cM.p2':'寬螢幕畫面讓您看到比以往更多的影像內容。如同許多近年的創新，TVMate 最佳復古播放器搭載寬螢幕功能。明亮映像管為您呈現明亮、清晰、銳利的畫面。TVMate 在其最佳播放器中使用了頂級明亮映像管，讓您在不沖淡暗色調的前提下獲得出色亮度。蝕刻玻璃面板減少眩光 — 就像燈罩一樣。蝕刻面板雖然成本更高，但 TVMate 將其用在最佳播放器上。光線擴散螢幕如同遮陽板。如果您的裝置在明亮房間中使用，它能防止強光沖淡畫面。幾乎沒有其他品牌在其最佳播放器上配備光線擴散螢幕，TVMate 則有。',
+'cM.cap':'某些播放器的人臉會偏紅，甚至偏綠。TVMate 的自動色調鎖定讓色彩自然呈現。',
+'cM.p3':'Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組。',
+'cR.cap':'TVMate 最佳 19 吋（對角線）復古影音播放器，支援自動色調鎖定與智慧篩選功能。',
+'cR.p1':'您可以信賴 TVMate 的服務品質。無論您搬到街對面還是國家的另一端。事實上，我們甚至在出貨前就逐一檢查每個版本。當您從 App Store 購買 TVMate 時，您的應用程式在安裝前已經過完整測試。並非所有開發商都這樣做。如果 TVMate 需要任何支援，我們將直接為您到府服務。您不必把裝置送回。並非所有零售商都提供 19 吋（對角線）裝置的到府服務。',
+'cR.p2':'除了 TVMate 最佳復古影音播放器外，我們的商店和目錄中還有許多其他復古影音應用可供選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。',
+'cR.close':'　　歡迎前往<br>　　App Store<br>　　立即體驗',
+'c1.t':'並非所有零售商都維修他們賣的產品。TVMate 則不同。如果您的 TVMate 需要任何支援，我們將直接為您提供服務。您不必把裝置寄回。並非所有開發商都提供到府服務。除了 TVMate 最佳復古影音播放器外，我們的商店中還有許多其他復古影音選擇。訂閱方案每月 NT$220 起。如果您願意，可以使用我們便利的 App Store 內購或 Google Play 訂閱方案。綜合考慮所有功能：復古色調、隱私保護、多源聚合與穩定的服務品質，您從 TVMate 獲得的遠超過表面所見。',
+'c1.cta':'　　歡迎前往<br>　　App Store<br>　　立即體驗',
+'c2.h':'購買前請先了解服務',
+'c2.t':'請務必在購買前了解服務差異。並非所有零售商都維修他們賣的產品。TVMate 則不同。Snap-out modules 是印刷電路板，內含電晶體、二極管和真空管。它們可以輕鬆拆出以便快速維修。TVMate 在其最佳復古播放器中使用了這些模組化設計。',
+'c2.note':'模擬電視接收效果適用於所有裝置。',
+'tbl.title':'比較 TVMate 最佳功能與其他品牌的差異',
+'tbl.feat':'功能','tbl.a':'品牌A','tbl.b':'品牌B','tbl.c':'品牌C',
+'tbl.r1':'自動色調鎖定','tbl.r2':'智慧篩選功能','tbl.r3':'CRT 映像管模擬','tbl.r4':'復古海報色調',
+'tbl.r5':'多源影音聚合','tbl.r6':'即時預覽效果','tbl.r7':'完整隱私保護','tbl.r8':'模組化設計','tbl.r9':'到府服務支援',
+'tbl.note':'✦ 購物時請攜帶此表格進行比較 ✦<br>前往任何 APP STORE 了解更多 TVMATE 功能',
+'ft.copy':'&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼'
 },
 en:{
-'nav.features':'Features','nav.how':'How it works','nav.sources':'Sources','nav.cta':'Coming Soon',
-'hero.badge':'Vintage Cinema Experience','hero.title1':'Your Living Room,','hero.title2':'Vintage Cinema',
-'hero.desc':'TVMate brings a vintage cinematic experience to Apple TV and Android TV. Pixel-level CIFilter poster tones, CRT tube simulation, and multi-source media aggregation — relive the warmth of classic movie theaters on the big screen.',
-'hero.cta':'Coming Soon','hero.learn':'Learn More',
-'feat.title1':'Vintage Light, ','feat.title2':'Redefined','feat.sub':'From posters to playback, every frame is cinematic.',
-'feat.1t':'Vintage Poster Tones','feat.1d':'Pixel-level CIFilter processing with sepia warmth, color temperature shift, and film grain effects — every poster radiates the warm texture of classic cinema.',
-'feat.2t':'CRT Tube Simulation','feat.2d':'Metal-powered scanlines, screen curvature, phosphor dots, and warm vignette. Four adjustable levels: off, subtle, standard, and heavy retro.',
-'feat.3t':'Multi-Source Aggregation','feat.3d':'Support for Jellyfin, Plex, Emby, WebDAV, SMB and more. One app to manage all your media libraries.',
-'feat.4t':'Unified Dual-Platform','feat.4d':'Native development for both Apple TV (tvOS) and Android TV, sharing design language and feature sets for a consistent viewing experience.',
-'feat.5t':'Smart Search & Filter','feat.5d':'Multi-dimensional filtering by genre, year, region, and rating. Voice search and keyboard input to quickly find what you want to watch.',
-'feat.6t':'Complete Privacy','feat.6d':'All video processing happens on-device. Watch history and favorites are stored locally — no data ever uploaded to the cloud.',
-'how.title':'Get Started','how.sub':'Four steps to your vintage home theater',
-'how.1t':'Install TVMate','how.1d':'Download from the App Store or Google Play to your Apple TV or Android TV.',
-'how.2t':'Add Media Sources','how.2d':'Connect your Jellyfin, Plex, or Emby server, or enter a WebDAV/SMB address.',
-'how.3t':'Choose Retro Style','how.3d':'Select CRT effect level in settings: subtle, standard, or heavy retro. Preview effects in real-time.',
-'how.4t':'Enjoy Watching','how.4d':'Sit back on the couch, grab the remote, and immerse yourself in a vintage cinema atmosphere.',
-'src.title':'Supported Sources','src.sub':'Connect your existing media libraries — no migration needed',
-'src.jellyfin':'Open-source media system','src.plex':'Plex Media Server','src.emby':'Emby Server','src.webdav':'WebDAV / OpenList','src.smb':'Local NAS share',
-'cta.t1':'Your Living Room,','cta.t2':'Vintage Cinema','cta.d':'TVMate is coming to Apple TV and Android TV. Vintage poster tones, CRT tube simulation, multi-source aggregation — a brand new big-screen viewing experience.','cta.btn':'Coming Soon',
-'ft.tag':'Vintage Cinema for Your Living Room','ft.prod':'Product','ft.comp':'Company','ft.feat':'Features','ft.src':'Sources',
-'ft.about':'About Hen Works','ft.contact':'Contact','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'Made with care in Taiwan 🇹🇼'
-},
-ja:{
-'nav.features':'機能','nav.how':'使い方','nav.sources':'ソース','nav.cta':'近日公開',
-'hero.badge':'ヴィンテージシネマ体験','hero.title1':'あなたのリビングを、','hero.title2':'レトロ映画館に',
-'hero.desc':'TVMateはApple TVとAndroid TVにヴィンテージ映像体験を提供。CIFilterによるピクセルレベルのポスター色調、CRTブラウン管シミュレーション、マルチソースメディア統合で、大画面にクラシック映画館の温かさを再現。',
-'hero.cta':'近日公開','hero.learn':'詳しく見る',
-'feat.title1':'ヴィンテージの光、','feat.title2':'再定義','feat.sub':'ポスターから再生まで、すべてのフレームが映画的。',
-'feat.1t':'ヴィンテージポスター色調','feat.1d':'CIFilterによるピクセルレベル処理。セピア、暖色シフト、フィルム粒子のエフェクトチェーンで、すべてのポスターがクラシック映画館の温かみを放ちます。',
-'feat.2t':'CRTブラウン管シミュレーション','feat.2d':'Metal駆動の走査線、画面湾曲、蛍光体ドット、暖色ビネット。4段階調整：オフ、微妙、標準、強いレトロ。',
-'feat.3t':'マルチソース統合','feat.3d':'Jellyfin、Plex、Emby、WebDAV、SMBなど多数のメディアソースに対応。1つのアプリですべてのメディアライブラリを管理。',
-'feat.4t':'デュアルプラットフォーム','feat.4d':'Apple TV (tvOS) と Android TVの両方でネイティブ開発。デザイン言語と機能セットを共有し、一貫した視聴体験を保証。',
-'feat.5t':'スマート検索・フィルタ','feat.5d':'ジャンル、年代、地域、評価で多角的にフィルタリング。音声検索とキーボード入力で素早くコンテンツを見つけます。',
-'feat.6t':'完全なプライバシー','feat.6d':'すべての動画処理はデバイス上で完結。視聴履歴やお気に入りはローカル保存。クラウドへのデータ送信は一切なし。',
-'how.title':'始め方','how.sub':'4ステップでヴィンテージホームシアターを構築',
-'how.1t':'TVMateをインストール','how.1d':'App StoreまたはGoogle PlayからApple TVやAndroid TVにダウンロード。',
-'how.2t':'メディアソースを追加','how.2d':'Jellyfin、Plex、Embyサーバーに接続、またはWebDAV/SMBアドレスを入力。',
-'how.3t':'レトロスタイルを選択','how.3d':'設定でCRTエフェクトレベルを選択：微妙、標準、強いレトロ。リアルタイムでプレビュー。',
-'how.4t':'鑑賞を楽しむ','how.4d':'ソファに座り、リモコンを手に取り、ヴィンテージ映画館の雰囲気に浸りましょう。',
-'src.title':'対応ソース','src.sub':'既存のメディアライブラリに接続 — 移行不要',
-'src.jellyfin':'オープンソースメディアシステム','src.plex':'Plex Media Server','src.emby':'Emby Server','src.webdav':'WebDAV / OpenList','src.smb':'ローカルNAS共有',
-'cta.t1':'あなたのリビングを、','cta.t2':'レトロ映画館に','cta.d':'TVMateがApple TVとAndroid TVに登場予定。ヴィンテージポスター色調、CRTブラウン管シミュレーション、マルチソース統合 — 大画面視聴の新しい体験。','cta.btn':'近日公開',
-'ft.tag':'リビングのヴィンテージ映画館','ft.prod':'製品','ft.comp':'会社','ft.feat':'機能','ft.src':'ソース',
-'ft.about':'Hen Worksについて','ft.contact':'お問い合わせ','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'台湾で心を込めて作りました 🇹🇼'
-},
-ko:{
-'nav.features':'기능','nav.how':'사용법','nav.sources':'소스','nav.cta':'출시 예정',
-'hero.badge':'빈티지 시네마 경험','hero.title1':'당신의 거실을,','hero.title2':'빈티지 극장으로',
-'hero.desc':'TVMate는 Apple TV와 Android TV에 빈티지 시네마 경험을 제공합니다. CIFilter 픽셀 수준 포스터 톤, CRT 브라운관 시뮬레이션, 멀티소스 미디어 통합으로 대화면에서 클래식 극장의 따뜻함을 재현합니다.',
-'hero.cta':'출시 예정','hero.learn':'자세히 보기',
-'feat.title1':'빈티지 빛, ','feat.title2':'재정의','feat.sub':'포스터부터 재생까지, 모든 프레임이 시네마틱합니다.',
-'feat.1t':'빈티지 포스터 톤','feat.1d':'CIFilter 픽셀 수준 처리. 세피아, 색온도 시프트, 필름 그레인 이펙트 체인으로 모든 포스터가 클래식 극장의 따뜻한 질감을 발산합니다.',
-'feat.2t':'CRT 브라운관 시뮬레이션','feat.2d':'Metal 기반 주사선, 화면 곡률, 형광체 도트, 따뜻한 비네팅. 4단계 조절: 끄기, 미세, 표준, 강한 레트로.',
-'feat.3t':'멀티소스 통합','feat.3d':'Jellyfin, Plex, Emby, WebDAV, SMB 등 다양한 미디어 소스 지원. 하나의 앱으로 모든 미디어 라이브러리를 관리.',
-'feat.4t':'듀얼 플랫폼 통합','feat.4d':'Apple TV (tvOS)와 Android TV 모두 네이티브 개발. 디자인 언어와 기능 세트를 공유하여 일관된 시청 경험 보장.',
-'feat.5t':'스마트 검색 및 필터','feat.5d':'장르, 연도, 지역, 평점별 다차원 필터링. 음성 검색과 키보드 입력으로 원하는 콘텐츠를 빠르게 찾기.',
-'feat.6t':'완전한 프라이버시','feat.6d':'모든 비디오 처리는 기기에서 완료. 시청 기록과 즐겨찾기는 로컬 저장 — 클라우드로 데이터 전송 없음.',
-'how.title':'시작하기','how.sub':'4단계로 빈티지 홈시어터 구축',
-'how.1t':'TVMate 설치','how.1d':'App Store 또는 Google Play에서 Apple TV나 Android TV에 다운로드.',
-'how.2t':'미디어 소스 추가','how.2d':'Jellyfin, Plex, Emby 서버에 연결하거나 WebDAV/SMB 주소를 입력.',
-'how.3t':'레트로 스타일 선택','how.3d':'설정에서 CRT 효과 레벨 선택: 미세, 표준, 강한 레트로. 실시간 미리보기.',
-'how.4t':'감상 즐기기','how.4d':'소파에 앉아 리모컨을 들고, 빈티지 극장 분위기에 빠져보세요.',
-'src.title':'지원 소스','src.sub':'기존 미디어 라이브러리에 연결 — 마이그레이션 불필요',
-'src.jellyfin':'오픈소스 미디어 시스템','src.plex':'Plex Media Server','src.emby':'Emby Server','src.webdav':'WebDAV / OpenList','src.smb':'로컬 NAS 공유',
-'cta.t1':'당신의 거실을,','cta.t2':'빈티지 극장으로','cta.d':'TVMate가 Apple TV와 Android TV에 출시 예정. 빈티지 포스터 톤, CRT 브라운관 시뮬레이션, 멀티소스 통합 — 대화면 시청의 새로운 경험.','cta.btn':'출시 예정',
-'ft.tag':'거실의 빈티지 극장','ft.prod':'제품','ft.comp':'회사','ft.feat':'기능','ft.src':'소스',
-'ft.about':'Hen Works 소개','ft.contact':'문의','ft.copy':'© 2026 Hen Works. All rights reserved.','ft.made':'대만에서 정성을 담아 제작 🇹🇼'
+'headline':'How to Choose the Best<br>Vintage Cinema Experience for Your Living Room',
+'cL.p1':'Many people wonder: do you have to sacrifice picture quality to get a vintage viewing experience? Absolutely not. Take TVMate\'s best 19-inch (diagonal) vintage media player, for example — the picture quality is identical to that of a full-size unit. Electronically, they\'re essentially the same, just more compact and elegant. Regardless of which device you choose, the two most important questions before buying are: How good is the vintage effect? And how easy is it to set up?',
+'cL.h1':'Color Tones & TVMate\'s Advantage',
+'cL.p2':'Not all players consistently deliver quality vintage color tones. On some products, you\'ll see unnatural color casts or over-saturation. TVMate\'s solution is a clever technology called ATL (Automatic Tone Lock). Simply press the ATL button on your TVMate, and you\'ll automatically get natural vintage tones. They stay consistent even when switching channels. Additionally, TVMate features:',
+'cL.caps':'KEYED AUTOMATIC GAIN CONTROL<br><small>— Prevents picture flickering</small><br>AUTOMATIC CHROMA CONTROL<br><small>— Colors stay stable, no drifting</small><br>AUTOMATIC COLOR PURIFIER<br><small>— Pure, accurate color reproduction</small>',
+'cL.h2':'Smart Filtering & Why TVMate Uses This Technology',
+'cL.p3':'TVMate has built-in AFC — Automatic Filter Control. Only found on better players. AFC automatically fine-tunes the picture when you turn on your device, and adjusts automatically when switching sources. Most people can\'t calibrate as precisely as AFC does. TVMate applies AFC to its best vintage players and most other models.',
+'cM.p1':'Furthermore, TVMate demonstrates powerful multi-source aggregation. Supporting Jellyfin, Plex, Emby, WebDAV, and SMB sources — one app to manage all your media libraries.',
+'cM.h1':'Multi-Source Media, Advanced Features',
+'cM.p2':'Widescreen display lets you see more content than ever before. Like many recent innovations, TVMate\'s best vintage player features widescreen capability. A bright picture tube delivers bright, clear, sharp images. TVMate uses top-grade bright tubes in its best players, giving you outstanding brightness without washing out dark tones. Etched glass faceplate reduces glare — like a lampshade. Though more expensive, TVMate uses it on their best players. A light-diffusing screen works like a visor. If your device is used in a bright room, it prevents strong light from washing out the picture. Few other brands offer a light-diffusing screen on their best players — TVMate does.',
+'cM.cap':'Some players render faces too red, even green. TVMate\'s Automatic Tone Lock keeps colors looking natural.',
+'cM.p3':'Snap-out modules are printed circuit boards containing transistors, diodes, and vacuum tubes. They snap out easily for quick servicing. TVMate uses these modules in its best vintage players.',
+'cR.cap':'TVMate\'s best 19-inch (diagonal) vintage media player with Automatic Tone Lock and Smart Filtering.',
+'cR.p1':'You can count on TVMate for service. Whether you move across the street or across the country. In fact, we inspect every release before shipping. When you purchase TVMate from the App Store, your app has been fully tested before installation. Not all developers do this. If your TVMate ever needs service, we come directly to you. You don\'t have to send your device back. Not all retailers offer in-home service for 19-inch (diagonal) devices.',
+'cR.p2':'In addition to TVMate\'s best vintage media player, our store and catalog offer many other vintage media choices. Subscription plans start at NT$220/month. You can also use our convenient App Store in-app purchase plan. When you add up all the features — vintage tones, privacy protection, multi-source aggregation, and dependable service — you get far more than meets the eye with TVMate.',
+'cR.close':'　　Visit the<br>　　App Store<br>　　Experience it today',
+'c1.t':'Not all retailers service the products they sell. TVMate is different. If your TVMate ever needs service, we come directly to you. You don\'t have to send your device back. Not all developers offer in-home service. Beyond TVMate\'s best vintage media player, our store has many other vintage media options. Subscription plans start at NT$220/month. You can use our convenient App Store in-app purchase or Google Play subscription. When you add up all the features — vintage tones, privacy, multi-source aggregation, and dependable service — you get far more than meets the eye.',
+'c1.cta':'　　Visit the<br>　　App Store<br>　　Experience it today',
+'c2.h':'Know the Service Before You Buy',
+'c2.t':'Be sure to understand service differences before you buy. Not all retailers service the products they sell. TVMate is different. Snap-out modules are printed circuit boards containing transistors, diodes, and vacuum tubes. They snap out easily for quick servicing. TVMate uses these modular designs in its best vintage players.',
+'c2.note':'Simulated TV reception effect works on all devices.',
+'tbl.title':'Compare TVMate\'s Best Features Against Other Brands',
+'tbl.feat':'Feature','tbl.a':'Brand A','tbl.b':'Brand B','tbl.c':'Brand C',
+'tbl.r1':'Auto Tone Lock','tbl.r2':'Smart Filtering','tbl.r3':'CRT Tube Simulation','tbl.r4':'Vintage Poster Tones',
+'tbl.r5':'Multi-Source Aggregation','tbl.r6':'Real-Time Preview','tbl.r7':'Full Privacy Protection','tbl.r8':'Modular Design','tbl.r9':'In-Home Service',
+'tbl.note':'✦ Bring this chart when you shop — compare for yourself ✦<br>Visit any APP STORE to learn more about TVMATE',
+'ft.copy':'&copy; 2026 Hen Works. All rights reserved. Made with care in Taiwan 🇹🇼'
 }
 };
 
 function setLang(lang){
-    curLang=lang;document.documentElement.lang=lang==='zh'?'zh-Hant':lang;
+    curLang=lang;
+    document.documentElement.lang=lang==='zh'?'zh-Hant':'en';
     const t=T[lang];if(!t)return;
     document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k=el.dataset.i18n;if(t[k])el.innerHTML=t[k];
+        const k=el.dataset.i18n;
+        if(t[k])el.innerHTML=t[k];
     });
-    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-    updateSlideLang();
+    document.querySelectorAll('#langBtns button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
 }
-document.querySelectorAll('#navLang button').forEach(btn=>{
+
+document.querySelectorAll('#langBtns button').forEach(btn=>{
     btn.addEventListener('click',()=>setLang(btn.dataset.lang));
-});
-
-// ========== Scroll Animations ==========
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
-
-// Keyboard carousel
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')cNext();if(e.key==='ArrowLeft')cPrev()});
-
-// Active nav link on scroll
-const sections=document.querySelectorAll('section[id]');
-window.addEventListener('scroll',()=>{
-    const scrollY=window.pageYOffset;
-    sections.forEach(s=>{
-        const top=s.offsetTop-100,h=s.offsetHeight,id=s.getAttribute('id');
-        if(scrollY>=top&&scrollY<top+h){
-            document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-            const active=document.querySelector(`.nav-links a[href="#${id}"]`);
-            if(active)active.classList.add('active');
-        }
-    });
 });
 </script>
 </body>
