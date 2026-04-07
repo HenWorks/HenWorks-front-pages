@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — TVMate | Hen Works</title>
+    <meta name="description" content="TVMate Terms of Service and End User License Agreement for Apple TV.">
+    <link rel="canonical" href="https://henworks.com/products/TVMate/terms.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --ink:#1C1C1C;--ink-light:#4A4A4A;--ink-muted:#7A7060;
+            --paper:#F2E6D0;--paper-dark:#E8D9BF;--paper-border:#C4B598;
+            --warm:#E8A04C;--warm-deep:#C4722A;--sepia:#D4A574;
+            --red-accent:#8B2500;--rule-light:#B0A48C;
+            --font-head:'Playfair Display',Georgia,serif;
+            --font-body:'Newsreader',Georgia,serif;
+            --font-ui:'Inter',-apple-system,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:#E8DBCA;color:var(--ink);line-height:1.7;overflow-x:hidden}
+
+        .paper{
+            max-width:860px;margin:0 auto;position:relative;
+            background:url('paper-mid.webp') center top repeat-y;
+            background-size:100% auto;background-color:#F0E4CE;
+        }
+        .paper::before{
+            content:'';position:absolute;top:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-top.webp') center top no-repeat;background-size:100% 100%;
+        }
+        .paper::after{
+            content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-bot.webp') center bottom no-repeat;background-size:100% 100%;
+        }
+
+        /* Masthead */
+        .masthead{position:sticky;top:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:6px 36px;font-family:var(--font-ui)}
+        .mast-left{display:flex;align-items:baseline;gap:16px}
+        .mast-title{font-family:var(--font-head);font-size:20px;font-weight:900;letter-spacing:1px}
+        .mast-right{display:flex;align-items:center;gap:12px}
+        .lang-btns{display:flex;gap:3px}
+        .lang-btns button{padding:3px 8px;border:1px solid rgba(242,230,208,.3);border-radius:3px;background:transparent;color:var(--paper);font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+        .lang-btns button.active{background:var(--warm);color:var(--ink);border-color:var(--warm)}
+        .lang-btns button:hover:not(.active){border-color:var(--warm);color:var(--warm)}
+        .mast-back{color:var(--sepia);font-size:11px;text-decoration:none;font-family:var(--font-ui);transition:color .2s}
+        .mast-back:hover{color:var(--warm)}
+
+        /* Nameplate */
+        .nameplate{position:relative;z-index:1;text-align:center;padding:20px 36px 0;border-bottom:3px double var(--ink)}
+        .nameplate h1{font-family:var(--font-head);font-size:48px;font-weight:900;letter-spacing:2px;line-height:1;padding:10px 0 4px;color:var(--ink)}
+        .nameplate h1 em{font-style:italic;color:var(--warm-deep)}
+        .nameplate-tagline{font-family:var(--font-body);font-size:13px;font-style:italic;color:var(--ink-muted);padding-bottom:10px}
+
+        /* Content */
+        .content{position:relative;z-index:1;padding:24px 48px 40px}
+        .content h2{font-family:var(--font-head);font-size:22px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule-light)}
+        .content h2:first-child{margin-top:0}
+        .content p{font-size:15px;color:var(--ink-light);margin-bottom:12px}
+        .content ul,.content ol{margin:0 0 14px 24px}
+        .content li{font-size:15px;color:var(--ink-light);margin-bottom:8px}
+        .content li strong{color:var(--ink)}
+        .content a{color:var(--warm-deep);text-decoration:underline;text-underline-offset:2px}
+        .content a:hover{color:var(--ink)}
+        .date-line{font-size:12px;color:var(--ink-muted);font-style:italic;margin-bottom:16px;text-align:center}
+
+        /* Tier cards */
+        .tier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+        .tier-card{padding:14px;background:rgba(242,230,208,.5);border:1px solid var(--paper-border);border-radius:4px}
+        .tier-card strong{display:block;font-size:13px;margin-bottom:3px;color:var(--ink)}
+        .tier-card span{font-size:12px;color:var(--ink-muted);line-height:1.5}
+
+        /* Footer */
+        .paper-footer{position:relative;z-index:1;border-top:3px double var(--ink);margin:0 36px;padding:14px 0 20px;text-align:center;background:transparent}
+        .paper-footer p{font-size:10px;color:var(--ink-muted);line-height:1.6}
+        .paper-footer a{color:var(--ink);text-decoration:none}
+        .paper-footer a:hover{color:var(--warm)}
+
+        /* Language */
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        /* Responsive */
+        @media(max-width:768px){
+            .content{padding:20px 24px 32px}
+            .nameplate h1{font-size:36px}
+            .masthead{padding:6px 16px}
+            .tier-grid{grid-template-columns:1fr}
+            .paper-footer{margin:0 20px}
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <!-- Masthead -->
+    <nav class="masthead">
+        <div class="mast-left">
+            <a href="index.html" class="mast-title">TVMate</a>
+            <a href="index.html" class="mast-back" data-i18n="mast.back">&larr; Back to TVMate</a>
+        </div>
+        <div class="mast-right">
+            <div class="lang-btns" id="langBtns">
+                <button class="active" data-lang="zh">中文</button>
+                <button data-lang="en">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nameplate -->
+    <div class="nameplate">
+        <h1 data-i18n="title">使用<em>條款</em></h1>
+        <p class="nameplate-tagline" data-i18n="tagline">TVMate 使用者授權協議</p>
+    </div>
+
+    <!-- Chinese -->
+    <div class="lang-section active" id="lang-zh">
+        <div class="content">
+            <p class="date-line">最後更新：2026 年 4 月 8 日</p>
+
+            <h2>1. 同意條款</h2>
+            <p>透過下載、安裝和使用 TVMate（以下簡稱「本應用程式」），您同意受本使用條款及最終用戶許可協議（以下簡稱「本條款」）的約束。如果您不同意本條款，請不要使用本應用程式。</p>
+
+            <h2>2. 許可授予</h2>
+            <p>Hen Works 根據本條款授予您有限的、非專屬的、不可轉讓的和可撤銷的許可，以在您的 Apple TV 裝置上使用本應用程式。您不得再授權、銷售、出租、轉讓或以其他方式處置本應用程式。</p>
+
+            <h2>3.「現狀」免責聲明</h2>
+            <p>本應用程式按「現狀」提供，不提供任何明示或暗示的保證。Hen Works 不保證本應用程式將不中斷、無誤或安全。在法律允許的最大範圍內，Hen Works 免除所有保證，包括商品性和特定目的的適用性。</p>
+
+            <h2>4. 媒體內容</h2>
+            <p>TVMate 是一款媒體播放器，用於播放您私人媒體伺服器上的合法內容。您必須確保擁有所播放內容的合法權利。Hen Works 不對用戶透過本應用程式播放的任何內容承擔責任。</p>
+
+            <h2>5. 用戶責任</h2>
+            <p>您單獨負責：</p>
+            <ul>
+                <li>確保您播放的內容均為合法取得</li>
+                <li>維護您私人媒體伺服器的安全性</li>
+                <li>遵守適用的著作權法律和法規</li>
+            </ul>
+
+            <h2>6. 定價與購買</h2>
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <strong>免費版</strong>
+                    <span>基本播放功能，含廣告。</span>
+                </div>
+                <div class="tier-card">
+                    <strong>Premium（一次買斷）</strong>
+                    <span>解鎖所有功能，永久免廣告。透過 Apple App Store 購買。</span>
+                </div>
+            </div>
+
+            <h2>7. 退款</h2>
+            <p>應用內購買的退款由 Apple 處理。請參閱 Apple App Store 退款政策。Hen Works 不提供直接退款。</p>
+
+            <h2>8. CRT 模擬與影像處理</h2>
+            <p>TVMate 的 CRT 映像管模擬和影像升頻功能會修改影片的視覺呈現。這些效果僅為娛樂目的，不保證在所有硬體上的表現一致。部分功能（如 Core ML 升頻）需要 Apple TV 4K 或更新機型。</p>
+
+            <h2>9. 第三方服務</h2>
+            <p>TVMate 可連線至第三方媒體伺服器（Plex、Jellyfin、Emby）和檔案協定（WebDAV、SMB）。這些服務的使用受其各自的使用條款約束。Hen Works 不對第三方服務的可用性或安全性負責。</p>
+            <p>TVMate 使用 TMDB API 取得後設資料。TMDB 的使用受其自身條款約束。</p>
+
+            <h2>10. 責任限制</h2>
+            <p>在法律允許的最大範圍內，Hen Works 不對由於您使用本應用程式而引起的任何間接、附帶、特殊、後果性或懲罰性損害承擔責任，包括但不限於數據丟失、業務中斷或利潤損失。</p>
+
+            <h2>11. 賠償</h2>
+            <p>您同意賠償並使 Hen Works 免受因您使用本應用程式或違反本條款而引起的任何索賠、損害或損失。</p>
+
+            <h2>12. 定價與功能修改</h2>
+            <p>Hen Works 保留隨時修改定價和功能的權利。功能可能因版本更新而新增、變更或移除，恕不另行通知。上述變更不構成退款或索賠的依據。</p>
+
+            <h2>13. 智慧財產</h2>
+            <p>本應用程式（包括所有內容、功能和設計）由 Hen Works 擁有，受國際著作權和智慧財產法保護。</p>
+
+            <h2>14. 終止</h2>
+            <p>如果您違反本條款或從事非法活動，Hen Works 可隨時終止您對本應用程式的存取。</p>
+
+            <h2>15. 管轄法律</h2>
+            <p>本條款受中華民國（台灣）法律管轄。由本條款引起的任何爭議應在中華民國（台灣）法院解決。</p>
+
+            <h2>16. 聯絡方式</h2>
+            <ul>
+                <li><strong>電子郵件：</strong><a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                <li><strong>網站：</strong><a href="https://henworks.com">https://henworks.com</a></li>
+            </ul>
+
+            <h2>17. 完整協議</h2>
+            <p>本條款連同隱私政策，構成您和 Hen Works 就本應用程式的完整協議，並取代所有先前的協議。</p>
+
+            <h2>18. 可分割性</h2>
+            <p>如果本條款的任何條款被認定無效或不可執行，該條款可分割，不影響其餘條款。</p>
+
+            <h2>19. 條款變更</h2>
+            <p>Hen Works 可能不時更新本條款。繼續使用 TVMate 表示接受更新的條款。</p>
+        </div>
+    </div>
+
+    <!-- English -->
+    <div class="lang-section" id="lang-en">
+        <div class="content">
+            <p class="date-line">Last updated: April 8, 2026</p>
+
+            <h2>1. Agreement to Terms</h2>
+            <p>By downloading, installing, and using TVMate ("the App"), you agree to be bound by these Terms of Service and End User License Agreement ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+
+            <h2>2. License Grant</h2>
+            <p>Hen Works grants you a limited, non-exclusive, non-transferable, and revocable license to use the App on your Apple TV device in accordance with these Terms. You may not sublicense, sell, rent, transfer, or otherwise dispose of the App.</p>
+
+            <h2>3. "As-Is" Disclaimer</h2>
+            <p>The App is provided "as-is" without warranty of any kind, express or implied. Hen Works does not warrant that the App will be uninterrupted, error-free, or secure. To the fullest extent permitted by law, Hen Works disclaims all warranties, including merchantability and fitness for a particular purpose.</p>
+
+            <h2>4. Media Content</h2>
+            <p>TVMate is a media player designed to play legitimate content from your private media servers. You must ensure that you have the legal right to play all content. Hen Works is not responsible for any content played through the App.</p>
+
+            <h2>5. User Responsibility</h2>
+            <p>You are solely responsible for:</p>
+            <ul>
+                <li>Ensuring all content you play is legally obtained</li>
+                <li>Maintaining the security of your private media servers</li>
+                <li>Complying with applicable copyright laws and regulations</li>
+            </ul>
+
+            <h2>6. Pricing & Purchases</h2>
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <strong>Free Version</strong>
+                    <span>Basic playback features with ads.</span>
+                </div>
+                <div class="tier-card">
+                    <strong>Premium (One-Time Purchase)</strong>
+                    <span>Unlock all features, permanently ad-free. Purchased through the Apple App Store.</span>
+                </div>
+            </div>
+
+            <h2>7. Refunds</h2>
+            <p>Refunds for in-app purchases are handled through Apple. Please refer to Apple's App Store refund policy. Hen Works does not provide direct refunds.</p>
+
+            <h2>8. CRT Simulation & Image Processing</h2>
+            <p>TVMate's CRT simulation and image upscaling features modify the visual presentation of video. These effects are for entertainment purposes only, and performance may vary across hardware. Some features (such as Core ML upscaling) require Apple TV 4K or newer.</p>
+
+            <h2>9. Third-Party Services</h2>
+            <p>TVMate can connect to third-party media servers (Plex, Jellyfin, Emby) and file protocols (WebDAV, SMB). Use of these services is governed by their respective terms of service. Hen Works is not responsible for the availability or security of third-party services.</p>
+            <p>TVMate uses the TMDB API for metadata. Use of TMDB is subject to its own terms.</p>
+
+            <h2>10. Limitation of Liability</h2>
+            <p>To the fullest extent permitted by law, Hen Works shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App, including but not limited to loss of data, business interruption, or lost profits.</p>
+
+            <h2>11. Indemnification</h2>
+            <p>You agree to indemnify and hold harmless Hen Works from any claims, damages, or losses arising from your use of the App or violation of these Terms.</p>
+
+            <h2>12. Pricing & Feature Modifications</h2>
+            <p>Hen Works reserves the right to modify pricing and features at any time. Features may be added, changed, or removed through version updates without prior notice. Such changes do not constitute grounds for refunds or claims.</p>
+
+            <h2>13. Intellectual Property</h2>
+            <p>The App, including all content, features, and design, is owned by Hen Works and protected by international copyright and intellectual property laws.</p>
+
+            <h2>14. Termination</h2>
+            <p>Hen Works may terminate your access to the App at any time if you violate these Terms or engage in illegal activity.</p>
+
+            <h2>15. Governing Law</h2>
+            <p>These Terms shall be governed by the laws of Taiwan (R.O.C.). Any disputes arising from these Terms shall be resolved in the courts of Taiwan (R.O.C.).</p>
+
+            <h2>16. Contact & Support</h2>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                <li><strong>Website:</strong> <a href="https://henworks.com">https://henworks.com</a></li>
+            </ul>
+
+            <h2>17. Entire Agreement</h2>
+            <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and Hen Works regarding the App and supersede all prior agreements.</p>
+
+            <h2>18. Severability</h2>
+            <p>If any provision of these Terms is found invalid or unenforceable, that provision shall be severable and shall not affect the remaining provisions.</p>
+
+            <h2>19. Changes to These Terms</h2>
+            <p>Hen Works may update these Terms from time to time. Your continued use of TVMate constitutes acceptance of the updated Terms.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="paper-footer">
+        <p><a href="index.html">TVMate</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+        <p>&copy; 2026 Hen Works. All rights reserved.</p>
+    </div>
+</div>
+
+<script>
+let curLang='zh';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#langBtns button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+document.querySelectorAll('#langBtns button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const params=new URLSearchParams(window.location.search);
+if(params.get('lang')==='en')setLang('en');
+</script>
+</body>
+</html>

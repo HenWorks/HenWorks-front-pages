@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — TVMate | Hen Works</title>
+    <meta name="description" content="TVMate Privacy Policy. Learn how TVMate protects your privacy with 100% on-device video processing on Apple TV.">
+    <link rel="canonical" href="https://henworks.com/products/TVMate/privacy.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --ink:#1C1C1C;--ink-light:#4A4A4A;--ink-muted:#7A7060;
+            --paper:#F2E6D0;--paper-dark:#E8D9BF;--paper-border:#C4B598;
+            --warm:#E8A04C;--warm-deep:#C4722A;--sepia:#D4A574;
+            --red-accent:#8B2500;--rule-light:#B0A48C;
+            --font-head:'Playfair Display',Georgia,serif;
+            --font-body:'Newsreader',Georgia,serif;
+            --font-ui:'Inter',-apple-system,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:#E8DBCA;color:var(--ink);line-height:1.7;overflow-x:hidden}
+
+        .paper{
+            max-width:860px;margin:0 auto;position:relative;
+            background:url('paper-mid.webp') center top repeat-y;
+            background-size:100% auto;background-color:#F0E4CE;
+        }
+        .paper::before{
+            content:'';position:absolute;top:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-top.webp') center top no-repeat;background-size:100% 100%;
+        }
+        .paper::after{
+            content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
+            pointer-events:none;z-index:0;
+            background:url('paper-bot.webp') center bottom no-repeat;background-size:100% 100%;
+        }
+
+        /* Masthead */
+        .masthead{position:sticky;top:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:6px 36px;font-family:var(--font-ui)}
+        .mast-left{display:flex;align-items:baseline;gap:16px}
+        .mast-title{font-family:var(--font-head);font-size:20px;font-weight:900;letter-spacing:1px}
+        .mast-right{display:flex;align-items:center;gap:12px}
+        .mast-date{font-size:9px;color:var(--sepia);letter-spacing:.5px}
+        .lang-btns{display:flex;gap:3px}
+        .lang-btns button{padding:3px 8px;border:1px solid rgba(242,230,208,.3);border-radius:3px;background:transparent;color:var(--paper);font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-ui)}
+        .lang-btns button.active{background:var(--warm);color:var(--ink);border-color:var(--warm)}
+        .lang-btns button:hover:not(.active){border-color:var(--warm);color:var(--warm)}
+        .mast-back{color:var(--sepia);font-size:11px;text-decoration:none;font-family:var(--font-ui);transition:color .2s}
+        .mast-back:hover{color:var(--warm)}
+
+        /* Nameplate */
+        .nameplate{position:relative;z-index:1;text-align:center;padding:20px 36px 0;border-bottom:3px double var(--ink)}
+        .nameplate h1{font-family:var(--font-head);font-size:48px;font-weight:900;letter-spacing:2px;line-height:1;padding:10px 0 4px;color:var(--ink)}
+        .nameplate h1 em{font-style:italic;color:var(--warm-deep)}
+        .nameplate-tagline{font-family:var(--font-body);font-size:13px;font-style:italic;color:var(--ink-muted);padding-bottom:10px}
+
+        /* Content */
+        .content{position:relative;z-index:1;padding:24px 48px 40px}
+        .content h2{font-family:var(--font-head);font-size:22px;font-weight:700;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule-light)}
+        .content h2:first-child{margin-top:0}
+        .content h3{font-family:var(--font-head);font-size:16px;font-weight:700;margin:18px 0 8px}
+        .content p{font-size:15px;color:var(--ink-light);margin-bottom:12px}
+        .content ul{margin:0 0 14px 24px}
+        .content li{font-size:15px;color:var(--ink-light);margin-bottom:8px}
+        .content li strong{color:var(--ink)}
+        .content a{color:var(--warm-deep);text-decoration:underline;text-underline-offset:2px}
+        .content a:hover{color:var(--ink)}
+        .date-line{font-size:12px;color:var(--ink-muted);font-style:italic;margin-bottom:16px;text-align:center}
+
+        /* Highlight box */
+        .highlight{margin:16px 0 20px;padding:16px 20px;background:rgba(232,160,76,.1);border:1px solid rgba(232,160,76,.3);border-radius:4px;display:flex;gap:12px;align-items:flex-start}
+        .highlight .icon{font-size:24px;flex-shrink:0}
+        .highlight strong{display:block;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px}
+        .highlight p{font-size:13px;color:var(--ink-light);margin:0}
+
+        /* Info grid */
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+        .info-card{padding:14px;background:rgba(242,230,208,.5);border:1px solid var(--paper-border);border-radius:4px}
+        .info-card strong{display:block;font-size:13px;margin-bottom:3px;color:var(--ink)}
+        .info-card span{font-size:12px;color:var(--ink-muted);line-height:1.5}
+
+        /* Footer */
+        .paper-footer{position:relative;z-index:1;border-top:3px double var(--ink);margin:0 36px;padding:14px 0 20px;text-align:center;background:transparent}
+        .paper-footer p{font-size:10px;color:var(--ink-muted);line-height:1.6}
+        .paper-footer a{color:var(--ink);text-decoration:none}
+        .paper-footer a:hover{color:var(--warm)}
+
+        /* Language */
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        /* Responsive */
+        @media(max-width:768px){
+            .content{padding:20px 24px 32px}
+            .nameplate h1{font-size:36px}
+            .masthead{padding:6px 16px}
+            .info-grid{grid-template-columns:1fr}
+            .paper-footer{margin:0 20px}
+        }
+    </style>
+</head>
+<body>
+<div class="paper">
+    <!-- Masthead -->
+    <nav class="masthead">
+        <div class="mast-left">
+            <a href="index.html" class="mast-title">TVMate</a>
+            <a href="index.html" class="mast-back" data-i18n="mast.back">&larr; Back to TVMate</a>
+        </div>
+        <div class="mast-right">
+            <div class="lang-btns" id="langBtns">
+                <button class="active" data-lang="zh">中文</button>
+                <button data-lang="en">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nameplate -->
+    <div class="nameplate">
+        <h1 data-i18n="title">隱私<em>政策</em></h1>
+        <p class="nameplate-tagline" data-i18n="tagline">TVMate 如何保護你的隱私</p>
+    </div>
+
+    <!-- Chinese -->
+    <div class="lang-section active" id="lang-zh">
+        <div class="content">
+            <p class="date-line">最後更新：2026 年 4 月 8 日</p>
+
+            <div class="highlight">
+                <div class="icon">&#128274;</div>
+                <div>
+                    <strong>100% 本機處理</strong>
+                    <p>TVMate 的所有影片播放、CRT 映像管模擬、影像升頻皆在你的 Apple TV 本地執行。你的影片內容不會經過我們的伺服器。</p>
+                </div>
+            </div>
+
+            <h2>我們收集的資訊</h2>
+            <h3>我們「不」收集的</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>&#128683; 影片內容</strong>
+                    <span>你的影片、串流內容和播放記錄完全保留在你的 Apple TV 上，我們無法存取。</span>
+                </div>
+                <div class="info-card">
+                    <strong>&#128683; 伺服器憑證</strong>
+                    <span>你的 Plex / Jellyfin / Emby / WebDAV / SMB 伺服器帳號密碼儲存在裝置本地，我們無法取得。</span>
+                </div>
+            </div>
+
+            <h3>我們可能收集的</h3>
+            <ul>
+                <li><strong>購買記錄：</strong>透過 Apple StoreKit 處理的 Premium 一次買斷購買記錄。</li>
+                <li><strong>基本使用統計：</strong>App 啟動次數、功能使用頻率等匿名數據，用於改善產品體驗。此數據不含任何個人識別資訊。</li>
+                <li><strong>當機報告：</strong>系統自動產生的匿名當機日誌，用於修復問題。</li>
+            </ul>
+
+            <h2>第三方服務</h2>
+            <p>TVMate 與以下服務互動：</p>
+            <ul>
+                <li><strong>Apple StoreKit：</strong>處理 Premium 購買與訂閱驗證。透過 Apple 安全基礎設施運作。</li>
+                <li><strong>TMDB（The Movie Database）：</strong>取得電影/影集的海報、簡介、評分等後設資料。TVMate 僅向 TMDB 發送影片標題查詢，不傳送任何個人資訊。</li>
+                <li><strong>你的私人媒體伺服器：</strong>TVMate 直接連線到你設定的 Plex / Jellyfin / Emby / WebDAV / SMB 伺服器。連線憑證僅儲存在你的 Apple TV 上。</li>
+            </ul>
+
+            <h2>資料儲存</h2>
+            <p>TVMate 的所有設定、伺服器憑證、播放記錄和偏好設定皆儲存在你的 Apple TV 本地。我們不營運任何雲端資料庫來存放用戶資料。</p>
+            <p>如果你使用 iCloud 同步功能，設定資料會透過 Apple 的 iCloud 基礎設施加密同步，我們無法存取這些加密資料。</p>
+
+            <h2>應用程式內廣告</h2>
+            <p>TVMate 免費版可能顯示廣告。廣告由 <strong>henworks.com</strong> 提供，可能包含：</p>
+            <ul>
+                <li><strong>自家廣告：</strong>Hen Works 產品推廣。</li>
+                <li><strong>聯盟行銷連結：</strong>推薦的產品或服務，均有明確標示。</li>
+            </ul>
+            <p>Premium 用戶永久免廣告。</p>
+
+            <h2>兒童隱私</h2>
+            <p>TVMate 內建家長控制功能，可依內容分級限制播放。我們不會從兒童收集任何個人資訊。</p>
+
+            <h2>你的權利</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>&#128203; 存取</strong>
+                    <span>你可以隨時查看 TVMate 儲存在你裝置上的所有資料。</span>
+                </div>
+                <div class="info-card">
+                    <strong>&#128465; 刪除</strong>
+                    <span>刪除 App 即可清除所有本地資料。如需刪除匿名統計資料，請聯絡我們。</span>
+                </div>
+            </div>
+
+            <h2>安全性</h2>
+            <p>TVMate 使用 Apple 平台的安全框架保護本地資料。伺服器連線支援 HTTPS/TLS 加密傳輸。</p>
+
+            <h2>聯絡我們</h2>
+            <ul>
+                <li><strong>電子郵件：</strong><a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                <li><strong>網站：</strong><a href="https://henworks.com">https://henworks.com</a></li>
+            </ul>
+
+            <h2>政策變更</h2>
+            <p>我們可能不時更新本隱私政策。變更將透過更新上方的「最後更新」日期來通知。繼續使用 TVMate 表示接受更新的隱私政策。</p>
+        </div>
+    </div>
+
+    <!-- English -->
+    <div class="lang-section" id="lang-en">
+        <div class="content">
+            <p class="date-line">Last updated: April 8, 2026</p>
+
+            <div class="highlight">
+                <div class="icon">&#128274;</div>
+                <div>
+                    <strong>100% On-Device Processing</strong>
+                    <p>All video playback, CRT simulation, and image upscaling in TVMate runs entirely on your Apple TV. Your video content never passes through our servers.</p>
+                </div>
+            </div>
+
+            <h2>Information We Collect</h2>
+            <h3>What We Do NOT Collect</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>&#128683; Video Content</strong>
+                    <span>Your videos, streaming content, and playback history remain entirely on your Apple TV. We cannot access them.</span>
+                </div>
+                <div class="info-card">
+                    <strong>&#128683; Server Credentials</strong>
+                    <span>Your Plex / Jellyfin / Emby / WebDAV / SMB credentials are stored locally on your device. We cannot retrieve them.</span>
+                </div>
+            </div>
+
+            <h3>What We May Collect</h3>
+            <ul>
+                <li><strong>Purchase Records:</strong> Premium one-time purchase records processed through Apple StoreKit.</li>
+                <li><strong>Basic Usage Statistics:</strong> Anonymous data such as app launch count and feature usage frequency, used to improve the product. This data contains no personally identifiable information.</li>
+                <li><strong>Crash Reports:</strong> Anonymous crash logs generated by the system, used to fix issues.</li>
+            </ul>
+
+            <h2>Third-Party Services</h2>
+            <p>TVMate interacts with the following services:</p>
+            <ul>
+                <li><strong>Apple StoreKit:</strong> Handles Premium purchases and subscription verification through Apple's secure infrastructure.</li>
+                <li><strong>TMDB (The Movie Database):</strong> Retrieves movie/show metadata such as posters, synopses, and ratings. TVMate only sends title queries to TMDB — no personal information is transmitted.</li>
+                <li><strong>Your Private Media Servers:</strong> TVMate connects directly to your configured Plex / Jellyfin / Emby / WebDAV / SMB servers. Connection credentials are stored only on your Apple TV.</li>
+            </ul>
+
+            <h2>Data Storage</h2>
+            <p>All TVMate settings, server credentials, playback history, and preferences are stored locally on your Apple TV. We do not operate any cloud database to store user data.</p>
+            <p>If you use iCloud sync, settings are encrypted and synced through Apple's iCloud infrastructure. We cannot access this encrypted data.</p>
+
+            <h2>In-App Advertising</h2>
+            <p>The free version of TVMate may display advertisements. Ads are served from <strong>henworks.com</strong> and may include:</p>
+            <ul>
+                <li><strong>Self-hosted ads:</strong> Promotions for Hen Works products.</li>
+                <li><strong>Affiliate links:</strong> Recommended products or services, all clearly labeled.</li>
+            </ul>
+            <p>Premium users enjoy a permanently ad-free experience.</p>
+
+            <h2>Children's Privacy</h2>
+            <p>TVMate includes parental controls that can restrict playback based on content ratings. We do not collect any personal information from children.</p>
+
+            <h2>Your Rights</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>&#128203; Access</strong>
+                    <span>You can view all data TVMate stores on your device at any time.</span>
+                </div>
+                <div class="info-card">
+                    <strong>&#128465; Delete</strong>
+                    <span>Deleting the app removes all local data. Contact us to request deletion of anonymous statistics.</span>
+                </div>
+            </div>
+
+            <h2>Security</h2>
+            <p>TVMate uses Apple platform security frameworks to protect local data. Server connections support HTTPS/TLS encrypted transmission.</p>
+
+            <h2>Contact Us</h2>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                <li><strong>Website:</strong> <a href="https://henworks.com">https://henworks.com</a></li>
+            </ul>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Changes will be communicated by updating the "Last updated" date above. Your continued use of TVMate constitutes acceptance of the updated Privacy Policy.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="paper-footer">
+        <p><a href="index.html">TVMate</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+        <p>&copy; 2026 Hen Works. All rights reserved.</p>
+    </div>
+</div>
+
+<script>
+let curLang='zh';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#langBtns button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+document.querySelectorAll('#langBtns button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const params=new URLSearchParams(window.location.search);
+if(params.get('lang')==='en')setLang('en');
+</script>
+</body>
+</html>
