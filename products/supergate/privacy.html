@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - SuperGate VPN</title>
+    <meta name="description" content="SuperGate VPN Privacy Policy - Learn how we protect your data with zero-logging VPN.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --accent:#7C5CFC;--accent-soft:#B8A5FF;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo img{width:32px;height:32px;border-radius:8px}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px;margin-right:16px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
+        .nav-lang button.active{background:var(--black);color:var(--white)}
+
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(124,92,252,.12) 0%,rgba(124,92,252,.04) 100%);border-radius:20px;border:1px solid rgba(124,92,252,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .info-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .info-card .ic-icon{font-size:24px;margin-bottom:8px}
+        .info-card strong{display:block;font-size:14px;margin-bottom:4px}
+        .info-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand img{width:24px;height:24px;border-radius:5px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .info-grid{grid-template-columns:1fr}
+        }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}.nav-lang{margin-right:8px}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+    <nav class="nav">
+        <a href="#" class="nav-logo">
+            <img src="../../images/supergate-logo.png" alt="SuperGate VPN">
+            <span>SuperGate VPN</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html" class="active">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+    </nav>
+
+    <!-- English -->
+    <div class="lang-section active" id="lang-en">
+        <section class="policy-hero anim">
+            <h1>Privacy <em>Policy</em></h1>
+            <p class="date">Last updated: April 22, 2026</p>
+            <p class="summary">At Hen Works, your privacy is our top priority. SuperGate VPN does not log your traffic, browsing history, or connection metadata. Your VPN credentials are stored only on your device.</p>
+        </section>
+
+        <div class="highlight-box anim d1">
+            <div class="icon">🛡️</div>
+            <div class="text">
+                <strong>Zero-Logging VPN Client</strong>
+                <p>SuperGate VPN is a client-only app. We do not operate VPN servers and have no access to your traffic. Your VPN server credentials and connection profiles are stored exclusively on your device and are never transmitted to Hen Works or any third party.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>Information We Collect</h2>
+                <h3>VPN Credentials & Profiles</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📱</div>
+                        <strong>On-Device Only</strong>
+                        <span>Server addresses, usernames, certificates, and connection profiles are stored locally on your device. They are never sent to our servers.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔐</div>
+                        <strong>Keychain Protected</strong>
+                        <span>Sensitive credentials (passwords, certificates) are stored in the iOS Keychain, encrypted by the operating system.</span>
+                    </div>
+                </div>
+                <h3>Purchase Information</h3>
+                <ul>
+                    <li><strong>In-App Purchase Status:</strong> Whether you have purchased "Remove Ads" is verified through Apple StoreKit. We do not collect or store payment details.</li>
+                </ul>
+                <h3>Advertising Data</h3>
+                <ul>
+                    <li><strong>Google AdMob:</strong> The free version of the App displays advertisements via Google AdMob. Google may collect device identifiers and usage data for ad personalization. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.</li>
+                    <li><strong>App Tracking Transparency:</strong> On iOS 14.5+, you will be prompted to allow or deny tracking for ad personalization. If you deny, only non-personalized ads are shown.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>What We Do NOT Collect</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>No Traffic Logging</strong>
+                        <span>We never monitor, log, or store your VPN traffic, browsing history, DNS queries, or connection timestamps.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>No User Accounts</strong>
+                        <span>SuperGate VPN does not require account creation. No email, name, or personal information is collected by us.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>No Analytics</strong>
+                        <span>We do not use analytics SDKs or collect usage telemetry beyond what Google AdMob may collect for ad serving.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>No Server-Side Storage</strong>
+                        <span>Hen Works does not operate any backend servers for SuperGate VPN. All data lives on your device.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Third-Party Services</h2>
+                <p>SuperGate VPN integrates with the following services:</p>
+                <ul>
+                    <li><strong>Google AdMob:</strong> Displays banner and interstitial advertisements in the free version. Google may collect device identifiers for ad personalization. You can opt out via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a> or by denying the App Tracking Transparency prompt.</li>
+                    <li><strong>Apple StoreKit:</strong> Manages the "Remove Ads" in-app purchase through Apple's secure infrastructure. No payment details are shared with Hen Works.</li>
+                    <li><strong>Apple NetworkExtension:</strong> The VPN tunnel is established via iOS's built-in NetworkExtension framework, managed by the operating system.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Your Privacy Rights</h2>
+                <p>You have the right to:</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>Access</strong>
+                        <span>All your data is already on your device. There is no server-side data to request.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>Delete</strong>
+                        <span>Uninstalling the App removes all stored profiles and credentials from your device.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>Opt-Out of Ads</strong>
+                        <span>Purchase "Remove Ads" or deny tracking in iOS Settings to stop personalized ads.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">⚙️</div>
+                        <strong>Control</strong>
+                        <span>You control all VPN profiles and can delete them at any time within the App.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Data Security</h2>
+                <p>All VPN credentials are stored in the iOS Keychain, which provides hardware-backed encryption. VPN traffic is encrypted using industry-standard TLS/DTLS protocols via the OpenConnect protocol. Hen Works has no access to your encrypted tunnel or its contents.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Children's Privacy</h2>
+                <p>SuperGate VPN is not intended for children under 13. We do not knowingly collect personal information from children under 13. Since we do not collect personal information from any users, this risk is minimal.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Contact Us</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date above. Your continued use of SuperGate VPN following any changes constitutes your acceptance of the updated Privacy Policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chinese (Traditional) -->
+    <div class="lang-section" id="lang-zh">
+        <section class="policy-hero">
+            <h1>隱私<em>政策</em></h1>
+            <p class="date">最後更新：2026年4月22日</p>
+            <p class="summary">在 Hen Works，您的隱私是我們的首要任務。SuperGate VPN 不記錄您的流量、瀏覽歷史或連線元數據。您的 VPN 認證資訊僅儲存於您的裝置上。</p>
+        </section>
+
+        <div class="highlight-box">
+            <div class="icon">🛡️</div>
+            <div class="text">
+                <strong>零日誌 VPN 客戶端</strong>
+                <p>SuperGate VPN 是一款純客戶端應用程式。我們不營運 VPN 伺服器，也無法存取您的流量。您的 VPN 伺服器認證資訊和連線設定檔僅儲存在您的裝置上，絕不會傳輸至 Hen Works 或任何第三方。</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>我們收集的資訊</h2>
+                <h3>VPN 認證資訊與設定檔</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📱</div>
+                        <strong>僅限裝置端</strong>
+                        <span>伺服器地址、使用者名稱、憑證和連線設定檔儲存在您的裝置本機。絕不會傳送至我們的伺服器。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔐</div>
+                        <strong>鑰匙圈保護</strong>
+                        <span>敏感的認證資訊（密碼、憑證）儲存在 iOS 鑰匙圈中，由作業系統加密保護。</span>
+                    </div>
+                </div>
+                <h3>購買資訊</h3>
+                <ul>
+                    <li><strong>應用內購買狀態：</strong>是否購買「移除廣告」透過 Apple StoreKit 驗證。我們不收集或儲存任何付款資訊。</li>
+                </ul>
+                <h3>廣告數據</h3>
+                <ul>
+                    <li><strong>Google AdMob：</strong>免費版本透過 Google AdMob 顯示廣告。Google 可能收集裝置識別碼和使用數據用於廣告個人化。詳見 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隱私政策</a>。</li>
+                    <li><strong>App 追蹤透明度：</strong>在 iOS 14.5+ 上，系統會提示您允許或拒絕廣告個人化追蹤。如果您拒絕，則僅顯示非個人化廣告。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>我們不收集的資訊</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>不記錄流量</strong>
+                        <span>我們絕不監控、記錄或儲存您的 VPN 流量、瀏覽歷史、DNS 查詢或連線時間戳。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>不需要帳戶</strong>
+                        <span>SuperGate VPN 不需要建立帳戶。我們不收集電子郵件、姓名或個人資訊。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>無分析工具</strong>
+                        <span>除 Google AdMob 用於廣告投放可能收集的數據外，我們不使用分析 SDK 或收集使用遙測數據。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>無伺服器端儲存</strong>
+                        <span>Hen Works 未為 SuperGate VPN 營運任何後端伺服器。所有數據都在您的裝置上。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>第三方服務</h2>
+                <p>SuperGate VPN 整合以下服務：</p>
+                <ul>
+                    <li><strong>Google AdMob：</strong>在免費版本中顯示橫幅廣告和插頁廣告。Google 可能收集裝置識別碼用於廣告個人化。您可透過 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 廣告設定</a>或拒絕 App 追蹤透明度提示來選擇退出。</li>
+                    <li><strong>Apple StoreKit：</strong>透過 Apple 的安全基礎設施管理「移除廣告」應用內購買。不會與 Hen Works 共享任何付款資訊。</li>
+                    <li><strong>Apple NetworkExtension：</strong>VPN 通道透過 iOS 內建的 NetworkExtension 框架建立，由作業系統管理。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>您的隱私權</h2>
+                <p>您有權：</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>存取</strong>
+                        <span>您的所有數據已在您的裝置上。無需向伺服器端請求資料。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>刪除</strong>
+                        <span>解除安裝應用程式即可從您的裝置上移除所有儲存的設定檔和認證資訊。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>退出廣告</strong>
+                        <span>購買「移除廣告」或在 iOS 設定中拒絕追蹤以停止個人化廣告。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">⚙️</div>
+                        <strong>控制</strong>
+                        <span>您可控制所有 VPN 設定檔，並可隨時在應用程式內刪除。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>資料安全</h2>
+                <p>所有 VPN 認證資訊儲存在 iOS 鑰匙圈中，提供硬體支援的加密。VPN 流量透過 OpenConnect 協議使用業界標準 TLS/DTLS 協議加密。Hen Works 無法存取您的加密通道或其內容。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>兒童隱私</h2>
+                <p>SuperGate VPN 不適合 13 歲以下的兒童。我們不會故意從 13 歲以下的兒童收集個人資訊。由於我們不收集任何用戶的個人資訊，此風險極低。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>聯絡我們</h2>
+                <ul>
+                    <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>本政策的變更</h2>
+                <p>我們可能不時更新本隱私政策。我們將透過更新上方的「最後更新」日期來通知您任何變更。您繼續使用 SuperGate VPN 表示接受更新的隱私政策。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese -->
+    <div class="lang-section" id="lang-ja">
+        <section class="policy-hero">
+            <h1>プライバシー<em>ポリシー</em></h1>
+            <p class="date">最終更新：2026年4月22日</p>
+            <p class="summary">Hen Worksでは、お客様のプライバシーを最優先にしています。SuperGate VPNはトラフィック、閲覧履歴、接続メタデータを記録しません。VPN認証情報はデバイスにのみ保存されます。</p>
+        </section>
+
+        <div class="highlight-box">
+            <div class="icon">🛡️</div>
+            <div class="text">
+                <strong>ゼロログVPNクライアント</strong>
+                <p>SuperGate VPNはクライアント専用アプリです。当社はVPNサーバーを運営しておらず、お客様のトラフィックにアクセスすることはありません。VPNサーバーの認証情報と接続プロファイルはデバイスにのみ保存され、Hen Worksまたは第三者に送信されることはありません。</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>当社が収集する情報</h2>
+                <h3>VPN認証情報とプロファイル</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📱</div>
+                        <strong>デバイスのみ</strong>
+                        <span>サーバーアドレス、ユーザー名、証明書、接続プロファイルはデバイスにローカル保存されます。サーバーに送信されることはありません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔐</div>
+                        <strong>キーチェーンで保護</strong>
+                        <span>機密認証情報（パスワード、証明書）はiOSキーチェーンに保存され、OSにより暗号化されます。</span>
+                    </div>
+                </div>
+                <h3>購入情報</h3>
+                <ul>
+                    <li><strong>アプリ内購入の状態：</strong>「広告を削除」の購入はApple StoreKitで検証されます。支払い情報は収集・保存しません。</li>
+                </ul>
+                <h3>広告データ</h3>
+                <ul>
+                    <li><strong>Google AdMob：</strong>無料版ではGoogle AdMobを通じて広告が表示されます。Googleは広告パーソナライズのためにデバイス識別子と使用データを収集する場合があります。詳細は<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleプライバシーポリシー</a>をご覧ください。</li>
+                    <li><strong>Appトラッキングの透明性：</strong>iOS 14.5以降では、広告パーソナライズのためのトラッキングを許可または拒否するプロンプトが表示されます。拒否すると、非パーソナライズ広告のみが表示されます。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>当社が収集しない情報</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>トラフィックログなし</strong>
+                        <span>VPNトラフィック、閲覧履歴、DNSクエリ、接続タイムスタンプを監視、記録、保存することはありません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>アカウント不要</strong>
+                        <span>SuperGate VPNはアカウント作成が不要です。メール、氏名、個人情報は収集しません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>分析なし</strong>
+                        <span>Google AdMobが広告配信のために収集するデータ以外に、分析SDKや使用テレメトリは使用しません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>サーバーサイド保存なし</strong>
+                        <span>Hen WorksはSuperGate VPNのバックエンドサーバーを運営していません。すべてのデータはデバイス上にあります。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>第三者サービス</h2>
+                <p>SuperGate VPNは以下のサービスと統合されています：</p>
+                <ul>
+                    <li><strong>Google AdMob：</strong>無料版でバナー広告とインタースティシャル広告を表示します。Googleは広告パーソナライズのためにデバイス識別子を収集する場合があります。<a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google広告設定</a>またはAppトラッキングプロンプトの拒否でオプトアウトできます。</li>
+                    <li><strong>Apple StoreKit：</strong>Appleの安全なインフラを通じて「広告を削除」アプリ内購入を管理。支払い情報はHen Worksと共有されません。</li>
+                    <li><strong>Apple NetworkExtension：</strong>VPNトンネルはiOS内蔵のNetworkExtensionフレームワークで確立され、OSにより管理されます。</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>お客様のプライバシー権</h2>
+                <p>お客様は以下の権利があります：</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>アクセス</strong>
+                        <span>すべてのデータはすでにデバイス上にあります。サーバーサイドにリクエストするデータはありません。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>削除</strong>
+                        <span>アプリをアンインストールすると、保存されたすべてのプロファイルと認証情報がデバイスから削除されます。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>広告オプトアウト</strong>
+                        <span>「広告を削除」を購入するか、iOS設定でトラッキングを拒否してパーソナライズ広告を停止できます。</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">⚙️</div>
+                        <strong>コントロール</strong>
+                        <span>すべてのVPNプロファイルを管理し、アプリ内でいつでも削除できます。</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>データセキュリティ</h2>
+                <p>すべてのVPN認証情報はiOSキーチェーンに保存され、ハードウェアベースの暗号化を提供します。VPNトラフィックはOpenConnectプロトコルを通じて業界標準のTLS/DTLSプロトコルで暗号化されます。Hen Worksは暗号化されたトンネルやその内容にアクセスできません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>児童のプライバシー</h2>
+                <p>SuperGate VPNは13歳未満の児童を対象としていません。当社は13歳未満の児童から個人情報を故意に収集しません。当社はいかなるユーザーからも個人情報を収集しないため、このリスクは最小限です。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>お問い合わせ</h2>
+                <ul>
+                    <li><strong>メール：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>ウェブサイト：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>本ポリシーの変更</h2>
+                <p>当社は本プライバシーポリシーを随時更新する場合があります。変更については「最終更新」日付を更新してお知らせします。SuperGate VPNの使用を継続することは、更新されたプライバシーポリシーへの同意を意味します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Korean -->
+    <div class="lang-section" id="lang-ko">
+        <section class="policy-hero">
+            <h1>개인정보<em>처리방침</em></h1>
+            <p class="date">마지막 업데이트: 2026년 4월 22일</p>
+            <p class="summary">Hen Works에서 귀하의 개인정보는 최우선 과제입니다. SuperGate VPN은 귀하의 트래픽, 검색 기록 또는 연결 메타데이터를 기록하지 않습니다. VPN 자격 증명은 귀하의 기기에만 저장됩니다.</p>
+        </section>
+
+        <div class="highlight-box">
+            <div class="icon">🛡️</div>
+            <div class="text">
+                <strong>제로 로그 VPN 클라이언트</strong>
+                <p>SuperGate VPN은 클라이언트 전용 앱입니다. 당사는 VPN 서버를 운영하지 않으며 귀하의 트래픽에 접근할 수 없습니다. VPN 서버 자격 증명과 연결 프로필은 귀하의 기기에만 저장되며 Hen Works 또는 제3자에게 전송되지 않습니다.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>당사가 수집하는 정보</h2>
+                <h3>VPN 자격 증명 및 프로필</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📱</div>
+                        <strong>기기에만 저장</strong>
+                        <span>서버 주소, 사용자 이름, 인증서, 연결 프로필은 기기에 로컬로 저장됩니다. 서버로 전송되지 않습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔐</div>
+                        <strong>키체인으로 보호</strong>
+                        <span>민감한 자격 증명(비밀번호, 인증서)은 iOS 키체인에 저장되며 운영 체제에 의해 암호화됩니다.</span>
+                    </div>
+                </div>
+                <h3>구매 정보</h3>
+                <ul>
+                    <li><strong>앱 내 구매 상태:</strong> "광고 제거" 구매 여부는 Apple StoreKit으로 확인됩니다. 결제 정보는 수집하거나 저장하지 않습니다.</li>
+                </ul>
+                <h3>광고 데이터</h3>
+                <ul>
+                    <li><strong>Google AdMob:</strong> 무료 버전에서는 Google AdMob을 통해 광고가 표시됩니다. Google은 광고 개인화를 위해 기기 식별자와 사용 데이터를 수집할 수 있습니다. 자세한 내용은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 참조하세요.</li>
+                    <li><strong>앱 추적 투명성:</strong> iOS 14.5 이상에서는 광고 개인화를 위한 추적을 허용하거나 거부하라는 메시지가 표시됩니다. 거부하면 개인화되지 않은 광고만 표시됩니다.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>당사가 수집하지 않는 정보</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>트래픽 로그 없음</strong>
+                        <span>VPN 트래픽, 검색 기록, DNS 쿼리, 연결 타임스탬프를 모니터링, 기록 또는 저장하지 않습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>계정 불필요</strong>
+                        <span>SuperGate VPN은 계정 생성이 필요하지 않습니다. 이메일, 이름, 개인 정보를 수집하지 않습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>분석 없음</strong>
+                        <span>Google AdMob이 광고 제공을 위해 수집하는 데이터 외에 분석 SDK 또는 사용 텔레메트리를 사용하지 않습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>서버측 저장 없음</strong>
+                        <span>Hen Works는 SuperGate VPN을 위한 백엔드 서버를 운영하지 않습니다. 모든 데이터는 귀하의 기기에 있습니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>제3자 서비스</h2>
+                <p>SuperGate VPN은 다음 서비스와 통합됩니다:</p>
+                <ul>
+                    <li><strong>Google AdMob:</strong> 무료 버전에서 배너 광고와 전면 광고를 표시합니다. Google은 광고 개인화를 위해 기기 식별자를 수집할 수 있습니다. <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 광고 설정</a> 또는 앱 추적 프롬프트 거부를 통해 거부할 수 있습니다.</li>
+                    <li><strong>Apple StoreKit:</strong> Apple의 안전한 인프라를 통해 "광고 제거" 앱 내 구매를 관리합니다. 결제 정보는 Hen Works와 공유되지 않습니다.</li>
+                    <li><strong>Apple NetworkExtension:</strong> VPN 터널은 iOS 내장 NetworkExtension 프레임워크로 설정되며 운영 체제에 의해 관리됩니다.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>귀하의 개인정보 보호 권리</h2>
+                <p>귀하는 다음과 같은 권리를 가집니다:</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>접근</strong>
+                        <span>모든 데이터는 이미 귀하의 기기에 있습니다. 서버측에 요청할 데이터가 없습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>삭제</strong>
+                        <span>앱을 삭제하면 저장된 모든 프로필과 자격 증명이 기기에서 제거됩니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>광고 거부</strong>
+                        <span>"광고 제거"를 구매하거나 iOS 설정에서 추적을 거부하여 개인화 광고를 중지할 수 있습니다.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">⚙️</div>
+                        <strong>제어</strong>
+                        <span>모든 VPN 프로필을 관리하며 앱 내에서 언제든 삭제할 수 있습니다.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>데이터 보안</h2>
+                <p>모든 VPN 자격 증명은 iOS 키체인에 저장되어 하드웨어 기반 암호화를 제공합니다. VPN 트래픽은 OpenConnect 프로토콜을 통해 업계 표준 TLS/DTLS 프로토콜로 암호화됩니다. Hen Works는 귀하의 암호화된 터널이나 그 내용에 접근할 수 없습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>아동 개인정보 보호</h2>
+                <p>SuperGate VPN은 13세 미만의 아동을 위한 것이 아닙니다. 당사는 13세 미만 아동의 개인 정보를 의도적으로 수집하지 않습니다. 당사는 어떤 사용자의 개인 정보도 수집하지 않으므로 이 위험은 최소화됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>문의</h2>
+                <ul>
+                    <li><strong>이메일:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>웹사이트:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>본 방침의 변경</h2>
+                <p>당사는 본 개인정보처리방침을 수시로 업데이트할 수 있습니다. 변경 사항은 "마지막 업데이트" 날짜를 업데이트하여 공지합니다. SuperGate VPN의 지속적인 사용은 업데이트된 개인정보처리방침에 대한 동의를 의미합니다.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><img src="../../images/supergate-logo.png" alt="SuperGate VPN"><span>SuperGate VPN</span></div>
+            <small>Secure VPN Client for iOS</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About Hen Works</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 Hen Works. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+let curLang='en';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    el.querySelectorAll('.anim').forEach(a=>{a.classList.remove('show');void a.offsetWidth;a.classList.add('show')});
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

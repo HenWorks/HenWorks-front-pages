@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - SuperGate VPN</title>
+    <meta name="description" content="SuperGate VPN Terms of Use and End User License Agreement.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --accent:#7C5CFC;--accent-soft:#B8A5FF;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo img{width:32px;height:32px;border-radius:8px}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px;margin-right:16px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--gray-light);transition:all .3s;font-family:var(--font)}
+        .nav-lang button.active{background:var(--black);color:var(--white)}
+
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(124,92,252,.12) 0%,rgba(124,92,252,.04) 100%);border-radius:20px;border:1px solid rgba(124,92,252,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand img{width:24px;height:24px;border-radius:5px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+        }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}.nav-lang{margin-right:8px}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+    <nav class="nav">
+        <a href="#" class="nav-logo">
+            <img src="../../images/supergate-logo.png" alt="SuperGate VPN">
+            <span>SuperGate VPN</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html" class="active">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+    </nav>
+
+    <!-- English -->
+    <div class="lang-section active" id="lang-en">
+        <section class="policy-hero anim">
+            <h1>Terms of <em>Use</em></h1>
+            <p class="date">Last updated: April 22, 2026</p>
+            <p class="summary">By downloading, installing, and using SuperGate VPN, you agree to be bound by these Terms of Use and End User License Agreement.</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>1. Agreement to Terms</h2>
+                <p>By downloading, installing, and using SuperGate VPN ("the App"), you agree to be bound by these Terms of Use and End User License Agreement ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>2. License Grant</h2>
+                <p>Hen Works grants you a limited, non-exclusive, non-transferable, and revocable license to use the App in accordance with these Terms. You may not sublicense, sell, rent, lease, transfer, assign, or otherwise dispose of the App.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>3. "As-Is" Disclaimer</h2>
+                <p>The App is provided "as-is" without warranty of any kind, express or implied. Hen Works does not warrant that the App will be uninterrupted, error-free, or secure. To the fullest extent permitted by law, Hen Works disclaims all warranties, including merchantability and fitness for a particular purpose.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>4. VPN Service Disclaimer</h2>
+                <p>SuperGate VPN provides a VPN tunnel using the OpenConnect protocol. Connection stability, speed, and availability depend on your VPN server, network conditions, and ISP. Hen Works does not operate VPN servers and is not responsible for server availability, speed, or the security of third-party VPN servers you connect to.</p>
+                <p>You are solely responsible for configuring your VPN server credentials and ensuring compliance with your jurisdiction's laws regarding VPN usage.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>5. User Responsibility</h2>
+                <p>You are solely responsible for all activities conducted through the VPN connection established by the App. Hen Works does not endorse, encourage, or facilitate any illegal activity. You agree not to use the App for any unlawful purpose.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>6. In-App Purchase</h2>
+                <p>The App offers a one-time, non-consumable "Remove Ads" in-app purchase that permanently removes banner and interstitial advertisements from the App. This purchase is non-refundable except as required by applicable law or Apple's refund policy.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>7. Refunds</h2>
+                <p>Refunds for in-app purchases are handled through Apple. Please refer to Apple's App Store refund policy for eligibility and procedures. Hen Works does not provide direct refunds.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>8. Advertising</h2>
+                <p>The App displays advertisements via Google AdMob. By using the free version of the App, you consent to the display of advertisements. You may remove all ads by purchasing the "Remove Ads" in-app purchase.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>9. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, Hen Works shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App, including but not limited to loss of data, business interruption, network disruption, or lost profits.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>10. Indemnification</h2>
+                <p>You agree to indemnify and hold harmless Hen Works from any claims, damages, or losses arising from your use of the App, your VPN connection, or violation of these Terms.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>11. Pricing & Modification</h2>
+                <p>Hen Works reserves the right to modify pricing and features at any time. Features may be added, changed, or removed through version updates without prior notice. Such changes do not constitute grounds for compensation, refund, or any form of claim against Hen Works.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>12. Intellectual Property</h2>
+                <p>The App, including all content, features, and functionality, is owned by Hen Works or its content suppliers and protected by international copyright and intellectual property laws.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>13. Termination</h2>
+                <p>Hen Works may terminate or suspend your access to the App at any time, without notice, if you violate these Terms or engage in illegal activity.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>14. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of Taiwan (R.O.C.), without regard to conflict of law principles.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>15. Dispute Resolution</h2>
+                <p>Any disputes arising from these Terms or your use of the App shall be resolved in the courts of Taiwan (R.O.C.).</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>16. Contact & Support</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>17. Entire Agreement</h2>
+                <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and Hen Works regarding the App and supersede all prior agreements.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>18. Severability</h2>
+                <p>If any provision of these Terms is found invalid or unenforceable, that provision shall be severable and shall not affect the remaining provisions.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>19. Changes to These Terms</h2>
+                <p>Hen Works may update these Terms from time to time. Your continued use of the App following any changes constitutes your acceptance of the updated Terms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chinese (Traditional) -->
+    <div class="lang-section" id="lang-zh">
+        <section class="policy-hero">
+            <h1>使用<em>條款</em></h1>
+            <p class="date">最後更新：2026年4月22日</p>
+            <p class="summary">透過下載、安裝和使用 SuperGate VPN，您同意受本使用條款及最終用戶許可協議的約束。</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 同意條款</h2>
+                <p>透過下載、安裝和使用 SuperGate VPN（以下簡稱「本應用程式」），您同意受本使用條款及最終用戶許可協議（以下簡稱「本條款」）的約束。如果您不同意本條款，請不要使用本應用程式。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. 許可授予</h2>
+                <p>Hen Works 根據本條款授予您有限的、非專屬的、不可轉讓的和可撤銷的許可，以使用本應用程式。您不得再授權、銷售、出租、出借、轉讓、分配或以其他方式處置本應用程式。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3.「現狀」免責聲明</h2>
+                <p>本應用程式按「現狀」提供，不提供任何明示或暗示的保證。Hen Works 不保證本應用程式將不中斷、無誤或安全。在法律允許的最大範圍內，Hen Works 免除所有保證，包括商品性和特定目的的適用性。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. VPN 服務免責聲明</h2>
+                <p>SuperGate VPN 使用 OpenConnect 協議提供 VPN 通道。連線穩定性、速度和可用性取決於您的 VPN 伺服器、網路狀況和 ISP。Hen Works 不營運 VPN 伺服器，也不對您所連線的第三方 VPN 伺服器之可用性、速度或安全性負責。</p>
+                <p>您需自行負責配置 VPN 伺服器認證資訊，並確保遵守您所在司法管轄區有關 VPN 使用的法律。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. 用戶責任</h2>
+                <p>您對透過本應用程式建立的 VPN 連線所進行的所有活動負全部責任。Hen Works 不認可、鼓勵或協助任何非法活動。您同意不會將本應用程式用於任何違法目的。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. 應用內購買</h2>
+                <p>本應用程式提供一次性、非消耗性的「移除廣告」應用內購買，可永久移除應用程式中的橫幅廣告和插頁廣告。除適用法律或 Apple 退款政策要求外，該購買不可退款。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. 退款</h2>
+                <p>應用內購買的退款由 Apple 處理。請參閱 Apple App Store 退款政策以了解符合條件和程序。Hen Works 不提供直接退款。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 廣告</h2>
+                <p>本應用程式透過 Google AdMob 顯示廣告。使用免費版本即表示您同意顯示廣告。您可透過購買「移除廣告」應用內購買來移除所有廣告。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 責任限制</h2>
+                <p>在法律允許的最大範圍內，Hen Works 不對由於您使用本應用程式而引起的任何間接、附帶、特殊、後果性或懲罰性損害承擔責任，包括但不限於數據丟失、業務中斷、網路中斷或利潤損失。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 賠償</h2>
+                <p>您同意賠償並使 Hen Works 免受因您使用本應用程式、您的 VPN 連線或違反本條款而引起的任何索賠、損害或損失。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 定價和修改</h2>
+                <p>Hen Works 保留隨時修改定價和功能的權利。部分功能可能會因版本更新而新增、變更或移除，恕不另行通知。上述變更不構成任何賠償、退款或向 Hen Works 提出索賠的依據。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 智慧財產</h2>
+                <p>本應用程式，包括所有內容、功能和特性，由 Hen Works 或其內容供應商擁有，受國際版權和智慧財產法保護。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 終止</h2>
+                <p>如果您違反本條款或從事非法活動，Hen Works 可隨時無通知地終止或暫停您對本應用程式的訪問。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 管轄法律</h2>
+                <p>本條款應受中華民國（台灣）法律的管轄和解釋，不考慮法律衝突原則。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 爭議解決</h2>
+                <p>由本條款或您使用本應用程式引起的任何爭議應在中華民國（台灣）法院解決。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. 聯絡和支援</h2>
+                <ul>
+                    <li><strong>電子郵件：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>網站：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 完整協議</h2>
+                <p>本條款連同隱私政策，構成您和 Hen Works 就本應用程式的完整協議，並取代所有先前的協議。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 可分割性</h2>
+                <p>如果本條款的任何條款被發現無效或不可執行，該條款應可分割，不影響其餘條款的有效性或可執行性。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 本條款的變更</h2>
+                <p>Hen Works 可能不時更新本條款。您繼續使用本應用程式表示接受更新的條款。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese -->
+    <div class="lang-section" id="lang-ja">
+        <section class="policy-hero">
+            <h1>利用<em>規約</em></h1>
+            <p class="date">最終更新：2026年4月22日</p>
+            <p class="summary">SuperGate VPNをダウンロード、インストール、使用することにより、お客様はこの利用規約およびエンドユーザーライセンス契約に拘束されることに同意します。</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 規約への同意</h2>
+                <p>SuperGate VPN（以下「本アプリ」）をダウンロード、インストール、使用することにより、お客様は本利用規約およびエンドユーザーライセンス契約（以下「本規約」）に拘束されることに同意します。本規約に同意しない場合は、本アプリを使用しないでください。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. ライセンスの付与</h2>
+                <p>Hen Worksは、本規約に従い、本アプリを使用するための限定的、非独占的、譲渡不可、取消可能なライセンスをお客様に付与します。お客様は本アプリをサブライセンス、販売、賃貸、リース、譲渡、移転、その他の方法で処分してはなりません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3.「現状」免責事項</h2>
+                <p>本アプリは、明示的または黙示的を問わず、いかなる保証もなく「現状のまま」提供されます。Hen Worksは、本アプリが中断なく、エラーなく、またはセキュアであることを保証しません。法律で認められる最大限の範囲で、Hen Worksは商品性および特定目的への適合性を含むすべての保証を否認します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. VPNサービスの免責事項</h2>
+                <p>SuperGate VPNはOpenConnectプロトコルを使用してVPNトンネルを提供します。接続の安定性、速度、可用性は、お客様のVPNサーバー、ネットワーク状況、ISPに依存します。Hen WorksはVPNサーバーを運営しておらず、お客様が接続するサードパーティVPNサーバーの可用性、速度、セキュリティについて責任を負いません。</p>
+                <p>お客様はVPNサーバーの認証情報の設定に責任を負い、VPN使用に関する管轄地域の法律の遵守を確保する必要があります。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. ユーザーの責任</h2>
+                <p>お客様は、本アプリで確立されたVPN接続を通じて行われるすべての活動に対して単独で責任を負います。Hen Worksは違法行為を推奨、奨励、促進しません。お客様は本アプリを違法な目的で使用しないことに同意します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. アプリ内購入</h2>
+                <p>本アプリは「広告を削除」の一回限りの非消耗型アプリ内購入を提供しており、バナー広告およびインタースティシャル広告を永久に削除できます。適用法またはAppleの返金ポリシーで要求される場合を除き、この購入は返金不可です。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. 返金</h2>
+                <p>アプリ内購入の返金はAppleを通じて処理されます。対象条件と手順についてはApple App Storeの返金ポリシーをご参照ください。Hen Worksは直接の返金を行いません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 広告</h2>
+                <p>本アプリはGoogle AdMobを通じて広告を表示します。無料版を使用することにより、広告の表示に同意します。「広告を削除」アプリ内購入により、すべての広告を削除できます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 責任の制限</h2>
+                <p>法律で認められる最大限の範囲で、Hen Worksは、データの損失、事業の中断、ネットワークの障害、逸失利益を含むがこれに限定されない、お客様の本アプリの使用から生じるいかなる間接的、付随的、特別、結果的、または懲罰的損害に対しても責任を負いません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 補償</h2>
+                <p>お客様は、本アプリの使用、VPN接続、または本規約の違反から生じるいかなる請求、損害、損失からもHen Worksを補償し、免責することに同意します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 価格設定と変更</h2>
+                <p>Hen Worksは、いつでも価格設定と機能を変更する権利を留保します。機能はバージョンアップデートにより予告なく追加、変更、または削除される場合があります。かかる変更は、Hen Worksに対する補償、返金、またはいかなる形式の請求の根拠とはなりません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 知的財産権</h2>
+                <p>本アプリは、すべてのコンテンツ、機能を含め、Hen Worksまたはそのコンテンツ提供者が所有し、国際著作権および知的財産法によって保護されています。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 終了</h2>
+                <p>お客様が本規約に違反した場合または違法行為を行った場合、Hen Worksは通知なしにいつでも本アプリへのアクセスを終了または停止することができます。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 準拠法</h2>
+                <p>本規約は、法の抵触に関する原則にかかわらず、台湾（中華民国）の法律に準拠し、解釈されるものとします。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 紛争解決</h2>
+                <p>本規約またはお客様の本アプリの使用から生じるいかなる紛争も、台湾（中華民国）の裁判所で解決されるものとします。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. お問い合わせ・サポート</h2>
+                <ul>
+                    <li><strong>メール：</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>ウェブサイト：</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 完全合意</h2>
+                <p>本規約はプライバシーポリシーとともに、本アプリに関するお客様とHen Worksとの間の完全な合意を構成し、以前のすべての合意に優先します。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 可分性</h2>
+                <p>本規約のいずれかの条項が無効または執行不能と判断された場合、その条項は分離可能であり、残りの条項の有効性または執行可能性に影響を与えません。</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 本規約の変更</h2>
+                <p>Hen Worksは本規約を随時更新する場合があります。変更後も本アプリの使用を継続することは、更新された規約への同意を意味します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Korean -->
+    <div class="lang-section" id="lang-ko">
+        <section class="policy-hero">
+            <h1>이용<em>약관</em></h1>
+            <p class="date">마지막 업데이트: 2026년 4월 22일</p>
+            <p class="summary">SuperGate VPN을 다운로드, 설치 및 사용함으로써 귀하는 본 이용약관 및 최종 사용자 라이선스 계약에 동의하게 됩니다.</p>
+        </section>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. 약관 동의</h2>
+                <p>SuperGate VPN(이하 "본 앱")을 다운로드, 설치 및 사용함으로써 귀하는 본 이용약관 및 최종 사용자 라이선스 계약(이하 "본 약관")에 구속됨에 동의합니다. 본 약관에 동의하지 않는 경우 본 앱을 사용하지 마십시오.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. 라이선스 부여</h2>
+                <p>Hen Works는 본 약관에 따라 본 앱을 사용할 수 있는 제한적, 비독점적, 양도 불가능, 취소 가능한 라이선스를 귀하에게 부여합니다. 귀하는 본 앱을 재라이선스, 판매, 임대, 리스, 양도, 이전 또는 기타 방법으로 처분해서는 안 됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. "있는 그대로" 면책 조항</h2>
+                <p>본 앱은 명시적이든 묵시적이든 어떠한 종류의 보증 없이 "있는 그대로" 제공됩니다. Hen Works는 본 앱이 중단 없이, 오류 없이 또는 안전하게 작동할 것을 보증하지 않습니다. 법이 허용하는 최대 범위 내에서 Hen Works는 상품성 및 특정 목적에의 적합성을 포함한 모든 보증을 부인합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. VPN 서비스 면책 조항</h2>
+                <p>SuperGate VPN은 OpenConnect 프로토콜을 사용하여 VPN 터널을 제공합니다. 연결 안정성, 속도 및 가용성은 귀하의 VPN 서버, 네트워크 조건 및 ISP에 따라 다릅니다. Hen Works는 VPN 서버를 운영하지 않으며 귀하가 연결하는 제3자 VPN 서버의 가용성, 속도 또는 보안에 대해 책임을 지지 않습니다.</p>
+                <p>귀하는 VPN 서버 인증 정보 구성 및 귀하의 관할권에서의 VPN 사용 관련 법률 준수를 보장할 책임이 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. 사용자 책임</h2>
+                <p>귀하는 본 앱을 통해 설정된 VPN 연결을 통한 모든 활동에 대해 단독으로 책임을 집니다. Hen Works는 불법 활동을 보증, 장려 또는 촉진하지 않습니다. 귀하는 본 앱을 불법적인 목적으로 사용하지 않을 것에 동의합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. 앱 내 구매</h2>
+                <p>본 앱은 배너 광고 및 전면 광고를 영구적으로 제거하는 일회성 비소모성 "광고 제거" 앱 내 구매를 제공합니다. 이 구매는 관련 법률 또는 Apple의 환불 정책에서 요구하는 경우를 제외하고 환불이 불가능합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. 환불</h2>
+                <p>앱 내 구매의 환불은 Apple을 통해 처리됩니다. 자격 조건 및 절차는 Apple App Store 환불 정책을 참조하세요. Hen Works는 직접 환불을 제공하지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. 광고</h2>
+                <p>본 앱은 Google AdMob을 통해 광고를 표시합니다. 무료 버전을 사용함으로써 광고 표시에 동의합니다. "광고 제거" 앱 내 구매를 통해 모든 광고를 제거할 수 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. 책임 제한</h2>
+                <p>법이 허용하는 최대 범위 내에서, Hen Works는 데이터 손실, 사업 중단, 네트워크 장애 또는 이익 손실을 포함하되 이에 국한되지 않는, 귀하의 본 앱 사용으로 인한 간접적, 부수적, 특별, 결과적 또는 징벌적 손해에 대해 책임을 지지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. 배상</h2>
+                <p>귀하는 본 앱의 사용, VPN 연결 또는 본 약관 위반으로 인한 모든 청구, 손해 또는 손실로부터 Hen Works를 배상하고 면책하는 데 동의합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. 가격 및 수정</h2>
+                <p>Hen Works는 언제든 가격 및 기능을 수정할 권리를 보유합니다. 기능은 버전 업데이트를 통해 사전 통보 없이 추가, 변경 또는 제거될 수 있습니다. 이러한 변경은 Hen Works에 대한 보상, 환불 또는 어떠한 형태의 청구 근거가 되지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. 지적 재산권</h2>
+                <p>본 앱은 모든 콘텐츠, 기능을 포함하여 Hen Works 또는 그 콘텐츠 제공자가 소유하며 국제 저작권 및 지적 재산법에 의해 보호됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. 종료</h2>
+                <p>귀하가 본 약관을 위반하거나 불법 활동에 관여하는 경우, Hen Works는 통보 없이 언제든 본 앱에 대한 귀하의 접근을 종료하거나 중단할 수 있습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>14. 준거법</h2>
+                <p>본 약관은 법률 충돌 원칙에 관계없이 대만(중화민국)의 법률에 따라 규율되고 해석됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>15. 분쟁 해결</h2>
+                <p>본 약관 또는 귀하의 본 앱 사용으로 인한 모든 분쟁은 대만(중화민국) 법원에서 해결됩니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>16. 문의 및 지원</h2>
+                <ul>
+                    <li><strong>이메일:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>웹사이트:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>17. 완전한 합의</h2>
+                <p>본 약관은 개인정보처리방침과 함께 본 앱에 관한 귀하와 Hen Works 간의 완전한 합의를 구성하며 이전의 모든 합의에 우선합니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>18. 분리 가능성</h2>
+                <p>본 약관의 조항이 무효 또는 집행 불가능으로 판명되는 경우, 해당 조항은 분리 가능하며 나머지 조항의 유효성 또는 집행 가능성에 영향을 미치지 않습니다.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>19. 본 약관의 변경</h2>
+                <p>Hen Works는 본 약관을 수시로 업데이트할 수 있습니다. 변경 후에도 본 앱의 사용을 계속하면 업데이트된 약관에 동의하는 것으로 간주됩니다.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><img src="../../images/supergate-logo.png" alt="SuperGate VPN"><span>SuperGate VPN</span></div>
+            <small>Secure VPN Client for iOS</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About Hen Works</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 Hen Works. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+let curLang='en';
+function setLang(lang){
+    curLang=lang;
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    el.querySelectorAll('.anim').forEach(a=>{a.classList.remove('show');void a.offsetWidth;a.classList.add('show')});
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
