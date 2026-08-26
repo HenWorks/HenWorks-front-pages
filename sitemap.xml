@@ -25,6 +25,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://henworks.com/products/dsh-android/privacy-policy.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://henworks.com/products/textlen/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
