@@ -57,7 +57,7 @@
 
     /* ── Layout ── */
     .page {
-      max-width: 720px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 120px 24px 80px;
     }
@@ -100,6 +100,11 @@
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
+    .sub-title {
+      font-size: 13px; font-weight: 600;
+      color: var(--text-primary);
+      margin: 20px 0 8px;
+    }
     p {
       color: var(--text-secondary);
       margin-bottom: 12px;
@@ -121,36 +126,43 @@
     }
     a:hover { color: var(--accent-hover); }
 
-    /* ── Product cards ── */
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 20px 0;
-    }
-    @media (max-width: 560px) {
-      .product-grid { grid-template-columns: 1fr; }
-    }
-    .product-card {
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
       background: var(--bg-elevated);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--text-secondary);
     }
-    .product-card-name {
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
       font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 4px;
+      min-width: 640px;
     }
-    .product-card-type {
-      font-size: 11px;
-      color: var(--text-tertiary);
-      margin-bottom: 12px;
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border-strong);
+      white-space: nowrap;
     }
-    .product-card p { font-size: 13px; margin-bottom: 0; }
+    td { color: var(--text-secondary); }
+    td strong { color: var(--text-primary); font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+    .tbd { color: var(--text-tertiary); font-style: italic; }
 
     /* ── Highlight box ── */
     .highlight-box {
@@ -170,7 +182,7 @@
       text-align: center;
     }
     .footer-inner {
-      max-width: 720px;
+      max-width: 860px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -195,120 +207,277 @@
     <div class="page-header">
       <p class="page-eyebrow">Legal</p>
       <h1 class="page-title">Privacy Policy</h1>
-      <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: March 2026</p>
+      <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: August 26, 2026</p>
     </div>
 
     <!-- 1. Overview -->
     <div class="section">
       <h2 class="section-title">1. Overview</h2>
-      <p>HenWorks ("we", "us", or "our") is an independent software developer based in Taiwan. We build digital tools and applications with a focus on user privacy. This Privacy Policy explains how we handle information across our website (<strong>henworks.com</strong>) and our products.</p>
-      <p>We believe privacy is a right, not a feature. We collect the minimum data necessary to provide our services, and we never sell your personal information to third parties.</p>
+      <p>HenWorks ("we", "us", or "our") is an independent software developer based in Taiwan. We build digital tools and applications with a focus on user privacy. This Privacy Policy explains how we handle information across our website (<strong>henworks.com</strong>) and all of our products.</p>
+      <p>We collect the minimum data necessary to provide our services. <strong>We do not sell your personal information to any third party.</strong></p>
     </div>
 
-    <!-- 2. Products Covered -->
+    <!-- 2. How to read this policy -->
     <div class="section">
-      <h2 class="section-title">2. Products Covered by This Policy</h2>
-      <div class="product-grid">
-        <div class="product-card">
-          <p class="product-card-name">TextLen</p>
-          <p class="product-card-type">Mac App · OCR</p>
-          <p>Local AI-powered OCR. All processing happens on your device. No data leaves your Mac.</p>
-        </div>
-        <div class="product-card">
-          <p class="product-card-name">Opclaw</p>
-          <p class="product-card-type">Android TV · Productivity</p>
-          <p>Uses account-based cloud sync. Requires sign-in. Firebase services are used for authentication and data storage.</p>
-        </div>
+      <h2 class="section-title">2. How to Read This Policy</h2>
+      <p>This single policy covers every HenWorks product. Because our products differ — some run entirely on your device, others require an account and cloud sync — the specifics are set out per product in the table in Section 3.</p>
+      <ul>
+        <li><strong>Sections 4–12</strong> describe practices, third parties and rights that apply across our products.</li>
+        <li><strong>Section 3</strong> tells you which of those apply to the product you are using.</li>
+      </ul>
+      <p>If a statement in Section 3 conflicts with a general statement elsewhere in this policy, <strong>Section 3 governs</strong> for that product.</p>
+    </div>
+
+    <!-- 3. Products -->
+    <div class="section">
+      <h2 class="section-title">3. Products Covered by This Policy</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Platform</th>
+              <th>Account required</th>
+              <th>Advertising</th>
+              <th>What leaves your device</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TextLen</strong><br><a href="/products/textlen/privacy.html">Details</a></td>
+              <td>macOS · OCR</td>
+              <td>No</td>
+              <td>Google AdSense, in an in-app WebView</td>
+              <td>Nothing from OCR — images, documents and recognized text are processed entirely on your Mac. Model downloads transmit only file name and size.</td>
+            </tr>
+            <tr>
+              <td><strong>Opclaw</strong><br><a href="/products/opclaw/privacy-policy.html">Details</a></td>
+              <td>Android TV · Productivity</td>
+              <td><strong>Yes</strong> — email, via Firebase Auth</td>
+              <td>Google AdMob</td>
+              <td>Email address; feature-usage statistics (Firebase Analytics); content you create in the app (Firebase Firestore).</td>
+            </tr>
+            <tr>
+              <td><strong>Hermes Agent</strong></td>
+              <td>Android · On-device AI agent</td>
+              <td><strong>No HenWorks account.</strong> You may optionally sign in to a third-party AI service you already use.</td>
+              <td>Google AdMob<br>(removable by one-time purchase)</td>
+              <td>Advertising identifier and ad events (AdMob); a record that a purchase was made (Google Play Billing); an anonymous identifier used to authorize downloads of large on-device model files. <strong>Your API keys, conversations and memories are not among them</strong> — see Section 5.3.</td>
+            </tr>
+            <tr>
+              <td><strong>TVMate</strong></td>
+              <td>Android TV</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+            </tr>
+            <tr>
+              <td><strong>SuperGate</strong></td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+            </tr>
+            <tr>
+              <td><strong>DSH Android</strong></td>
+              <td>Android</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+              <td class="tbd">— to be documented —</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <p>Each product may also have its own dedicated Privacy Policy page with more detail.</p>
+      <p>Rows marked "to be documented" are products that are not yet publicly released. We complete a product's row before that product is published. If you are using a released product and cannot find it in this table, please <a href="mailto:hello@henworks.com">contact us</a>.</p>
     </div>
 
-    <!-- 3. Website -->
+    <!-- 4. Website -->
     <div class="section">
-      <h2 class="section-title">3. This Website (henworks.com)</h2>
+      <h2 class="section-title">4. This Website (henworks.com)</h2>
       <p>Our website does not use Google Analytics or any third-party analytics platform. We do not track individual visitors or use fingerprinting technologies.</p>
       <p>Standard server access logs (IP address, browser type, pages visited, timestamp) may be retained by our hosting provider (Cloudflare) for security and performance purposes. These logs are not used to identify individual users and are subject to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</p>
-
-      <h3 style="font-size:13px;font-weight:600;color:var(--text-primary);margin:20px 0 8px;">Cookies</h3>
-      <p>henworks.com uses only essential functional cookies (e.g., language preference). No advertising or tracking cookies are set on this website.</p>
+      <h3 class="sub-title">Cookies</h3>
+      <p>henworks.com uses only essential functional cookies (for example, language preference). Google AdSense units served on this site may set advertising cookies; see Section 6.</p>
     </div>
 
-    <!-- 4. TextLen -->
+    <!-- 5. What we collect -->
     <div class="section">
-      <h2 class="section-title">4. TextLen (Mac App)</h2>
-      <div class="highlight-box">
-        <p><strong>TextLen does not collect, transmit, or store any personal data.</strong> All OCR processing is performed entirely on your device using on-device AI models. Images, documents, and recognized text never leave your Mac.</p>
+      <h2 class="section-title">5. What We Collect, and Why</h2>
+      <p>The categories below are the complete set of data our products may collect. Section 3 tells you which categories apply to the product you are using; a category not listed there for your product is not collected by that product.</p>
+
+      <h3 class="sub-title">5.1 Categories</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Examples</th>
+              <th>Why</th>
+              <th>Shared with</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Device or other identifiers</strong></td>
+              <td>Advertising identifier; IP address; an anonymous identifier issued to your installation</td>
+              <td>To serve and measure advertising; to authorize downloads of large on-device model files</td>
+              <td>Google (AdMob, Firebase)</td>
+            </tr>
+            <tr>
+              <td><strong>Purchase history</strong></td>
+              <td>A record that an in-app purchase was made</td>
+              <td>To unlock what you paid for, and to restore it on a new device</td>
+              <td>Google (Play Billing)</td>
+            </tr>
+            <tr>
+              <td><strong>App interactions</strong></td>
+              <td>Advertisement impressions and clicks</td>
+              <td>To measure advertising</td>
+              <td>Google (AdMob)</td>
+            </tr>
+            <tr>
+              <td><strong>Account information</strong></td>
+              <td>Email address</td>
+              <td>Authentication, for products that require an account</td>
+              <td>Google (Firebase Auth)</td>
+            </tr>
+            <tr>
+              <td><strong>App usage statistics</strong></td>
+              <td>Which features are used, and how often</td>
+              <td>To improve the product</td>
+              <td>Google (Firebase Analytics)</td>
+            </tr>
+            <tr>
+              <td><strong>User-generated content</strong></td>
+              <td>Content you create and choose to sync</td>
+              <td>To provide cloud sync, for products that offer it</td>
+              <td>Google (Firebase Firestore)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <p>TextLen does not include crash reporting, analytics SDKs, or telemetry of any kind. No network requests are made unless you explicitly use an online feature (such as downloading an AI model update).</p>
-      <p>Model downloads are served over HTTPS from our CDN. Only basic download metadata (file name, file size) is transmitted during this process.</p>
 
-      <h3 style="font-size:13px;font-weight:600;color:var(--text-primary);margin:20px 0 8px;">In-App Advertising</h3>
-      <p>TextLen may display non-personalized advertisements via an in-app WebView. These ads are served from <strong>henworks.com</strong> and may include Google AdSense units. When AdSense is active, Google may use cookies to serve relevant ads. You can opt out of personalized advertising at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">google.com/settings/ads</a>.</p>
-      <p>For more details, see the <a href="/products/textlen/privacy.html">TextLen Privacy Policy</a>.</p>
-    </div>
-
-    <!-- 5. Opclaw -->
-    <div class="section">
-      <h2 class="section-title">5. Opclaw (Android TV App)</h2>
-      <p>Opclaw requires user account registration to provide cloud sync features. We collect:</p>
+      <h3 class="sub-title">5.2 What is outside this list</h3>
+      <p>Section 5.1 is exhaustive. A category not listed there is not collected by any product covered by Section 3. In particular:</p>
       <ul>
-        <li><strong>Account information:</strong> Email address, used for authentication via Firebase Auth.</li>
-        <li><strong>App usage data:</strong> Feature usage statistics collected via Firebase Analytics to improve the app.</li>
-        <li><strong>User-generated content:</strong> Data you create or save within Opclaw, stored in Firebase Firestore and associated with your account.</li>
+        <li><strong>We do not collect precise or approximate location.</strong></li>
+        <li><strong>We do not read your contacts, calendar, photos, messages, or files</strong> beyond what you explicitly select within a product for that product's stated purpose.</li>
+        <li><strong>We operate no crash-reporting SDK.</strong> Where crash and performance data reaches us at all, it is aggregated data supplied by the app store, not data our software collects.</li>
+        <li><strong>Analytics is not universal.</strong> Only a product whose row in Section 3 names an analytics service uses one; every other product collects no usage statistics at all.</li>
+        <li>Camera access, where a product requests it, is used only for the stated in-product purpose (for example, scanning a pairing QR code); images are not stored or transmitted.</li>
       </ul>
-      <p>Firebase services are operated by Google LLC. Data may be stored on servers in the United States and other countries. For details, see <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy and Security</a>.</p>
-      <p>You may delete your account and all associated data at any time by contacting us at <a href="mailto:hello@henworks.com">hello@henworks.com</a>.</p>
-      <p>For more details, see the <a href="/products/opclaw/privacy-policy.html">Opclaw Privacy Policy</a>.</p>
+
+      <h3 class="sub-title">5.3 Data that stays on your device</h3>
+      <div class="highlight-box">
+        <p><strong>Credentials you enter for third-party services — including API keys — are written to that app's private storage on your device and are never transmitted to HenWorks.</strong> We operate no server that receives them and have no technical means to read them. The same applies to your conversations, session history, saved memories, and any AI models you download for on-device use.</p>
+      </div>
+      <p>Some products include servers that listen only on your own device, or on your local network at your explicit request — for example a pairing endpoint, or a local inference endpoint. These are not reachable from the internet by us, and we receive nothing through them.</p>
+
+      <h3 class="sub-title">5.4 Transmissions you initiate</h3>
+      <p>Some products let you connect a third-party service of your own choosing — for example, an AI provider you already hold an account or API key with. When you use such a feature, the content you submit is transmitted <strong>directly from your device to that provider</strong>, authenticated with your own credentials. HenWorks does not operate, proxy, intercept, or log that traffic, and we receive no copy of it.</p>
+      <p>That provider's handling of your data is governed by <em>their</em> privacy policy, not this one. Please review it before connecting a service.</p>
+      <p>Similarly, when a product downloads a file you asked for from a public source — for example a model repository or a software release page — that source can see your IP address, as it would for any ordinary download.</p>
     </div>
 
-    <!-- 6. Google AdSense -->
+    <!-- 6. Advertising -->
     <div class="section">
-      <h2 class="section-title">6. Google AdSense & Third-Party Advertising</h2>
-      <p>We use Google AdSense to display advertisements on our website and within our apps. Google AdSense uses cookies and similar tracking technologies to serve ads based on your prior visits to our website or other websites on the internet.</p>
-      <p>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the internet. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Ads Settings</a>.</p>
-      <p>For more information on how Google uses data when you use our partners' sites or apps, visit: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>.</p>
-      <p>We may also display self-hosted advertisements and affiliate marketing links for third-party products and services. These are clearly labeled as "Recommended" or "Sponsored." We may receive a commission if you make a purchase through these links.</p>
+      <h2 class="section-title">6. Advertising</h2>
+      <p>Some of our products are supported by advertising. Section 3 states which ones, and which network each uses.</p>
+
+      <h3 class="sub-title">Google AdMob (Android apps)</h3>
+      <p>Our advertising-supported Android apps use Google AdMob. AdMob may collect your device's advertising identifier, IP address, device and app information, and advertisement impressions and clicks, and may share that data with Google and its advertising partners in order to serve and measure ads. These apps declare the <code>com.google.android.gms.permission.AD_ID</code> permission for this purpose.</p>
+      <p>You can reset or delete your advertising identifier, and opt out of personalised advertising, in your Android device settings under <em>Settings → Privacy → Ads</em>.</p>
+      <p>Where an app offers a paid option that removes advertising, purchasing it stops advertisements from being requested or displayed in that app.</p>
+
+      <h3 class="sub-title">Google AdSense (website and in-app WebViews)</h3>
+      <p>henworks.com, and in-app WebViews that load content from henworks.com, may display Google AdSense units. Google may use cookies to serve ads based on your prior visits to this or other websites.</p>
+      <p>You may opt out of personalised advertising at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Ads Settings</a>. For more information on how Google uses data from sites and apps that use its services, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a>.</p>
+      <p>We may also display self-hosted advertisements and affiliate links for third-party products and services. These are labelled "Recommended" or "Sponsored". We may receive a commission if you make a purchase through them.</p>
     </div>
 
     <!-- 7. Data Sharing -->
     <div class="section">
       <h2 class="section-title">7. Data Sharing</h2>
-      <p>We do not sell, trade, or rent your personal information to third parties. We may share data in limited circumstances:</p>
-      <ul>
-        <li><strong>Service providers:</strong> Cloudflare (hosting/CDN), Google Firebase (for Opclaw), Google AdSense (advertising).</li>
-        <li><strong>Legal requirements:</strong> If required by law, court order, or governmental authority.</li>
-        <li><strong>Business transfers:</strong> In the event of a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction.</li>
-      </ul>
+      <p>We do not sell, trade, or rent your personal information. Data is shared only with the service providers listed below, and only to the extent shown in Section 3 for the product you are using.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Purpose</th>
+              <th>Their policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google AdMob</strong></td>
+              <td>Advertising in our Android apps</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></td>
+            </tr>
+            <tr>
+              <td><strong>Google AdSense</strong></td>
+              <td>Advertising on our website and in in-app WebViews</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></td>
+            </tr>
+            <tr>
+              <td><strong>Google Play</strong></td>
+              <td>App distribution, in-app purchases, and on-demand delivery of optional app components</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></td>
+            </tr>
+            <tr>
+              <td><strong>Google Firebase</strong></td>
+              <td>Authentication, and — for products that offer cloud sync — analytics and data storage</td>
+              <td><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy and Security</a></td>
+            </tr>
+            <tr>
+              <td><strong>Cloudflare</strong></td>
+              <td>Website hosting and content delivery</td>
+              <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Data handled by Google and Cloudflare may be stored on servers in the United States and other countries.</p>
+      <p>We may also disclose information where required by law, court order, or a governmental authority; and, in the event of a merger, acquisition, or sale of assets, user data may be transferred as part of that transaction.</p>
+      <p><strong>Third-party services that you connect yourself are not covered by this section</strong> — see Section 5.4.</p>
     </div>
 
-    <!-- 8. Your Rights -->
+    <!-- 8. Retention and deletion -->
     <div class="section">
-      <h2 class="section-title">8. Your Rights</h2>
+      <h2 class="section-title">8. Retention and Deletion</h2>
+      <p>Data that stays on your device (Section 5.3) is under your control. Uninstalling a product, or using any delete function it provides, removes it. We cannot delete it on your behalf, because we never received it.</p>
+      <p>For products that require an account, you may request deletion of your account and all associated data at any time by emailing <a href="mailto:hello@henworks.com">hello@henworks.com</a>. We will action the request within 30 days.</p>
+      <p>Data held by the third parties listed in Section 7 is retained under their own policies. You can reset your advertising identifier at any time in your device settings, which severs the link between past advertising data and your device.</p>
+    </div>
+
+    <!-- 9. Your Rights -->
+    <div class="section">
+      <h2 class="section-title">9. Your Rights</h2>
       <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
       <ul>
         <li><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
         <li><strong>Deletion:</strong> Request deletion of your personal data.</li>
         <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
-        <li><strong>Opt-out:</strong> Opt out of personalized advertising at any time.</li>
+        <li><strong>Opt-out:</strong> Opt out of personalised advertising at any time.</li>
       </ul>
       <p>To exercise any of these rights, contact us at <a href="mailto:hello@henworks.com">hello@henworks.com</a>. We will respond within 30 days.</p>
     </div>
 
-    <!-- 9. Children's Privacy -->
+    <!-- 10. Children's Privacy -->
     <div class="section">
-      <h2 class="section-title">9. Children's Privacy</h2>
+      <h2 class="section-title">10. Children's Privacy</h2>
       <p>Our services are not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us immediately at <a href="mailto:hello@henworks.com">hello@henworks.com</a>.</p>
     </div>
 
-    <!-- 10. Changes -->
+    <!-- 11. Changes -->
     <div class="section">
-      <h2 class="section-title">10. Changes to This Policy</h2>
+      <h2 class="section-title">11. Changes to This Policy</h2>
       <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. For material changes, we will make reasonable efforts to notify users. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
     </div>
 
-    <!-- 11. Contact -->
+    <!-- 12. Contact -->
     <div class="section">
-      <h2 class="section-title">11. Contact Us</h2>
+      <h2 class="section-title">12. Contact Us</h2>
       <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
       <ul>
         <li><strong>Email:</strong> <a href="mailto:hello@henworks.com">hello@henworks.com</a></li>
