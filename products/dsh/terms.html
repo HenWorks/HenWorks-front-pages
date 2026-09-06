@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Terms &amp; EULA - DSH</title>
+    <meta name="description" content="DSH Subscription Terms and End User License Agreement - one auto-renewing monthly subscription whose only benefit is removing ads.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --accent:#55BBFD;--accent-soft:#AFDAFE;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(85,187,253,.12) 0%,rgba(85,187,253,.04) 100%);border-radius:20px;border:1px solid rgba(85,187,253,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .info-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .info-card .ic-icon{font-size:24px;margin-bottom:8px}
+        .info-card strong{display:block;font-size:14px;margin-bottom:4px}
+        .info-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .info-grid{grid-template-columns:1fr}
+        }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+    <nav class="nav">
+        <a href="/" class="nav-logo">
+            <span>DSH</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html" class="active">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <a href="https://henworks.com" class="nav-cta">HenWorks &#8599;</a>
+    </nav>
+
+    <div>
+        <section class="policy-hero anim">
+            <h1>Subscription Terms <em>&amp; EULA</em></h1>
+            <p class="date">Effective date: September 6, 2026 &nbsp;·&nbsp; Last updated: September 6, 2026</p>
+            <p class="summary">By downloading, installing and using DSH, you agree to these Terms. DSH offers one optional subscription. Its only benefit is removing advertisements — no features are locked behind it.</p>
+        </section>
+
+        <div class="highlight-box anim d1">
+            <div class="icon">💳</div>
+            <div class="text">
+                <strong>Ad-free — auto-renewing monthly subscription, USD 3.99 per month</strong>
+                <p>Payment is charged to your Apple Account on confirmation of purchase. It renews automatically each month unless you cancel at least 24 hours before the end of the current period. Manage or cancel it any time in Settings › Apple Account › Subscriptions. The only thing it does is remove ads.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>1. Agreement to These Terms</h2>
+                <p>By downloading, installing or using DSH ("the App", bundle identifier <strong>com.henworks.dshmobile</strong>), published by <strong>HenWorks</strong>, an independent software developer based in Taiwan, you agree to be bound by these Subscription Terms and End User License Agreement ("Terms"). If you do not agree, do not use the App.</p>
+                <p>Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Standard End User License Agreement</a> also applies to your use of the App. Where these Terms and Apple's Standard EULA conflict on a point Apple's EULA governs, Apple's EULA prevails.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>2. What DSH Is</h2>
+                <p>DSH is a native iOS client for <strong>DeepSeek Harness</strong>, an open-source agent harness that <em>you</em> install and run on your own computer. The App lets you watch sessions, reply to an agent and approve tool execution on that computer from your phone.</p>
+                <p>The App is <strong>not affiliated with, endorsed by, or sponsored by DeepSeek</strong>. "DeepSeek" and "DeepSeek Harness" are used only to identify the third-party software that DSH is compatible with. DeepSeek Harness is licensed to you by its own authors under its own licence, not by HenWorks.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>3. What You Need</h2>
+                <p>The App is useless on its own. To use it you must have a computer of your own running DeepSeek Harness together with the companion host component, and network access from your phone to that computer — either on the same local network or through an HTTPS address you configure yourself.</p>
+                <p>HenWorks operates no server for the App. Availability, performance, correctness and security of your own computer, your network, any remote-access arrangement you set up, and any AI model provider you use, are entirely your responsibility.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>4. Licence Grant</h2>
+                <p>HenWorks grants you a limited, non-exclusive, non-transferable, revocable licence to use the App in accordance with these Terms and Apple's Usage Rules. You may not sublicense, sell, rent, lease, transfer, assign, reverse-engineer (except to the extent this restriction is prohibited by law) or otherwise dispose of the App.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>5. Free Tier and Advertising</h2>
+                <p>The App is free to use. On the free tier, one interstitial advertisement is shown before a manual connection, at most once per app launch. Ads are served through Google AdMob. If an ad cannot be loaded, the connection proceeds anyway.</p>
+                <p>By using the free tier you consent to the display of advertisements. How advertising data is handled — including App Tracking Transparency and the consent flow required in the EEA and the UK — is described in the <a href="privacy.html">DSH Privacy Policy</a>.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>6. The Subscription</h2>
+                <!--
+                  Guideline 3.1.2 requires title, length, price and functional links to the EULA and
+                  privacy policy. The App Store Connect display name for the subscription must match
+                  the title stated here ("Ad-free"); the product identifier is authoritative.
+                -->
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🏷️</div>
+                        <strong>Title</strong>
+                        <span>Ad-free — shown in the App as "Remove ads". Product identifier: com.henworks.dshmobile.adfree.monthly</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">📅</div>
+                        <strong>Length</strong>
+                        <span>One month, auto-renewing.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">💵</div>
+                        <strong>Price</strong>
+                        <span>USD 3.99 per month. The price in your local currency varies by App Store storefront and is always shown by the App Store before you confirm.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">✨</div>
+                        <strong>What you get</strong>
+                        <span>Advertisements are removed. That is the entire benefit — no features are added, and nothing in the App is locked behind it.</span>
+                    </div>
+                </div>
+                <p>There is exactly one subscription. HenWorks does not offer any other in-app purchase for this App.</p>
+
+                <h3>Payment</h3>
+                <p><strong>Payment is charged to your Apple Account on confirmation of purchase.</strong> Apple is the seller of record and processes the transaction. HenWorks never receives or stores your payment details.</p>
+
+                <h3>Auto-renewal</h3>
+                <p><strong>The subscription renews automatically</strong> unless it is cancelled at least 24 hours before the end of the current period. Your Apple Account is charged for the renewal within 24 hours prior to the end of the current period, at the then-current price for your storefront.</p>
+
+                <h3>Managing and cancelling</h3>
+                <p>You can view, manage and cancel the subscription at any time in <strong>Settings › [your name] › Subscriptions</strong> on your device, or via the App Store. Cancelling stops future renewals; the ad-free benefit continues until the end of the period you have already paid for, after which advertisements resume on the free tier. HenWorks cannot cancel a subscription on your behalf.</p>
+
+                <h3>Restoring</h3>
+                <p>If you reinstall the App or use another device signed in to the same Apple Account, tap <strong>"Restore purchases"</strong> in the App's Settings or on the subscription screen.</p>
+
+                <h3>Refunds</h3>
+                <p>Refunds are handled by Apple, not by HenWorks. See <a href="https://support.apple.com/en-us/HT204084" target="_blank" rel="noopener">Apple's guidance on requesting a refund</a>. Statutory withdrawal or cancellation rights you may have under the law of your country are unaffected.</p>
+
+                <h3>Free trials</h3>
+                <p>If a free or introductory offer is ever made available, any unused portion of it is forfeited when you purchase a subscription, where Apple's rules so provide.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>7. Your Responsibilities</h2>
+                <p>The App is a remote control for software running on your own computer. You are solely responsible for that software, for the instructions you give an agent, for approving tool execution, and for everything that results from it — including any changes made to files, systems or accounts on your computer.</p>
+                <p>You agree not to use the App for any unlawful purpose, and to comply with the laws of your jurisdiction and with the terms of any third-party service you connect it to.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>8. Content and Third-Party Software</h2>
+                <p>The App renders content produced by software on your own computer, which may include output from AI models. HenWorks does not generate, review, endorse or control that content and is not responsible for its accuracy, legality or fitness for any purpose.</p>
+                <p>DeepSeek Harness and any other third-party software you run remain governed by their own licences and terms.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>9. "As-Is" Disclaimer</h2>
+                <p>The App is provided "as-is" and "as available", without warranty of any kind, express or implied. HenWorks does not warrant that the App will be uninterrupted, error-free or secure, or that it will remain compatible with any particular version of DeepSeek Harness. To the fullest extent permitted by law, HenWorks disclaims all warranties, including merchantability, fitness for a particular purpose and non-infringement.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>10. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, HenWorks shall not be liable for any indirect, incidental, special, consequential or punitive damages arising from your use of the App, including but not limited to loss of data, damage to systems or files, business interruption, network disruption or lost profits. Nothing in these Terms excludes liability that cannot be excluded by law.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>11. Indemnification</h2>
+                <p>You agree to indemnify and hold harmless HenWorks from any claims, damages or losses arising from your use of the App, from actions carried out on your computer through it, or from your violation of these Terms.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>12. Pricing and Modification</h2>
+                <p>HenWorks reserves the right to modify pricing and features. Any change to the subscription price takes effect only for periods beginning after the change and only in accordance with Apple's rules, which require notice and, where applicable, your consent before a higher price is charged. Features may be added, changed or removed through version updates. Such changes do not by themselves constitute grounds for compensation or a claim against HenWorks.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>13. Intellectual Property</h2>
+                <p>The App, including its name, icon, design and code, is owned by HenWorks and protected by copyright and other intellectual property laws. Third-party names and trademarks referred to in the App or in these Terms belong to their respective owners and are used only descriptively.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>14. Termination</h2>
+                <p>These Terms apply until terminated. They end automatically if you stop using and delete the App. HenWorks may suspend or terminate your licence if you materially breach these Terms. Termination does not entitle you to a refund from HenWorks; refunds remain a matter for Apple.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>15. Privacy</h2>
+                <p>The <a href="privacy.html">DSH Privacy Policy</a> explains what the App stores, what Google AdMob and Apple StoreKit collect, and how to exercise your rights. HenWorks operates no server for the App and never receives your conversations. Please read it: it forms part of your agreement with us.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>16. Apple's Role</h2>
+                <p>These Terms are between you and HenWorks, not Apple. Apple is not responsible for the App or its content, and has no obligation to provide maintenance or support for it. Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against you. Any claim relating to the App's failure to conform to a warranty may be directed to Apple for a refund of the purchase price, if any.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>17. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of Taiwan (R.O.C.), without regard to conflict of law principles. If you are a consumer, this does not deprive you of the protection of mandatory consumer-law provisions of the country where you habitually reside.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>18. Dispute Resolution</h2>
+                <p>Any disputes arising from these Terms or your use of the App shall be resolved in the courts of Taiwan (R.O.C.), subject to any mandatory right you may have as a consumer to bring proceedings in the courts of your own country of residence.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>19. Contact &amp; Support</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                    <li><strong>Company:</strong> HenWorks, Taiwan</li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>20. Entire Agreement</h2>
+                <p>These Terms, together with the <a href="privacy.html">DSH Privacy Policy</a> and Apple's <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Standard End User License Agreement</a>, constitute the entire agreement between you and HenWorks regarding the App and supersede all prior agreements.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>21. Severability</h2>
+                <p>If any provision of these Terms is found invalid or unenforceable, that provision shall be severable and shall not affect the validity or enforceability of the remaining provisions.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>22. Changes to These Terms</h2>
+                <p>HenWorks may update these Terms from time to time. We will update the "Last updated" date above. Your continued use of the App following any change constitutes acceptance of the updated Terms.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><span>DSH</span></div>
+            <small>Control DeepSeek Harness from your iPhone</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About HenWorks</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Subscription Terms</a><a href="/privacy.html">HenWorks Privacy Policy</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 HenWorks. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

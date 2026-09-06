@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DSH</title>
+    <meta name="description" content="DSH Privacy Policy - DSH talks only to your own computer. HenWorks operates no server and never receives your conversations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --accent:#55BBFD;--accent-soft:#AFDAFE;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(85,187,253,.12) 0%,rgba(85,187,253,.04) 100%);border-radius:20px;border:1px solid rgba(85,187,253,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .info-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .info-card .ic-icon{font-size:24px;margin-bottom:8px}
+        .info-card strong{display:block;font-size:14px;margin-bottom:4px}
+        .info-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .info-grid{grid-template-columns:1fr}
+        }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+    <nav class="nav">
+        <a href="/" class="nav-logo">
+            <span>DSH</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="privacy.html" class="active">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <a href="https://henworks.com" class="nav-cta">HenWorks &#8599;</a>
+    </nav>
+
+    <div>
+        <section class="policy-hero anim">
+            <h1>Privacy <em>Policy</em></h1>
+            <p class="date">Effective date: September 6, 2026 &nbsp;·&nbsp; Last updated: September 6, 2026</p>
+            <p class="summary">DSH is a native iOS client for DeepSeek Harness, an open-source agent harness you run on your own computer. The app talks directly to that computer. HenWorks operates no server for DSH and never receives your conversations.</p>
+        </section>
+
+        <div class="highlight-box anim d1">
+            <div class="icon">🔒</div>
+            <div class="text">
+                <strong>No server, no conversation storage</strong>
+                <p>Your phone connects straight to your own computer over HTTPS. HenWorks runs no backend for this app and cannot see your sessions, messages, prompts, tool calls or attachments. Conversation content is never written to the phone's disk — it lives in memory only and is gone when the app closes.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section anim d2">
+                <h2>1. Who We Are</h2>
+                <p>DSH ("the App", bundle identifier <strong>com.henworks.dshmobile</strong>) is published by <strong>HenWorks</strong>, an independent software developer based in Taiwan. For the limited processing described in this policy, HenWorks is the data controller.</p>
+                <ul>
+                    <li><strong>Controller:</strong> HenWorks, Taiwan</li>
+                    <li><strong>Contact:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                </ul>
+                <p>This policy covers the DSH iOS app. The site-wide <a href="/privacy.html">HenWorks Privacy Policy</a> covers henworks.com and our other products.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>2. Not Affiliated With DeepSeek</h2>
+                <p>DSH is <strong>not affiliated with, endorsed by, or sponsored by DeepSeek</strong>. "DeepSeek" and "DeepSeek Harness" are used in this policy and in the App only to describe the third-party open-source software that DSH is compatible with. DeepSeek Harness is developed and distributed independently of HenWorks, and HenWorks is not responsible for it.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>3. How DSH Connects</h2>
+                <p>DSH is a client for software you install and run yourself. It has no accounts, no sign-in and no cloud service behind it.</p>
+                <ul>
+                    <li><strong>On your local network:</strong> the App finds your computer, pairs with it, and pins that computer's pairing certificate authority as its <em>only</em> trust anchor for the connection. No other certificate is accepted.</li>
+                    <li><strong>Remotely:</strong> the App connects to an HTTPS address that <em>you</em> configure. Any tunnelling or remote-access setup happens on your computer; the App does not download, install or run anything to make it work.</li>
+                </ul>
+                <p>All traffic goes from your phone to your computer. It does not pass through HenWorks, and there is no HenWorks server to pass it through.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>4. What DSH Stores on Your iPhone</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">🚫</div>
+                        <strong>Conversations: never stored</strong>
+                        <span>There is no local database and no file cache. Sessions, messages, tool cards and attachments exist only in memory and are discarded when the app closes.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔐</div>
+                        <strong>Keychain items</strong>
+                        <span>A Secure Enclave private key that identifies this device, your pairing credentials, and the pinned certificate authority. All are stored "this device only", so they never migrate to another device and are excluded from backups.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">⚙️</div>
+                        <strong>Four preferences</strong>
+                        <span>Whether Face ID is required at launch; the background lock timeout; whether the last StoreKit check found an active subscription; and when it expires. Nothing sensitive.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>You can erase it</strong>
+                        <span>"Unpair" in Settings removes the Keychain items. Deleting the App removes everything DSH keeps on the device.</span>
+                    </div>
+                </div>
+                <p>None of this is transmitted to HenWorks. The Secure Enclave private key cannot be exported from the device at all.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>5. What HenWorks Collects</h2>
+                <p><strong>Nothing.</strong> HenWorks receives no data from the App. We operate no server for it, we bundle no analytics or crash-reporting SDK of our own, and we have no way to identify you or contact you unless you write to us.</p>
+                <p>The only data that leaves your phone to a party other than your own computer is what the third-party components described in the next section collect, and that data goes to Google and to Apple — not to us.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>6. Third-Party Components</h2>
+                <p>DSH embeds exactly two third-party components. There are no others.</p>
+
+                <h3>Google AdMob (free tier only)</h3>
+                <p>Users on the free tier see <strong>one interstitial advertisement</strong> before a manual connection, at most once per app launch. Ads are served by Google AdMob. If an ad fails to load, the connection proceeds anyway — advertising never blocks the App.</p>
+                <p>For subscribers the ad SDK is never started and Google is never contacted for advertising purposes at all.</p>
+                <p>Through the Google Mobile Ads SDK, Google may collect:</p>
+                <ul>
+                    <li><strong>Device identifiers</strong> — used for advertising and, where you have allowed it, for tracking across apps and websites.</li>
+                    <li><strong>Advertising data</strong> — such as which ads were shown and interacted with.</li>
+                    <li><strong>Product interaction data</strong> — such as ad impressions and taps.</li>
+                    <li><strong>Coarse location</strong> — approximate location derived by Google, not precise GPS. DSH does not request location permission.</li>
+                    <li><strong>Crash data, performance data and other diagnostic data</strong> relating to the SDK.</li>
+                </ul>
+                <p>HenWorks never receives this data. Google determines the purposes and means of processing it for its own advertising business and acts as an independent controller in that respect. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>, <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use our services</a> and <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Google's AdMob help on data collection</a>. Google is authorised to sell DSH's ad inventory through the <a href="/app-ads.txt">app-ads.txt</a> file published on henworks.com.</p>
+                <p>The App itself never reads the advertising identifier and never sends it anywhere.</p>
+
+                <h3>Apple StoreKit (subscription)</h3>
+                <p>The optional subscription is sold and processed by Apple through StoreKit. Apple tells the App only whether an entitlement is currently active and when it expires. <strong>HenWorks never sees your payment details</strong> — no card number, no billing address, no Apple Account identifier. See <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</p>
+
+                <h3>Not used by DSH</h3>
+                <p>Note that henworks.com serves Google AdSense on the website. <strong>The DSH app does not use AdSense.</strong> The only advertising component in the App is Google AdMob. The App also contains no Firebase, no analytics SDK, no attribution SDK and no third-party crash reporter.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>7. App Tracking Transparency</h2>
+                <p>Before the first advertisement is shown, iOS asks once whether you allow the App to track you across other companies' apps and websites. Your answer is respected:</p>
+                <ul>
+                    <li><strong>If you allow it</strong>, Google may use the device advertising identifier to personalise ads.</li>
+                    <li><strong>If you decline</strong>, the identifier is not made available and ads are non-personalised.</li>
+                </ul>
+                <p><strong>The App is fully functional either way.</strong> Declining changes nothing except how relevant the ads are. You can change your answer at any time in iOS <em>Settings › Privacy &amp; Security › Tracking</em>.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>8. Consent in the EEA and the UK</h2>
+                <p>If you are in the European Economic Area or the United Kingdom, DSH presents a consent message from <strong>Google's User Messaging Platform</strong>, a Google-certified consent management platform, before any advertising request is made. Until that consent permits it, the ad SDK is not started and no ad is requested at all.</p>
+                <p>Once you have been asked, a <strong>"Privacy options"</strong> row appears in the App's Settings screen, under "About". Tapping it reopens the consent form so you can change or withdraw your choice at any time. The row is shown only to users for whom Google requires an ongoing consent control.</p>
+                <p>If the consent platform cannot be reached — for example on an offline local network — no ad is served and the App carries on normally.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>9. Purposes and Legal Bases</h2>
+                <p>For users in the EEA and the UK, the processing described above rests on the following legal bases under the GDPR and the UK GDPR:</p>
+                <ul>
+                    <li><strong>Personalised advertising and the associated identifiers — consent</strong> (Art. 6(1)(a)), collected through Google's User Messaging Platform and withdrawable at any time from "Privacy options" in Settings. Withdrawing consent does not affect processing carried out before withdrawal.</li>
+                    <li><strong>Serving a non-personalised advertisement, measuring delivery and preventing ad fraud — legitimate interests</strong> (Art. 6(1)(f)), namely funding a free tier of the App and protecting it from abuse.</li>
+                    <li><strong>Providing the subscription — performance of a contract</strong> (Art. 6(1)(b)), carried out by Apple as the seller of record.</li>
+                    <li><strong>Storing your pairing credentials and preferences on your own device — performance of a contract</strong> (Art. 6(1)(b)): without them the App cannot connect to your computer. This data stays on the device and is never transmitted to us.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>10. Retention</h2>
+                <ul>
+                    <li><strong>Conversation content:</strong> held in memory only, for the lifetime of the app process. Never written to disk, never retained.</li>
+                    <li><strong>Keychain items and preferences:</strong> kept on your device until you unpair or delete the App.</li>
+                    <li><strong>HenWorks records:</strong> none. We hold no personal data about you, so there is nothing for us to retain or delete.</li>
+                    <li><strong>Google and Apple:</strong> retain data they collect according to their own policies, linked above. We have no control over those retention periods.</li>
+                </ul>
+                <p>If you email us, we keep that correspondence only as long as needed to answer you.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>11. Data Sharing and International Transfers</h2>
+                <p>We do not sell, rent or trade personal information, and we have none to sell. We share data with no one, because none reaches us.</p>
+                <p>Google and Apple process the data described in section 6 on their own infrastructure, which may be located outside your country, including in the United States. Those transfers are governed by each company's own safeguards and privacy policies, not by us.</p>
+                <p>Traffic between your phone and your own computer is not shared with anyone: it goes directly between the two devices over HTTPS.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>12. Your Rights</h2>
+                <p>Depending on where you live, you may have rights of access, rectification, erasure, restriction, objection, and data portability, and the right not to be subject to solely automated decision-making.</p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="ic-icon">📋</div>
+                        <strong>Access &amp; portability</strong>
+                        <span>HenWorks holds no personal data about you, so there is nothing for us to hand over. Everything DSH stores is already on your device.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🗑️</div>
+                        <strong>Erasure</strong>
+                        <span>Tap "Unpair" in Settings, or delete the App. Both remove what DSH stores. There is no server-side copy to erase.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">🔕</div>
+                        <strong>Withdraw consent / object</strong>
+                        <span>Use "Privacy options" in Settings (EEA and UK), iOS Settings › Privacy &amp; Security › Tracking, or <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. Subscribing removes ads entirely.</span>
+                    </div>
+                    <div class="info-card">
+                        <div class="ic-icon">✉️</div>
+                        <strong>Ask us anything</strong>
+                        <span>Write to info@henworks.com. We reply within 30 days.</span>
+                    </div>
+                </div>
+                <p>Because the advertising data described in section 6 is held by Google and not by us, requests about that data are best directed to Google using the links above. We will help where we can. You also have the right to lodge a complaint with your local data protection authority.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>13. Children's Privacy</h2>
+                <p>DSH is a developer tool. It is <strong>not directed to children</strong> and is not intended for anyone under 13. We do not knowingly collect personal information from children, and we collect no personal information from any user. The App does not declare itself as directed to users under the age of consent to the advertising or consent platforms, because it is not.</p>
+                <p>If you believe a child has provided personal information in connection with the App, contact <a href="mailto:info@henworks.com">info@henworks.com</a>.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>14. Security</h2>
+                <ul>
+                    <li><strong>Hardware-backed device identity:</strong> the private key that identifies your phone to your computer is generated in the Secure Enclave and cannot be exported.</li>
+                    <li><strong>Certificate pinning:</strong> on a local network the App trusts only the pairing certificate authority it verified during pairing — no other certificate is accepted for that connection.</li>
+                    <li><strong>Biometric protection:</strong> approving an agent's tool execution requires a fresh Face ID (or device passcode) check. An optional lock can also require Face ID at launch and after the App has been in the background.</li>
+                    <li><strong>Nothing on disk to leak:</strong> because conversation content is never persisted, there is no plaintext cache to compromise.</li>
+                </ul>
+                <p>No system is perfectly secure, and the security of your own computer and network is your responsibility.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>15. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will update the "Last updated" date above, and for material changes we will make reasonable efforts to inform users. Your continued use of DSH after a change constitutes acceptance of the updated policy.</p>
+            </div>
+
+            <div class="policy-section anim">
+                <h2>16. Contact Us</h2>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li><strong>Website:</strong> <a href="https://www.henworks.com">https://www.henworks.com</a></li>
+                    <li><strong>Company:</strong> HenWorks, Taiwan</li>
+                </ul>
+                <p>See also the <a href="terms.html">DSH Subscription Terms and EULA</a>.</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- .card -->
+</div><!-- .page -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><span>DSH</span></div>
+            <small>Control DeepSeek Harness from your iPhone</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About HenWorks</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Subscription Terms</a><a href="/privacy.html">HenWorks Privacy Policy</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 HenWorks. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
