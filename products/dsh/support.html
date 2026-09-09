@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Guide - DSH</title>
+    <meta name="description" content="How to install the DSH host plugin on your computer and pair your iPhone. Step-by-step setup for DeepSeek Harness mobile control.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#EBEBEB;--white:#FFFFFF;--black:#111111;--gray:#666666;
+            --gray-light:#999999;--gray-border:#D4D4D4;
+            --accent:#55BBFD;--accent-soft:#AFDAFE;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--black);line-height:1.6;overflow-x:hidden}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        .anim{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+        .anim.show{opacity:1;transform:translateY(0)}
+        .anim.d1{transition-delay:.1s}.anim.d2{transition-delay:.2s}.anim.d3{transition-delay:.3s}
+
+        .page{max-width:1280px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:24px;overflow:hidden}
+
+        .nav{display:flex;align-items:center;padding:0 48px;height:72px;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-logo span{font-size:16px;font-weight:700;color:var(--black)}
+        .nav-links{display:flex;gap:28px;margin-left:36px;list-style:none}
+        .nav-links a{font-size:14px;color:var(--gray-light);text-decoration:none;font-weight:500;transition:color .3s;position:relative}
+        .nav-links a:hover,.nav-links a.active{color:var(--black)}
+        .nav-links a.active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:1px}
+        .nav-spacer{flex:1}
+        .nav-cta{display:flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;background:var(--black);color:var(--white);font-size:13px;font-weight:600;text-decoration:none;transition:all .3s}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+
+        .policy-hero{padding:80px 64px 48px;text-align:center}
+        .policy-hero h1{font-size:48px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+        .policy-hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent) 0%,var(--accent-soft) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+        .policy-hero .date{font-size:14px;color:var(--gray-light);margin-bottom:24px}
+        .policy-hero .summary{font-size:16px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.8}
+
+        .highlight-box{max-width:800px;margin:0 auto 48px;padding:32px 40px;background:linear-gradient(135deg,rgba(85,187,253,.12) 0%,rgba(85,187,253,.04) 100%);border-radius:20px;border:1px solid rgba(85,187,253,.3);display:flex;align-items:flex-start;gap:16px}
+        .highlight-box .icon{font-size:32px;flex-shrink:0;line-height:1}
+        .highlight-box .text{flex:1}
+        .highlight-box strong{display:block;font-size:16px;font-weight:700;margin-bottom:4px}
+        .highlight-box p{font-size:14px;color:var(--gray);line-height:1.7;margin:0}
+
+        .policy-content{max-width:800px;margin:0 auto;padding:0 64px 80px}
+        .policy-section{margin-bottom:40px}
+        .policy-section h2{font-size:22px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent);display:inline-block}
+        .policy-section h3{font-size:16px;font-weight:700;margin:20px 0 10px}
+        .policy-section p{font-size:15px;color:#424245;margin-bottom:14px;line-height:1.8}
+        .policy-section ul,.policy-section ol{margin:0 0 16px 24px}
+        .policy-section li{font-size:15px;color:#424245;margin-bottom:10px;line-height:1.7}
+        .policy-section li strong{color:var(--black)}
+        .policy-section pre{background:#F5F5F7;border:1px solid var(--gray-border);border-radius:12px;padding:16px 18px;margin:0 0 16px;overflow-x:auto}
+        .policy-section pre code{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;font-size:13.5px;color:#111;background:none;padding:0;white-space:pre;line-height:1.6}
+        .policy-section code{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;font-size:.9em;background:#F5F5F7;border:1px solid var(--gray-border);border-radius:5px;padding:1px 5px;color:#111}
+        .policy-section a{color:var(--black);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px;font-weight:500;transition:all .3s}
+        .policy-section a:hover{text-decoration-color:var(--black)}
+
+        .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+        .info-card{padding:20px;background:#F9F9F9;border-radius:16px;transition:all .3s}
+        .info-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.05)}
+        .info-card .ic-icon{font-size:24px;margin-bottom:8px}
+        .info-card strong{display:block;font-size:14px;margin-bottom:4px}
+        .info-card span{font-size:13px;color:var(--gray);line-height:1.6}
+
+        .footer{padding:40px 64px;max-width:1280px;margin:0 auto}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--gray-border)}
+        .footer-brand{display:flex;flex-direction:column;gap:6px}
+        .footer-brand-row{display:flex;align-items:center;gap:8px}
+        .footer-brand span{font-weight:700;font-size:14px}
+        .footer-brand small{font-size:12px;color:var(--gray-light)}
+        .footer-links{display:flex;gap:56px}
+        .footer-col h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-light);margin-bottom:12px}
+        .footer-col a{display:block;font-size:13px;color:var(--gray);text-decoration:none;padding:3px 0;transition:color .3s}
+        .footer-col a:hover{color:var(--black)}
+        .footer-btm{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:var(--gray-light)}
+
+        @media(max-width:1024px){
+            .nav{padding:0 24px}
+            .policy-hero{padding:48px 32px 32px}
+            .policy-hero h1{font-size:36px}
+            .policy-content{padding:0 32px 48px}
+            .info-grid{grid-template-columns:1fr}
+        }
+        @media(max-width:640px){
+            .page{padding:12px}
+            .nav-links{display:none}
+            .policy-hero{padding:32px 20px 24px}
+            .policy-hero h1{font-size:28px}
+            .policy-content{padding:0 20px 32px}
+            .highlight-box{flex-direction:column;padding:24px;margin:0 20px 32px}
+            .footer-top{flex-direction:column;gap:24px}
+            .footer{padding:32px 24px}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+
+    <nav class="nav">
+        <a href="/" class="nav-logo">
+            <span>DSH</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="support.html" class="active">Setup</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+        </ul>
+        <div class="nav-spacer"></div>
+        <a href="https://henworks.com" class="nav-cta">HenWorks &#8599;</a>
+    </nav>
+
+    <div>
+        <section class="policy-hero anim">
+            <h1>Setup <em>Guide</em></h1>
+            <p class="date">Last updated 7 September 2026</p>
+            <p class="summary">DSH is a remote control for DeepSeek Harness. It needs a harness
+            running on a computer you own. This page sets that up, end to end.</p>
+        </section>
+
+        <div class="highlight-box anim d1">
+            <div class="icon">&#9888;&#65039;</div>
+            <div class="text">
+                <strong>Read this before you install the app</strong>
+                <p>DSH is a client, not a service. If you do not already run DeepSeek Harness on
+                your own computer, the app has nothing to connect to and cannot do anything. There
+                is no DSH cloud, and no account to sign up for.</p>
+            </div>
+        </div>
+
+        <div class="policy-content">
+
+            <section class="policy-section anim">
+                <h2>What you need</h2>
+                <ul>
+                    <li><strong>A computer running DeepSeek Harness.</strong> Version 0.1.1 or
+                    newer. Watching and steering sessions from the phone needs
+                    <strong>0.1.2 or newer</strong> — see <em>Version notes</em> below.</li>
+                    <li><strong>Node.js and the <code>dsh</code> command</strong> already working
+                    on that computer.</li>
+                    <li><strong>An iPhone on iOS 17 or later</strong>, on the same network as the
+                    computer, or able to reach it over your own remote access.</li>
+                </ul>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Step 1 &mdash; Install the host plugin</h2>
+                <p>DSH talks to a small plugin that runs inside your own harness. Install it into
+                the profile you use (<code>web</code> is the default):</p>
+                <pre><code>dsh plugin --profile web add @henworks/dsh-mobile</code></pre>
+                <p>Use the <code>dsh plugin</code> command rather than <code>npm install</code>.
+                It resolves the harness's own packages correctly; a raw <code>npm install</code>
+                inside the profile tries to pull its own copies and fails with a peer dependency
+                conflict.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Step 2 &mdash; Run the setup step</h2>
+                <pre><code>dsh plugin --profile web exec @henworks/dsh-mobile setup</code></pre>
+                <p>This creates the mobile access configuration under
+                <code>~/.dsh/mobile-access/</code> and issues a local TLS certificate so the phone
+                talks to your computer over HTTPS. It prints the address it configured, for
+                example <code>https://192.168.1.20:3443</code>. Do not skip this step: without it
+                the plugin loads but has nothing to serve.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Step 3 &mdash; Start the harness and open the Mobile card</h2>
+                <pre><code>dsh --profile web</code></pre>
+                <p>In the web interface, open the <strong>Mobile</strong> card in the lower-left
+                corner, switch mobile access on, and create a pairing key. A QR code appears. The
+                pairing window is short-lived on purpose — create it when you are ready to scan.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Step 4 &mdash; Pair your iPhone</h2>
+                <ol>
+                    <li>Open DSH on the iPhone and tap <strong>Pair</strong>.</li>
+                    <li>Scan the QR code, or copy the pairing link and paste it into the field
+                    below the scanner.</li>
+                    <li>Approve with Face ID, Touch ID, or your device passcode.</li>
+                </ol>
+                <p>The key that grants access to your computer is generated inside the iPhone's
+                Secure Enclave and never leaves the device. Pair once; the phone remembers the
+                computer after that.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Version notes</h2>
+                <p>The plugin is tested against DeepSeek Harness <strong>0.1.1-rc.2</strong> and
+                <strong>0.1.2-rc.1</strong>, and behaves differently on each:</p>
+                <ul>
+                    <li><strong>0.1.2 and newer</strong> — everything works: session list, live
+                    streaming, sending prompts, approving tools, stopping a running turn.</li>
+                    <li><strong>0.1.1</strong> — pairing, Face ID challenge-response and device
+                    management work, but the harness has no session controller, so there are no
+                    sessions to show. The app says so plainly instead of failing on every screen.
+                    Update the harness to 0.1.2 or newer to use it properly.</li>
+                </ul>
+                <p>Installing the plugin never stops your harness from starting, on either version.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>If something goes wrong</h2>
+
+                <h3>The app says this computer is too old for mobile sessions</h3>
+                <p>The harness is older than 0.1.2. Update it on the computer; nothing needs to
+                change on the phone.</p>
+
+                <h3><code>dsh</code> will not start after installing the plugin</h3>
+                <p>Remove the plugin and start again, then tell us what the error said:</p>
+                <pre><code>dsh plugin --profile web remove @henworks/dsh-mobile</code></pre>
+
+                <h3>The phone cannot find or reach the computer</h3>
+                <p>Both devices must be on the same network, and your firewall must allow the port
+                the setup step printed. The app connects only to the address you gave it — nothing
+                is relayed through a server of ours, so if the computer is unreachable the phone
+                genuinely cannot get to it.</p>
+
+                <h3>The pairing link expired</h3>
+                <p>Pairing windows are deliberately short. Create a fresh one from the Mobile card
+                and scan it straight away.</p>
+
+                <h3>The camera will not scan</h3>
+                <p>Grant camera access in <em>Settings &rsaquo; DSH</em>, or use the paste field
+                instead — the pairing link works exactly the same way.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Removing everything</h2>
+                <p>On the phone, open <strong>Settings</strong> in DSH and tap <strong>Unpair</strong>;
+                this deletes the Secure Enclave key. On the computer:</p>
+                <pre><code>dsh plugin --profile web remove @henworks/dsh-mobile</code></pre>
+                <p>Delete <code>~/.dsh/mobile-access/</code> if you also want the paired-device
+                list and the local certificate gone.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Open source and attribution</h2>
+                <p><code>@henworks/dsh-mobile</code> is a fork of the
+                <a href="https://github.com/saya-ch/dsh-mobile" target="_blank" rel="noopener">dsh-mobile</a>
+                project, used under the Apache License 2.0, extended with the API that this iPhone
+                app needs. It is not published or endorsed by the upstream project, and DSH is not
+                affiliated with DeepSeek. Do not install this fork and upstream
+                <code>dsh-mobile</code> into the same profile — they serve the same routes and
+                bind the same port.</p>
+            </section>
+
+            <section class="policy-section anim">
+                <h2>Still stuck?</h2>
+                <p>Email <a href="mailto:info@henworks.com">info@henworks.com</a> with your
+                DeepSeek Harness version (<code>dsh --version</code>), your iOS version, and what
+                the app or the terminal said. The <strong>Diagnostics</strong> tab in the app
+                reports the host version and the capabilities it advertises, which is usually the
+                fastest way to see what is wrong.</p>
+            </section>
+
+        </div>
+    </div>
+</div><!-- .card -->
+</div><!-- .page -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-row"><span>DSH</span></div>
+            <small>Control DeepSeek Harness from your iPhone</small>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col"><h4>Company</h4><a href="https://henworks.com" target="_blank">About HenWorks</a><a href="mailto:info@henworks.com">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Subscription Terms</a><a href="/privacy.html">HenWorks Privacy Policy</a></div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <span>&copy; 2026 HenWorks. All rights reserved.</span>
+        <span>Made with care in Taiwan &#127481;&#127484;</span>
+    </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
