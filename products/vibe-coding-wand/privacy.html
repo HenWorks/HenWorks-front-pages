@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — vibe coding wand | HenWorks</title>
+    <meta name="description" content="vibe coding wand (氛圍編碼杖) privacy policy. On-device shortcuts and Apple Speech. No accounts, no analytics, no cloud audio.">
+    <link rel="canonical" href="https://henworks.com/products/vibe-coding-wand/privacy.html">
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#E8EEF2;--white:#FFFFFF;--ink:#14181C;--muted:#5A6570;
+            --border:#D4DCE3;--cyan:#1AA8C4;--cyan-soft:#E6F7FB;
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65}
+        .page{max-width:920px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(20,24,28,.06)}
+        .nav{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;border-bottom:1px solid var(--border)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
+        .nav-logo img{width:28px;height:28px;border-radius:7px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);font-family:var(--font)}
+        .nav-lang button.active{background:var(--ink);color:#fff}
+        .nav-home{font-size:13px;color:var(--muted);text-decoration:none}
+        .nav-home:hover{color:var(--ink)}
+        .hero{padding:56px 48px 28px;text-align:center}
+        .hero h1{font-size:40px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+        .hero h1 em{font-style:normal;color:var(--cyan)}
+        .hero .date{font-size:13px;color:var(--muted);margin-bottom:16px}
+        .hero .summary{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto}
+        .highlight{max-width:720px;margin:0 auto 40px;padding:22px 28px;background:var(--cyan-soft);border:1px solid rgba(26,168,196,.25);border-radius:16px;display:flex;gap:14px;align-items:flex-start}
+        .highlight strong{display:block;font-size:15px;margin-bottom:4px}
+        .highlight p{font-size:14px;color:var(--muted);margin:0}
+        .content{max-width:720px;margin:0 auto;padding:0 48px 64px}
+        .section{margin-bottom:36px}
+        .section h2{font-size:20px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--cyan);display:inline-block}
+        .section h3{font-size:15px;font-weight:700;margin:16px 0 8px}
+        .section p,.section li{font-size:15px;color:#3A434C;margin-bottom:10px}
+        .section ul{margin:0 0 12px 22px}
+        .section a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--cyan);text-underline-offset:3px}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+        .info{padding:16px;background:#F6F8FA;border-radius:12px}
+        .info strong{display:block;font-size:14px;margin-bottom:4px}
+        .info span{font-size:13px;color:var(--muted);line-height:1.55}
+        .footer{padding:28px 8px 8px;text-align:center;font-size:12px;color:var(--muted)}
+        .footer a{color:var(--ink);text-decoration:none}
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+        @media(max-width:720px){
+            .hero{padding:36px 20px 16px}
+            .hero h1{font-size:28px}
+            .content{padding:0 20px 40px}
+            .nav{padding:0 16px}
+            .grid{grid-template-columns:1fr}
+            .nav-home{display:none}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+    <nav class="nav">
+        <a class="nav-logo" href="https://henworks.com"><img src="icon.png" alt="">vibe coding wand</a>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="zh">中文</button>
+            <button data-lang="en">EN</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+        <a class="nav-home" href="https://henworks.com">HenWorks</a>
+    </nav>
+
+    <div class="lang-section active" id="lang-zh">
+        <section class="hero">
+            <h1>隱私<em>政策</em></h1>
+            <p class="date">最後更新：2026 年 9 月 15 日</p>
+            <p class="summary">氛圍編碼杖（vibe coding wand）在你的 Mac 本機執行。我們不設帳號、不上傳語音、不追蹤使用行為。</p>
+        </section>
+        <div class="highlight">
+            <div>🔒</div>
+            <div>
+                <strong>全部留在這台 Mac</strong>
+                <p>快捷鍵設定存在本機 UserDefaults。語音辨識使用 Apple 本機 SpeechAnalyzer，音訊不會離開裝置、也不會送到 HenWorks。</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>我們不收集的資料</h2>
+                <div class="grid">
+                    <div class="info"><strong>帳號與身份</strong><span>沒有登入、電子郵件、姓名或使用者 ID。</span></div>
+                    <div class="info"><strong>分析與廣告</strong><span>沒有分析 SDK、廣告識別碼或跨 App 追蹤。</span></div>
+                    <div class="info"><strong>語音內容</strong><span>麥克風音訊與轉寫結果不會上傳或保存到我們的伺服器。</span></div>
+                    <div class="info"><strong>檔案</strong><span>不會讀取遙控器與快捷鍵設定以外的檔案。</span></div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>App 會在本機做什麼</h2>
+                <p>氛圍編碼杖把已配對的小米藍牙遙控器 2 Pro（RC003）轉成 Mac 輸入裝置：</p>
+                <ul>
+                    <li>透過藍牙連接遙控器的語音鏈路。</li>
+                    <li>把按鍵對應成你設定的 Mac 快捷鍵，送到最前方的 App。</li>
+                    <li>按住語音鍵時，用 Apple 本機語音辨識轉成文字並貼上。</li>
+                </ul>
+                <p>快捷鍵對應與介面語言只存在這台 Mac 的系統設定（UserDefaults）。刪除 App 即一併清除。</p>
+            </div>
+            <div class="section">
+                <h2>系統權限</h2>
+                <ul>
+                    <li><strong>藍牙：</strong>連接已配對遙控器的語音服務。</li>
+                    <li><strong>輔助使用、輸入監控：</strong>送出你設定的快捷鍵。</li>
+                    <li><strong>語音辨識：</strong>可選。僅在你使用本機聽寫時需要。辨識由 Apple 在裝置上完成。</li>
+                </ul>
+                <p>這些權限由 macOS 管理。HenWorks 不會收到權限對話框的內容或你的語音。</p>
+            </div>
+            <div class="section">
+                <h2>第三方</h2>
+                <p>本 App 不嵌入分析、廣告或雲端帳號服務。語音辨識使用 Apple 提供的本機 Speech API。購買與授權由 Apple App Store 處理。</p>
+            </div>
+            <div class="section">
+                <h2>兒童隱私</h2>
+                <p>本 App 不以 13 歲以下兒童為對象。我們不收集個人資料，因此也不會從兒童收集個人資料。</p>
+            </div>
+            <div class="section">
+                <h2>聯絡</h2>
+                <ul>
+                    <li>電子郵件：<a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>網站：<a href="https://henworks.com">https://henworks.com</a></li>
+                    <li>議題追蹤：<a href="https://github.com/HenWorks/remote-bridge-hub-mac/issues">GitHub Issues</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>政策變更</h2>
+                <p>若本政策有實質變更，我們會更新本頁的日期。繼續使用即表示你知悉更新後的政策。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-en">
+        <section class="hero">
+            <h1>Privacy <em>Policy</em></h1>
+            <p class="date">Last updated: 15 September 2026</p>
+            <p class="summary">vibe coding wand (氛圍編碼杖) runs on your Mac. No accounts, no uploaded audio, no analytics.</p>
+        </section>
+        <div class="highlight">
+            <div>🔒</div>
+            <div>
+                <strong>Everything stays on this Mac</strong>
+                <p>Shortcut mappings live in local UserDefaults. Dictation uses Apple’s on-device SpeechAnalyzer. Audio is not sent to HenWorks.</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>What we do not collect</h2>
+                <div class="grid">
+                    <div class="info"><strong>Accounts</strong><span>No sign-in, email, name, or user ID.</span></div>
+                    <div class="info"><strong>Analytics and ads</strong><span>No analytics SDK, advertising identifier, or tracking.</span></div>
+                    <div class="info"><strong>Speech</strong><span>Mic audio and transcripts are not uploaded or stored on our servers.</span></div>
+                    <div class="info"><strong>Files</strong><span>We do not read files other than local shortcut settings.</span></div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>What the app does on-device</h2>
+                <p>vibe coding wand turns a paired Xiaomi Bluetooth Remote 2 Pro (RC003) into a Mac input device:</p>
+                <ul>
+                    <li>Connects the remote’s voice link over Bluetooth.</li>
+                    <li>Sends your mapped shortcuts into the frontmost app.</li>
+                    <li>While you hold the mic key, Apple on-device speech is transcribed and pasted.</li>
+                </ul>
+                <p>Mappings and interface language stay in this Mac’s UserDefaults. Removing the app deletes them.</p>
+            </div>
+            <div class="section">
+                <h2>System permissions</h2>
+                <ul>
+                    <li><strong>Bluetooth:</strong> the remote’s voice service.</li>
+                    <li><strong>Accessibility and Input Monitoring:</strong> to send mapped shortcuts.</li>
+                    <li><strong>Speech Recognition:</strong> optional, only for on-device dictation via Apple Speech.</li>
+                </ul>
+                <p>macOS manages these prompts. HenWorks does not receive the dialog contents or your audio.</p>
+            </div>
+            <div class="section">
+                <h2>Third parties</h2>
+                <p>The app does not embed analytics, ads, or cloud accounts. Speech uses Apple’s on-device Speech API. Purchases are handled by the Mac App Store.</p>
+            </div>
+            <div class="section">
+                <h2>Children</h2>
+                <p>The app is not directed at children under 13. We do not collect personal data.</p>
+            </div>
+            <div class="section">
+                <h2>Contact</h2>
+                <ul>
+                    <li>Email: <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>Website: <a href="https://henworks.com">https://henworks.com</a></li>
+                    <li>Issues: <a href="https://github.com/HenWorks/remote-bridge-hub-mac/issues">GitHub Issues</a></li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Changes</h2>
+                <p>If this policy changes in a material way, we will update the date on this page.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-ja">
+        <section class="hero">
+            <h1>プライバシー<em>ポリシー</em></h1>
+            <p class="date">最終更新：2026年9月15日</p>
+            <p class="summary">雰囲気コーディングの杖（vibe coding wand）はお使いの Mac 上で動作します。アカウントはなく、音声も分析もアップロードしません。</p>
+        </section>
+        <div class="highlight">
+            <div>🔒</div>
+            <div>
+                <strong>すべてこの Mac に留まります</strong>
+                <p>ショートカット設定は本機の UserDefaults に保存されます。文字起こしは Apple のオンデバイス SpeechAnalyzer を使います。音声は HenWorks に送られません。</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>収集しない情報</h2>
+                <div class="grid">
+                    <div class="info"><strong>アカウント</strong><span>ログイン、メール、氏名、ユーザー ID はありません。</span></div>
+                    <div class="info"><strong>分析と広告</strong><span>分析 SDK、広告識別子、トラッキングはありません。</span></div>
+                    <div class="info"><strong>音声</strong><span>マイク音声と文字起こしは当社サーバーへ送信・保存しません。</span></div>
+                    <div class="info"><strong>ファイル</strong><span>ショートカット設定以外のファイルは読みません。</span></div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>この Mac 上で行うこと</h2>
+                <p>ペアリング済みの Xiaomi Bluetooth Remote 2 Pro（RC003）を Mac の入力デバイスにします。</p>
+                <ul>
+                    <li>Bluetooth でリモコンの音声リンクに接続します。</li>
+                    <li>割り当てたショートカットを最前面の App に送ります。</li>
+                    <li>マイクキーを押している間、Apple のオンデバイス音声認識で文字にして貼り付けます。</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>システム権限</h2>
+                <ul>
+                    <li><strong>Bluetooth：</strong>リモコンの音声サービス。</li>
+                    <li><strong>アクセシビリティと入力監視：</strong>ショートカットの送信。</li>
+                    <li><strong>音声認識：</strong>任意。オンデバイスの口述のみ。</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>第三者</h2>
+                <p>分析、広告、クラウドアカウントは組み込んでいません。音声認識は Apple のオンデバイス Speech API です。購入は Mac App Store が処理します。</p>
+            </div>
+            <div class="section">
+                <h2>お問い合わせ</h2>
+                <ul>
+                    <li>メール：<a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>ウェブサイト：<a href="https://henworks.com">https://henworks.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-ko">
+        <section class="hero">
+            <h1>개인정보<em>처리방침</em></h1>
+            <p class="date">최종 업데이트: 2026년 9월 15일</p>
+            <p class="summary">분위기 코딩 완드(vibe coding wand)는 이 Mac에서 실행됩니다. 계정 없음, 오디오 업로드 없음, 분석 없음.</p>
+        </section>
+        <div class="highlight">
+            <div>🔒</div>
+            <div>
+                <strong>모든 것은 이 Mac에 머뭅니다</strong>
+                <p>단축키 설정은 기기의 UserDefaults에 저장됩니다. 받아쓰기는 Apple 온디바이스 SpeechAnalyzer를 사용합니다. 오디오는 HenWorks로 전송되지 않습니다.</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>수집하지 않는 정보</h2>
+                <div class="grid">
+                    <div class="info"><strong>계정</strong><span>로그인, 이메일, 이름, 사용자 ID가 없습니다.</span></div>
+                    <div class="info"><strong>분석과 광고</strong><span>분석 SDK, 광고 식별자, 추적이 없습니다.</span></div>
+                    <div class="info"><strong>음성</strong><span>마이크 오디오와 받아쓰기 결과는 당사 서버에 업로드되거나 저장되지 않습니다.</span></div>
+                    <div class="info"><strong>파일</strong><span>단축키 설정 외의 파일은 읽지 않습니다.</span></div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>이 기기에서 하는 일</h2>
+                <p>페어링된 샤오미 블루투스 리모컨 2 Pro(RC003)를 Mac 입력 장치로 바꿉니다.</p>
+                <ul>
+                    <li>Bluetooth로 리모컨 음성 링크에 연결합니다.</li>
+                    <li>매핑한 단축키를 맨 앞 앱으로 보냅니다.</li>
+                    <li>마이크 키를 누르는 동안 Apple 온디바이스 음성 인식으로 글자를 붙여 넣습니다.</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>시스템 권한</h2>
+                <ul>
+                    <li><strong>Bluetooth:</strong> 리모컨 음성 서비스.</li>
+                    <li><strong>손쉬운 사용과 입력 모니터링:</strong> 단축키 전송.</li>
+                    <li><strong>음성 인식:</strong> 선택 사항. 온디바이스 받아쓰기에만 사용.</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>문의</h2>
+                <ul>
+                    <li>이메일: <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>웹사이트: <a href="https://henworks.com">https://henworks.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">© 2026 HenWorks · <a href="https://henworks.com">henworks.com</a></div>
+</div>
+<script>
+function setLang(lang){
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.documentElement.lang={zh:'zh-Hant',en:'en',ja:'ja',ko:'ko'}[lang]||'zh-Hant';
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const pref=(navigator.language||'').toLowerCase();
+if(pref.startsWith('ja'))setLang('ja');
+else if(pref.startsWith('ko'))setLang('ko');
+else if(pref.startsWith('zh'))setLang('zh');
+</script>
+</body>
+</html>
