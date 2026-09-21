@@ -1,287 +1,466 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vibe coding wand — 氛圍編碼杖 | HenWorks</title>
-    <meta name="description" content="vibe coding wand (氛圍編碼杖) turns a Bluetooth voice remote into on-device dictation on your Mac. Audio never leaves the computer. Free to try, $7.99 to unlock.">
-    <meta name="keywords" content="vibe coding wand, 氛圍編碼杖, Mac, dictation, Bluetooth remote, Apple Speech, HenWorks">
-    <link rel="canonical" href="https://henworks.com/products/vibe-coding-wand/">
-    <meta property="og:title" content="vibe coding wand — 氛圍編碼杖">
-    <meta property="og:description" content="Hold the mic on a Bluetooth voice remote. Apple Speech turns it into text on this Mac. Audio never leaves the computer.">
-    <meta property="og:url" content="https://henworks.com/products/vibe-coding-wand/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://henworks.com/products/vibe-coding-wand/icon.png">
-    <meta property="og:site_name" content="HenWorks">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="icon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --bg:#E8EEF2;--white:#FFFFFF;--ink:#14181C;--muted:#5A6570;
-            --border:#D4DCE3;--cyan:#1AA8C4;--cyan-soft:#E6F7FB;
-            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-        }
-        html{scroll-behavior:smooth}
-        body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
-        .page{max-width:1120px;margin:0 auto;padding:24px}
-        .card{background:var(--white);border-radius:24px;overflow:hidden;box-shadow:0 8px 32px rgba(20,24,28,.06)}
-        .nav{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);z-index:20}
-        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
-        .nav-logo img{width:28px;height:28px;border-radius:7px}
-        .nav-links{display:flex;gap:20px;list-style:none;margin-left:8px}
-        .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500}
-        .nav-links a:hover{color:var(--ink)}
-        .nav-spacer{flex:1}
-        .nav-lang{display:flex;gap:4px}
-        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);font-family:var(--font)}
-        .nav-lang button.active{background:var(--ink);color:#fff}
-        .nav-cta{padding:8px 16px;border-radius:10px;background:var(--ink);color:#fff;font-size:13px;font-weight:600;text-decoration:none}
-        .hero{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;padding:56px 48px 40px;align-items:center}
-        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--cyan-soft);color:var(--cyan);font-size:12px;font-weight:700;margin-bottom:16px}
-        .badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--cyan)}
-        .hero h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:14px}
-        .hero h1 em{font-style:normal;color:var(--cyan)}
-        .hero-desc{font-size:16px;color:var(--muted);margin-bottom:22px;max-width:460px}
-        .hero-stats{display:flex;gap:28px;margin-bottom:28px}
-        .hero-stat strong{display:block;font-size:22px;font-weight:800}
-        .hero-stat span{font-size:12px;color:var(--muted)}
-        .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
-        .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none}
-        .btn-primary{background:var(--ink);color:#fff}
-        .btn-ghost{border:1.5px solid var(--border);color:var(--ink)}
-        .shot{width:100%;border-radius:16px;border:1px solid var(--border);box-shadow:0 18px 40px rgba(20,24,28,.12);background:#f4f7f9}
-        .section{padding:8px 48px 56px}
-        .section h2{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
-        .section .sub{color:var(--muted);margin-bottom:28px}
-        .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-        .feat{padding:22px;background:#F6F8FA;border-radius:16px}
-        .feat strong{display:block;margin:8px 0 6px;font-size:15px}
-        .feat p{font-size:14px;color:var(--muted);margin:0}
-        .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-        .step{padding:20px;border:1px solid var(--border);border-radius:16px}
-        .step-n{font-size:22px;font-weight:800;color:var(--cyan)}
-        .step h3{font-size:15px;margin:8px 0 6px}
-        .step p{font-size:13px;color:var(--muted);margin:0}
-        .price{max-width:420px;padding:28px;border:1px solid var(--border);border-radius:20px;background:var(--cyan-soft)}
-        .price .amt{font-size:36px;font-weight:800}
-        .price .per{font-size:13px;color:var(--muted);margin-bottom:12px}
-        .price ul{margin:0 0 18px 18px;color:#3A434C;font-size:14px}
-        .shots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-        .shots img{width:100%;border-radius:14px;border:1px solid var(--border)}
-        .footer{padding:28px 48px 36px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
-        .footer a{color:var(--ink);text-decoration:none}
-        .lang-block{display:none}
-        .lang-block.active{display:block}
-        @media(max-width:900px){
-            .hero,.section,.footer,.nav{padding-left:20px;padding-right:20px}
-            .hero{grid-template-columns:1fr;padding-top:36px}
-            .grid3,.steps,.shots{grid-template-columns:1fr}
-            .nav-links,.nav-cta{display:none}
-            .hero h1{font-size:32px}
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vibe coding wand — 氛圍編碼杖 | HenWorks</title>
+<meta name="description" content="vibe coding wand (氛圍編碼杖) turns a Bluetooth voice remote into on-device dictation on your Mac. Audio never leaves the computer. Free to try, $7.99 to unlock.">
+<meta name="keywords" content="vibe coding wand, 氛圍編碼杖, Mac, dictation, Bluetooth remote, Apple Speech, HenWorks">
+<link rel="canonical" href="https://henworks.com/products/vibe-coding-wand/">
+<meta property="og:title" content="vibe coding wand — 氛圍編碼杖">
+<meta property="og:description" content="Hold the mic on a Bluetooth voice remote. Apple Speech turns it into text on this Mac. Audio never leaves the computer.">
+<meta property="og:url" content="https://henworks.com/products/vibe-coding-wand/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://henworks.com/products/vibe-coding-wand/icon.png">
+<meta property="og:site_name" content="HenWorks">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10141A;
+  --bg-2:#171C24;
+  --surface:#1C232D;
+  --ink:#F2F5F8;
+  --muted:#93A0AE;
+  --line:rgba(242,245,248,.1);
+  --cyan:#3EC8FF;
+  --cyan-deep:#0B3A4C;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --font:'Sora','Noto Sans TC','Noto Sans JP','Noto Sans KR',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.2rem}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+.skip{position:absolute;left:-999px;top:0;background:var(--cyan);color:#10141A;padding:.6rem 1rem;z-index:80}
+.skip:focus{left:1rem;top:1rem}
+
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.nav-shell{
+  position:sticky;top:0;z-index:30;padding:1.1rem 1.25rem 0;
+}
+.nav{
+  max-width:1180px;margin:0 auto;
+  display:flex;align-items:center;gap:.7rem;
+  padding:.45rem .45rem .45rem 1rem;
+  background:rgba(16,20,26,.72);
+  border:1px solid var(--line);
+  border-radius:999px;
+  backdrop-filter:blur(18px);
+}
+.brand{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--muted);font-weight:600;
+}
+.brand:hover{color:var(--ink)}
+.sep{width:1px;height:14px;background:var(--line)}
+.prod{
+  display:flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:600;font-size:13px;
+}
+.prod img{width:22px;height:22px;border-radius:6px}
+.nav-gap{flex:1}
+.langs{display:flex;gap:2px}
+.langs button{
+  border:0;background:transparent;color:var(--muted);
+  font:600 11px/1 var(--font);padding:.4rem .55rem;border-radius:999px;cursor:pointer;
+}
+.langs button.active{background:var(--ink);color:#10141A}
+.menu-btn{
+  display:none;width:38px;height:38px;border:0;border-radius:999px;
+  background:transparent;position:relative;cursor:pointer;
+}
+.menu-btn span{
+  position:absolute;left:11px;right:11px;height:1.5px;background:var(--ink);
+  transition:transform .45s var(--ease),opacity .3s var(--ease);
+}
+.menu-btn span:nth-child(1){top:14px}
+.menu-btn span:nth-child(2){top:18px}
+.menu-btn span:nth-child(3){top:22px}
+.menu-btn.open span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
+.cta{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--ink);color:#10141A;text-decoration:none;
+  font-size:12px;font-weight:700;padding:.35rem .4rem .35rem 1rem;border-radius:999px;
+}
+.cta i{
+  width:28px;height:28px;border-radius:999px;background:#10141A;color:var(--ink);
+  display:grid;place-items:center;font-style:normal;font-size:13px;
+  transition:transform .45s var(--ease);
+}
+.cta:hover i{transform:translate(2px,-1px)}
+.cta:active{transform:scale(.98)}
+
+.hero{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);
+  padding:clamp(1.6rem,4vw,3.2rem) 1.5rem 3.2rem;
+  min-height:calc(100dvh - 5.5rem);align-items:center;
+}
+.kicker{
+  display:inline-flex;align-items:center;gap:.55rem;
+  color:var(--cyan);font-size:12px;font-weight:600;margin-bottom:1.4rem;
+}
+.kicker::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+h1{
+  font-size:clamp(2.4rem,5.4vw,4.4rem);
+  font-weight:800;letter-spacing:-.035em;line-height:1.05;
+  text-wrap:balance;margin-bottom:1.15rem;
+}
+.lead{color:var(--muted);font-size:1.05rem;max-width:38ch;margin-bottom:1.8rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2.4rem}
+.ghost{
+  display:inline-flex;align-items:center;padding:.85rem 1.2rem;border-radius:999px;
+  border:1px solid var(--line);text-decoration:none;font-size:13px;font-weight:600;color:var(--ink);
+  transition:border-color .4s var(--ease);
+}
+.ghost:hover{border-color:rgba(62,200,255,.5)}
+.facts{display:grid;grid-template-columns:repeat(3,auto);gap:1.6rem;width:max-content}
+.facts b{display:block;font-family:var(--mono);font-size:1.35rem;font-weight:700;color:var(--ink)}
+.facts span{font-size:12px;color:var(--muted)}
+
+.stage{
+  position:relative;padding:1.1rem;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);border-radius:2rem;
+}
+.stage-inner{
+  background:linear-gradient(180deg,#1A222C,#14191F);
+  border-radius:calc(2rem - .55rem);
+  padding:1rem 1.1rem 0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+  overflow:hidden;max-height:min(68vh,640px);
+}
+.stage img{width:100%;max-height:min(64vh,600px);object-fit:cover;object-position:top center;margin:0 auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
+.glow{
+  position:absolute;width:55%;height:55%;right:8%;top:18%;
+  background:radial-gradient(circle,rgba(62,200,255,.28),transparent 68%);
+  pointer-events:none;
+}
+
+.band{
+  border-top:1px solid var(--line);
+  padding:clamp(4rem,8vw,7rem) 1.5rem;
+}
+.wrap{max-width:1180px;margin:0 auto}
+.desk{
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:center;
+}
+.desk h2{
+  font-size:clamp(1.8rem,3.2vw,2.7rem);letter-spacing:-.03em;line-height:1.15;
+  text-wrap:balance;margin-bottom:.9rem;
+}
+.desk p{color:var(--muted);max-width:42ch}
+.mac{
+  border-radius:1.15rem;overflow:hidden;
+  border:1px solid var(--line);
+  background:#0B0E12;
+  box-shadow:0 30px 70px -28px rgba(0,0,0,.7);
+}
+.mac-bar{
+  height:36px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#161B22;
+  border-bottom:1px solid var(--line);
+}
+.mac-bar i{width:10px;height:10px;border-radius:50%;background:#3A424C}
+.mac-bar span{flex:1;text-align:center;font-size:11px;color:#6D7884}
+.mac img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left center}
+
+.split{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:3.5rem;
+}
+.panel{
+  padding:1.6rem;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:1.5rem;
+}
+.panel h3{font-size:1.05rem;margin-bottom:.45rem}
+.panel p{color:var(--muted);font-size:.95rem}
+.flow{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:1.5rem;overflow:hidden;margin-top:2.2rem;
+}
+.flow article{background:var(--bg-2);padding:1.5rem 1.35rem}
+.flow b{display:block;font-family:var(--mono);font-size:12px;color:var(--cyan);margin-bottom:.55rem}
+.flow h3{font-size:1rem;margin-bottom:.35rem}
+.flow p{color:var(--muted);font-size:.88rem}
+
+.price{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:start;
+  padding:2.4rem 1.5rem 5.5rem;
+}
+#how,#price{scroll-margin-top:5.2rem}
+.price h2{font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-.03em;line-height:1.12;text-wrap:balance}
+.price-box{
+  padding:1.6rem 1.7rem 1.5rem;
+  background:var(--cyan-deep);
+  border:1px solid rgba(62,200,255,.28);
+  border-radius:1.6rem;
+}
+.amt{font-family:var(--mono);font-size:clamp(2rem,4vw,2.6rem);font-weight:700;color:var(--cyan);line-height:1.1}
+.amt small{font-size:1rem;color:var(--ink)}
+.price-box ul{margin:1rem 0 1.2rem 1.1rem;color:var(--ink);font-size:.92rem}
+.price-box li{margin:.28rem 0}
+
+.foot{
+  max-width:1180px;margin:0 auto;padding:1.4rem 1.5rem 2.4rem;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  border-top:1px solid var(--line);color:var(--muted);font-size:13px;
+}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--ink)}
+
+.drawer{
+  display:none;position:fixed;inset:0;z-index:25;
+  background:rgba(16,20,26,.92);padding:5.5rem 1.5rem 2rem;
+}
+.drawer.open{display:flex;flex-direction:column;gap:1.2rem}
+.drawer a{font-size:1.4rem;font-weight:700;text-decoration:none}
+
+@media(max-width:900px){
+  .hero,.desk,.price,.split,.flow{grid-template-columns:1fr}
+  .nav .cta,.nav .langs{display:none}
+  .menu-btn{display:block}
+  .prod span{display:none}
+  .hero{min-height:auto;padding-top:1.4rem;gap:1.8rem;align-items:start}
+  .stage-inner,.stage img{max-height:none}
+  h1{font-size:2.3rem}
+  .facts{grid-template-columns:repeat(3,1fr);width:100%;gap:1rem}
+  .flow article{padding:1.2rem}
+  .nav-shell{padding:.8rem .8rem 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
-<div class="page"><div class="card">
-<nav class="nav">
-    <a class="nav-logo" href="./"><img src="icon.png" alt="">vibe coding wand</a>
-    <ul class="nav-links">
-        <li><a href="#features" data-i18n="nav.feat">功能</a></li>
-        <li><a href="#how" data-i18n="nav.how">怎麼用</a></li>
-        <li><a href="#price" data-i18n="nav.price">價格</a></li>
-        <li><a href="privacy.html" data-i18n="nav.priv">隱私</a></li>
-    </ul>
-    <div class="nav-spacer"></div>
-    <div class="nav-lang" id="navLang">
-        <button class="active" data-lang="zh">中文</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="ja">日本語</button>
-        <button data-lang="ko">한국어</button>
-    </div>
-    <a class="nav-cta" href="https://apps.apple.com/app/id6812302368" data-i18n="nav.store">Mac App Store</a>
-</nav>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
 
-<section class="hero">
+<div class="nav-shell">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="https://henworks.com">HenWorks</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a class="prod" href="./"><img src="icon.png" alt=""><span>vibe coding wand</span></a>
+    <div class="nav-gap"></div>
+    <div class="langs" id="navLang">
+      <button class="active" data-lang="zh">中</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="ja">日</button>
+      <button data-lang="ko">한</button>
+    </div>
+    <a class="cta" href="https://apps.apple.com/app/id6812302368"><span data-i18n="nav.store">Mac App Store</span><i aria-hidden="true">↗</i></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+</div>
+<div class="drawer" id="drawer">
+  <a href="#how" data-i18n="nav.how">怎麼用</a>
+  <a href="#price" data-i18n="nav.price">價格</a>
+  <a href="privacy.html" data-i18n="nav.priv">隱私</a>
+  <a href="https://apps.apple.com/app/id6812302368" data-i18n="nav.store">Mac App Store</a>
+</div>
+
+<main id="main">
+  <section class="hero">
     <div>
-        <div class="badge" data-i18n="badge">Mac App Store 現已推出</div>
-        <h1 data-i18n="h1">把語音遙控器<br>變成<em>本機聽寫</em></h1>
-        <p class="hero-desc" data-i18n="desc">按住語音鍵說話，Apple Speech 在這台電腦上轉成文字。音訊不會上傳。文字複製到剪貼板，貼到你正在寫的地方。</p>
-        <div class="hero-stats">
-            <div class="hero-stat"><strong>7</strong><span data-i18n="s1">天免費試用</span></div>
-            <div class="hero-stat"><strong>$7.99</strong><span data-i18n="s2">一次買斷</span></div>
-            <div class="hero-stat"><strong>0</strong><span data-i18n="s3">雲端上傳</span></div>
+      <div class="kicker" data-i18n="badge">Mac App Store 現已推出</div>
+      <h1 data-i18n="h1">按住語音鍵。<br>文字進剪貼板。</h1>
+      <p class="lead" data-i18n="desc">藍牙語音遙控器。Apple Speech 在這台 Mac 上轉成文字。音訊不會上傳。貼到你正在寫的地方。</p>
+      <div class="hero-actions">
+        <a class="cta" href="https://apps.apple.com/app/id6812302368"><span data-i18n="cta">在 Mac App Store 下載</span><i aria-hidden="true">↗</i></a>
+        <a class="ghost" href="#how" data-i18n="cta2">看怎麼用</a>
+      </div>
+      <div class="facts">
+        <div><b>7</b><span data-i18n="s1">天免費試用</span></div>
+        <div><b>$7.99</b><span data-i18n="s2">一次買斷</span></div>
+        <div><b>0</b><span data-i18n="s3">雲端上傳</span></div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="stage-inner">
+        <img src="remote-portrait.webp" alt="Bluetooth voice remote with the mic key highlighted" width="517" height="1263">
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="desk">
+    <div class="wrap desk">
+      <div>
+        <h2 data-i18n="desk.t">寫程式時說話，不必換手。</h2>
+        <p data-i18n="desk.d">遙控器留在桌上。按住語音鍵，鬆開後文字已在剪貼板。貼進編輯器、終端機或聊天視窗。</p>
+      </div>
+      <figure class="mac">
+        <div class="mac-bar"><i></i><i></i><i></i><span>vibe coding wand</span></div>
+        <img src="shot-system.webp" alt="Dictation sitting beside a coding session on a Mac" width="2560" height="1600">
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="how" style="padding-top:0">
+    <div class="wrap">
+      <h2 data-i18n="how.t" style="font-size:clamp(1.8rem,3.2vw,2.7rem);letter-spacing:-.03em;margin-bottom:.5rem">四步開始</h2>
+      <p data-i18n="how.s" style="color:var(--muted);margin-bottom:.4rem">不需要帳號。遙控器先在系統藍牙裡配對。</p>
+      <div class="flow">
+        <article><b>01</b><h3 data-i18n="how.1t">下載</h3><p data-i18n="how.1d">從 Mac App Store 安裝。需要 macOS 26 或更新版本。</p></article>
+        <article><b>02</b><h3 data-i18n="how.2t">配對</h3><p data-i18n="how.2d">同時長按主頁與選單，直到出現在系統藍牙設定。</p></article>
+        <article><b>03</b><h3 data-i18n="how.3t">允許權限</h3><p data-i18n="how.3d">藍牙用來連遙控器。聽寫再開語音辨識。</p></article>
+        <article><b>04</b><h3 data-i18n="how.4t">按住說話</h3><p data-i18n="how.4d">按住語音鍵。鬆開後文字會複製，貼上即可。</p></article>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3 data-i18n="feat.1t">本機聽寫</h3>
+          <p data-i18n="feat.1d">Apple Speech 在這台電腦上轉寫。音訊不會離開裝置。</p>
         </div>
-        <div class="hero-cta">
-            <a class="btn btn-primary" href="https://apps.apple.com/app/id6812302368" data-i18n="cta">在 Mac App Store 下載</a>
-            <a class="btn btn-ghost" href="#how" data-i18n="cta2">看怎麼用</a>
+        <div class="panel">
+          <h3 data-i18n="feat.2t">藍牙語音遙控</h3>
+          <p data-i18n="feat.2d">配對 RC003 類遙控器。多支時可指定哪一支負責語音。</p>
         </div>
+        <div class="panel">
+          <h3 data-i18n="feat.3t">複製即貼</h3>
+          <p data-i18n="feat.3d">辨識完成後文字進剪貼板，貼到編輯器或聊天視窗。</p>
+        </div>
+        <div class="panel">
+          <h3 data-i18n="feat.5t">沒有帳號</h3>
+          <p data-i18n="feat.5d">沒有分析、沒有雲端語音、沒有登入。</p>
+        </div>
+      </div>
     </div>
-    <img class="shot" src="shot-overview.webp" alt="vibe coding wand overview">
-</section>
+  </section>
 
-<section class="section" id="shots">
-    <h2 data-i18n="shots.t">實際畫面</h2>
-    <p class="sub" data-i18n="shots.s">藍牙語音遙控、本機聽寫、試用與一次解鎖。</p>
-    <div class="shots">
-        <img src="shot-overview.webp" alt="Overview">
-        <img src="shot-system.webp" alt="System">
-        <img src="shot-buttons.webp" alt="Buttons">
-    </div>
-</section>
-
-<section class="section" id="features">
-    <h2 data-i18n="feat.t">為寫作與編程準備</h2>
-    <p class="sub" data-i18n="feat.s">App Store 版本是藍牙語音 + 本機聽寫。不注入快捷鍵，也不使用輔助使用。</p>
-    <div class="grid3">
-        <div class="feat"><span>🎙️</span><strong data-i18n="feat.1t">本機聽寫</strong><p data-i18n="feat.1d">Apple Speech 在這台電腦上轉寫。音訊不會離開裝置。</p></div>
-        <div class="feat"><span>📡</span><strong data-i18n="feat.2t">藍牙語音遙控</strong><p data-i18n="feat.2d">配對 RC003 類遙控器。多支時可指定哪一支負責語音。</p></div>
-        <div class="feat"><span>📋</span><strong data-i18n="feat.3t">複製即貼</strong><p data-i18n="feat.3d">辨識完成後文字進剪貼板，貼到編輯器或聊天視窗。</p></div>
-        <div class="feat"><span>🌐</span><strong data-i18n="feat.4t">多語介面</strong><p data-i18n="feat.4d">繁體中文、English、日本語、한국어。聽寫語言可另選。</p></div>
-        <div class="feat"><span>🔒</span><strong data-i18n="feat.5t">沒有帳號</strong><p data-i18n="feat.5d">沒有分析、沒有雲端語音、沒有登入。</p></div>
-        <div class="feat"><span>💸</span><strong data-i18n="feat.6t">一次解鎖</strong><p data-i18n="feat.6d">免費下載，試用 7 天，之後 USD 7.99 買斷。可還原購買。</p></div>
-    </div>
-</section>
-
-<section class="section" id="how">
-    <h2 data-i18n="how.t">怎麼用</h2>
-    <p class="sub" data-i18n="how.s">不需要帳號。遙控器要先在系統藍牙裡配對。</p>
-    <div class="steps">
-        <div class="step"><div class="step-n">01</div><h3 data-i18n="how.1t">下載</h3><p data-i18n="how.1d">從 Mac App Store 安裝。需要 macOS 26 或更新版本。</p></div>
-        <div class="step"><div class="step-n">02</div><h3 data-i18n="how.2t">配對</h3><p data-i18n="how.2d">同時長按主頁 + 選單，直到出現在系統藍牙設定。</p></div>
-        <div class="step"><div class="step-n">03</div><h3 data-i18n="how.3t">允許權限</h3><p data-i18n="how.3d">藍牙用來連遙控器。聽寫再開語音辨識。</p></div>
-        <div class="step"><div class="step-n">04</div><h3 data-i18n="how.4t">按住說話</h3><p data-i18n="how.4d">按住語音鍵。鬆開後文字會複製，貼上即可。</p></div>
-    </div>
-</section>
-
-<section class="section" id="price">
-    <h2 data-i18n="price.t">價格</h2>
-    <p class="sub" data-i18n="price.s">透過 Apple 內購一次解鎖。沒有訂閱。</p>
-    <div class="price">
-        <div class="amt">$7.99</div>
-        <div class="per" data-i18n="price.per">USD · 一次買斷 · 7 天試用</div>
-        <ul>
-            <li data-i18n="price.1">免費下載</li>
-            <li data-i18n="price.2">試用期間功能全開</li>
-            <li data-i18n="price.3">試用結束後一次解鎖</li>
-            <li data-i18n="price.4">還原購買在視窗上方授權列</li>
-        </ul>
-        <a class="btn btn-primary" href="https://apps.apple.com/app/id6812302368" data-i18n="cta">在 Mac App Store 下載</a>
-    </div>
-</section>
-
-<footer class="footer">
+  <section class="price" id="price">
     <div>
-        <a href="https://henworks.com">HenWorks</a> ·
-        <a href="privacy.html" data-i18n="nav.priv">隱私</a> ·
-        <a href="mailto:info@henworks.com">info@henworks.com</a>
+      <h2 data-i18n="price.t">試用七天。<br>一次買斷。</h2>
+      <p data-i18n="price.s" style="color:var(--muted);margin-top:.8rem;max-width:42ch">透過 Apple 內購解鎖。沒有訂閱。還原購買在視窗上方授權列。</p>
     </div>
-    <div data-i18n="copy">© 2026 HenWorks</div>
+    <div class="price-box">
+      <div class="amt">$7.99 <small>USD</small></div>
+      <p data-i18n="price.per" style="color:var(--muted);font-size:13px;margin-top:.2rem">一次買斷 · 7 天試用</p>
+      <ul>
+        <li data-i18n="price.1">免費下載</li>
+        <li data-i18n="price.2">試用期間功能全開</li>
+        <li data-i18n="price.3">試用結束後一次解鎖</li>
+        <li data-i18n="price.4">還原購買在視窗上方授權列</li>
+      </ul>
+      <a class="cta" href="https://apps.apple.com/app/id6812302368"><span data-i18n="cta">在 Mac App Store 下載</span><i aria-hidden="true">↗</i></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div>
+    <a href="https://henworks.com">HenWorks</a>
+    · <a href="privacy.html" data-i18n="nav.priv">隱私</a>
+    · <a href="mailto:info@henworks.com">info@henworks.com</a>
+  </div>
+  <div data-i18n="copy">© 2026 HenWorks</div>
 </footer>
-</div></div>
 
 <script>
 const i18n = {
 zh:{
-  "nav.feat":"功能","nav.how":"怎麼用","nav.price":"價格","nav.priv":"隱私","nav.store":"Mac App Store",
-  "badge":"Mac App Store 現已推出","h1":"把語音遙控器<br>變成<em>本機聽寫</em>",
-  "desc":"按住語音鍵說話，Apple Speech 在這台電腦上轉成文字。音訊不會上傳。文字複製到剪貼板，貼到你正在寫的地方。",
+  "nav.how":"怎麼用","nav.price":"價格","nav.priv":"隱私","nav.store":"Mac App Store",
+  "badge":"Mac App Store 現已推出","h1":"按住語音鍵。<br>文字進剪貼板。",
+  "desc":"藍牙語音遙控器。Apple Speech 在這台 Mac 上轉成文字。音訊不會上傳。貼到你正在寫的地方。",
   "s1":"天免費試用","s2":"一次買斷","s3":"雲端上傳",
   "cta":"在 Mac App Store 下載","cta2":"看怎麼用",
-  "shots.t":"實際畫面","shots.s":"藍牙語音遙控、本機聽寫、試用與一次解鎖。",
-  "feat.t":"為寫作與編程準備","feat.s":"App Store 版本是藍牙語音 + 本機聽寫。不注入快捷鍵，也不使用輔助使用。",
+  "desk.t":"寫程式時說話，不必換手。","desk.d":"遙控器留在桌上。按住語音鍵，鬆開後文字已在剪貼板。貼進編輯器、終端機或聊天視窗。",
+  "how.t":"四步開始","how.s":"不需要帳號。遙控器先在系統藍牙裡配對。",
+  "how.1t":"下載","how.1d":"從 Mac App Store 安裝。需要 macOS 26 或更新版本。",
+  "how.2t":"配對","how.2d":"同時長按主頁與選單，直到出現在系統藍牙設定。",
+  "how.3t":"允許權限","how.3d":"藍牙用來連遙控器。聽寫再開語音辨識。",
+  "how.4t":"按住說話","how.4d":"按住語音鍵。鬆開後文字會複製，貼上即可。",
   "feat.1t":"本機聽寫","feat.1d":"Apple Speech 在這台電腦上轉寫。音訊不會離開裝置。",
   "feat.2t":"藍牙語音遙控","feat.2d":"配對 RC003 類遙控器。多支時可指定哪一支負責語音。",
   "feat.3t":"複製即貼","feat.3d":"辨識完成後文字進剪貼板，貼到編輯器或聊天視窗。",
-  "feat.4t":"多語介面","feat.4d":"繁體中文、English、日本語、한국어。聽寫語言可另選。",
   "feat.5t":"沒有帳號","feat.5d":"沒有分析、沒有雲端語音、沒有登入。",
-  "feat.6t":"一次解鎖","feat.6d":"免費下載，試用 7 天，之後 USD 7.99 買斷。可還原購買。",
-  "how.t":"怎麼用","how.s":"不需要帳號。遙控器要先在系統藍牙裡配對。",
-  "how.1t":"下載","how.1d":"從 Mac App Store 安裝。需要 macOS 26 或更新版本。",
-  "how.2t":"配對","how.2d":"同時長按主頁 + 選單，直到出現在系統藍牙設定。",
-  "how.3t":"允許權限","how.3d":"藍牙用來連遙控器。聽寫再開語音辨識。",
-  "how.4t":"按住說話","how.4d":"按住語音鍵。鬆開後文字會複製，貼上即可。",
-  "price.t":"價格","price.s":"透過 Apple 內購一次解鎖。沒有訂閱。",
-  "price.per":"USD · 一次買斷 · 7 天試用",
+  "price.t":"試用七天。<br>一次買斷。","price.s":"透過 Apple 內購解鎖。沒有訂閱。還原購買在視窗上方授權列。",
+  "price.per":"一次買斷 · 7 天試用",
   "price.1":"免費下載","price.2":"試用期間功能全開","price.3":"試用結束後一次解鎖","price.4":"還原購買在視窗上方授權列",
   "copy":"© 2026 HenWorks"
 },
 en:{
-  "nav.feat":"Features","nav.how":"How to","nav.price":"Price","nav.priv":"Privacy","nav.store":"Mac App Store",
-  "badge":"Now on the Mac App Store","h1":"Turn a voice remote<br>into <em>on-device dictation</em>",
-  "desc":"Hold the mic key and speak. Apple Speech turns it into text on this computer. Audio is never uploaded. The transcript is copied so you can paste it where you work.",
+  "nav.how":"How to","nav.price":"Price","nav.priv":"Privacy","nav.store":"Mac App Store",
+  "badge":"Now on the Mac App Store","h1":"Hold the mic.<br>Paste the line.",
+  "desc":"A Bluetooth voice remote. Apple Speech turns it into text on this Mac. Audio is never uploaded. Paste it where you work.",
   "s1":"day free trial","s2":"one-time unlock","s3":"cloud uploads",
   "cta":"Download on the Mac App Store","cta2":"See how it works",
-  "shots.t":"In the app","shots.s":"Bluetooth voice remote, on-device dictation, trial and unlock.",
-  "feat.t":"Built for writing and coding","feat.s":"The App Store edition is Bluetooth voice plus on-device dictation. It does not inject shortcuts or use Accessibility.",
+  "desk.t":"Talk while you code. Hands stay on the keys.","desk.d":"Leave the remote on the desk. Hold the mic, release, and the transcript is already on the clipboard.",
+  "how.t":"Four steps","how.s":"No account. Pair the remote in system Bluetooth first.",
+  "how.1t":"Download","how.1d":"Install from the Mac App Store. Requires macOS 26 or later.",
+  "how.2t":"Pair","how.2d":"Hold Home and Menu until it appears in Bluetooth settings.",
+  "how.3t":"Allow permissions","how.3d":"Bluetooth to connect the remote. Speech Recognition only if you dictate.",
+  "how.4t":"Hold and speak","how.4d":"Hold the mic key. On release, copy the transcript and paste.",
   "feat.1t":"On-device dictation","feat.1d":"Apple Speech transcribes on this computer. Audio never leaves the device.",
   "feat.2t":"Bluetooth voice remote","feat.2d":"Pair an RC003-class remote. Pick which one handles voice when several are nearby.",
   "feat.3t":"Copy, then paste","feat.3d":"When recognition finishes, text goes to the clipboard.",
-  "feat.4t":"Four UI languages","feat.4d":"Traditional Chinese, English, Japanese, Korean. Dictation language is separate.",
   "feat.5t":"No account","feat.5d":"No analytics, no cloud speech, no sign-in.",
-  "feat.6t":"One-time unlock","feat.6d":"Free to download. Try for 7 days, then USD 7.99. Restore Purchases is in the banner.",
-  "how.t":"How to use","how.s":"No account. Pair the remote in system Bluetooth first.",
-  "how.1t":"Download","how.1d":"Install from the Mac App Store. Requires macOS 26 or later.",
-  "how.2t":"Pair","how.2d":"Hold Home + Menu until it appears in Bluetooth settings.",
-  "how.3t":"Allow permissions","how.3d":"Bluetooth to connect the remote. Speech Recognition only if you dictate.",
-  "how.4t":"Hold and speak","how.4d":"Hold the mic key. On release, copy the transcript and paste.",
-  "price.t":"Price","price.s":"One-time In-App Purchase through Apple. No subscription.",
-  "price.per":"USD · one-time · 7-day trial",
+  "price.t":"Seven days free.<br>Then one payment.","price.s":"Unlock through Apple In-App Purchase. No subscription. Restore Purchases lives in the license banner.",
+  "price.per":"one-time · 7-day trial",
   "price.1":"Free to download","price.2":"Full features during the trial","price.3":"One-time unlock after the trial","price.4":"Restore Purchases in the license banner",
   "copy":"© 2026 HenWorks"
 },
 ja:{
-  "nav.feat":"機能","nav.how":"使い方","nav.price":"価格","nav.priv":"プライバシー","nav.store":"Mac App Store",
-  "badge":"Mac App Store で配信中","h1":"音声リモコンを<br><em>オンデバイス文字入力</em>に",
-  "desc":"マイクを押したまま話すと、Apple Speech がこのコンピュータ上で文字にします。音声はアップロードされません。テキストはクリップボードへコピーされます。",
+  "nav.how":"使い方","nav.price":"価格","nav.priv":"プライバシー","nav.store":"Mac App Store",
+  "badge":"Mac App Store で配信中","h1":"マイクを押したまま。<br>テキストはクリップボードへ。",
+  "desc":"Bluetooth 音声リモコン。Apple Speech がこの Mac 上で文字にします。音声はアップロードされません。",
   "s1":"日間の試用","s2":"買い切り","s3":"クラウド送信",
   "cta":"Mac App Store で入手","cta2":"使い方を見る",
-  "shots.t":"画面","shots.s":"Bluetooth 音声リモコン、オンデバイス文字入力、試用と解除。",
-  "feat.t":"執筆とコーディング向け","feat.s":"App Store 版は Bluetooth 音声 + オンデバイス文字入力です。ショートカット注入やアクセシビリティは使いません。",
+  "desk.t":"コードを書きながら話す。手はキーボードのまま。","desk.d":"リモコンは机に置いたまま。マイクを押して離すと、テキストはすでにクリップボードにあります。",
+  "how.t":"4つの手順","how.s":"アカウントは不要。先にシステムの Bluetooth でペアリングします。",
+  "how.1t":"入手","how.1d":"Mac App Store から。macOS 26 以降。",
+  "how.2t":"ペアリング","how.2d":"ホームとメニューを同時長押しし、Bluetooth 設定に出るまで待ちます。",
+  "how.3t":"許可","how.3d":"接続に Bluetooth。文字入力には音声認識。",
+  "how.4t":"押したまま話す","how.4d":"マイクを押したまま。離すとテキストをコピーして貼り付けます。",
   "feat.1t":"オンデバイス文字入力","feat.1d":"Apple Speech がこのコンピュータ上で文字起こしします。",
   "feat.2t":"Bluetooth 音声リモコン","feat.2d":"RC003 系をペアリング。複数あるときは音声に使う一台を選べます。",
   "feat.3t":"コピーして貼り付け","feat.3d":"認識が終わるとテキストがクリップボードへ入ります。",
-  "feat.4t":"4言語の表示","feat.4d":"繁體中文、English、日本語、한국어。文字起こし言語は別に選べます。",
   "feat.5t":"アカウントなし","feat.5d":"分析なし、クラウド音声なし、ログインなし。",
-  "feat.6t":"買い切り解除","feat.6d":"無料ダウンロード。7日間試用のあと USD 7.99。復元は画面上部から。",
-  "how.t":"使い方","how.s":"アカウントは不要。先にシステムの Bluetooth でペアリングします。",
-  "how.1t":"入手","how.1d":"Mac App Store から。macOS 26 以降。",
-  "how.2t":"ペアリング","how.2d":"ホーム + メニューを同時長押しし、Bluetooth 設定に出るまで待ちます。",
-  "how.3t":"許可","how.3d":"接続に Bluetooth。文字入力には音声認識。",
-  "how.4t":"押したまま話す","how.4d":"マイクを押したまま。離すとテキストをコピーして貼り付けます。",
-  "price.t":"価格","price.s":"Apple の App 内課金で買い切り。サブスクリプションはありません。",
-  "price.per":"USD · 買い切り · 7日間試用",
+  "price.t":"7日間試して、<br>一度だけ買う。","price.s":"Apple の App 内課金で解除。サブスクリプションはありません。",
+  "price.per":"買い切り · 7日間試用",
   "price.1":"無料でダウンロード","price.2":"試用中は全機能","price.3":"試用後に一度だけ解除","price.4":"復元はライセンスバーから",
   "copy":"© 2026 HenWorks"
 },
 ko:{
-  "nav.feat":"기능","nav.how":"사용법","nav.price":"가격","nav.priv":"개인정보","nav.store":"Mac App Store",
-  "badge":"Mac App Store에서 제공","h1":"음성 리모컨을<br><em>기기 내 받아쓰기</em>로",
-  "desc":"마이크를 누른 채 말하면 Apple Speech가 이 컴퓨터에서 글자로 바꿉니다. 오디오는 업로드되지 않습니다. 텍스트는 클립보드에 복사됩니다.",
+  "nav.how":"사용법","nav.price":"가격","nav.priv":"개인정보","nav.store":"Mac App Store",
+  "badge":"Mac App Store에서 제공","h1":"마이크를 누른 채.<br>글자는 클립보드로.",
+  "desc":"Bluetooth 음성 리모컨. Apple Speech가 이 Mac에서 글자로 바꿉니다. 오디오는 업로드되지 않습니다.",
   "s1":"일 무료 체험","s2":"1회 구매","s3":"클라우드 업로드",
   "cta":"Mac App Store에서 받기","cta2":"사용법 보기",
-  "shots.t":"화면","shots.s":"Bluetooth 음성 리모컨, 기기 내 받아쓰기, 체험과 잠금 해제.",
-  "feat.t":"글쓰기와 코딩을 위해","feat.s":"App Store 버전은 Bluetooth 음성 + 기기 내 받아쓰기입니다. 단축키 주입이나 손쉬운 사용은 쓰지 않습니다.",
+  "desk.t":"코딩하면서 말하세요. 손은 키보드에.","desk.d":"리모컨은 책상 위에. 마이크를 눌렀다 떼면 텍스트는 이미 클립보드에 있습니다.",
+  "how.t":"네 단계","how.s":"계정은 필요 없습니다. 먼저 시스템 Bluetooth에서 페어링하세요.",
+  "how.1t":"다운로드","how.1d":"Mac App Store에서 설치. macOS 26 이상.",
+  "how.2t":"페어링","how.2d":"홈과 메뉴를 함께 길게 눌러 Bluetooth 설정에 나타날 때까지.",
+  "how.3t":"권한","how.3d":"연결에는 Bluetooth. 받아쓰기에는 음성 인식.",
+  "how.4t":"누른 채 말하기","how.4d":"마이크를 누릅니다. 손을 떼면 텍스트를 복사해 붙여 넣습니다.",
   "feat.1t":"기기 내 받아쓰기","feat.1d":"Apple Speech가 이 컴퓨터에서 받아씁니다. 오디오는 기기를 떠나지 않습니다.",
   "feat.2t":"Bluetooth 음성 리모컨","feat.2d":"RC003 계열을 페어링하세요. 여러 대면 음성을 맡을 장치를 고를 수 있습니다.",
   "feat.3t":"복사 후 붙여넣기","feat.3d":"인식이 끝나면 텍스트가 클립보드로 갑니다.",
-  "feat.4t":"네 가지 UI 언어","feat.4d":"繁體中文, English, 日本語, 한국어. 받아쓰기 언어는 따로 고릅니다.",
   "feat.5t":"계정 없음","feat.5d":"분석 없음, 클라우드 음성 없음, 로그인 없음.",
-  "feat.6t":"1회 잠금 해제","feat.6d":"무료 다운로드. 7일 체험 후 USD 7.99. 복원은 배너에서.",
-  "how.t":"사용법","how.s":"계정은 필요 없습니다. 먼저 시스템 Bluetooth에서 페어링하세요.",
-  "how.1t":"다운로드","how.1d":"Mac App Store에서 설치. macOS 26 이상.",
-  "how.2t":"페어링","how.2d":"홈 + 메뉴를 함께 길게 눌러 Bluetooth 설정에 나타날 때까지.",
-  "how.3t":"권한","how.3d":"연결에는 Bluetooth. 받아쓰기에는 음성 인식.",
-  "how.4t":"누른 채 말하기","how.4d":"마이크를 누릅니다. 손을 떼면 텍스트를 복사해 붙여 넣습니다.",
-  "price.t":"가격","price.s":"Apple 인앱 결제로 1회 잠금 해제. 구독 없음.",
-  "price.per":"USD · 1회 · 7일 체험",
+  "price.t":"7일 체험.<br>한 번만 결제.","price.s":"Apple 인앱 결제로 잠금 해제. 구독 없음.",
+  "price.per":"1회 · 7일 체험",
   "price.1":"무료 다운로드","price.2":"체험 중 모든 기능","price.3":"체험 후 1회 잠금 해제","price.4":"복원은 라이선스 배너에서",
   "copy":"© 2026 HenWorks"
 }
 };
-
 function apply(lang){
   const pack = i18n[lang] || i18n.zh;
   document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
@@ -296,6 +475,17 @@ document.querySelectorAll('#navLang button').forEach(b => b.addEventListener('cl
 const start = (navigator.language||'').toLowerCase();
 const saved = (()=>{ try { return localStorage.getItem('vcw-lang'); } catch(_){ return null; }})();
 apply(saved || (start.startsWith('ja') ? 'ja' : start.startsWith('ko') ? 'ko' : start.startsWith('en') ? 'en' : 'zh'));
+const menuBtn = document.getElementById('menuBtn');
+const drawer = document.getElementById('drawer');
+menuBtn.addEventListener('click', () => {
+  const open = !drawer.classList.contains('open');
+  drawer.classList.toggle('open', open);
+  menuBtn.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  drawer.classList.remove('open'); menuBtn.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false');
+}));
 </script>
 </body>
 </html>

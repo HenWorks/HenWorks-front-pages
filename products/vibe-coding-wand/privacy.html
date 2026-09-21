@@ -8,25 +8,25 @@
     <link rel="canonical" href="https://henworks.com/products/vibe-coding-wand/privacy.html">
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --bg:#E8EEF2;--white:#FFFFFF;--ink:#14181C;--muted:#5A6570;
-            --border:#D4DCE3;--cyan:#1AA8C4;--cyan-soft:#E6F7FB;
-            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+            --bg:#10141A;--white:#1C232D;--ink:#F2F5F8;--muted:#93A0AE;
+            --border:rgba(242,245,248,.1);--cyan:#3EC8FF;--cyan-soft:#0B3A4C;
+            --font:'Sora','Noto Sans TC','Noto Sans JP','Noto Sans KR',sans-serif;
         }
         html{scroll-behavior:smooth}
         body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65}
         .page{max-width:920px;margin:0 auto;padding:24px}
-        .card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(20,24,28,.06)}
+        .card{background:var(--white);border-radius:20px;overflow:hidden;border:1px solid var(--border)}
         .nav{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;border-bottom:1px solid var(--border)}
         .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
         .nav-logo img{width:28px;height:28px;border-radius:7px}
         .nav-spacer{flex:1}
         .nav-lang{display:flex;gap:4px}
         .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);font-family:var(--font)}
-        .nav-lang button.active{background:var(--ink);color:#fff}
+        .nav-lang button.active{background:var(--ink);color:#10141A}
         .nav-home{font-size:13px;color:var(--muted);text-decoration:none}
         .nav-home:hover{color:var(--ink)}
         .hero{padding:56px 48px 28px;text-align:center}
@@ -34,18 +34,18 @@
         .hero h1 em{font-style:normal;color:var(--cyan)}
         .hero .date{font-size:13px;color:var(--muted);margin-bottom:16px}
         .hero .summary{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto}
-        .highlight{max-width:720px;margin:0 auto 40px;padding:22px 28px;background:var(--cyan-soft);border:1px solid rgba(26,168,196,.25);border-radius:16px;display:flex;gap:14px;align-items:flex-start}
+        .highlight{max-width:720px;margin:0 auto 40px;padding:22px 28px;background:var(--cyan-soft);border:1px solid rgba(62,200,255,.28);border-radius:16px;display:flex;gap:14px;align-items:flex-start}
         .highlight strong{display:block;font-size:15px;margin-bottom:4px}
         .highlight p{font-size:14px;color:var(--muted);margin:0}
         .content{max-width:720px;margin:0 auto;padding:0 48px 64px}
         .section{margin-bottom:36px}
         .section h2{font-size:20px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--cyan);display:inline-block}
         .section h3{font-size:15px;font-weight:700;margin:16px 0 8px}
-        .section p,.section li{font-size:15px;color:#3A434C;margin-bottom:10px}
+        .section p,.section li{font-size:15px;color:#C5CED6;margin-bottom:10px}
         .section ul{margin:0 0 12px 22px}
         .section a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--cyan);text-underline-offset:3px}
         .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-        .info{padding:16px;background:#F6F8FA;border-radius:12px}
+        .info{padding:16px;background:#171C24;border-radius:12px;border:1px solid var(--border)}
         .info strong{display:block;font-size:14px;margin-bottom:4px}
         .info span{font-size:13px;color:var(--muted);line-height:1.55}
         .footer{padding:28px 8px 8px;text-align:center;font-size:12px;color:var(--muted)}
@@ -84,7 +84,6 @@
             <p class="summary">氛圍編碼杖（vibe coding wand）在你的 Mac 本機執行。我們不設帳號、不上傳語音、不追蹤使用行為。</p>
         </section>
         <div class="highlight">
-            <div>🔒</div>
             <div>
                 <strong>全部留在這台 Mac</strong>
                 <p>語音辨識使用 Apple 本機 Speech。音訊不會離開裝置，也不會送到 HenWorks。轉寫結果只複製到這台電腦的剪貼板。</p>
@@ -148,7 +147,6 @@
             <p class="summary">vibe coding wand (氛圍編碼杖) runs on your Mac. No accounts, no uploaded audio, no analytics.</p>
         </section>
         <div class="highlight">
-            <div>🔒</div>
             <div>
                 <strong>Everything stays on this Mac</strong>
                 <p>Dictation uses Apple on-device Speech. Audio is not sent to HenWorks. Transcripts are copied to this computer’s clipboard.</p>
@@ -212,7 +210,6 @@
             <p class="summary">雰囲気コーディングの杖（vibe coding wand）はお使いの Mac 上で動作します。アカウントはなく、音声も分析もアップロードしません。</p>
         </section>
         <div class="highlight">
-            <div>🔒</div>
             <div>
                 <strong>すべてこの Mac に留まります</strong>
                 <p>文字起こしは Apple のオンデバイス Speech を使います。音声は HenWorks に送られません。テキストはこのコンピュータのクリップボードへコピーされます。</p>
@@ -267,7 +264,6 @@
             <p class="summary">분위기 코딩 완드(vibe coding wand)는 이 Mac에서 실행됩니다. 계정 없음, 오디오 업로드 없음, 분석 없음.</p>
         </section>
         <div class="highlight">
-            <div>🔒</div>
             <div>
                 <strong>모든 것은 이 Mac에 머뭅니다</strong>
                 <p>받아쓰기는 Apple 온디바이스 Speech를 사용합니다. 오디오는 HenWorks로 전송되지 않습니다. 텍스트는 이 컴퓨터의 클립보드로 복사됩니다.</p>
