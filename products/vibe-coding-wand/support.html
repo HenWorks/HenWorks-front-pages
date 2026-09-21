@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — vibe coding wand | HenWorks</title>
+    <meta name="description" content="Setup, pairing, dictation, and purchase restore for vibe coding wand (氛圍編碼杖).">
+    <link rel="canonical" href="https://henworks.com/products/vibe-coding-wand/support.html">
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#10141A;--white:#1C232D;--ink:#F2F5F8;--muted:#93A0AE;
+            --border:rgba(242,245,248,.1);--cyan:#3EC8FF;--cyan-soft:#0B3A4C;
+            --font:'Sora','Noto Sans TC','Noto Sans JP','Noto Sans KR',sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.65}
+        .page{max-width:920px;margin:0 auto;padding:24px}
+        .card{background:var(--white);border-radius:20px;overflow:hidden;border:1px solid var(--border)}
+        .nav{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;border-bottom:1px solid var(--border)}
+        .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px}
+        .nav-logo img{width:28px;height:28px;border-radius:7px}
+        .nav-spacer{flex:1}
+        .nav-lang{display:flex;gap:4px}
+        .nav-lang button{padding:5px 10px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);font-family:var(--font)}
+        .nav-lang button.active{background:var(--ink);color:#10141A}
+        .nav-home{font-size:13px;color:var(--muted);text-decoration:none}
+        .nav-home:hover{color:var(--ink)}
+        .hero{padding:56px 48px 28px;text-align:center}
+        .hero h1{font-size:40px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+        .hero h1 em{font-style:normal;color:var(--cyan)}
+        .hero .summary{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto}
+        .highlight{max-width:720px;margin:0 auto 40px;padding:22px 28px;background:var(--cyan-soft);border:1px solid rgba(62,200,255,.28);border-radius:16px}
+        .highlight strong{display:block;font-size:15px;margin-bottom:4px}
+        .highlight p{font-size:14px;color:var(--muted);margin:0}
+        .content{max-width:720px;margin:0 auto;padding:0 48px 64px}
+        .section{margin-bottom:36px}
+        .section h2{font-size:20px;font-weight:700;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--cyan);display:inline-block}
+        .section p,.section li{font-size:15px;color:#C5CED6;margin-bottom:10px}
+        .section ol,.section ul{margin:0 0 12px 22px}
+        .section a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--cyan);text-underline-offset:3px}
+        .footer{padding:28px 8px 8px;text-align:center;font-size:12px;color:var(--muted)}
+        .footer a{color:var(--ink);text-decoration:none}
+        .lang-section{display:none}
+        .lang-section.active{display:block}
+        @media(max-width:720px){
+            .hero{padding:36px 20px 16px}
+            .hero h1{font-size:28px}
+            .content{padding:0 20px 40px}
+            .nav{padding:0 16px}
+            .nav-home{display:none}
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
+    <nav class="nav">
+        <a class="nav-logo" href="./"><img src="icon.png" alt="">vibe coding wand</a>
+        <div class="nav-spacer"></div>
+        <div class="nav-lang" id="navLang">
+            <button class="active" data-lang="zh">中文</button>
+            <button data-lang="en">EN</button>
+            <button data-lang="ja">日本語</button>
+            <button data-lang="ko">한국어</button>
+        </div>
+        <a class="nav-home" href="https://henworks.com">HenWorks</a>
+    </nav>
+
+    <div class="lang-section active" id="lang-zh">
+        <section class="hero">
+            <h1>使用<em>說明</em></h1>
+            <p class="summary">氛圍編碼杖把藍牙語音遙控器變成這台 Mac 上的本機聽寫。不需要帳號。</p>
+        </section>
+        <div class="highlight">
+            <strong>先配對，再按住語音鍵</strong>
+            <p>遙控器要出現在系統藍牙設定裡。聽寫完成後，文字會複製到剪貼板。</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>安裝</h2>
+                <ol>
+                    <li>從 <a href="https://apps.apple.com/app/id6812302368">Mac App Store</a> 安裝。需要 macOS 26 或更新版本。</li>
+                    <li>打開 App，依提示允許藍牙。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>配對遙控器</h2>
+                <ol>
+                    <li>同時長按主頁與選單，直到系統藍牙設定出現這支遙控器。</li>
+                    <li>在系統藍牙裡完成配對。</li>
+                    <li>回到 App，確認狀態為已連線。若有多支，指定哪一支負責語音。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>聽寫</h2>
+                <ol>
+                    <li>第一次聽寫時允許語音辨識。辨識由 Apple 在這台電腦上完成。</li>
+                    <li>按住語音鍵說話，鬆開後文字會進剪貼板。</li>
+                    <li>貼到編輯器、終端機或聊天視窗。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>試用與解鎖</h2>
+                <p>免費下載，試用 7 天。之後以 Apple 內購 USD 7.99 一次解鎖，沒有訂閱。</p>
+                <p>若已購買，按視窗上方授權列的「還原購買」。</p>
+            </div>
+            <div class="section">
+                <h2>聯絡</h2>
+                <ul>
+                    <li>電子郵件：<a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>產品頁：<a href="https://henworks.com/products/vibe-coding-wand/">https://henworks.com/products/vibe-coding-wand/</a></li>
+                    <li>隱私：<a href="privacy.html">privacy.html</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-en">
+        <section class="hero">
+            <h1>How to <em>use</em></h1>
+            <p class="summary">vibe coding wand turns a Bluetooth voice remote into on-device dictation on this Mac. No account.</p>
+        </section>
+        <div class="highlight">
+            <strong>Pair first, then hold the mic</strong>
+            <p>The remote must appear in system Bluetooth settings. When dictation finishes, text is copied to the clipboard.</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>Install</h2>
+                <ol>
+                    <li>Install from the <a href="https://apps.apple.com/app/id6812302368">Mac App Store</a>. Requires macOS 26 or later.</li>
+                    <li>Open the app and allow Bluetooth when asked.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>Pair the remote</h2>
+                <ol>
+                    <li>Hold Home and Menu until the remote appears in Bluetooth settings.</li>
+                    <li>Finish pairing in system Bluetooth.</li>
+                    <li>Return to the app and confirm it is connected. If several remotes are nearby, pick which one handles voice.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>Dictate</h2>
+                <ol>
+                    <li>Allow Speech Recognition the first time you dictate. Apple runs recognition on this computer.</li>
+                    <li>Hold the mic key and speak. On release, the transcript is copied.</li>
+                    <li>Paste into your editor, terminal, or chat.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>Trial and unlock</h2>
+                <p>Free to download. Try for 7 days, then unlock with a USD 7.99 Apple In-App Purchase. No subscription.</p>
+                <p>If you already bought it, use Restore Purchases in the license banner at the top of the window.</p>
+            </div>
+            <div class="section">
+                <h2>Contact</h2>
+                <ul>
+                    <li>Email: <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>Product: <a href="https://henworks.com/products/vibe-coding-wand/">https://henworks.com/products/vibe-coding-wand/</a></li>
+                    <li>Privacy: <a href="privacy.html">privacy.html</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-ja">
+        <section class="hero">
+            <h1>使い<em>方</em></h1>
+            <p class="summary">vibe coding wand は Bluetooth 音声リモコンを、この Mac 上のオンデバイス文字入力にします。アカウントは不要です。</p>
+        </section>
+        <div class="highlight">
+            <strong>先にペアリングし、マイクを押したまま話す</strong>
+            <p>リモコンはシステムの Bluetooth 設定に出ている必要があります。認識が終わるとテキストはクリップボードへコピーされます。</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>入手</h2>
+                <ol>
+                    <li><a href="https://apps.apple.com/app/id6812302368">Mac App Store</a> からインストール。macOS 26 以降。</li>
+                    <li>App を開き、求められたら Bluetooth を許可します。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>ペアリング</h2>
+                <ol>
+                    <li>ホームとメニューを同時長押しし、Bluetooth 設定に出るまで待ちます。</li>
+                    <li>システムの Bluetooth でペアリングを完了します。</li>
+                    <li>App に戻り、接続を確認します。複数あるときは音声に使う一台を選びます。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>文字入力</h2>
+                <ol>
+                    <li>初回は音声認識を許可します。認識は Apple がこのコンピュータ上で行います。</li>
+                    <li>マイクを押したまま話します。離すとテキストがコピーされます。</li>
+                    <li>エディタ、ターミナル、チャットへ貼り付けます。</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>試用と解除</h2>
+                <p>無料ダウンロード。7日間試用のあと、Apple の App 内課金 USD 7.99 で買い切り。サブスクリプションはありません。</p>
+                <p>購入済みの場合は、画面上部のライセンスバーから復元します。</p>
+            </div>
+            <div class="section">
+                <h2>お問い合わせ</h2>
+                <ul>
+                    <li>メール：<a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>製品：<a href="https://henworks.com/products/vibe-coding-wand/">https://henworks.com/products/vibe-coding-wand/</a></li>
+                    <li>プライバシー：<a href="privacy.html">privacy.html</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lang-section" id="lang-ko">
+        <section class="hero">
+            <h1>사용<em>법</em></h1>
+            <p class="summary">vibe coding wand는 Bluetooth 음성 리모컨을 이 Mac의 온디바이스 받아쓰기로 바꿉니다. 계정은 필요 없습니다.</p>
+        </section>
+        <div class="highlight">
+            <strong>먼저 페어링한 뒤 마이크를 누른 채 말하세요</strong>
+            <p>리모컨이 시스템 Bluetooth 설정에 나타나야 합니다. 받아쓰기가 끝나면 텍스트가 클립보드에 복사됩니다.</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>설치</h2>
+                <ol>
+                    <li><a href="https://apps.apple.com/app/id6812302368">Mac App Store</a>에서 설치하세요. macOS 26 이상.</li>
+                    <li>앱을 열고 요청이 있으면 Bluetooth를 허용하세요.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>페어링</h2>
+                <ol>
+                    <li>홈과 메뉴를 함께 길게 눌러 Bluetooth 설정에 나타날 때까지 기다리세요.</li>
+                    <li>시스템 Bluetooth에서 페어링을 마치세요.</li>
+                    <li>앱으로 돌아와 연결을 확인하세요. 여러 대면 음성을 맡을 장치를 고르세요.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>받아쓰기</h2>
+                <ol>
+                    <li>처음 받아쓸 때 음성 인식을 허용하세요. Apple이 이 컴퓨터에서 인식합니다.</li>
+                    <li>마이크를 누른 채 말하세요. 손을 떼면 텍스트가 복사됩니다.</li>
+                    <li>편집기, 터미널, 채팅에 붙여 넣으세요.</li>
+                </ol>
+            </div>
+            <div class="section">
+                <h2>체험과 잠금 해제</h2>
+                <p>무료 다운로드. 7일 체험 후 Apple 인앱 결제 USD 7.99로 1회 잠금 해제. 구독 없음.</p>
+                <p>이미 구매했다면 창 위 라이선스 배너에서 복원하세요.</p>
+            </div>
+            <div class="section">
+                <h2>문의</h2>
+                <ul>
+                    <li>이메일: <a href="mailto:info@henworks.com">info@henworks.com</a></li>
+                    <li>제품: <a href="https://henworks.com/products/vibe-coding-wand/">https://henworks.com/products/vibe-coding-wand/</a></li>
+                    <li>개인정보: <a href="privacy.html">privacy.html</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">© 2026 HenWorks · <a href="https://henworks.com">henworks.com</a></div>
+</div>
+<script>
+function setLang(lang){
+    document.querySelectorAll('.lang-section').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('lang-'+lang);
+    if(el)el.classList.add('active');
+    document.querySelectorAll('#navLang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.documentElement.lang={zh:'zh-Hant',en:'en',ja:'ja',ko:'ko'}[lang]||'zh-Hant';
+}
+document.querySelectorAll('#navLang button').forEach(btn=>{
+    btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+const pref=(navigator.language||'').toLowerCase();
+if(pref.startsWith('ja'))setLang('ja');
+else if(pref.startsWith('ko'))setLang('ko');
+else if(pref.startsWith('en'))setLang('en');
+</script>
+</body>
+</html>
