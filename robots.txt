@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /products/vibe-coding-wand/review/
 
 Sitemap: https://henworks.com/sitemap.xml
