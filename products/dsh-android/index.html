@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>DSH Android — DeepSeek Harness on Android | HenWorks</title>
+<meta name="description" content="DSH Android brings the DeepSeek Harness execution environment to Android. Native touch, a built-in DSH 0.1.1-rc.2 environment, reviewed JavaScript plug-ins, and eight interface languages. Free with ads, or a one-time Pro upgrade.">
+<meta name="keywords" content="DSH Android, DeepSeek Harness, HenWorks, Android, Google Play">
+<link rel="canonical" href="https://henworks.com/products/dsh-android/">
+<meta property="og:title" content="DSH Android — DeepSeek Harness on Android">
+<meta property="og:description" content="Running DSH on Android: native touch, a full execution environment, reviewed plug-ins, and a multilingual interface.">
+<meta property="og:url" content="https://henworks.com/products/dsh-android/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://henworks.com/products/dsh-android/images/shot-1.webp">
+<meta property="og:site_name" content="HenWorks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DSH Android — DeepSeek Harness on Android">
+<meta name="twitter:description" content="Running DSH on Android: native touch, a full execution environment, reviewed plug-ins, and a multilingual interface.">
+<meta name="twitter:image" content="https://henworks.com/products/dsh-android/images/shot-1.webp">
+<link rel="icon" href="images/icon.png" type="image/png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DSH Android - Deepseek Harness",
+  "operatingSystem": "Android",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Running DSH on Android: native touch, full execution environment, reviewed plug-in and multilingual interface.",
+  "image": "https://henworks.com/products/dsh-android/images/icon.webp",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.henworks.android.dsh",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free to download. The free plan may show ads. A one-time Pro purchase removes ads; the price is the local price shown on Google Play."
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "HenWorks",
+    "url": "https://henworks.com"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #0A0A0A;
+  --bg-elevated: #111111;
+  --text: #FFFFFF;
+  --muted: #8A8A8A;
+  --faint: #666666;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.55);
+  --accent: #C4212A;
+  --font: Inter, "Noto Sans TC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Thai", sans-serif;
+  color-scheme: dark;
+  accent-color: #C4212A;
+  scrollbar-color: #666666 #111111;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.25rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-inline-size: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.skip {
+  position: absolute;
+  inset-inline-start: 1rem;
+  inset-block-start: 0;
+  transform: translateY(-120%);
+  background: #fff;
+  color: #000;
+  padding: 0.6rem 1rem;
+  z-index: 20;
+}
+.skip:focus { transform: none; }
+
+.nav {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-block-end: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+}
+.logo {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-inline-start: auto;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-links a:hover { color: var(--text); }
+.langs { display: flex; gap: 0.15rem; }
+.langs button, .menu {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 600 12px/1 var(--font);
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding: 0 0.4rem;
+  cursor: pointer;
+}
+.langs button[aria-pressed="true"] { color: var(--text); }
+.menu { display: none; position: relative; }
+.menu span {
+  position: absolute;
+  inset-inline: 12px;
+  block-size: 1.5px;
+  background: #fff;
+}
+.menu span:nth-child(1) { inset-block-start: 16px; }
+.menu span:nth-child(2) { inset-block-start: 21px; }
+.menu span:nth-child(3) { inset-block-start: 26px; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-cta:hover { background: #fff; color: #000; }
+
+.shell { container-type: inline-size; container-name: page; }
+.wrap { max-inline-size: 1120px; margin-inline: auto; padding-inline: 1.5rem; }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2rem;
+  gap: clamp(1.5rem, 4cqi, 4rem);
+  align-items: center;
+  padding-block: 3rem;
+  padding-block: clamp(2.5rem, 6cqi, 5.5rem);
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.kicker::before {
+  content: "";
+  inline-size: 5px;
+  block-size: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+.identity { display: flex; align-items: center; gap: 0.9rem; margin-block-end: 1rem; }
+.identity img { inline-size: 64px; block-size: 64px; border-radius: 16px; }
+h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-size: clamp(2rem, 1rem + 4cqi, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.tagline { margin: 1rem 0 0.6rem; font-size: clamp(1.05rem, 0.9rem + 0.6cqi, 1.25rem); font-weight: 500; line-height: 1.45; text-wrap: balance; }
+.lead { margin: 0 0 1.5rem; color: var(--muted); max-inline-size: 42rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-block-end: 1.75rem; }
+.play-badge { inline-size: 180px; block-size: auto; aspect-ratio: 646 / 250; }
+.ghost {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-underline-offset: 0.35em;
+}
+.facts { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; margin: 0; padding: 0; list-style: none; }
+.facts strong { display: block; font-size: 0.95rem; font-weight: 600; }
+.facts span { color: var(--muted); font-size: 13px; }
+
+.stage {
+  justify-self: center;
+  inline-size: min(100%, 300px);
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 36px;
+  background: var(--bg-elevated);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+.stage img { border-radius: 28px; aspect-ratio: 720 / 1280; object-fit: cover; }
+
+.band { padding-block: 4rem; padding-block: clamp(3.5rem, 8cqi, 6.5rem); border-block-start: 1px solid var(--line); }
+.band h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 1.1rem + 2cqi, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.sub { margin: 0 0 2rem; color: var(--muted); max-inline-size: 40rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@container page (min-width: 640px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .shot-head { flex-direction: row; align-items: flex-end; }
+}
+@container page (min-width: 960px) {
+  .cards { grid-template-columns: 1fr 1fr 1fr; }
+}
+.card { background: var(--bg-card); padding: 1.5rem 1.35rem 1.6rem; }
+.card h3 { margin: 0 0 0.45rem; font-size: 1rem; font-weight: 600; }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.shot-head { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.shot-nav { display: flex; gap: 0.5rem; }
+.shot-nav button {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: #fff;
+  font: 600 16px/1 var(--font);
+  cursor: pointer;
+}
+.shot-nav button:hover { background: #fff; color: #000; }
+.scroller {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.5rem;
+  padding-block: 0.25rem 1rem;
+  margin-inline: -1.5rem;
+  padding-inline: 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #666666 #111111;
+}
+.scroller figure {
+  flex: 0 0 min(72vw, 260px);
+  flex-basis: min(72cqi, 260px);
+  margin: 0;
+  scroll-snap-align: center;
+}
+.scroller img {
+  inline-size: 100%;
+  aspect-ratio: 720 / 1280;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  background: var(--bg-elevated);
+}
+.scroller figcaption { margin-block-start: 0.65rem; color: var(--muted); font-size: 13px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.steps article { background: var(--bg); padding: 1.35rem 1.2rem 1.5rem; }
+.steps b { display: block; margin-block-end: 0.7rem; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; }
+.steps h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.steps p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+.notes { display: grid; gap: 1rem; }
+.note {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+.note h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.note p { margin: 0; color: var(--muted); }
+.note a { color: var(--text); }
+
+.closing {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: 2rem;
+  align-items: center;
+}
+.closing p { color: var(--muted); margin: 0.6rem 0 0; max-inline-size: 36rem; }
+
+.footer {
+  max-inline-size: 1120px;
+  margin-inline: auto;
+  padding: 1.5rem 1.5rem 2.5rem;
+  border-block-start: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  color: var(--muted);
+  font-size: 13px;
+}
+.footer a { color: var(--text); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.footer p { margin: 0; }
+
+@container page (max-width: 860px) {
+  .hero, .closing { grid-template-columns: 1fr; }
+  .stage { justify-self: start; }
+}
+@media (max-width: 800px) {
+  .menu { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.5rem 1.25rem 1.25rem;
+    background: #000;
+    border-block-end: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a, .nav-cta { inline-size: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nav-cta, .shot-nav button { transition: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes rise {
+      from { opacity: 0; translate: 0 1.25rem; }
+      to { opacity: 1; translate: 0 0; }
+    }
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+    @keyframes slide-emphasis {
+      0% { scale: 0.94; }
+      50% { scale: 1; }
+      100% { scale: 0.94; }
+    }
+    .scroller > figure {
+      animation: slide-emphasis auto linear both;
+      animation-timeline: view(inline);
+    }
+  }
+}
+@media (forced-colors: active) {
+  .nav, .card, .note, .steps article, .nav-cta, .shot-nav button, .stage, .scroller img {
+    border: 1px solid ButtonText;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">跳到內容</a>
+<header class="nav">
+  <a class="logo" href="/">HenWorks</a>
+  <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="選單" data-i18n-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav-links" id="navLinks" aria-label="Primary">
+    <a href="#features" data-i18n="nav.features">功能</a>
+    <a href="#shots" data-i18n="nav.shots">畫面</a>
+    <a href="#how" data-i18n="nav.how">怎麼用</a>
+    <a href="privacy-policy.html" data-i18n="nav.priv">隱私</a>
+    <div class="langs" id="langs">
+      <button type="button" data-lang="zh" aria-pressed="true">繁</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日</button>
+      <button type="button" data-lang="ko" aria-pressed="false">한</button>
+      <button type="button" data-lang="th" aria-pressed="false">ไทย</button>
+    </div>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">Google Play</a>
+  </nav>
+</header>
+
+<main id="main" class="shell">
+  <section class="hero wrap">
+    <div>
+      <p class="kicker" data-i18n="kicker">Google Play · 工具</p>
+      <div class="identity">
+        <img src="images/icon.webp" width="256" height="256" alt="DSH Android 圖示：藍色鯨魚與棕色挽具" data-i18n-alt="icon.alt">
+        <h1>DSH Android</h1>
+      </div>
+      <p class="tagline" data-i18n="tagline">在 Android 上跑 DSH：原生觸控、完整執行環境、已審查的 plug-in，以及多語言介面。</p>
+      <p class="lead" data-i18n="lead">DSH Android 把 DeepSeek Harness（DSH）執行環境帶到 Android，並為手機重做觸控介面。即使不熟悉命令列，也可以選擇工作階段、管理設定，以及使用已審查的擴充功能。</p>
+      <div class="actions">
+        <a href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">
+          <img class="play-badge" src="images/badge-zh-tw.png" width="646" height="250" alt="在 Google Play 取得" data-i18n-alt="badge.alt">
+        </a>
+        <a class="ghost" href="#how" data-i18n="cta2">看怎麼用</a>
+      </div>
+      <ul class="facts">
+        <li><strong data-i18n="fact.1t">內建 DSH 0.1.1-rc.2</strong><span data-i18n="fact.1d">執行環境在應用程式裡</span></li>
+        <li><strong data-i18n="fact.2t">八種介面語言</strong><span data-i18n="fact.2d">可立即切換</span></li>
+        <li><strong data-i18n="fact.3t">一次升級</strong><span data-i18n="fact.3d">Pro 永久移除廣告</span></li>
+      </ul>
+    </div>
+    <div class="stage">
+      <img src="images/shot-1.webp" width="720" height="1280" fetchpriority="high" alt="已連線，可繼續 DSH 工作階段" data-i18n-alt="shot.1">
+    </div>
+  </section>
+
+  <section class="band" id="features">
+    <div class="wrap reveal">
+      <p class="kicker" data-i18n="feat.kicker">功能</p>
+      <h2 data-i18n="feat.h">手機上的執行環境，觸控就能用。</h2>
+      <p class="sub" data-i18n="feat.sub">以下來自 Google Play 上的產品說明，以及應用程式設定畫面所顯示的內容。</p>
+      <div class="cards">
+        <article class="card"><h3 data-i18n="f1t">內建執行環境</h3><p data-i18n="f1d">內建 DSH 0.1.1-rc.2。連線狀態直接顯示在畫面上，執行環境就緒時會標明。</p></article>
+        <article class="card"><h3 data-i18n="f2t">用觸控，不必守著命令列</h3><p data-i18n="f2d">選擇既有工作階段。連線與設定都在應用程式裡完成。</p></article>
+        <article class="card"><h3 data-i18n="f3t">只啟用審查過的 plug-in</h3><p data-i18n="f3d">Google Play 版只使用 HenWorks 審查過、並隨應用程式更新送達的純 JavaScript plug-in。社群目錄裡未審查的項目只能查看或申請審查，不會被啟用。</p></article>
+        <article class="card"><h3 data-i18n="f4t">八種語言，立即切換</h3><p data-i18n="f4d">介面可在英文、繁體中文、簡體中文、日文、韓文、德文、西班牙文與俄文之間切換。DSH 與 plug-in 內容仍遵循各自的上游語言契約。</p></article>
+        <article class="card"><h3 data-i18n="f5t">四色 skin schema</h3><p data-i18n="f5d">可匯入安全的四色 skin schema。匯入只接受顏色與你自己的圖片，不會執行安裝腳本，也不會修改上游 DSH。</p></article>
+        <article class="card"><h3 data-i18n="f6t">更新交給 Google Play</h3><p data-i18n="f6d">應用程式與內建執行環境的更新都由 Google Play 管理。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="shots" aria-roledescription="carousel">
+    <div class="wrap">
+      <div class="shot-head reveal">
+        <div>
+          <p class="kicker" data-i18n="shots.kicker">畫面</p>
+          <h2 data-i18n="shots.h">Google Play 上的畫面。</h2>
+        </div>
+        <div class="shot-nav">
+          <button type="button" data-scroll="-1" data-i18n-label="prev" aria-label="上一張">←</button>
+          <button type="button" data-scroll="1" data-i18n-label="next" aria-label="下一張">→</button>
+        </div>
+      </div>
+      <div class="scroller" tabindex="0" data-i18n-label="shots.region" aria-label="DSH Android 畫面">
+        <figure>
+          <img src="images/shot-1.webp" width="720" height="1280" alt="已連線，可繼續 DSH 工作階段" data-i18n-alt="shot.1" loading="lazy" decoding="async">
+          <figcaption data-i18n="shot.1">已連線，可繼續 DSH 工作階段</figcaption>
+        </figure>
+        <figure>
+          <img src="images/shot-2.webp" width="720" height="1280" alt="設定：免費方案、執行環境已就緒，更新由 Google Play 管理" data-i18n-alt="shot.2" loading="lazy" decoding="async">
+          <figcaption data-i18n="shot.2">設定：免費方案、執行環境已就緒，更新由 Google Play 管理</figcaption>
+        </figure>
+        <figure>
+          <img src="images/shot-3.webp" width="720" height="1280" alt="設定：匯入四色 skin schema" data-i18n-alt="shot.3" loading="lazy" decoding="async">
+          <figcaption data-i18n="shot.3">設定：匯入四色 skin schema</figcaption>
+        </figure>
+        <figure>
+          <img src="images/shot-4.webp" width="720" height="1280" alt="設定：介面語言，繁體中文為選取狀態" data-i18n-alt="shot.4" loading="lazy" decoding="async">
+          <figcaption data-i18n="shot.4">設定：介面語言，繁體中文為選取狀態</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap reveal">
+      <p class="kicker" data-i18n="how.kicker">怎麼用</p>
+      <h2 data-i18n="how.h">從安裝到一個工作階段。</h2>
+      <div class="steps">
+        <article><b>01</b><h3 data-i18n="s1t">從 Google Play 安裝</h3><p data-i18n="s1d">下載 DSH Android。之後的應用程式與內建執行環境更新也走 Google Play。</p></article>
+        <article><b>02</b><h3 data-i18n="s2t">看連線狀態</h3><p data-i18n="s2d">打開應用程式。內建環境會顯示是否已連線，以及執行環境是否就緒。</p></article>
+        <article><b>03</b><h3 data-i18n="s3t">選工作階段</h3><p data-i18n="s3d">選擇既有工作階段，或到設定調整語言與主題包。不需要先熟悉命令列。</p></article>
+        <article><b>04</b><h3 data-i18n="s4t">免費，或一次升級</h3><p data-i18n="s4d">免費方案可以繼續使用，過程中可能顯示廣告。一次升級到 Pro 會永久移除廣告。價格是 Google Play 上以當地貨幣顯示的價格。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap notes reveal">
+      <article class="note">
+        <h3 data-i18n="note.h">留在這支手機上</h3>
+        <p data-i18n="note.p">DSH Android 沒有 HenWorks 帳號，這個版本也不含 Firebase Analytics。工作區、你輸入的 API 憑證與對話存在應用程式的私人儲存空間，除非你選擇的 AI 提供者需要直接收到請求。HenWorks 不經營這次版本的推論轉送。已驗證的 Pro 不會請求廣告；免費使用者在適用的同意流程之後，可能看到 Google AdMob 廣告。詳見<a href="privacy-policy.html">隱私權政策</a>。</p>
+      </article>
+      <article class="note">
+        <h3 data-i18n="new.h">2026 年 11 月 2 日的更新</h3>
+        <p data-i18n="new.p">Google Play 目前列出的更新：長對話會保留標題、清單、表格與程式碼的格式；捲動長對話更輕，回覆到達時最新的訊息留在視野裡。</p>
+      </article>
+      <article class="note">
+        <h3 data-i18n="indep.h">獨立開發</h3>
+        <p data-i18n="indep.p">DSH Android 由 HenWorks 獨立開發，與 DeepSeek 沒有從屬、背書或合作關係。DeepSeek、DeepSeek Harness 及相關名稱屬於各自權利人。社群目錄來自第三方，被收錄不代表 HenWorks 背書。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap closing reveal">
+      <div>
+        <h2 data-i18n="end.h">在 Android 上跑 DSH。</h2>
+        <p data-i18n="end.p">從 Google Play 取得 DSH Android。支援信箱是 info@henworks.com。</p>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">
+        <img class="play-badge" src="images/badge-zh-tw.png" width="646" height="250" alt="在 Google Play 取得" data-i18n-alt="badge.alt">
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p data-i18n="copy">© 2026 HenWorks</p>
+  <p>
+    <a href="/">HenWorks</a>
+    · <a href="privacy-policy.html" data-i18n="nav.priv">隱私</a>
+    · <a href="mailto:info@henworks.com">info@henworks.com</a>
+  </p>
+  <p data-i18n="foot.note">此頁介紹 Google Play 上的 DSH Android。<a href="/products/dsh/privacy.html">iPhone 上的 DSH</a>是另一個產品。</p>
+</footer>
+
+<script>
+const i18n = {
+zh: {
+  skip:"跳到內容", menu:"選單",
+  "nav.features":"功能", "nav.shots":"畫面", "nav.how":"怎麼用", "nav.priv":"隱私",
+  kicker:"Google Play · 工具",
+  "icon.alt":"DSH Android 圖示：藍色鯨魚與棕色挽具",
+  tagline:"在 Android 上跑 DSH：原生觸控、完整執行環境、已審查的 plug-in，以及多語言介面。",
+  lead:"DSH Android 把 DeepSeek Harness（DSH）執行環境帶到 Android，並為手機重做觸控介面。即使不熟悉命令列，也可以選擇工作階段、管理設定，以及使用已審查的擴充功能。",
+  "badge.alt":"在 Google Play 取得", cta2:"看怎麼用",
+  "fact.1t":"內建 DSH 0.1.1-rc.2", "fact.1d":"執行環境在應用程式裡",
+  "fact.2t":"八種介面語言", "fact.2d":"可立即切換",
+  "fact.3t":"一次升級", "fact.3d":"Pro 永久移除廣告",
+  "feat.kicker":"功能", "feat.h":"手機上的執行環境，觸控就能用。",
+  "feat.sub":"以下來自 Google Play 上的產品說明，以及應用程式設定畫面所顯示的內容。",
+  f1t:"內建執行環境", f1d:"內建 DSH 0.1.1-rc.2。連線狀態直接顯示在畫面上，執行環境就緒時會標明。",
+  f2t:"用觸控，不必守著命令列", f2d:"選擇既有工作階段。連線與設定都在應用程式裡完成。",
+  f3t:"只啟用審查過的 plug-in", f3d:"Google Play 版只使用 HenWorks 審查過、並隨應用程式更新送達的純 JavaScript plug-in。社群目錄裡未審查的項目只能查看或申請審查，不會被啟用。",
+  f4t:"八種語言，立即切換", f4d:"介面可在英文、繁體中文、簡體中文、日文、韓文、德文、西班牙文與俄文之間切換。DSH 與 plug-in 內容仍遵循各自的上游語言契約。",
+  f5t:"四色 skin schema", f5d:"可匯入安全的四色 skin schema。匯入只接受顏色與你自己的圖片，不會執行安裝腳本，也不會修改上游 DSH。",
+  f6t:"更新交給 Google Play", f6d:"應用程式與內建執行環境的更新都由 Google Play 管理。",
+  "shots.kicker":"畫面", "shots.h":"Google Play 上的畫面。",
+  "shots.region":"DSH Android 畫面", prev:"上一張", next:"下一張",
+  "shot.1":"已連線，可繼續 DSH 工作階段",
+  "shot.2":"設定：免費方案、執行環境已就緒，更新由 Google Play 管理",
+  "shot.3":"設定：匯入四色 skin schema",
+  "shot.4":"設定：介面語言，繁體中文為選取狀態",
+  "how.kicker":"怎麼用", "how.h":"從安裝到一個工作階段。",
+  s1t:"從 Google Play 安裝", s1d:"下載 DSH Android。之後的應用程式與內建執行環境更新也走 Google Play。",
+  s2t:"看連線狀態", s2d:"打開應用程式。內建環境會顯示是否已連線，以及執行環境是否就緒。",
+  s3t:"選工作階段", s3d:"選擇既有工作階段，或到設定調整語言與主題包。不需要先熟悉命令列。",
+  s4t:"免費，或一次升級", s4d:"免費方案可以繼續使用，過程中可能顯示廣告。一次升級到 Pro 會永久移除廣告。價格是 Google Play 上以當地貨幣顯示的價格。",
+  "note.h":"留在這支手機上",
+  "note.p":"DSH Android 沒有 HenWorks 帳號，這個版本也不含 Firebase Analytics。工作區、你輸入的 API 憑證與對話存在應用程式的私人儲存空間，除非你選擇的 AI 提供者需要直接收到請求。HenWorks 不經營這次版本的推論轉送。已驗證的 Pro 不會請求廣告；免費使用者在適用的同意流程之後，可能看到 Google AdMob 廣告。詳見<a href=\"privacy-policy.html\">隱私權政策</a>。",
+  "new.h":"2026 年 11 月 2 日的更新",
+  "new.p":"Google Play 目前列出的更新：長對話會保留標題、清單、表格與程式碼的格式；捲動長對話更輕，回覆到達時最新的訊息留在視野裡。",
+  "indep.h":"獨立開發",
+  "indep.p":"DSH Android 由 HenWorks 獨立開發，與 DeepSeek 沒有從屬、背書或合作關係。DeepSeek、DeepSeek Harness 及相關名稱屬於各自權利人。社群目錄來自第三方，被收錄不代表 HenWorks 背書。",
+  "end.h":"在 Android 上跑 DSH。",
+  "end.p":"從 Google Play 取得 DSH Android。支援信箱是 info@henworks.com。",
+  copy:"© 2026 HenWorks",
+  "foot.note":"此頁介紹 Google Play 上的 DSH Android。<a href=\"/products/dsh/privacy.html\">iPhone 上的 DSH</a>是另一個產品。"
+},
+en: {
+  skip:"Skip to content", menu:"Menu",
+  "nav.features":"Features", "nav.shots":"Screens", "nav.how":"How it works", "nav.priv":"Privacy",
+  kicker:"Google Play · Tools",
+  "icon.alt":"DSH Android icon: a blue whale in a brown harness",
+  tagline:"Running DSH on Android: native touch, a full execution environment, reviewed plug-ins, and a multilingual interface.",
+  lead:"DSH Android brings the DeepSeek Harness (DSH) execution environment to Android and redesigns it for touch. People who are not at home in the CLI can still select job stages, manage settings, and use reviewed extensions.",
+  "badge.alt":"Get it on Google Play", cta2:"See how it works",
+  "fact.1t":"Built-in DSH 0.1.1-rc.2", "fact.1d":"The environment lives in the app",
+  "fact.2t":"Eight interface languages", "fact.2d":"Switch immediately",
+  "fact.3t":"One-time upgrade", "fact.3d":"Pro removes ads for good",
+  "feat.kicker":"Features", "feat.h":"The execution environment, on the phone.",
+  "feat.sub":"Drawn from the Google Play listing and from what the in-app settings screens show.",
+  f1t:"Built-in environment", f1d:"DSH 0.1.1-rc.2 is built in. Connection status is on screen, and the app says when the execution environment is ready.",
+  f2t:"Touch, without living in the CLI", f2d:"Choose an existing job stage. Connection and settings stay inside the app.",
+  f3t:"Reviewed plug-ins only", f3d:"The Google Play build enables only pure JavaScript plug-ins that HenWorks has reviewed and ships with app updates. Unreviewed items in the community directory can be viewed or submitted for review. They are not enabled.",
+  f4t:"Eight languages, switched at once", f4d:"The interface switches among English, Traditional Chinese, Simplified Chinese, Japanese, Korean, German, Spanish, and Russian. DSH and plug-in content still follow their own upstream language contracts.",
+  f5t:"Four-color skin schema", f5d:"Import a four-color skin schema. The importer accepts colors and images you own. It does not run install scripts or modify upstream DSH.",
+  f6t:"Updates from Google Play", f6d:"Google Play updates both the app and the built-in execution environment.",
+  "shots.kicker":"Screens", "shots.h":"Screens from Google Play.",
+  "shots.region":"DSH Android screens", prev:"Previous screenshot", next:"Next screenshot",
+  "shot.1":"Connected, ready to continue a DSH job stage",
+  "shot.2":"Settings: free plan, execution environment ready, updates managed by Google Play",
+  "shot.3":"Settings: import a four-color skin schema",
+  "shot.4":"Settings: interface language, with Traditional Chinese selected",
+  "how.kicker":"How it works", "how.h":"From install to a job stage.",
+  s1t:"Install from Google Play", s1d:"Download DSH Android. Later updates to the app and the built-in environment come through Google Play too.",
+  s2t:"Read the connection", s2d:"Open the app. The built-in environment shows whether it is connected and whether it is ready.",
+  s3t:"Pick a job stage", s3d:"Choose an existing job stage, or open Settings for language and theme packs. You do not need to know the CLI first.",
+  s4t:"Free, or upgrade once", s4d:"The free plan can keep being used, and it may show ads. A one-time upgrade to Pro removes ads permanently. The price is the local price shown on Google Play.",
+  "note.h":"It stays on the phone",
+  "note.p":"DSH Android has no HenWorks account, and this release does not include Firebase Analytics. The workspace, API credentials you enter, and conversations stay in the app's private storage unless a provider you choose needs the request sent directly to it. HenWorks does not run an inference relay for this release. Verified Pro does not request ads. Free users may see Google AdMob ads after the applicable consent flow. See the <a href=\"privacy-policy.html\">privacy policy</a>.",
+  "new.h":"The 2 November 2026 update",
+  "new.p":"What Google Play lists right now: long conversations keep their headings, lists, tables, and code. Scrolling a long thread is lighter, and the newest message stays in view as replies arrive.",
+  "indep.h":"Independently developed",
+  "indep.p":"DSH Android is developed independently by HenWorks. It is not affiliated with, endorsed by, or a partner of DeepSeek. DeepSeek, DeepSeek Harness, and related names belong to their owners. The community directory comes from third parties. Inclusion is not a HenWorks endorsement.",
+  "end.h":"Run DSH on Android.",
+  "end.p":"Get DSH Android on Google Play. Support email: info@henworks.com.",
+  copy:"© 2026 HenWorks",
+  "foot.note":"This page is the DSH Android app on Google Play. <a href=\"/products/dsh/privacy.html\">DSH on iPhone</a> is a different product."
+},
+ja: {
+  skip:"本文へ", menu:"メニュー",
+  "nav.features":"機能", "nav.shots":"画面", "nav.how":"使い方", "nav.priv":"プライバシー",
+  kicker:"Google Play · ツール",
+  "icon.alt":"DSH Android のアイコン。茶色のハーネスをつけた青いクジラ",
+  tagline:"Android で DSH を動かす。ネイティブなタッチ操作、内蔵の実行環境、審査済みプラグイン、多言語インターフェース。",
+  lead:"DSH Android は DeepSeek Harness（DSH）の実行環境を Android に載せ、タッチ向けに作り直しています。CLI に慣れていなくても、ジョブステージの選択、設定、審査済み拡張機能が使えます。",
+  "badge.alt":"Google Play で手に入れよう", cta2:"使い方を見る",
+  "fact.1t":"内蔵 DSH 0.1.1-rc.2", "fact.1d":"実行環境はアプリの中",
+  "fact.2t":"インターフェース 8 言語", "fact.2d":"すぐに切り替え",
+  "fact.3t":"一度だけのアップグレード", "fact.3d":"Pro で広告を恒久的に削除",
+  "feat.kicker":"機能", "feat.h":"実行環境が、スマホの中に。",
+  "feat.sub":"Google Play の説明と、アプリの設定画面に表示されている内容に基づいています。",
+  f1t:"内蔵の実行環境", f1d:"DSH 0.1.1-rc.2 を内蔵。接続状態は画面に出ます。実行環境の準備ができているときも表示します。",
+  f2t:"タッチで。CLI に留まらなくてよい", f2d:"既存のジョブステージを選びます。接続と設定はアプリの中で完結します。",
+  f3t:"審査済みプラグインだけを有効化", f3d:"Google Play 版が有効にするのは、HenWorks が審査し、アプリ更新とともに届く純粋な JavaScript プラグインだけです。コミュニティディレクトリの未審査項目は閲覧か審査依頼のみで、有効にはなりません。",
+  f4t:"8 言語をすぐに切り替え", f4d:"英語、繁体字中国語、簡体字中国語、日本語、韓国語、ドイツ語、スペイン語、ロシア語。DSH とプラグインの内容は、それぞれの上流の言語契約に従います。",
+  f5t:"4 色の skin schema", f5d:"安全な 4 色 skin schema を読み込めます。受け付けるのは色と、自分の画像だけ。インストールスクリプトは実行せず、上流の DSH も変更しません。",
+  f6t:"更新は Google Play", f6d:"アプリと内蔵実行環境の更新は、どちらも Google Play が管理します。",
+  "shots.kicker":"画面", "shots.h":"Google Play の画面。",
+  "shots.region":"DSH Android の画面", prev:"前の画面", next:"次の画面",
+  "shot.1":"接続済み。DSH のジョブステージを続けられる",
+  "shot.2":"設定：無料プラン、実行環境の準備完了、更新は Google Play",
+  "shot.3":"設定：4 色の skin schema を読み込む",
+  "shot.4":"設定：表示言語。繁体字中国語が選択されている",
+  "how.kicker":"使い方", "how.h":"インストールからジョブステージまで。",
+  s1t:"Google Play からインストール", s1d:"DSH Android を入手します。その後のアプリと内蔵環境の更新も Google Play からです。",
+  s2t:"接続状態を見る", s2d:"アプリを開くと、内蔵環境が接続の有無と準備完了を示します。",
+  s3t:"ジョブステージを選ぶ", s3d:"既存のジョブステージを選ぶか、設定で言語とテーマパックを変えます。先に CLI を覚える必要はありません。",
+  s4t:"無料、または一度だけアップグレード", s4d:"無料プランは使い続けられ、広告が出ることがあります。Pro への一度きりのアップグレードで広告は恒久的に消えます。価格は Google Play に現地通貨で表示される金額です。",
+  "note.h":"このスマホの中に残る",
+  "note.p":"DSH Android に HenWorks アカウントはなく、このリリースに Firebase Analytics はありません。ワークスペース、入力した API 資格情報、会話は、選んだ AI プロバイダへ直接送る必要がある場合を除き、アプリのプライベートストレージに残ります。HenWorks はこのリリースの推論リレーを運営していません。確認済みの Pro は広告を要求しません。無料ユーザーは、必要な同意のあと Google AdMob の広告を見ることがあります。詳しくは<a href=\"privacy-policy.html\">プライバシーポリシー</a>。",
+  "new.h":"2026 年 11 月 2 日の更新",
+  "new.p":"Google Play に現在出ている更新：長い会話でも見出し、リスト、表、コードの書式が保たれます。長いスレッドのスクロールは軽くなり、返信が届いても最新のメッセージが見えたままです。",
+  "indep.h":"独立して開発",
+  "indep.p":"DSH Android は HenWorks が独自に開発しています。DeepSeek との提携、後援、協業はありません。DeepSeek、DeepSeek Harness および関連する名称は各権利者のものです。コミュニティディレクトリは第三者由来で、掲載は HenWorks の推奨ではありません。",
+  "end.h":"Android で DSH を動かす。",
+  "end.p":"Google Play で DSH Android を入手。サポートメールは info@henworks.com。",
+  copy:"© 2026 HenWorks",
+  "foot.note":"このページは Google Play の DSH Android です。<a href=\"/products/dsh/privacy.html\">iPhone の DSH</a>は別の製品です。"
+},
+ko: {
+  skip:"본문으로", menu:"메뉴",
+  "nav.features":"기능", "nav.shots":"화면", "nav.how":"사용법", "nav.priv":"개인정보",
+  kicker:"Google Play · 도구",
+  "icon.alt":"DSH Android 아이콘. 갈색 하네스를 한 파란 고래",
+  tagline:"Android에서 DSH를 실행합니다. 네이티브 터치, 완전한 실행 환경, 검토된 플러그인, 다국어 인터페이스.",
+  lead:"DSH Android는 DeepSeek Harness(DSH) 실행 환경을 Android로 가져오고 터치에 맞게 다시 설계했습니다. CLI에 익숙하지 않아도 작업 단계를 고르고, 설정을 관리하고, 검토된 확장을 쓸 수 있습니다.",
+  "badge.alt":"Google Play에서 다운로드", cta2:"사용법 보기",
+  "fact.1t":"내장 DSH 0.1.1-rc.2", "fact.1d":"실행 환경은 앱 안에",
+  "fact.2t":"인터페이스 8개 언어", "fact.2d":"바로 전환",
+  "fact.3t":"한 번의 업그레이드", "fact.3d":"Pro는 광고를 영구 제거",
+  "feat.kicker":"기능", "feat.h":"실행 환경이 휴대폰 안에.",
+  "feat.sub":"Google Play 설명과 앱 설정 화면에 보이는 내용을 따릅니다.",
+  f1t:"내장 실행 환경", f1d:"DSH 0.1.1-rc.2가 내장되어 있습니다. 연결 상태가 화면에 나오고, 실행 환경이 준비되면 표시됩니다.",
+  f2t:"터치로. CLI에 머물 필요 없음", f2d:"기존 작업 단계를 고릅니다. 연결과 설정은 앱 안에서 끝납니다.",
+  f3t:"검토된 플러그인만 사용", f3d:"Google Play 빌드가 켜는 것은 HenWorks가 검토하고 앱 업데이트와 함께 제공하는 순수 JavaScript 플러그인뿐입니다. 커뮤니티 디렉터리의 미검토 항목은 보거나 검토를 요청할 수만 있고, 켜지지 않습니다.",
+  f4t:"8개 언어를 바로 전환", f4d:"영어, 번체 중국어, 간체 중국어, 일본어, 한국어, 독일어, 스페인어, 러시아어. DSH와 플러그인 내용은 각자의 업스트림 언어 계약을 따릅니다.",
+  f5t:"4색 skin schema", f5d:"안전한 4색 skin schema를 가져올 수 있습니다. 가져오기는 색과 자신이 가진 이미지만 받습니다. 설치 스크립트를 실행하거나 업스트림 DSH를 수정하지 않습니다.",
+  f6t:"업데이트는 Google Play", f6d:"앱과 내장 실행 환경의 업데이트는 Google Play가 관리합니다.",
+  "shots.kicker":"화면", "shots.h":"Google Play의 화면.",
+  "shots.region":"DSH Android 화면", prev:"이전 화면", next:"다음 화면",
+  "shot.1":"연결됨. DSH 작업 단계를 이어서 진행",
+  "shot.2":"설정: 무료 요금제, 실행 환경 준비됨, 업데이트는 Google Play",
+  "shot.3":"설정: 4색 skin schema 가져오기",
+  "shot.4":"설정: 인터페이스 언어. 번체 중국어가 선택됨",
+  "how.kicker":"사용법", "how.h":"설치부터 작업 단계까지.",
+  s1t:"Google Play에서 설치", s1d:"DSH Android를 받습니다. 이후 앱과 내장 환경 업데이트도 Google Play를 통합니다.",
+  s2t:"연결 상태 확인", s2d:"앱을 열면 내장 환경이 연결 여부와 준비 여부를 보여 줍니다.",
+  s3t:"작업 단계 선택", s3d:"기존 작업 단계를 고르거나 설정에서 언어와 테마 팩을 바꿉니다. CLI를 먼저 알 필요는 없습니다.",
+  s4t:"무료, 또는 한 번 업그레이드", s4d:"무료 요금제는 계속 쓸 수 있고 광고가 나올 수 있습니다. Pro로 한 번 업그레이드하면 광고가 영구히 사라집니다. 가격은 Google Play에 현지 통화로 표시된 금액입니다.",
+  "note.h":"이 휴대폰 안에 남습니다",
+  "note.p":"DSH Android에는 HenWorks 계정이 없고, 이 릴리스에는 Firebase Analytics가 없습니다. 작업 공간, 입력한 API 자격 증명, 대화는 선택한 AI 제공자에 직접 보내야 하는 경우를 제외하면 앱의 비공개 저장소에 있습니다. HenWorks는 이 릴리스의 추론 중계를 운영하지 않습니다. 확인된 Pro는 광고를 요청하지 않습니다. 무료 사용자는 해당 동의 절차 이후 Google AdMob 광고를 볼 수 있습니다. <a href=\"privacy-policy.html\">개인정보 처리방침</a>을 보세요.",
+  "new.h":"2026년 11월 2일 업데이트",
+  "new.p":"Google Play에 현재 적힌 업데이트: 긴 대화도 제목, 목록, 표, 코드 서식을 유지합니다. 긴 대화를 스크롤하기가 가벼워지고, 답변이 도착해도 최신 메시지가 화면에 남습니다.",
+  "indep.h":"독립 개발",
+  "indep.p":"DSH Android는 HenWorks가 독립적으로 개발했습니다. DeepSeek의 제휴, 보증, 협업이 아닙니다. DeepSeek, DeepSeek Harness 및 관련 이름은 각 권리자의 것입니다. 커뮤니티 디렉터리는 제3자 출처이며, 수록이 HenWorks의 보증은 아닙니다.",
+  "end.h":"Android에서 DSH를 실행하세요.",
+  "end.p":"Google Play에서 DSH Android를 받으세요. 지원 메일: info@henworks.com.",
+  copy:"© 2026 HenWorks",
+  "foot.note":"이 페이지는 Google Play의 DSH Android입니다. <a href=\"/products/dsh/privacy.html\">iPhone의 DSH</a>는 다른 제품입니다."
+},
+th: {
+  skip:"ข้ามไปเนื้อหา", menu:"เมนู",
+  "nav.features":"คุณสมบัติ", "nav.shots":"หน้าจอ", "nav.how":"วิธีใช้", "nav.priv":"ความเป็นส่วนตัว",
+  kicker:"Google Play · เครื่องมือ",
+  "icon.alt":"ไอคอน DSH Android วาฬสีน้ำเงินพร้อมสายรัดสีน้ำตาล",
+  tagline:"รัน DSH บน Android: สัมผัสแบบเนทีฟ สภาพแวดล้อมทำงานเต็มรูปแบบ ปลั๊กอินที่ผ่านการตรวจ และอินเทอร์เฟซหลายภาษา",
+  lead:"DSH Android นำสภาพแวดล้อมทำงานของ DeepSeek Harness (DSH) มาไว้บน Android และออกแบบใหม่สำหรับการสัมผัส แม้ไม่คุ้นกับบรรทัดคำสั่ง ก็เลือกขั้นตอนงาน จัดการการตั้งค่า และใช้ส่วนขยายที่ผ่านการตรวจได้",
+  "badge.alt":"รับบน Google Play", cta2:"ดูวิธีใช้",
+  "fact.1t":"DSH 0.1.1-rc.2 ในตัว", "fact.1d":"สภาพแวดล้อมอยู่ในแอป",
+  "fact.2t":"อินเทอร์เฟซ 8 ภาษา", "fact.2d":"สลับได้ทันที",
+  "fact.3t":"อัปเกรดครั้งเดียว", "fact.3d":"Pro เอาโฆษณาออกถาวร",
+  "feat.kicker":"คุณสมบัติ", "feat.h":"สภาพแวดล้อมทำงาน อยู่บนโทรศัพท์",
+  "feat.sub":"อิงคำอธิบายบน Google Play และสิ่งที่หน้าการตั้งค่าในแอปแสดง",
+  f1t:"สภาพแวดล้อมในตัว", f1d:"มี DSH 0.1.1-rc.2 ในตัว สถานะการเชื่อมต่ออยู่บนหน้าจอ และแอปบอกเมื่อสภาพแวดล้อมพร้อม",
+  f2t:"สัมผัส โดยไม่ต้องอยู่ในบรรทัดคำสั่ง", f2d:"เลือกขั้นตอนงานที่มีอยู่ การเชื่อมต่อและการตั้งค่าอยู่ในแอป",
+  f3t:"เปิดเฉพาะปลั๊กอินที่ตรวจแล้ว", f3d:"รุ่น Google Play เปิดเฉพาะปลั๊กอิน JavaScript ล้วนที่ HenWorks ตรวจแล้วและส่งมาพร้อมการอัปเดตแอป รายการในไดเรกทอรีชุมชนที่ยังไม่ตรวจ ดูหรือขอให้ตรวจได้ แต่จะไม่ถูกเปิดใช้",
+  f4t:"แปดภาษา สลับทันที", f4d:"อังกฤษ จีนตัวเต็ม จีนตัวย่อ ญี่ปุ่น เกาหลี เยอรมัน สเปน และรัสเซีย เนื้อหา DSH กับปลั๊กอินยังทำตามสัญญาภาษาของต้นทางแต่ละชุด",
+  f5t:"skin schema สี่สี", f5d:"นำเข้า skin schema สี่สีที่ปลอดภัย ตัวนำเข้ารับเฉพาะสีกับรูปที่คุณเป็นเจ้าของ ไม่รันสคริปต์ติดตั้ง และไม่แก้ DSH ต้นทาง",
+  f6t:"อัปเดตผ่าน Google Play", f6d:"Google Play จัดการอัปเดตทั้งแอปและสภาพแวดล้อมในตัว",
+  "shots.kicker":"หน้าจอ", "shots.h":"หน้าจอจาก Google Play",
+  "shots.region":"หน้าจอ DSH Android", prev:"ภาพก่อนหน้า", next:"ภาพถัดไป",
+  "shot.1":"เชื่อมต่อแล้ว พร้อมทำขั้นตอนงาน DSH ต่อ",
+  "shot.2":"การตั้งค่า: แผนฟรี สภาพแวดล้อมพร้อม อัปเดตโดย Google Play",
+  "shot.3":"การตั้งค่า: นำเข้า skin schema สี่สี",
+  "shot.4":"การตั้งค่า: ภาษาอินเทอร์เฟซ โดยเลือกภาษาจีนตัวเต็ม",
+  "how.kicker":"วิธีใช้", "how.h":"ตั้งแต่ติดตั้งจนถึงขั้นตอนงาน",
+  s1t:"ติดตั้งจาก Google Play", s1d:"ดาวน์โหลด DSH Android อัปเดตแอปและสภาพแวดล้อมในตัวหลังจากนี้ก็ผ่าน Google Play",
+  s2t:"ดูสถานะการเชื่อมต่อ", s2d:"เปิดแอป สภาพแวดล้อมในตัวจะบอกว่าเชื่อมต่อหรือยัง และพร้อมหรือยัง",
+  s3t:"เลือกขั้นตอนงาน", s3d:"เลือกขั้นตอนงานที่มีอยู่ หรือไปที่การตั้งค่าเพื่อเปลี่ยนภาษาและชุดธีม ไม่ต้องรู้จักบรรทัดคำสั่งก่อน",
+  s4t:"ฟรี หรืออัปเกรดครั้งเดียว", s4d:"แผนฟรีใช้ต่อได้ และอาจมีโฆษณา อัปเกรดเป็น Pro ครั้งเดียวจะเอาโฆษณาออกถาวร ราคาคือราคาในสกุลเงินท้องถิ่นบน Google Play",
+  "note.h":"อยู่บนโทรศัพท์เครื่องนี้",
+  "note.p":"DSH Android ไม่มีบัญชี HenWorks และรุ่นนี้ไม่มี Firebase Analytics พื้นที่ทำงาน ข้อมูลรับรอง API ที่คุณใส่ และการสนทนาอยู่ในที่เก็บส่วนตัวของแอป เว้นแต่ผู้ให้บริการ AI ที่คุณเลือกต้องได้รับคำขอโดยตรง HenWorks ไม่ได้เปิดรีเลย์สำหรับอนุมานในรุ่นนี้ Pro ที่ยืนยันแล้วจะไม่ขอโฆษณา ผู้ใช้ฟรีอาจเห็นโฆษณา Google AdMob หลังขั้นตอนความยินยอมที่ใช้บังคับ ดู<a href=\"privacy-policy.html\">นโยบายความเป็นส่วนตัว</a>",
+  "new.h":"อัปเดตวันที่ 2 พฤศจิกายน 2026",
+  "new.p":"สิ่งที่ Google Play ระบุตอนนี้: การสนทนายาวคงรูปแบบหัวข้อ รายการ ตาราง และโค้ด การเลื่อนเธรดยาวเบาลง และข้อความล่าสุดยังอยู่ในสายตาเมื่อมีคำตอบเข้ามา",
+  "indep.h":"พัฒนาอย่างอิสระ",
+  "indep.p":"DSH Android พัฒนาโดย HenWorks อย่างอิสระ ไม่ได้เป็นพันธมิตร ได้รับการรับรอง หรือร่วมงานกับ DeepSeek ชื่อ DeepSeek, DeepSeek Harness และชื่อที่เกี่ยวข้องเป็นของเจ้าของแต่ละราย ไดเรกทอรีชุมชนมาจากบุคคลที่สาม การถูกใส่ไว้ไม่ใช่การรับรองจาก HenWorks",
+  "end.h":"รัน DSH บน Android",
+  "end.p":"รับ DSH Android บน Google Play อีเมลสนับสนุน: info@henworks.com",
+  copy:"© 2026 HenWorks",
+  "foot.note":"หน้านี้คือแอป DSH Android บน Google Play <a href=\"/products/dsh/privacy.html\">DSH บน iPhone</a> เป็นผลิตภัณฑ์คนละตัว"
+}
+};
+const badges = { zh:"badge-zh-tw.png", en:"badge-en.png", ja:"badge-ja.png", ko:"badge-ko.png", th:"badge-th.png" };
+const htmlLang = { zh:"zh-Hant", en:"en", ja:"ja", ko:"ko", th:"th" };
+function apply(lang) {
+  const pack = i18n[lang] || i18n.zh;
+  document.documentElement.lang = htmlLang[lang] || "zh-Hant";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n")];
+    if (value) el.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n-alt")];
+    if (value) el.alt = value;
+  });
+  document.querySelectorAll("[data-i18n-label]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n-label")];
+    if (!value) return;
+    if (el.hasAttribute("aria-label")) el.setAttribute("aria-label", value);
+  });
+  document.querySelectorAll(".play-badge").forEach(img => {
+    img.src = "images/" + (badges[lang] || badges.en);
+  });
+  document.querySelectorAll("#langs button").forEach(btn => {
+    btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+  });
+  try { localStorage.setItem("dsh-android-lang", lang); } catch (_) {}
+}
+document.querySelectorAll("#langs button").forEach(btn => {
+  btn.addEventListener("click", () => apply(btn.dataset.lang));
+});
+const saved = (() => { try { return localStorage.getItem("dsh-android-lang"); } catch (_) { return null; } })();
+const start = (navigator.language || "").toLowerCase();
+const guessed = start.startsWith("ja") ? "ja" : start.startsWith("ko") ? "ko" : start.startsWith("th") ? "th" : start.startsWith("en") ? "en" : start.startsWith("zh") ? "zh" : "en";
+const queryLang = new URLSearchParams(location.search).get("lang");
+apply(queryLang && i18n[queryLang] ? queryLang : (saved || guessed));
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
+  const open = !navLinks.classList.contains("open");
+  navLinks.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+});
+navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  navLinks.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded", "false");
+}));
+
+const scroller = document.querySelector(".scroller");
+document.querySelectorAll("[data-scroll]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = scroller.querySelector("figure");
+    const gap = 16;
+    const delta = (item.getBoundingClientRect().width + gap) * Number(btn.dataset.scroll);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scroller.scrollBy({ left: delta, behavior: reduce ? "auto" : "smooth" });
+  });
+});
+</script>
+</body>
+</html>
