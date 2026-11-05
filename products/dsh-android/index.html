@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>DSH Android — A full AI coding agent in your pocket | HenWorks</title>
+<meta name="description" content="DSH Android is a full AI coding agent in your pocket. Edit files, run commands, search the web, and plan multi-step work on your own API key. Files stay on the phone. Reviewed plug-ins. Eight languages. Free to use. A one-time upgrade removes ads.">
+<meta name="keywords" content="DSH Android, DeepSeek Harness, HenWorks, Android, Google Play">
+<link rel="canonical" href="https://henworks.com/products/dsh-android/">
+<meta property="og:title" content="DSH Android — A full AI coding agent in your pocket">
+<meta property="og:description" content="Edit files, run commands, search the web, and plan multi-step work. Your API key. Files stay on the phone.">
+<meta property="og:url" content="https://henworks.com/products/dsh-android/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://henworks.com/products/dsh-android/images/conversation.webp">
+<meta property="og:site_name" content="HenWorks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DSH Android — A full AI coding agent in your pocket">
+<meta name="twitter:description" content="Edit files, run commands, search the web, and plan multi-step work. Your API key. Files stay on the phone.">
+<meta name="twitter:image" content="https://henworks.com/products/dsh-android/images/conversation.webp">
+<link rel="icon" href="images/icon.png" type="image/png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DSH Android - Deepseek Harness",
+  "operatingSystem": "Android",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "A full AI coding agent in your pocket. Edit files, run commands, search the web, and plan multi-step work on your own API key.",
+  "image": "https://henworks.com/products/dsh-android/images/conversation.webp",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.henworks.android.dsh",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free to use. A one-time upgrade removes ads."
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "HenWorks",
+    "url": "https://henworks.com"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #0A0A0A;
+  --bg-elevated: #111111;
+  --text: #FFFFFF;
+  --muted: #8A8A8A;
+  --faint: #666666;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.55);
+  --accent: #C4212A;
+  --font: Inter, "Noto Sans TC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Thai", sans-serif;
+  color-scheme: dark;
+  accent-color: #C4212A;
+  scrollbar-color: #666666 #111111;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.25rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-inline-size: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.skip {
+  position: absolute;
+  inset-inline-start: 1rem;
+  inset-block-start: 0;
+  transform: translateY(-120%);
+  background: #fff;
+  color: #000;
+  padding: 0.6rem 1rem;
+  z-index: 20;
+}
+.skip:focus { transform: none; }
+
+.nav {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-block-end: 1px solid var(--line);
+  backdrop-filter: blur(20px);
+}
+.logo {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-inline-start: auto;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-links a:hover { color: var(--text); }
+.langs { display: flex; gap: 0.15rem; }
+.langs button, .menu {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 600 12px/1 var(--font);
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding: 0 0.4rem;
+  cursor: pointer;
+}
+.langs button[aria-pressed="true"] { color: var(--text); }
+.menu { display: none; position: relative; }
+.menu span {
+  position: absolute;
+  inset-inline: 12px;
+  block-size: 1.5px;
+  background: #fff;
+}
+.menu span:nth-child(1) { inset-block-start: 16px; }
+.menu span:nth-child(2) { inset-block-start: 21px; }
+.menu span:nth-child(3) { inset-block-start: 26px; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--line-strong);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-cta:hover { background: #fff; color: #000; }
+
+.shell { container-type: inline-size; container-name: page; }
+.wrap { max-inline-size: 1120px; margin-inline: auto; padding-inline: 1.5rem; }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 2rem;
+  gap: clamp(1.5rem, 4cqi, 4rem);
+  align-items: center;
+  padding-block: 3rem;
+  padding-block: clamp(2.5rem, 6cqi, 5.5rem);
+}
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.kicker::before {
+  content: "";
+  inline-size: 5px;
+  block-size: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+.identity { display: flex; align-items: center; gap: 0.9rem; margin-block-end: 1rem; }
+.identity h1 { flex: 1 1 12rem; }
+.identity img { inline-size: 64px; block-size: 64px; border-radius: 16px; }
+h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-size: clamp(2rem, 1rem + 4cqi, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.tagline { margin: 1rem 0 0.6rem; font-size: clamp(1.05rem, 0.9rem + 0.6cqi, 1.25rem); font-weight: 500; line-height: 1.45; text-wrap: balance; }
+.lead { margin: 0 0 1.5rem; color: var(--muted); max-inline-size: 42rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-block-end: 1.75rem; }
+.play-badge { inline-size: 180px; block-size: auto; aspect-ratio: 646 / 250; }
+.ghost {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-underline-offset: 0.35em;
+}
+.facts { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; margin: 0; padding: 0; list-style: none; }
+.facts strong { display: block; font-size: 0.95rem; font-weight: 600; }
+.facts span { color: var(--muted); font-size: 13px; }
+
+.stage {
+  justify-self: center;
+  inline-size: min(100%, 300px);
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 36px;
+  background: var(--bg-elevated);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+.stage picture { display: block; }
+.stage img { inline-size: 100%; height: auto; border-radius: 28px; }
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(200px, 280px);
+  gap: clamp(1.5rem, 4cqi, 3rem);
+  align-items: center;
+  margin-block-start: 3rem;
+}
+.pair .stage { justify-self: end; }
+.pair p { color: var(--muted); margin: 0.6rem 0 0; }
+
+.band { padding-block: 4rem; padding-block: clamp(3.5rem, 8cqi, 6.5rem); border-block-start: 1px solid var(--line); }
+.band h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  font-size: clamp(1.6rem, 1.1rem + 2cqi, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.sub { margin: 0 0 2rem; color: var(--muted); max-inline-size: 40rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@container page (min-width: 640px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .shot-head { flex-direction: row; align-items: flex-end; }
+}
+@container page (min-width: 960px) {
+  .cards { grid-template-columns: 1fr 1fr 1fr; }
+}
+.card { background: var(--bg-card); padding: 1.5rem 1.35rem 1.6rem; }
+.card h3 { margin: 0 0 0.45rem; font-size: 1rem; font-weight: 600; }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.shot-head { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.shot-nav { display: flex; gap: 0.5rem; }
+.shot-nav button {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: #fff;
+  font: 600 16px/1 var(--font);
+  cursor: pointer;
+}
+.shot-nav button:hover { background: #fff; color: #000; }
+.scroller {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.5rem;
+  padding-block: 0.25rem 1rem;
+  margin-inline: -1.5rem;
+  padding-inline: 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #666666 #111111;
+}
+.scroller figure {
+  flex: 0 0 min(72vw, 260px);
+  flex-basis: min(72cqi, 260px);
+  margin: 0;
+  scroll-snap-align: center;
+}
+.scroller picture { display: block; }
+.scroller img {
+  inline-size: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  background: var(--bg-elevated);
+}
+.scroller figcaption { margin-block-start: 0.65rem; color: var(--muted); font-size: 13px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.steps article { background: var(--bg); padding: 1.35rem 1.2rem 1.5rem; }
+.steps b { display: block; margin-block-end: 0.7rem; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; }
+.steps h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.steps p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+
+.notes { display: grid; gap: 1rem; }
+.note {
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+}
+.note h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.note p { margin: 0; color: var(--muted); }
+.note a { color: var(--text); }
+
+.closing {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto;
+  gap: 2rem;
+  align-items: center;
+}
+.closing p { color: var(--muted); margin: 0.6rem 0 0; max-inline-size: 36rem; }
+
+.footer {
+  max-inline-size: 1120px;
+  margin-inline: auto;
+  padding: 1.5rem 1.5rem 2.5rem;
+  border-block-start: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  color: var(--muted);
+  font-size: 13px;
+}
+.footer a { color: var(--text); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.footer p { margin: 0; }
+
+@container page (max-width: 860px) {
+  .hero, .closing, .pair { grid-template-columns: 1fr; }
+  .stage, .pair .stage { justify-self: start; }
+}
+@media (max-width: 800px) {
+  .menu { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.5rem 1.25rem 1.25rem;
+    background: #000;
+    border-block-end: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a, .nav-cta { inline-size: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nav-cta, .shot-nav button { transition: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes rise {
+      from { opacity: 0; translate: 0 1.25rem; }
+      to { opacity: 1; translate: 0 0; }
+    }
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+    @keyframes slide-emphasis {
+      0% { scale: 0.94; }
+      50% { scale: 1; }
+      100% { scale: 0.94; }
+    }
+    .scroller > figure {
+      animation: slide-emphasis auto linear both;
+      animation-timeline: view(inline);
+    }
+  }
+}
+@media (forced-colors: active) {
+  .nav, .card, .note, .steps article, .nav-cta, .shot-nav button, .stage, .scroller img {
+    border: 1px solid ButtonText;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+<header class="nav">
+  <a class="logo" href="/">HenWorks</a>
+  <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu" data-i18n-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav-links" id="navLinks" aria-label="Primary">
+    <a href="#features" data-i18n="nav.features">Features</a>
+    <a href="#shots" data-i18n="nav.shots">Screens</a>
+    <a href="#how" data-i18n="nav.how">How it works</a>
+    <a href="privacy-policy.html" data-i18n="nav.priv">Privacy</a>
+    <div class="langs" id="langs">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="zh" aria-pressed="false">繁</button>
+      <button type="button" data-lang="ja" aria-pressed="false">日</button>
+      <button type="button" data-lang="ko" aria-pressed="false">한</button>
+      <button type="button" data-lang="th" aria-pressed="false">ไทย</button>
+    </div>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">Google Play</a>
+  </nav>
+</header>
+
+<main id="main" class="shell">
+  <section class="hero wrap">
+    <div>
+      <p class="kicker" data-i18n="kicker">DSH Android · Google Play</p>
+      <div class="identity">
+        <img src="images/icon.webp" width="256" height="256" alt="DSH Android icon: a blue whale in a brown harness" data-i18n-alt="icon.alt">
+        <h1 data-i18n="h1">A full AI coding agent in your pocket.</h1>
+      </div>
+      <p class="tagline" data-i18n="tagline">Edit files, run commands, search the web, and plan the next steps.</p>
+      <p class="lead" data-i18n="lead">Bring your own API key. Files stay on the phone. Only reviewed plug-ins run. Eight languages.</p>
+      <div class="actions">
+        <a href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">
+          <img class="play-badge" src="images/badge-en.png" width="646" height="250" alt="Get it on Google Play" data-i18n-alt="badge.alt">
+        </a>
+        <a class="ghost" href="#how" data-i18n="cta2">See how it works</a>
+      </div>
+      <ul class="facts">
+        <li><strong data-i18n="fact.1t">Your key</strong><span data-i18n="fact.1d">No HenWorks account</span></li>
+        <li><strong data-i18n="fact.2t">On the phone</strong><span data-i18n="fact.2d">Files stay private</span></li>
+        <li><strong data-i18n="fact.3t">Eight languages</strong><span data-i18n="fact.3d">Switch in a tap</span></li>
+      </ul>
+    </div>
+    <div class="stage">
+      <picture>
+        <source type="image/avif" srcset="images/conversation.avif">
+        <source type="image/webp" srcset="images/conversation.webp">
+        <img src="images/conversation.webp" width="720" height="1476" fetchpriority="high" alt="Ask in plain language and the agent gets to work" data-i18n-alt="hero.alt">
+      </picture>
+    </div>
+  </section>
+
+  <section class="band" id="features">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker" data-i18n="feat.kicker">Features</p>
+        <h2 data-i18n="feat.h">Work, from the phone.</h2>
+        <p class="sub" data-i18n="feat.sub">Ask in plain language. DSH edits the files, runs the commands, and keeps the plan.</p>
+        <div class="cards">
+          <article class="card"><h3 data-i18n="f1t">Edit files</h3><p data-i18n="f1d">Read, write, and change files in your workspace.</p></article>
+          <article class="card"><h3 data-i18n="f2t">Run commands</h3><p data-i18n="f2d">Start commands and long tasks without leaving the chat.</p></article>
+          <article class="card"><h3 data-i18n="f3t">Search the web</h3><p data-i18n="f3d">Look things up and read images from the same thread.</p></article>
+          <article class="card"><h3 data-i18n="f4t">Plan the steps</h3><p data-i18n="f4d">Break a job into a todo list and work through it.</p></article>
+          <article class="card"><h3 data-i18n="f5t">Your API key</h3><p data-i18n="f5d">Connect the key you already have. No HenWorks account.</p></article>
+          <article class="card"><h3 data-i18n="f6t">Eight languages</h3><p data-i18n="f6d">Switch the interface whenever you want. Only reviewed plug-ins run.</p></article>
+        </div>
+      </div>
+
+      <div class="pair reveal">
+        <div>
+          <h2 data-i18n="cap.h">Ask in plain language.</h2>
+          <p data-i18n="cap.p">Describe the job. DSH edits files, runs commands, searches the web, and tracks the next steps.</p>
+        </div>
+        <div class="stage">
+          <picture>
+            <source type="image/avif" srcset="images/rail.avif">
+            <source type="image/webp" srcset="images/rail.webp">
+            <img src="images/rail.webp" width="720" height="1476" alt="Ask in plain language and get real work done" data-i18n-alt="g.rail" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
+
+      <div class="pair reveal">
+        <div>
+          <h2 data-i18n="ext.h">Plug-ins you can trust.</h2>
+          <p data-i18n="ext.p">Add a plug-in when you want more. Only ones that have been reviewed can run. Everything else stays off.</p>
+        </div>
+        <div class="stage">
+          <picture>
+            <source type="image/avif" srcset="images/extensions.avif">
+            <source type="image/webp" srcset="images/extensions.webp">
+            <img src="images/extensions.webp" width="720" height="1476" alt="Add plug-ins that have been reviewed" data-i18n-alt="g.ext" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
+
+      <div class="pair reveal">
+        <div>
+          <h2 data-i18n="ws.h">Your files stay on the phone.</h2>
+          <p data-i18n="ws.p">They live in the app’s private storage. Share or save a file when you want it somewhere else.</p>
+        </div>
+        <div class="stage">
+          <picture>
+            <source type="image/avif" srcset="images/files.avif">
+            <source type="image/webp" srcset="images/files.webp">
+            <img src="images/files.webp" width="720" height="1286" alt="Your files stay on the phone" data-i18n-alt="g.files" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="shots" aria-roledescription="carousel">
+    <div class="wrap">
+      <div class="shot-head reveal">
+        <div>
+          <p class="kicker" data-i18n="shots.kicker">Screens</p>
+          <h2 data-i18n="shots.h">The work, up close.</h2>
+        </div>
+        <div class="shot-nav">
+          <button type="button" data-scroll="-1" data-i18n-label="prev" aria-label="Previous screenshot">←</button>
+          <button type="button" data-scroll="1" data-i18n-label="next" aria-label="Next screenshot">→</button>
+        </div>
+      </div>
+      <div class="scroller" tabindex="0" data-i18n-label="shots.region" aria-label="DSH Android in use">
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/empty.avif">
+            <source type="image/webp" srcset="images/empty.webp">
+            <img src="images/empty.webp" width="720" height="1476" alt="A blank conversation, ready for the next job" data-i18n-alt="g.empty" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.empty">A blank page, ready for the next job.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/threads.avif">
+            <source type="image/webp" srcset="images/threads.webp">
+            <img src="images/threads.webp" width="720" height="1476" alt="Pick up any thread" data-i18n-alt="g.threads" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.threads">Every thread, one tap away.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/rail.avif">
+            <source type="image/webp" srcset="images/rail.webp">
+            <img src="images/rail.webp" width="720" height="1476" alt="Ask in plain language and get real work done" data-i18n-alt="g.rail" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.rail">Ask in plain language. Get real work done.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/extensions.avif">
+            <source type="image/webp" srcset="images/extensions.webp">
+            <img src="images/extensions.webp" width="720" height="1476" alt="Add plug-ins that have been reviewed" data-i18n-alt="g.ext" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.ext">Turn on plug-ins that have been reviewed.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/settings.avif">
+            <source type="image/webp" srcset="images/settings.webp">
+            <img src="images/settings.webp" width="720" height="1476" alt="Free to use, with a one-time upgrade that removes ads" data-i18n-alt="g.settings" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.settings">Free to use. One upgrade removes ads.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/files.avif">
+            <source type="image/webp" srcset="images/files.webp">
+            <img src="images/files.webp" width="720" height="1286" alt="Your files stay on the phone" data-i18n-alt="g.files" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.files">Your files stay on the phone.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/language.avif">
+            <source type="image/webp" srcset="images/language.webp">
+            <img src="images/language.webp" width="720" height="1286" alt="Switch the interface among eight languages" data-i18n-alt="g.lang" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.lang">Switch the interface. Eight languages.</figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/avif" srcset="images/about.avif">
+            <source type="image/webp" srcset="images/about.webp">
+            <img src="images/about.webp" width="720" height="1286" alt="Privacy and licenses, in the app" data-i18n-alt="g.about" loading="lazy" decoding="async">
+          </picture>
+          <figcaption data-i18n="g.about">Privacy and licenses, when you want them.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
+    <div class="wrap reveal">
+      <p class="kicker" data-i18n="how.kicker">How it works</p>
+      <h2 data-i18n="how.h">Start in four steps.</h2>
+      <div class="steps">
+        <article><b>01</b><h3 data-i18n="s1t">Get it on Google Play</h3><p data-i18n="s1d">Install DSH Android and open it.</p></article>
+        <article><b>02</b><h3 data-i18n="s2t">Add your API key</h3><p data-i18n="s2d">The agent uses the key you connect.</p></article>
+        <article><b>03</b><h3 data-i18n="s3t">Ask in plain language</h3><p data-i18n="s3d">Describe the job. DSH does the work.</p></article>
+        <article><b>04</b><h3 data-i18n="s4t">Free to use</h3><p data-i18n="s4d">A one-time upgrade removes ads.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap notes reveal">
+      <article class="note">
+        <h3 data-i18n="note.h">Private by default</h3>
+        <p data-i18n="note.p">No HenWorks account. Files and conversations stay on the phone unless you send a request to the provider you chose. Free to use. A one-time upgrade removes ads. <a href="privacy-policy.html">Privacy policy</a>.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap closing reveal">
+      <div>
+        <h2 data-i18n="end.h">A coding agent in your pocket.</h2>
+        <p data-i18n="end.p">Free to use. A one-time upgrade removes ads.</p>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.henworks.android.dsh">
+        <img class="play-badge" src="images/badge-en.png" width="646" height="250" alt="Get it on Google Play" data-i18n-alt="badge.alt">
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p data-i18n="copy">© 2026 HenWorks</p>
+  <p>
+    <a href="/">HenWorks</a>
+    · <a href="privacy-policy.html" data-i18n="nav.priv">Privacy</a>
+    · <a href="mailto:info@henworks.com">info@henworks.com</a>
+  </p>
+  <p data-i18n="foot.note">Made by HenWorks. Not a DeepSeek product. <a href="/products/dsh/privacy.html">DSH on iPhone</a> is a separate app.</p>
+</footer>
+
+<script>
+const i18n = {
+en: {
+  skip:"Skip to content", menu:"Menu",
+  "nav.features":"Features", "nav.shots":"Screens", "nav.how":"How it works", "nav.priv":"Privacy",
+  kicker:"DSH Android · Google Play",
+  "icon.alt":"DSH Android icon: a blue whale in a brown harness",
+  h1:"A full AI coding agent in your pocket.",
+  tagline:"Edit files, run commands, search the web, and plan the next steps.",
+  lead:"Bring your own API key. Files stay on the phone. Only reviewed plug-ins run. Eight languages.",
+  "badge.alt":"Get it on Google Play", cta2:"See how it works",
+  "fact.1t":"Your key", "fact.1d":"No HenWorks account",
+  "fact.2t":"On the phone", "fact.2d":"Files stay private",
+  "fact.3t":"Eight languages", "fact.3d":"Switch in a tap",
+  "hero.alt":"Ask in plain language and the agent gets to work",
+  "feat.kicker":"Features", "feat.h":"Work, from the phone.",
+  "feat.sub":"Ask in plain language. DSH edits the files, runs the commands, and keeps the plan.",
+  f1t:"Edit files", f1d:"Read, write, and change files in your workspace.",
+  f2t:"Run commands", f2d:"Start commands and long tasks without leaving the chat.",
+  f3t:"Search the web", f3d:"Look things up and read images from the same thread.",
+  f4t:"Plan the steps", f4d:"Break a job into a todo list and work through it.",
+  f5t:"Your API key", f5d:"Connect the key you already have. No HenWorks account.",
+  f6t:"Eight languages", f6d:"Switch the interface whenever you want. Only reviewed plug-ins run.",
+  "cap.h":"Ask in plain language.", "cap.p":"Describe the job. DSH edits files, runs commands, searches the web, and tracks the next steps.",
+  "ext.h":"Plug-ins you can trust.", "ext.p":"Add a plug-in when you want more. Only ones that have been reviewed can run. Everything else stays off.",
+  "ws.h":"Your files stay on the phone.", "ws.p":"They live in the app’s private storage. Share or save a file when you want it somewhere else.",
+  "shots.kicker":"Screens", "shots.h":"The work, up close.",
+  "shots.region":"DSH Android in use", prev:"Previous screenshot", next:"Next screenshot",
+  "g.empty":"A blank page, ready for the next job.",
+  "g.threads":"Every thread, one tap away.",
+  "g.rail":"Ask in plain language. Get real work done.",
+  "g.ext":"Turn on plug-ins that have been reviewed.",
+  "g.settings":"Free to use. One upgrade removes ads.",
+  "g.files":"Your files stay on the phone.",
+  "g.lang":"Switch the interface. Eight languages.",
+  "g.about":"Privacy and licenses, when you want them.",
+  "how.kicker":"How it works", "how.h":"Start in four steps.",
+  s1t:"Get it on Google Play", s1d:"Install DSH Android and open it.",
+  s2t:"Add your API key", s2d:"The agent uses the key you connect.",
+  s3t:"Ask in plain language", s3d:"Describe the job. DSH does the work.",
+  s4t:"Free to use", s4d:"A one-time upgrade removes ads.",
+  "note.h":"Private by default", "note.p":"No HenWorks account. Files and conversations stay on the phone unless you send a request to the provider you chose. Free to use. A one-time upgrade removes ads. <a href=\"privacy-policy.html\">Privacy policy</a>.",
+  "end.h":"A coding agent in your pocket.", "end.p":"Free to use. A one-time upgrade removes ads.",
+  copy:"© 2026 HenWorks",
+  "foot.note":"Made by HenWorks. Not a DeepSeek product. <a href=\"/products/dsh/privacy.html\">DSH on iPhone</a> is a separate app."
+},
+zh: {
+  skip:"跳到內容", menu:"選單",
+  "nav.features":"功能", "nav.shots":"畫面", "nav.how":"怎麼用", "nav.priv":"隱私",
+  kicker:"DSH Android · Google Play",
+  "icon.alt":"DSH Android 圖示：藍色鯨魚與棕色挽具",
+  h1:"把完整的 AI 程式代理放進口袋。",
+  tagline:"改檔案、跑指令、搜尋網頁，並把下一步排好。",
+  lead:"用你自己的 API 金鑰。檔案留在手機上。只有審查過的 plug-in 會執行。八種語言。",
+  "badge.alt":"在 Google Play 取得", cta2:"看怎麼用",
+  "fact.1t":"你的金鑰", "fact.1d":"沒有 HenWorks 帳號",
+  "fact.2t":"在手機上", "fact.2d":"檔案保持私人",
+  "fact.3t":"八種語言", "fact.3d":"隨時切換",
+  "hero.alt":"用平常的話提問，代理就開始工作",
+  "feat.kicker":"功能", "feat.h":"工作，在手機上完成。",
+  "feat.sub":"用平常的話說明。DSH 改檔案、跑指令，並把計畫留著。",
+  f1t:"改檔案", f1d:"在工作區裡讀取、寫入、修改檔案。",
+  f2t:"跑指令", f2d:"不下線就能開始指令和較長的任務。",
+  f3t:"搜尋網頁", f3d:"在同一段對話裡查資料、讀圖片。",
+  f4t:"排好步驟", f4d:"把一件事拆成待辦，再逐項完成。",
+  f5t:"你的 API 金鑰", f5d:"接上你已有的金鑰。不必另開 HenWorks 帳號。",
+  f6t:"八種語言", f6d:"介面隨時切換。只有審查過的 plug-in 會執行。",
+  "cap.h":"用平常的話就好。", "cap.p":"說出要做的事。DSH 改檔案、跑指令、搜尋網頁，並跟上接下來的步驟。",
+  "ext.h":"可以放心打開的 plug-in。", "ext.p":"需要更多能力時再加。只有審查過的才會執行，其餘保持關閉。",
+  "ws.h":"檔案留在手機上。", "ws.p":"它們在應用程式的私人儲存空間裡。想帶走時再分享或儲存。",
+  "shots.kicker":"畫面", "shots.h":"工作的樣子。",
+  "shots.region":"使用中的 DSH Android", prev:"上一張", next:"下一張",
+  "g.empty":"空白一頁，等下一件工作。",
+  "g.threads":"每一段對話，點一下就回到。",
+  "g.rail":"用平常的話問，就把工作做完。",
+  "g.ext":"打開審查過的 plug-in。",
+  "g.settings":"免費使用。一次升級就去掉廣告。",
+  "g.files":"檔案留在手機上。",
+  "g.lang":"切換介面。八種語言。",
+  "g.about":"想看時，隱私與授權都在這裡。",
+  "how.kicker":"怎麼用", "how.h":"四步開始。",
+  s1t:"到 Google Play 取得", s1d:"安裝 DSH Android，然後打開。",
+  s2t:"加上你的 API 金鑰", s2d:"代理使用你接上的金鑰。",
+  s3t:"用平常的話說明", s3d:"描述工作。DSH 去做。",
+  s4t:"免費使用", s4d:"一次升級就去掉廣告。",
+  "note.h":"預設就是私人的", "note.p":"沒有 HenWorks 帳號。檔案與對話留在手機上，除非你把請求送給自己選擇的提供者。免費使用。一次升級就去掉廣告。<a href=\"privacy-policy.html\">隱私權政策</a>。",
+  "end.h":"口袋裡的程式代理。", "end.p":"免費使用。一次升級就去掉廣告。",
+  copy:"© 2026 HenWorks",
+  "foot.note":"HenWorks 製作。不是 DeepSeek 的產品。<a href=\"/products/dsh/privacy.html\">iPhone 上的 DSH</a>是另一個應用程式。"
+},
+ja: {
+  skip:"本文へ", menu:"メニュー",
+  "nav.features":"機能", "nav.shots":"画面", "nav.how":"使い方", "nav.priv":"プライバシー",
+  kicker:"DSH Android · Google Play",
+  "icon.alt":"DSH Android のアイコン。茶色のハーネスをつけた青いクジラ",
+  h1:"本格的な AI コーディングエージェントを、ポケットに。",
+  tagline:"ファイルを直し、コマンドを実行し、ウェブを調べ、次の手順を整える。",
+  lead:"自分の API キー。ファイルはスマホに残る。審査済みのプラグインだけが動く。8 言語。",
+  "badge.alt":"Google Play で手に入れよう", cta2:"使い方を見る",
+  "fact.1t":"あなたのキー", "fact.1d":"HenWorks アカウントは不要",
+  "fact.2t":"スマホの中", "fact.2d":"ファイルは非公開のまま",
+  "fact.3t":"8 言語", "fact.3d":"いつでも切り替え",
+  "hero.alt":"ふつうの言葉で頼むと、エージェントが仕事を始める",
+  "feat.kicker":"機能", "feat.h":"仕事は、スマホで。",
+  "feat.sub":"ふつうの言葉で頼む。DSH がファイルを直し、コマンドを実行し、計画を保つ。",
+  f1t:"ファイルを編集", f1d:"ワークスペースのファイルを読み、書き、変更する。",
+  f2t:"コマンドを実行", f2d:"チャットを離れずに、コマンドと長い作業を始める。",
+  f3t:"ウェブを検索", f3d:"同じ会話の中で調べ、画像を読む。",
+  f4t:"手順を計画", f4d:"仕事を ToDo に分けて、ひとつずつ進める。",
+  f5t:"自分の API キー", f5d:"すでにあるキーをつなぐ。HenWorks アカウントは不要。",
+  f6t:"8 言語", f6d:"インターフェースはいつでも切り替え。動くのは審査済みプラグインだけ。",
+  "cap.h":"ふつうの言葉で頼む。", "cap.p":"仕事を説明する。DSH がファイルを直し、コマンドを実行し、ウェブを調べ、次の手順を追う。",
+  "ext.h":"安心して足せるプラグイン。", "ext.p":"必要になったら追加する。審査済みのものだけが動き、それ以外はオフのまま。",
+  "ws.h":"ファイルはスマホに残る。", "ws.p":"アプリのプライベートストレージに置かれる。外に出したいときだけ共有または保存する。",
+  "shots.kicker":"画面", "shots.h":"仕事のようす。",
+  "shots.region":"使っている DSH Android", prev:"前の画面", next:"次の画面",
+  "g.empty":"白紙。次の仕事を待っている。",
+  "g.threads":"どの会話も、タップひとつ。",
+  "g.rail":"ふつうの言葉で頼む。仕事は終わる。",
+  "g.ext":"審査済みのプラグインをオンにする。",
+  "g.settings":"無料で使える。一度のアップグレードで広告がなくなる。",
+  "g.files":"ファイルはスマホに残る。",
+  "g.lang":"インターフェースを切り替える。8 言語。",
+  "g.about":"プライバシーとライセンスは、見たいときに。",
+  "how.kicker":"使い方", "how.h":"4 ステップで始める。",
+  s1t:"Google Play で入手", s1d:"DSH Android をインストールして開く。",
+  s2t:"API キーを追加", s2d:"エージェントは、つないだキーを使う。",
+  s3t:"ふつうの言葉で頼む", s3d:"仕事を説明する。あとは DSH がやる。",
+  s4t:"無料で使える", s4d:"一度のアップグレードで広告がなくなる。",
+  "note.h":"最初からプライベート", "note.p":"HenWorks アカウントはない。ファイルと会話はスマホに残り、選んだプロバイダへ送るときだけ外に出る。無料で使える。一度のアップグレードで広告がなくなる。<a href=\"privacy-policy.html\">プライバシーポリシー</a>。",
+  "end.h":"ポケットの中のコーディングエージェント。", "end.p":"無料で使える。一度のアップグレードで広告がなくなる。",
+  copy:"© 2026 HenWorks",
+  "foot.note":"HenWorks 製。DeepSeek の製品ではない。<a href=\"/products/dsh/privacy.html\">iPhone の DSH</a>は別のアプリです。"
+},
+ko: {
+  skip:"본문으로", menu:"메뉴",
+  "nav.features":"기능", "nav.shots":"화면", "nav.how":"사용법", "nav.priv":"개인정보",
+  kicker:"DSH Android · Google Play",
+  "icon.alt":"DSH Android 아이콘. 갈색 하네스를 한 파란 고래",
+  h1:"완전한 AI 코딩 에이전트를 주머니에.",
+  tagline:"파일을 고치고, 명령을 실행하고, 웹을 찾고, 다음 단계를 정리합니다.",
+  lead:"자신의 API 키. 파일은 휴대폰에 남습니다. 검토된 플러그인만 실행됩니다. 8개 언어.",
+  "badge.alt":"Google Play에서 다운로드", cta2:"사용법 보기",
+  "fact.1t":"내 키", "fact.1d":"HenWorks 계정 없음",
+  "fact.2t":"휴대폰 안", "fact.2d":"파일은 비공개",
+  "fact.3t":"8개 언어", "fact.3d":"언제든 전환",
+  "hero.alt":"평범한 말로 부탁하면 에이전트가 일을 시작합니다",
+  "feat.kicker":"기능", "feat.h":"일은 휴대폰에서.",
+  "feat.sub":"평범한 말로 말하세요. DSH가 파일을 고치고, 명령을 실행하고, 계획을 붙듭니다.",
+  f1t:"파일 편집", f1d:"작업 공간의 파일을 읽고, 쓰고, 바꿉니다.",
+  f2t:"명령 실행", f2d:"대화를 떠나지 않고 명령과 긴 작업을 시작합니다.",
+  f3t:"웹 검색", f3d:"같은 대화에서 찾아보고 이미지를 읽습니다.",
+  f4t:"단계 계획", f4d:"일을 할 일 목록으로 나누고 하나씩 끝냅니다.",
+  f5t:"내 API 키", f5d:"이미 가진 키를 연결합니다. HenWorks 계정은 필요 없습니다.",
+  f6t:"8개 언어", f6d:"인터페이스는 언제든 바꿉니다. 검토된 플러그인만 실행됩니다.",
+  "cap.h":"평범한 말로 부탁하세요.", "cap.p":"일을 설명하세요. DSH가 파일을 고치고, 명령을 실행하고, 웹을 찾고, 다음 단계를 따라갑니다.",
+  "ext.h":"켜도 되는 플러그인.", "ext.p":"더 필요하면 추가하세요. 검토된 것만 실행되고, 나머지는 꺼진 채로 있습니다.",
+  "ws.h":"파일은 휴대폰에 남습니다.", "ws.p":"앱의 비공개 저장소에 있습니다. 밖으로 보낼 때만 공유하거나 저장하세요.",
+  "shots.kicker":"화면", "shots.h":"일하는 모습.",
+  "shots.region":"사용 중인 DSH Android", prev:"이전 화면", next:"다음 화면",
+  "g.empty":"빈 페이지. 다음 일을 기다립니다.",
+  "g.threads":"어떤 대화든 한 번의 탭.",
+  "g.rail":"평범한 말로 부탁하고, 실제 일을 끝냅니다.",
+  "g.ext":"검토된 플러그인을 켭니다.",
+  "g.settings":"무료로 사용. 한 번의 업그레이드로 광고가 사라집니다.",
+  "g.files":"파일은 휴대폰에 남습니다.",
+  "g.lang":"인터페이스를 바꿉니다. 8개 언어.",
+  "g.about":"개인정보와 라이선스, 보고 싶을 때.",
+  "how.kicker":"사용법", "how.h":"네 단계로 시작.",
+  s1t:"Google Play에서 받기", s1d:"DSH Android를 설치하고 엽니다.",
+  s2t:"API 키 추가", s2d:"에이전트는 연결한 키를 사용합니다.",
+  s3t:"평범한 말로 부탁", s3d:"일을 설명하세요. DSH가 합니다.",
+  s4t:"무료로 사용", s4d:"한 번의 업그레이드로 광고가 사라집니다.",
+  "note.h":"처음부터 비공개", "note.p":"HenWorks 계정은 없습니다. 파일과 대화는 휴대폰에 남고, 선택한 제공자에게 요청을 보낼 때만 나갑니다. 무료로 사용합니다. 한 번의 업그레이드로 광고가 사라집니다. <a href=\"privacy-policy.html\">개인정보 처리방침</a>.",
+  "end.h":"주머니 속의 코딩 에이전트.", "end.p":"무료로 사용. 한 번의 업그레이드로 광고가 사라집니다.",
+  copy:"© 2026 HenWorks",
+  "foot.note":"HenWorks가 만들었습니다. DeepSeek 제품이 아닙니다. <a href=\"/products/dsh/privacy.html\">iPhone의 DSH</a>는 다른 앱입니다."
+},
+th: {
+  skip:"ข้ามไปเนื้อหา", menu:"เมนู",
+  "nav.features":"คุณสมบัติ", "nav.shots":"หน้าจอ", "nav.how":"วิธีใช้", "nav.priv":"ความเป็นส่วนตัว",
+  kicker:"DSH Android · Google Play",
+  "icon.alt":"ไอคอน DSH Android วาฬสีน้ำเงินพร้อมสายรัดสีน้ำตาล",
+  h1:"เอเจนต์เขียนโค้ด AI เต็มรูปแบบ ในกระเป๋าคุณ",
+  tagline:"แก้ไฟล์ รันคำสั่ง ค้นเว็บ และจัดขั้นตอนถัดไป",
+  lead:"ใช้คีย์ API ของคุณ ไฟล์อยู่บนโทรศัพท์ เฉพาะปลั๊กอินที่ผ่านการตรวจเท่านั้นที่รัน แปดภาษา",
+  "badge.alt":"รับบน Google Play", cta2:"ดูวิธีใช้",
+  "fact.1t":"คีย์ของคุณ", "fact.1d":"ไม่มีบัญชี HenWorks",
+  "fact.2t":"บนโทรศัพท์", "fact.2d":"ไฟล์เป็นส่วนตัว",
+  "fact.3t":"แปดภาษา", "fact.3d":"สลับได้ทันที",
+  "hero.alt":"ถามด้วยภาษาธรรมดา แล้วเอเจนต์เริ่มทำงาน",
+  "feat.kicker":"คุณสมบัติ", "feat.h":"ทำงาน จากโทรศัพท์",
+  "feat.sub":"บอกด้วยภาษาธรรมดา DSH แก้ไฟล์ รันคำสั่ง และเก็บแผนไว้",
+  f1t:"แก้ไฟล์", f1d:"อ่าน เขียน และเปลี่ยนไฟล์ในพื้นที่ทำงาน",
+  f2t:"รันคำสั่ง", f2d:"เริ่มคำสั่งและงานยาวโดยไม่ต้องออกจากแชท",
+  f3t:"ค้นเว็บ", f3d:"ค้นหาและอ่านรูปในเธรดเดียวกัน",
+  f4t:"วางแผนขั้นตอน", f4d:"แบ่งงานเป็นรายการ แล้วทำให้ทีละข้อ",
+  f5t:"คีย์ API ของคุณ", f5d:"เชื่อมคีย์ที่คุณมีอยู่แล้ว ไม่ต้องมีบัญชี HenWorks",
+  f6t:"แปดภาษา", f6d:"สลับอินเทอร์เฟซได้ทุกเมื่อ เฉพาะปลั๊กอินที่ผ่านการตรวจเท่านั้นที่รัน",
+  "cap.h":"ถามด้วยภาษาธรรมดา", "cap.p":"บอกรายละเอียดงาน DSH แก้ไฟล์ รันคำสั่ง ค้นเว็บ และตามขั้นตอนถัดไป",
+  "ext.h":"ปลั๊กอินที่เปิดได้สบายใจ", "ext.p":"เพิ่มเมื่อต้องการความสามารถเพิ่ม เฉพาะที่ผ่านการตรวจเท่านั้นที่รัน ที่เหลือปิดไว้",
+  "ws.h":"ไฟล์อยู่บนโทรศัพท์", "ws.p":"อยู่ในที่เก็บส่วนตัวของแอป แชร์หรือบันทึกเมื่อต้องการนำไปที่อื่น",
+  "shots.kicker":"หน้าจอ", "shots.h":"เห็นงานชัด ๆ",
+  "shots.region":"DSH Android ขณะใช้งาน", prev:"ภาพก่อนหน้า", next:"ภาพถัดไป",
+  "g.empty":"หน้าว่าง พร้อมงานถัดไป",
+  "g.threads":"ทุกเธรด แตะครั้งเดียว",
+  "g.rail":"ถามด้วยภาษาธรรมดา แล้วได้งานจริง",
+  "g.ext":"เปิดปลั๊กอินที่ผ่านการตรวจ",
+  "g.settings":"ใช้ฟรี อัปเกรดครั้งเดียวเอาโฆษณาออก",
+  "g.files":"ไฟล์อยู่บนโทรศัพท์",
+  "g.lang":"สลับอินเทอร์เฟซ แปดภาษา",
+  "g.about":"ความเป็นส่วนตัวและสัญญาอนุญาต เมื่อคุณต้องการ",
+  "how.kicker":"วิธีใช้", "how.h":"เริ่มในสี่ขั้น",
+  s1t:"รับบน Google Play", s1d:"ติดตั้ง DSH Android แล้วเปิด",
+  s2t:"ใส่คีย์ API", s2d:"เอเจนต์ใช้คีย์ที่คุณเชื่อม",
+  s3t:"ถามด้วยภาษาธรรมดา", s3d:"บอกรายละเอียดงาน DSH ทำให้",
+  s4t:"ใช้ฟรี", s4d:"อัปเกรดครั้งเดียวเอาโฆษณาออก",
+  "note.h":"เป็นส่วนตัวตั้งแต่ต้น", "note.p":"ไม่มีบัญชี HenWorks ไฟล์และการสนทนาอยู่บนโทรศัพท์ เว้นแต่คุณส่งคำขอไปยังผู้ให้บริการที่เลือก ใช้ฟรี อัปเกรดครั้งเดียวเอาโฆษณาออก <a href=\"privacy-policy.html\">นโยบายความเป็นส่วนตัว</a>",
+  "end.h":"เอเจนต์เขียนโค้ดในกระเป๋า", "end.p":"ใช้ฟรี อัปเกรดครั้งเดียวเอาโฆษณาออก",
+  copy:"© 2026 HenWorks",
+  "foot.note":"ทำโดย HenWorks ไม่ใช่ผลิตภัณฑ์ของ DeepSeek <a href=\"/products/dsh/privacy.html\">DSH บน iPhone</a> เป็นแอปคนละตัว"
+}
+};
+const badges = { zh:"badge-zh-tw.png", en:"badge-en.png", ja:"badge-ja.png", ko:"badge-ko.png", th:"badge-th.png" };
+const htmlLang = { zh:"zh-Hant", en:"en", ja:"ja", ko:"ko", th:"th" };
+function apply(lang) {
+  const pack = i18n[lang] || i18n.en;
+  document.documentElement.lang = htmlLang[lang] || "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n")];
+    if (value) el.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n-alt")];
+    if (value) el.alt = value;
+  });
+  document.querySelectorAll("[data-i18n-label]").forEach(el => {
+    const value = pack[el.getAttribute("data-i18n-label")];
+    if (!value) return;
+    if (el.hasAttribute("aria-label")) el.setAttribute("aria-label", value);
+  });
+  document.querySelectorAll(".play-badge").forEach(img => {
+    img.src = "images/" + (badges[lang] || badges.en);
+  });
+  document.querySelectorAll("#langs button").forEach(btn => {
+    btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+  });
+  try { localStorage.setItem("dsh-android-lang", lang); } catch (_) {}
+}
+document.querySelectorAll("#langs button").forEach(btn => {
+  btn.addEventListener("click", () => apply(btn.dataset.lang));
+});
+const saved = (() => { try { return localStorage.getItem("dsh-android-lang"); } catch (_) { return null; } })();
+const queryLang = new URLSearchParams(location.search).get("lang");
+apply(queryLang && i18n[queryLang] ? queryLang : (saved || "en"));
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
+  const open = !navLinks.classList.contains("open");
+  navLinks.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+});
+navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+  navLinks.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded", "false");
+}));
+
+const scroller = document.querySelector(".scroller");
+document.querySelectorAll("[data-scroll]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = scroller.querySelector("figure");
+    const gap = 16;
+    const delta = (item.getBoundingClientRect().width + gap) * Number(btn.dataset.scroll);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scroller.scrollBy({ left: delta, behavior: reduce ? "auto" : "smooth" });
+  });
+});
+</script>
+</body>
+</html>
